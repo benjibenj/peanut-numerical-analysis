@@ -15,6 +15,10 @@ const tan = {
 const white = {
   default: "#f8f5f2",
 };
+const black = {
+  default: "#333132",
+};
+
 const headline = {
   default: "#232323",
 };
@@ -31,6 +35,7 @@ const Colors = {
       headline,
       paragraph,
       white,
+      black,
     }
 };
 

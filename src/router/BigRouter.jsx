@@ -2,18 +2,15 @@ import React from "react"
 import { Router } from "@reach/router"
 
 import Home from "../components/Home.jsx";
-import Dash from "../components/Dash.jsx";
+import Dashboard from "../components/Dashboard.jsx";
 
-const PublicRouter = () => {
-  render()
-  {
-    return (
-      <Router>
-        <Home path="/"/>
-        <Dash path="dashboard"/>
-      </Router>
-    );
-  }
+const BigRouter = () => {
+  return (
+    <Router>
+      <Home path="/"/>
+      <Dashboard path="dashboard"/>
+    </Router>
+  )
 };
 
-export default PublicRouter;
+export default BigRouter;
