@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {Colors, Shadows, Spacing} from "../rules";
 import { Link } from "@reach/router";
-import logo from "../img/logo.png";
+import logo from "../img/logo0.png";
 
 const TopBar = () => {
   return (
@@ -34,18 +34,18 @@ const TopBarContainer = styled("nav")`
   ul {
     list-style-type: none;
     margin: 0;
-    padding: ${Spacing.md};
+    padding: 10px;
     float: right;
+    font-weight: 700;
   }
   ul > li {
     display: inline-block;
-    float: left;
   }
   li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding: ${Spacing.md};
     text-decoration: none;
   }
   width: 100%;
@@ -60,8 +60,7 @@ const Logo = styled("div")`
   img {
     width: 70px;
   }
-  padding: 20px;
-  transform: rotate(34deg);
+  padding: ${Spacing.md} 26px 12px;
 `;
 
 export default TopBar;

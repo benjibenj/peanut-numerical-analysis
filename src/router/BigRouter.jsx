@@ -1,5 +1,5 @@
 import React from "react"
-import { Router } from "@reach/router"
+import {Link, Router} from "@reach/router"
 
 import Home from "../components/Home.jsx";
 import Dashboard from "../components/Dashboard.jsx";
@@ -8,7 +8,9 @@ const BigRouter = () => {
   return (
     <Router>
       <Home path="/"/>
-      <Dashboard path="dashboard"/>
+      <Dashboard path="help"/>
+      <Home path="/about"/>
+      <Home path="/modules"/>
     </Router>
   )
 };
