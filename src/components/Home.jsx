@@ -1,16 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+//import styled from "styled-components";
+import BigContainer from "../containers/BigContainer";
 
 const Home = () => {
   return (
-    <Container>
+    <BigContainer>
       Hi there
-    </Container>
+    </BigContainer>
   );
 };
 
-const Container = styled("div")`
-
-`;
+//const Container = styled("div")``;
 
 export default Home;

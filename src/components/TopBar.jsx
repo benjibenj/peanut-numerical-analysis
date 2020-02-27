@@ -49,8 +49,6 @@ const TopBarContainer = styled("nav")`
     text-decoration: none;
   }
   width: 100%;
-  position: fixed;
-  top: 0;
   background-color: ${Colors.primary.tan.default};
   border-bottom: 2px solid ${Colors.utility.black.default};
   box-shadow: ${Shadows.level3};
