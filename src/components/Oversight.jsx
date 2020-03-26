@@ -52,7 +52,6 @@ const Oversight = ({ user, signOut, signInWithGoogle }) => {
             </p>
           </React.Fragment>
         )}
-
         {user && authorizedUsers.includes(user.email) && (
           <OverSightContainer>
             <a
