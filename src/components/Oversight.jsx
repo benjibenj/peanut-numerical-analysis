@@ -52,8 +52,9 @@ const Oversight = ({ user, signOut, signInWithGoogle }) => {
             </p>
           </React.Fragment>
         )}
-        <Assignements>
-          {user && authorizedUsers.includes(user.email) && (
+
+        {user && authorizedUsers.includes(user.email) && (
+          <OverSightContainer>
             <a
               href={
                 "https://drive.google.com/drive/folders/1rLZAqN2O43AShqTViEpLd-FTJTcw_swr?usp=sharing"
@@ -61,8 +62,8 @@ const Oversight = ({ user, signOut, signInWithGoogle }) => {
             >
               See assignements
             </a>
-          )}
-        </Assignements>
+          </OverSightContainer>
+        )}
       </BigContainer>
       <CommentContainer>
         <Disqus.DiscussionEmbed
@@ -106,7 +107,10 @@ const User = styled("div")`
   margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
 `;
 
-const Assignements = styled("div")``;
+const OverSightContainer = styled("div")`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default withFirebaseAuth({
   providers,
