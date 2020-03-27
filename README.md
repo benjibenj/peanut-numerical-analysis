@@ -1,4 +1,4 @@
-# numerical-analysis-website
+# Peanut Numerical Analysis
 
 Web app presenting several methods used to solve numerical problems.
 
