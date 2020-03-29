@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import useWindowDimensions from "../utils/windowDimensionsHook";
 import {Shadows, Colors, Spacing, Typography, BorderRadius} from "../rules";
 
-import spitting_lama from "../../src/img/spitting-lama.jpg";
+import squirrel_peanut from "../../src/img/squirrel_peanut.jpg";
 
 import { Link } from "@reach/router";
 import styled from "styled-components";
@@ -18,11 +18,22 @@ const Home = () => {
   const { height, width } = useWindowDimensions();
   const node = useRef(null);
   const [functionText, setFunctionText] = useState("x^2");
-  useEffect(() => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFunctionText(event.target.functionText.value);
+  };
+ useEffect(() => {
+   console.log(functionText);
     if (node.current) {
       functionPlot({
         target: node.current,
         width: width > 800 ? 700 : width - 80,
+        xAxis: {
+          label: 'x - axis',
+        },
+        yAxis: {
+          label: 'y - axis'
+        },
         height: 480,
         data: [
           {
@@ -47,15 +58,14 @@ const Home = () => {
       </Subtitle>
       <MainContainer>
         <LeftContainer>
+          <GraphTitle>f(x) = {functionText}</GraphTitle>
           <Graph ref={node} />
           <Parameters>
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
                 name="functionText"
                 placeholder="x^2"
-                value={functionText}
-                onChange={e => setFunctionText(e.target.value)}
               />
               <button>Apply</button>
             </form>
@@ -105,6 +115,12 @@ const LeftContainer = styled("div")`
   @media (max-width: 1200px) {
     margin: 0 0 ${Spacing.lg} 0;
   }
+  position: relative;
+`;
+
+const GraphTitle = styled("div")`
+  font-size: ${Typography.subTitle.fontSize};
+  text-align: center;
 `;
 
 const RightContainer = styled("div")`-
@@ -138,7 +154,7 @@ const ImageLink = styled("div")`
    transform: translateY(-2px);
   } 
   box-shadow: ${Shadows.level2};
-  background: linear-gradient(rgba(53, 129, 128, 0.4), rgba(53, 129, 128, 0.9)), url(${spitting_lama});
+  background: linear-gradient(rgba(53, 129, 128, 0.4), rgba(53, 129, 128, 0.9)), url(${squirrel_peanut});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
