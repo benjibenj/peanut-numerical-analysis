@@ -1,19 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
+
+import useWindowDimensions from "../utils/windowDimensionsHook";
+import { BorderRadius, Colors, Spacing, Typography } from "../rules";
+
 import { Link } from "@reach/router";
 import styled from "styled-components";
 import * as d3 from "d3";
-import {BorderRadius, Colors, Spacing, Typography} from "../rules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 window.d3 = d3;
 const functionPlot = require("function-plot");
 
 const Home = () => {
+  const { height, width } = useWindowDimensions();
   const node = useRef(null);
   const [functionText, setFunctionText] = useState("x^2");
   useEffect(() => {
     if (node.current) {
       functionPlot({
         target: node.current,
+        width: width > 800 ? 700 : width - 200,
+        height: 480,
         data: [
           {
             fn: functionText,
@@ -21,7 +27,7 @@ const Home = () => {
         ],
       });
     }
-  }, [node, functionText]);
+  }, [node, functionText, width]);
   return (
     <React.Fragment>
       <Title>Peanut</Title>
@@ -36,19 +42,24 @@ const Home = () => {
         </p>
       </Subtitle>
       <MainContainer>
-        <Graph ref={node} />
-        <Parameters>
-          <form>
-          <input
-            type="text"
-            name="functionText"
-            placeholder="x^2"
-            value={functionText}
-            onChange={e => setFunctionText(e.target.value)}
-          />
-          <button>Apply</button>
-          </form>
-        </Parameters>
+        <LeftContainer>
+          <Graph ref={node} />
+          <Parameters>
+            <form>
+              <input
+                type="text"
+                name="functionText"
+                placeholder="x^2"
+                value={functionText}
+                onChange={e => setFunctionText(e.target.value)}
+              />
+              <button>Apply</button>
+            </form>
+          </Parameters>
+        </LeftContainer>
+        <RightContainer>
+          <Link to={"/modules"}>Discover Methods</Link>
+        </RightContainer>
       </MainContainer>
     </React.Fragment>
   );
@@ -60,6 +71,7 @@ const Title = styled("div")`
 `;
 
 const Subtitle = styled("div")`
+  max-width: 700px;
   font-size: ${Typography.subTitle.fontSize};
   margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
   svg {
@@ -68,21 +80,37 @@ const Subtitle = styled("div")`
 `;
 
 const MainContainer = styled("div")`
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
+  margin: ${Spacing.xxl} ${Spacing.xl};
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     flex-direction: column;
   }
+  align-items: left;
 `;
 
-const Graph = styled("div")``;
+const LeftContainer = styled("div")`
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+`;
+
+const RightContainer = styled("div")`-
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+`;
+
+const Graph = styled("div")`
+  margin: 0 0 ${Spacing.md} 0;
+`;
 
 const Parameters = styled("div")`
   display: flex;
   flex-direction: column;
+  align-self: center;
   input {
     width: 360px;
     background: #fff;
@@ -109,7 +137,7 @@ const Parameters = styled("div")`
       padding: 12px 36px;
       
       &:hover {
-        background: darkblue;
+        background: ${Colors.primary.ocean.darker};
       }
       
       &:active {
