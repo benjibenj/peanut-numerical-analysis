@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import useWindowDimensions from "../utils/windowDimensionsHook";
-import { BorderRadius, Colors, Spacing, Typography } from "../rules";
+import {Shadows, Colors, Spacing, Typography, BorderRadius} from "../rules";
+
+import spitting_lama from "../../src/img/spitting-lama.jpg";
 
 import { Link } from "@reach/router";
 import styled from "styled-components";
@@ -9,6 +11,8 @@ import * as d3 from "d3";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 window.d3 = d3;
 const functionPlot = require("function-plot");
+
+
 
 const Home = () => {
   const { height, width } = useWindowDimensions();
@@ -18,7 +22,7 @@ const Home = () => {
     if (node.current) {
       functionPlot({
         target: node.current,
-        width: width > 800 ? 700 : width - 200,
+        width: width > 800 ? 700 : width - 80,
         height: 480,
         data: [
           {
@@ -58,7 +62,11 @@ const Home = () => {
           </Parameters>
         </LeftContainer>
         <RightContainer>
-          <Link to={"/modules"}>Discover Methods</Link>
+          <Link to={"/modules"}>
+            <ImageLink>
+              Browse methods
+            </ImageLink>
+          </Link>
         </RightContainer>
       </MainContainer>
     </React.Fragment>
@@ -94,13 +102,57 @@ const LeftContainer = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: left;
+  @media (max-width: 1200px) {
+    margin: 0 0 ${Spacing.lg} 0;
+  }
 `;
 
 const RightContainer = styled("div")`-
-  max-width: 700px;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  margin: 0 ${Spacing.xxl};
+  @media (max-width: 1200px) {
+    margin: ${Spacing.md} 0;
+  }
+  a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  &:hover {   
+   a {
+      text-decoration: underline;
+      color: white;
+   }
+  }
+`;
+
+const ImageLink = styled("div")`
+  width: 100%;
+  height: 520px;
+  text-align: center;
+  &:hover {
+   transform: translateY(-2px);
+  } 
+  box-shadow: ${Shadows.level2};
+  background: linear-gradient(rgba(53, 129, 128, 0.4), rgba(53, 129, 128, 0.9)), url(${spitting_lama});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: ${BorderRadius.lg};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: ${Colors.utility.white.default};
+  @media screen and (max-width: 900px) {
+    height: 400px;
+  }
+  font-size: ${Typography.largeTitle.fontSize};
+  text-transform: uppercase;
 `;
 
 const Graph = styled("div")`
