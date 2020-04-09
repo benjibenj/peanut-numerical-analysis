@@ -1,10 +1,26 @@
-import React from "react";
+import React , {useRef, useState, useEffect} from "react";
 import styled from "styled-components";
 import {Colors, Shadows, Spacing} from "../rules";
 import { Link } from "@reach/router";
 import logo from "../img/logo0.png";
+import ModulesDropDown from "./ModulesDropDown";
 
 const TopBar = () => {
+  const node = useRef(null);
+  const [dropDownVisible, setDropDownVisible] = useState(false);
+  const handleClickOutside = event => {
+    if (node.current && !node.current.contains(event.target)) {
+      setDropDownVisible(false)
+    }
+  };
+  useEffect(() => {
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  });
   return (
     <TopBarContainer>
       <Logo>
@@ -14,7 +30,16 @@ const TopBar = () => {
       </Logo>
       <ul>
         <li>
-          <Link to="/modules">Modules</Link>
+          <DropDownClickZone ref={node}>
+            <DropDownButton
+              onClick={() => setDropDownVisible(!dropDownVisible)}
+            >
+              Modules
+            </DropDownButton>
+            {dropDownVisible && (
+              <ModulesDropDown />
+            )}
+          </DropDownClickZone>
         </li>
         <li>
           <Link to="/help">Help</Link>
@@ -63,5 +88,24 @@ const Logo = styled("div")`
   }
   padding: ${Spacing.md} 26px 12px;
 `;
+
+const DropDownButton = styled("button")`
+  border: none;
+  background-color: inherit;
+  color: ${Colors.utility.white.default};
+  padding: ${Spacing.md};
+  margin: 0;
+  cursor: pointer; 
+  font-weight: 700;
+  font: inherit;
+`;
+
+const DropDownClickZone = styled("div")`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  color: ${Colors.utility.white.default};
+`;
+
 
 export default TopBar;
