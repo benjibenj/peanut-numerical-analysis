@@ -15,7 +15,7 @@ const functionPlot = require("function-plot");
 
 
 const Home = () => {
-  const { height, width } = useWindowDimensions();
+  const size = useWindowDimensions();
   const node = useRef(null);
   const [functionText, setFunctionText] = useState("x^2");
   const handleSubmit = (event) => {
@@ -27,7 +27,7 @@ const Home = () => {
     if (node.current) {
       functionPlot({
         target: node.current,
-        width: width > 800 ? 700 : width - 80,
+        width: size.width > 800 ? 700 : size.width - 80,
         xAxis: {
           label: 'x - axis',
         },
@@ -42,7 +42,7 @@ const Home = () => {
         ],
       });
     }
-  }, [node, functionText, width]);
+  }, [node, functionText, size.width]);
   return (
     <React.Fragment>
       <Title>Peanut</Title>
