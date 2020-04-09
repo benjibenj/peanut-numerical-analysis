@@ -1,6 +1,7 @@
 import React from "react";
 
 import {Shadows, Colors, Spacing, Typography, BorderRadius} from "../rules";
+import {Title, Subtitle} from "../containers/BigContainer";
 
 import squirrel_peanut from "../../src/img/squirrel_peanut.jpg";
 
@@ -39,20 +40,6 @@ const Home = () => {
     </React.Fragment>
   );
 };
-
-const Title = styled("div")`
-  font-size: ${Typography.largeTitle.fontSize};
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
-`;
-
-const Subtitle = styled("div")`
-  max-width: 700px;
-  font-size: ${Typography.subTitle.fontSize};
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
-  svg {
-    margin-right: ${Spacing.sm};
-  }
-`;
 
 const MainContainer = styled("div")`
   margin: ${Spacing.xxl} ${Spacing.xl};

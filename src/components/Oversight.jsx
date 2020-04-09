@@ -4,6 +4,8 @@ import BigContainer from "../containers/BigContainer";
 import CommentContainer from "../containers/CommentContainer";
 import Disqus from "disqus-react";
 
+import {Title} from "../containers/BigContainer";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import withFirebaseAuth from "react-with-firebase-auth";
@@ -11,7 +13,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import firebaseConfig from "../firebaseConfig";
-import { BorderRadius, Colors, Spacing, Typography } from "../rules";
+import { BorderRadius, Colors, Spacing } from "../rules";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
@@ -94,10 +96,6 @@ const Button = styled("button")`
   }
 `;
 
-const Title = styled("div")`
-  font-size: ${Typography.title.fontSize};
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
-`;
 
 const User = styled("div")`
   display: flex;

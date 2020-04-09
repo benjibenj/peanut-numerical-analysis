@@ -1,4 +1,4 @@
-import React , {useRef, useState, useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 import {Colors, Spacing, BorderRadius} from "../rules";
 import { Link } from "@reach/router";
@@ -6,6 +6,9 @@ import { Link } from "@reach/router";
 const ModulesDropDown = () => {
   return (
     <Container>
+      <Item>
+        <Link to={"/modules"}>All modules</Link>
+      </Item>
       <Item>
         <Link to={"/modules/function-evaluator"}>Function evaluator</Link>
       </Item>
