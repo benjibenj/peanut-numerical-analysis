@@ -107,10 +107,13 @@ const Theme = styled("div")`
   grid-template-columns: 300px 300px 300px 300px;
   grid-column-gap: 25px;
   grid-row-gap: 25px;
+  @media (max-width: 1370px) {
+    grid-template-columns: 300px 300px 300px;
+  }
   @media (max-width: 1080px) {
     grid-template-columns: 300px 300px;
   }
-  @media (max-width: 550px) {
+  @media (max-width: 730px) {
     grid-template-columns: 300px;
   }
   justify-items: left;
