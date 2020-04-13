@@ -34,7 +34,7 @@ const TopBar = () => {
             <DropDownButton
               onClick={() => setDropDownVisible(!dropDownVisible)}
             >
-              Modules
+              Methods
             </DropDownButton>
             {dropDownVisible && (
               <ModulesDropDown />

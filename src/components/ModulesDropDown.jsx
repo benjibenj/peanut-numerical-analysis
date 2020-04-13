@@ -7,7 +7,7 @@ const ModulesDropDown = () => {
   return (
     <Container>
       <Item>
-        <Link to={"/modules"}>All modules</Link>
+        <Link to={"/modules"}>All methods</Link>
       </Item>
       <Item>
         <Link to={"/modules/function-evaluator"}>Function evaluator</Link>
