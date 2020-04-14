@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "@reach/router";
+import {Link} from "@reach/router";
 import { Title, Subtitle } from "../containers/BigContainer";
 import {BorderRadius, Colors, Spacing, Typography} from "../rules";
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const Dashboard = () => {
+const MethodsDashboard = () => {
   const methods = [
     { index: 2, id: "function-evaluator", theme: "one-var", name: "Function evaluator" },
     { index: 3,  id: "incremental-search", theme: "one-var", name: "Incremental search" },
@@ -47,15 +47,15 @@ const Dashboard = () => {
           Solving equations of one variable
         </ThemeTitle>
         <Theme>
-        {methods.filter(module => {
-          return (module.theme === "one-var");
-        }).map(module => {
-          return (
-            <ModuleLink key={module.id} to={module.id}>
-              {module.name}
-            </ModuleLink>
+          {methods.filter(module => {
+            return (module.theme === "one-var");
+          }).map(module => {
+            return (
+              <ModuleLink key={module.id} to={module.id}>
+                {module.name}
+              </ModuleLink>
             )
-        })}
+          })}
         </Theme>
         <ThemeTitle>
           <FontAwesomeIcon icon={"horse-head"}/>
@@ -138,4 +138,4 @@ const ModuleLink = styled(Link)`
   
 `;
 
-export default Dashboard;
+export default MethodsDashboard;
