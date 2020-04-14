@@ -24,7 +24,7 @@ const BigRouter = () => {
       <Home path="/" />
       <About path="about" />
       <Oversight path="oversight" />
-      <Empty path="modules">
+      <Empty path="methods">
         <Dashboard path="/" />
         <FuncEval path="function-evaluator" />
         <IncSearch path="incremental-search" />

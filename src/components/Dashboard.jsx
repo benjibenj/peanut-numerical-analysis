@@ -6,7 +6,7 @@ import {BorderRadius, Colors, Spacing, Typography} from "../rules";
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Dashboard = () => {
-  const modules = [
+  const methods = [
     { index: 2, id: "function-evaluator", theme: "one-var", name: "Function evaluator" },
     { index: 3,  id: "incremental-search", theme: "one-var", name: "Incremental search" },
     { index: 4,  id: "get-solution-bisection", theme: "one-var", name: "Bisection" },
@@ -47,7 +47,7 @@ const Dashboard = () => {
           Solving equations of one variable
         </ThemeTitle>
         <Theme>
-        {modules.filter(module => {
+        {methods.filter(module => {
           return (module.theme === "one-var");
         }).map(module => {
           return (
@@ -62,7 +62,7 @@ const Dashboard = () => {
           Solution of systems of equations
         </ThemeTitle>
         <Theme>
-          {modules.filter(module => {
+          {methods.filter(module => {
             return (module.theme === "sys-eq");
           }).map(module => {
             return (
@@ -77,7 +77,7 @@ const Dashboard = () => {
           Interpolation
         </ThemeTitle>
         <Theme>
-          {modules.filter(module => {
+          {methods.filter(module => {
             return (module.theme === "interpolation");
           }).map(module => {
             return (
