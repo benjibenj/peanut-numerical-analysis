@@ -40,7 +40,7 @@ const Method = ({
             {pseudoCodeVisible ? "Pseudocode" : "Method demo"}
           </SideTitle>
           {pseudoCodeVisible ? (
-            <PseudoCode>{pseudoCode}</PseudoCode>
+            <PseudoCode dangerouslySetInnerHTML={pseudoCode} />
           ) : (
             <FuncEvalLive>{children}</FuncEvalLive>
           )}
