@@ -14,8 +14,7 @@ import SolutionOthers from "../components/methods/SolutionOthers";
 
 import Page404 from "../components/Page404";
 
-const MethodsRouter = ({location}) => {
-  console.log(location);
+const MethodsRouter = () => {
   return (
     <Router>
       <MethodsDashboard path="/" />
