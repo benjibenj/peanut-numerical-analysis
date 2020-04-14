@@ -1,100 +1,87 @@
-import React, { useState } from "react";
-
-import {BorderRadius, Colors, Spacing} from "../../rules";
-import {Subtitle, Title} from "../../containers/BigContainer";
-import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-
+import React, {useState} from "react";
+import Method from "../../containers/Method";
 import styled from "styled-components";
+import {BorderRadius, Colors, Spacing} from "../../rules";
+
+import * as Algebrite from "algebrite";
 
 const FuncEval = () => {
-  const [pseudoCodeVisible, setPseudoCodeVisible] = useState(false);
+  const title = "Function Evaluator";
+  const subTitle = "This method simply evaluates each value passed (x) with the function selected (f(x)).";
+  const [functionText, setFunctionText] = useState("x^2");
+  const [x, setX] = useState(2);
+  const [resultEval, setResultEval] = useState(Algebrite.eval("x^2", "x", 2));
+  const handleSubmit = event => {
+    event.preventDefault();
+    setFunctionText(event.target.functionText.value);
+    setX(event.target.x.value);
+    setResultEval(Algebrite.eval(event.target.functionText.value, "x", event.target.x.value));
+  };
   return (
-    <React.Fragment>
-      <Title>Function Evaluator</Title>
-      <Subtitle>This method simply evaluates each value passed (x) with the function selected (f(x)).</Subtitle>
-      <MainContainer>
-        <Side>
-          <SideTitle>Options</SideTitle>
-          <ToggleButton
-            active={!pseudoCodeVisible}
-            onClick={() => setPseudoCodeVisible(false)}
-          >
-            <FontAwesomeIcon icon={"wave-square"}/>
-            Functional example of the method
-          </ToggleButton>
-          <ToggleButton
-            active={pseudoCodeVisible}
-            onClick={() => setPseudoCodeVisible(true)}
-          >
-            <FontAwesomeIcon icon={"code"}/>
-            See the pseudocode
-          </ToggleButton>
-        </Side>
-        <Side grow>
-          <SideTitle>{pseudoCodeVisible ? "Pseudocode" : "Function"}</SideTitle>
-          {pseudoCodeVisible ? (
-            <PseudoCode>
-              There is no pseudocode for this function
-            </PseudoCode>
-          ) : (
-            <FuncEvalLive>
-              HEY
-            </FuncEvalLive>
-          )}
-        </Side>
-      </MainContainer>
-    </React.Fragment>
+    <Method
+      title={title}
+      subTitle={subTitle}
+      >
+      <Container>
+        <Parameters>
+          <form onSubmit={handleSubmit}>
+            <label>Function<input type="text" name="functionText" placeholder="x^2" /></label>
+            <label>Value of x (can be an array)<input type="text" name="x" placeholder="2, [12, 20], ... etc" /></label>
+            <button>Apply</button>
+          </form>
+        </Parameters>
+        <Eval>
+          <strong>Function Evaluator</strong>
+          <Params>
+            <ul>
+              <li>The input function : {functionText}</li>
+              <li>x value : {x}</li>
+              <li>f(x) : <strong>{resultEval.toString()}</strong></li>
+            </ul>
+          </Params>
+        </Eval>
+      </Container>
+    </Method>
   );
 };
 
-const MainContainer = styled("div")`
+const Container = styled("div")`
   display: flex;
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
   flex-direction: row;
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
-  align-items: left;
 `;
 
-const SideTitle = styled("h2")``;
+const Eval = styled("div")`
+  margin: ${Spacing.sm} 0 ${Spacing.lg} ${Spacing.sm};
+`;
 
-const ToggleButton = styled("button")`
-  display: block;
-  border: none;
-  font: inherit;
-  background-color: inherit;
-  color: ${props => props.active ? Colors.primary.ocean.lighter : Colors.utility.headline.default};
-  padding: ${Spacing.sm} 0;  
-  svg {
-    padding-right: ${Spacing.md};
+const Params = styled("div")`
+  li{
+    margin: ${Spacing.md} 0;
   }
 `;
 
-const Side = styled("div")`
-  margin-right: ${Spacing.xl};
-  flex-grow: ${props => props.grow && "1"};
+const Parameters = styled("div")`
+  label {
+    display: block;
+    font-weight: bold;
+    margin: ${Spacing.sm} 0 ${Spacing.md} 0;
+  }
+  input {
+    display: block;
+    margin: ${Spacing.sm} 0;
+    border: none;
+    font-size: inherit;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  button {
+    font-size: inherit;
+    border: 2px solid ${Colors.primary.ocean.default};
+    color: ${Colors.primary.ocean.darker};
+    border-radius: ${BorderRadius.sm};
+    font-weight: bold;
+  }
 `;
-
-const PseudoCode = styled("code")`
-  background: ${Colors.utility.black.default};
-  color: ${Colors.utility.white.default};
-  border-radius: ${BorderRadius.md};
-  padding: 15px 20px 12px 22px;
-  display: block;
-  overflow-x: scroll;
-  width: 100%;
-  font-size: 16px;
-  line-height: 1.75;
-`;
-
-const FuncEvalLive = styled("div")`
-  background-color: white;
-  border-radius: ${BorderRadius.md};
-  flex-grow: 1;
-  width: 100%;
-  padding: ${Spacing.md} ${Spacing.lg};
-`;
-
 
 export default FuncEval;
