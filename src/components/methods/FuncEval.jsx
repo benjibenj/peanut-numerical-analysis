@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import Method from "../../containers/Method";
-import styled from "styled-components";
-import {BorderRadius, Colors, Spacing} from "../../rules";
+import Method from "./Method";
+import {RowContainer, Parameters, Eval, Params} from "../../containers/BigContainer";
 
 import * as Algebrite from "algebrite";
 
@@ -22,7 +21,7 @@ const FuncEval = () => {
       title={title}
       subTitle={subTitle}
       >
-      <Container>
+      <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
             <label>Function<input type="text" name="functionText" placeholder="x^2" /></label>
@@ -31,7 +30,7 @@ const FuncEval = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>Function Evaluator</strong>
+          <strong>{title}</strong>
           <Params>
             <ul>
               <li>The input function : {functionText}</li>
@@ -40,48 +39,9 @@ const FuncEval = () => {
             </ul>
           </Params>
         </Eval>
-      </Container>
+      </RowContainer>
     </Method>
   );
 };
-
-const Container = styled("div")`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Eval = styled("div")`
-  margin: ${Spacing.sm} 0 ${Spacing.lg} ${Spacing.sm};
-`;
-
-const Params = styled("div")`
-  li{
-    margin: ${Spacing.md} 0;
-  }
-`;
-
-const Parameters = styled("div")`
-  label {
-    display: block;
-    font-weight: bold;
-    margin: ${Spacing.sm} 0 ${Spacing.md} 0;
-  }
-  input {
-    display: block;
-    margin: ${Spacing.sm} 0;
-    border: none;
-    font-size: inherit;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-  }
-  button {
-    font-size: inherit;
-    border: 2px solid ${Colors.primary.ocean.default};
-    color: ${Colors.primary.ocean.darker};
-    border-radius: ${BorderRadius.sm};
-    font-weight: bold;
-  }
-`;
 
 export default FuncEval;

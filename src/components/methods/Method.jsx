@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { BorderRadius, Colors, Spacing } from "../rules";
-import { Subtitle, Title } from "./BigContainer";
+import { BorderRadius, Colors, Spacing } from "../../rules";
+import { Subtitle, Title } from "../../containers/BigContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styled from "styled-components";

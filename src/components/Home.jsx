@@ -30,7 +30,7 @@ const Home = () => {
           <Graph />
         </LeftContainer>
         <RightContainer>
-          <Link to={"/modules"}>
+          <Link to={"/methods"}>
             <ImageLink>
               Browse methods
             </ImageLink>
