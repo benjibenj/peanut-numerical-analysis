@@ -16,8 +16,8 @@ const incrementalSearch = (functionText, initialValue, delta, maxCount) => {
   let count = 0;
   let a = initialValue;
   let b = initialValue + delta;
-  let fA = parseFloat(Algebrite.eval(functionText, "x", a).toString());
-  let fB = parseFloat(Algebrite.eval(functionText, "x", b).toString());
+  let fA = parseFloat(Algebrite.eval(functionText, "x", a).toString()); // we evaluate f(a)
+  let fB = parseFloat(Algebrite.eval(functionText, "x", b).toString()); // we evaluate f(b)
   while (fA*fB > 0 && count < maxCount ) {
     a = b;
     fA = fB;
@@ -62,7 +62,7 @@ const IncSearch = () => {
     setFunctionText(event.target.functionText.value);
     setInitialValue(event.target.initialValue.value);
     setDelta(event.target.delta.value);
-    setResult(incrementalSearch(event.target.functionText.value, event.target.initialValue.value, event.target.delta.value, event.target.maxCount.value));
+    setResult(incrementalSearch(event.target.functionText.value, parseFloat(event.target.initialValue.value), parseFloat(event.target.delta.value), parseInt(event.target.maxCount.value)));
   };
   return (
     <Method title={title} pseudoCode={pseudoCode}>
