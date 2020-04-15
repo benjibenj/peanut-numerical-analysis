@@ -9,7 +9,7 @@ import styled from "styled-components";
 const Method = ({
   title = "Title to be defined",
   subTitle = "Description to be defined",
-  pseudoCode = "There is no pseudocode for this function",
+  pseudoCode = {__html: "<h2>There is no pseudocode for this function</h2>"},
   children,
 }) => {
   const [pseudoCodeVisible, setPseudoCodeVisible] = useState(false);
