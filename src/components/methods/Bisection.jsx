@@ -4,7 +4,8 @@ import {RowContainer, Parameters, Eval, Params} from "../../containers/BigContai
 
 const Bisection = () => {
   const title = "Bisection";
-  const pseudoCode = {__html: "<h3>The user needs to guarantee that the function is continuous in the given interval</h3>" +
+  const pseudoCode = {__html:
+      "<h3>The user needs to guarantee that the function is continuous in the given interval</h3>" +
       "<h4>Steps</h4>" +
       "<ol>"+
       "<li>Ask the user for a function, a tolerance and a max number of iterations</li>"+
