@@ -3,9 +3,9 @@ import styled from "styled-components";
 import {Colors, Spacing, BorderRadius} from "../rules";
 import { Link } from "@reach/router";
 
-const ModulesDropDown = () => {
+const ModulesDropDown = ({onClickOnLink}) => {
   return (
-    <Container>
+    <Container onClick={() => onClickOnLink()}>
       <Item>
         <Link to={"/methods"}>All methods</Link>
       </Item>
