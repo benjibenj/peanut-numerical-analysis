@@ -1,32 +1,13 @@
 import React, { useState } from "react";
-import Method from "./Method";
+import Method from "../Method";
 import {
   RowContainer,
   Parameters,
   Eval,
   Params,
-} from "../../containers/BigContainer";
+} from "../../../containers/BigContainer";
 
-import * as Algebrite from "algebrite";
-
-const incrementalSearch = (functionText, initialValue, delta, maxCount) => {
-  if (maxCount > 100){
-    maxCount = 100;
-  }
-  let count = 0;
-  let a = initialValue;
-  let b = initialValue + delta;
-  let fA = parseFloat(Algebrite.eval(functionText, "x", a).toString()); // we evaluate f(a)
-  let fB = parseFloat(Algebrite.eval(functionText, "x", b).toString()); // we evaluate f(b)
-  while (fA*fB > 0 && count < maxCount ) {
-    a = b;
-    fA = fB;
-    b = b+delta;
-    fB = parseFloat(Algebrite.eval(functionText, "x", b).toString());
-    count += 1;
-  }
-  return [a, b, fA, fB, count];
-};
+import incSearchFunction from "./incSearchFunction";
 
 const IncSearch = () => {
   const title = "Incremental Search";
@@ -56,13 +37,13 @@ const IncSearch = () => {
   const [functionText, setFunctionText] = useState("x^2");
   const [initialValue, setInitialValue] = useState(-10);
   const [delta, setDelta] = useState(0.1);
-  const [result, setResult] = useState(incrementalSearch("x^2 - 1", 0, 0.1, 100));
+  const [result, setResult] = useState(incSearchFunction("x^2 - 1", 0, 0.1, 100));
   const handleSubmit = event => {
     event.preventDefault();
     setFunctionText(event.target.functionText.value);
     setInitialValue(event.target.initialValue.value);
     setDelta(event.target.delta.value);
-    setResult(incrementalSearch(event.target.functionText.value, parseFloat(event.target.initialValue.value), parseFloat(event.target.delta.value), parseInt(event.target.maxCount.value)));
+    setResult(incSearchFunction(event.target.functionText.value, parseFloat(event.target.initialValue.value), parseFloat(event.target.delta.value), parseInt(event.target.maxCount.value)));
   };
   return (
     <Method title={title} pseudoCode={pseudoCode}>
