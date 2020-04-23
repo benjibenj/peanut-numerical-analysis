@@ -1,26 +1,10 @@
-import React , {useRef, useState, useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 import {Colors, Shadows, Spacing} from "../rules";
 import { Link } from "@reach/router";
 import logo from "../img/logo0.png";
-import ModulesDropDown from "./ModulesDropDown";
 
 const TopBar = () => {
-  const node = useRef(null);
-  const [dropDownVisible, setDropDownVisible] = useState(false);
-  const handleClickOutside = event => {
-    if (node.current && !node.current.contains(event.target)) {
-      setDropDownVisible(false)
-    }
-  };
-  useEffect(() => {
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  });
   return (
     <TopBarContainer>
       <Logo>
@@ -30,18 +14,7 @@ const TopBar = () => {
       </Logo>
       <ul>
         <li>
-          <DropDownClickZone ref={node}>
-            <DropDownButton
-              onClick={() => setDropDownVisible(!dropDownVisible)}
-            >
-              Methods
-            </DropDownButton>
-            {dropDownVisible && (
-              <ModulesDropDown
-                onClickOnLink={() => setDropDownVisible(!dropDownVisible)}
-              />
-            )}
-          </DropDownClickZone>
+          <Link to="/methods">Methods</Link>
         </li>
         <li>
           <Link to="/help">Help</Link>
