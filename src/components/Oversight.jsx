@@ -22,7 +22,12 @@ const providers = {
 };
 
 const Oversight = ({ user, signOut, signInWithGoogle }) => {
-  const authorizedUsers = ["benjamin.vaysse@gmail.com", "", ""];
+  const authorizedUsers = [
+    "benjamin.vaysse@gmail.com",
+    "sarposada@gmail.com",
+    "greg.vernier10@gmail.com",
+    "duvan_1310@hotmail.com",
+    "sag.arangog@gmail.com"];
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
     url: "http://localhost:3000", //this.props.pageUrl
@@ -61,7 +66,14 @@ const Oversight = ({ user, signOut, signInWithGoogle }) => {
                 "https://drive.google.com/drive/folders/1rLZAqN2O43AShqTViEpLd-FTJTcw_swr?usp=sharing"
               }
             >
-              See assignements
+              Check out some of the files associated with this project (pseudocodes, assignements, ... etc)
+            </a>
+            <a
+              href={
+                "https://github.com/benjamin-vaysse/peanut-numerical-analysis"
+              }
+            >
+              Check out Github project
             </a>
           </OverSightContainer>
         )}
@@ -107,6 +119,9 @@ const User = styled("div")`
 const OverSightContainer = styled("div")`
   display: flex;
   flex-direction: column;
+  a {
+    margin: ${Spacing.lg} 0;
+  }
 `;
 
 export default withFirebaseAuth({
