@@ -12,7 +12,7 @@ import Graph from "./Graph";
 const Home = () => {
   return (
     <React.Fragment>
-      <CenteredTitle>Peanut</CenteredTitle>
+      <CenteredTitle>Peanut<h3>🥜</h3></CenteredTitle>
       <CenteredSubTitle>
         Peanut is a website where you'll find several methods used to solve
         numerical analysis problems.{" "}
@@ -24,9 +24,8 @@ const Home = () => {
         </p>
       </CenteredSubTitle>
       <MainContainer>
-        <LeftContainer>
+        <h3>Provide a function for the graph : </h3>
           <Graph />
-        </LeftContainer>
       </MainContainer>
     </React.Fragment>
   );
@@ -34,6 +33,7 @@ const Home = () => {
 
 const CenteredTitle = styled(Title)`
   text-align: center;
+  margin: ${Spacing.lg} 0;
 `;
 
 const CenteredSubTitle = styled(Subtitle)`
@@ -42,24 +42,12 @@ const CenteredSubTitle = styled(Subtitle)`
 `;
 
 const MainContainer = styled("div")`
-  margin: ${Spacing.xxl} ${Spacing.xl};
+  margin: ${Spacing.lg} auto ${Spacing.xxl} auto;
   display: flex;
-  flex-direction: row;
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
   justify-content: center;
-`;
-
-const LeftContainer = styled("div")`
   max-width: 700px;
-  display: flex;
   flex-direction: column;
-  align-items: left;
-  @media (max-width: 1200px) {
-    margin: 0 0 ${Spacing.lg} 0;
-  }
-  position: relative;
+  text-align: center;
 `;
 
 export default Home;

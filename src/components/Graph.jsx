@@ -48,18 +48,18 @@ const Graph = () => {
   }, [node, functionText, size.width]);
   return (
     <React.Fragment>
-      <GraphTitle>f(x) = {functionText}</GraphTitle>
-      {!errorMessage ? (<GraphChart ref={node} />) : (
-        <ErrorMessage>
-          <FontAwesomeIcon icon={"exclamation-circle"}/>
-          {errorMessage}
-        </ErrorMessage>)}
       <Parameters>
         <form onSubmit={handleSubmit}>
           <input type="text" name="functionText" placeholder="x^2" />
           <button>Apply</button>
         </form>
       </Parameters>
+      <GraphTitle>f(x) = {functionText}</GraphTitle>
+      {!errorMessage ? (<GraphChart ref={node} />) : (
+        <ErrorMessage>
+          <FontAwesomeIcon icon={"exclamation-circle"}/>
+          {errorMessage}
+        </ErrorMessage>)}
     </React.Fragment>
   );
 };
@@ -86,6 +86,7 @@ const Parameters = styled("div")`
   display: flex;
   flex-direction: column;
   align-self: center;
+  margin: ${Spacing.md} 0;
   input {
     width: 360px;
     background: #fff;
