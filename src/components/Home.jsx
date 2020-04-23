@@ -1,9 +1,7 @@
 import React from "react";
 
-import {Shadows, Colors, Spacing, Typography, BorderRadius} from "../rules";
+import {Spacing} from "../rules";
 import {Title, Subtitle} from "../containers/BigContainer";
-
-import squirrel_peanut from "../../src/img/squirrel_peanut.jpg";
 
 import { Link } from "@reach/router";
 import styled from "styled-components";
@@ -14,8 +12,8 @@ import Graph from "./Graph";
 const Home = () => {
   return (
     <React.Fragment>
-      <Title>Peanut</Title>
-      <Subtitle>
+      <CenteredTitle>Peanut</CenteredTitle>
+      <CenteredSubTitle>
         Peanut is a website where you'll find several methods used to solve
         numerical analysis problems.{" "}
         <p>
@@ -24,22 +22,24 @@ const Home = () => {
             Learn more about this website
           </Link>
         </p>
-      </Subtitle>
+      </CenteredSubTitle>
       <MainContainer>
         <LeftContainer>
           <Graph />
         </LeftContainer>
-        <RightContainer>
-          <Link to={"/methods"}>
-            <ImageLink>
-              Browse methods
-            </ImageLink>
-          </Link>
-        </RightContainer>
       </MainContainer>
     </React.Fragment>
   );
 };
+
+const CenteredTitle = styled(Title)`
+  text-align: center;
+`;
+
+const CenteredSubTitle = styled(Subtitle)`
+  text-align: center;
+  max-width: none;
+`;
 
 const MainContainer = styled("div")`
   margin: ${Spacing.xxl} ${Spacing.xl};
@@ -48,7 +48,7 @@ const MainContainer = styled("div")`
   @media (max-width: 1200px) {
     flex-direction: column;
   }
-  align-items: left;
+  justify-content: center;
 `;
 
 const LeftContainer = styled("div")`
@@ -60,55 +60,6 @@ const LeftContainer = styled("div")`
     margin: 0 0 ${Spacing.lg} 0;
   }
   position: relative;
-`;
-
-
-const RightContainer = styled("div")`-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-  margin: 0 ${Spacing.xxl};
-  @media (max-width: 1200px) {
-    margin: ${Spacing.md} 0;
-  }
-  a {
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  &:hover {   
-   a {
-      text-decoration: underline;
-      color: white;
-   }
-  }
-`;
-
-const ImageLink = styled("div")`
-  width: 100%;
-  height: 520px;
-  text-align: center;
-  &:hover {
-   transform: translateY(-2px);
-  } 
-  box-shadow: ${Shadows.level2};
-  background: linear-gradient(rgba(53, 129, 128, 0.4), rgba(53, 129, 128, 0.9)), url(${squirrel_peanut});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: ${BorderRadius.lg};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: ${Colors.utility.white.default};
-  @media screen and (max-width: 900px) {
-    height: 400px;
-  }
-  font-size: ${Typography.largeTitle.fontSize};
-  text-transform: uppercase;
 `;
 
 export default Home;
