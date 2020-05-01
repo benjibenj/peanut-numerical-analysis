@@ -70,4 +70,13 @@ export const Parameters = styled("div")`
   }
 `;
 
+export const Error = styled("div")`
+  border-radius: ${BorderRadius.md};
+  background-color: ${Colors.primary.tan.default};
+  color: white;
+  padding: ${Spacing.md} ${Spacing.lg};
+  font-weight: bold;
+  margin: ${Spacing.md} 0;
+`;
+
 export default BigContainer;

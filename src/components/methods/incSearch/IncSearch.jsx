@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { parse } from "mathjs";
-import styled from "styled-components";
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { Link } from "@reach/router";
 
@@ -9,9 +8,9 @@ import {
   RowContainer,
   Parameters,
   Eval,
+  Error
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
-import { BorderRadius, Colors, Spacing } from "../../../rules";
 
 const IncSearch = () => {
   const title = "Incremental Search";
@@ -98,14 +97,5 @@ const IncSearch = () => {
     </Method>
   );
 };
-
-const Error = styled("div")`
-  border-radius: ${BorderRadius.md};
-  background-color: ${Colors.primary.tan.default};
-  color: white;
-  padding: ${Spacing.md} ${Spacing.lg};
-  font-weight: bold;
-  margin: ${Spacing.md} 0;
-`;
 
 export default IncSearch;
