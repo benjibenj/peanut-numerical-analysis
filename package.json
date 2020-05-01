@@ -19,6 +19,7 @@
     "firebase-tools": "^7.15.1",
     "function-plot": "1.18.1",
     "interval-arithmetic-eval": "^0.4.6",
+    "mathjs": "^6.6.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",

@@ -2,19 +2,19 @@ import React, {useState} from "react";
 import Method from "./Method";
 import {RowContainer, Parameters, Eval, Params} from "../../containers/BigContainer";
 
-import * as Algebrite from "algebrite";
+import * as math from "mathjs";
 
 const FuncEval = () => {
   const title = "Function Evaluator";
   const subTitle = "This method simply evaluates each value passed (x) with the function selected (f(x)).";
   const [functionText, setFunctionText] = useState("x^2");
   const [x, setX] = useState(2);
-  const [resultEval, setResultEval] = useState(Algebrite.eval("x^2", "x", 2));
+  const [resultEval, setResultEval] = useState(math.evaluate("x^2", {x: 2}));
   const handleSubmit = event => {
     event.preventDefault();
     setFunctionText(event.target.functionText.value);
     setX(event.target.x.value);
-    setResultEval(Algebrite.eval(event.target.functionText.value, "x", event.target.x.value));
+    setResultEval(math.evaluate(event.target.functionText.value, {x: event.target.x.value} ));
   };
   return (
     <Method

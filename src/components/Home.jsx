@@ -1,7 +1,7 @@
 import React from "react";
 
-import {Spacing} from "../rules";
-import {Title, Subtitle} from "../containers/BigContainer";
+import { Spacing } from "../rules";
+import { Title, Subtitle } from "../containers/BigContainer";
 
 import { Link } from "@reach/router";
 import styled from "styled-components";
@@ -12,7 +12,14 @@ import Graph from "./Graph";
 const Home = () => {
   return (
     <React.Fragment>
-      <CenteredTitle>Peanut<h3>🥜</h3></CenteredTitle>
+      <CenteredTitle>
+        Peanut
+        <h3>
+          <span role={"img"} aria-label={"peanut-emoji"}>
+            🥜
+          </span>
+        </h3>
+      </CenteredTitle>
       <CenteredSubTitle>
         Peanut is a website where you'll find several methods used to solve
         numerical analysis problems.{" "}
@@ -25,7 +32,7 @@ const Home = () => {
       </CenteredSubTitle>
       <MainContainer>
         <h3>Provide a function for the graph : </h3>
-          <Graph />
+        <Graph />
       </MainContainer>
     </React.Fragment>
   );
