@@ -35,7 +35,11 @@ const Bisection = () => {
     );
   };
   return (
-    <Method title={title}>
+    <Method
+      title={title}
+      prev={{ index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search"}}
+      next={{ index: 5,  id: "/methods/get-solution-false-position", theme: "one-var", name: "False position" }}
+    >
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
