@@ -47,7 +47,11 @@ const IncSearch = () => {
     }
   };
   return (
-    <Method title={title}>
+    <Method
+      title={title}
+      prev={{ index: 2, id: "/methods/function-evaluator", theme: "one-var", name: "Function evaluator" }}
+      next={{ index: 4,  id: "/methods/get-solution-bisection", theme: "one-var", name: "Bisection" }}
+    >
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

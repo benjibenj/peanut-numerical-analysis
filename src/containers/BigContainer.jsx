@@ -25,7 +25,7 @@ export const Title = styled("div")`
 export const Subtitle = styled("div")`
   max-width: 700px;
   font-size: ${Typography.subTitle.fontSize};
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
+  margin: ${Spacing.lg} ${Spacing.xxl} ${Spacing.xl};
   svg {
     margin-right: ${Spacing.sm};
   }

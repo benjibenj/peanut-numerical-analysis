@@ -2,9 +2,9 @@ import React from "react";
 import { Router } from "@reach/router";
 
 import MethodsDashboard from "../components/MethodsDashboard";
-import FuncEval from "../components/methods/FuncEval.jsx";
-import IncSearch from "../components/methods/incSearch/IncSearch.jsx";
-import Bisection from "../components/methods/bisection/Bisection";
+import FuncEval from "../components/methods/2funcEval/FuncEval.jsx";
+import IncSearch from "../components/methods/3incSearch/IncSearch.jsx";
+import Bisection from "../components/methods/4bisection/Bisection";
 import FalsePosition from "../components/methods/FalsePosition";
 import FixedPoint from "../components/methods/FixedPoint";
 import SolutionWithNewton from "../components/methods/SolutionWithNewton";

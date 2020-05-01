@@ -15,7 +15,7 @@ const incrementalSearch = (functionText, initialValue, delta, maxCount) => {
   let fA = math.evaluate(functionText, a); // we evaluate f(a)
   let fB = math.evaluate(functionText, b); // we evaluate f(b)
   while (count < maxCount) {
-    if(fA*fB < 0) results.push("There's a root for f in [" + a.x + ", " + b.x + "]");
+    if(fA*fB < 0) results.push("There's a root for the function in [" + a.x + ", " + b.x + "]");
     a.x = b.x;
     fA = fB;
     b.x = b.x+delta;

@@ -1,30 +1,71 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { BorderRadius, Spacing } from "../../rules";
 import { Subtitle, Title } from "../../containers/BigContainer";
 
+import { Link } from "@reach/router";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Spa} from "mathjs";
 
 const Method = ({
   title = "Title to be defined",
-  subTitle = "Description to be defined",
+  prev,
+  next,
+  subTitle = "Method description to be defined",
+  description,
   children,
 }) => {
   return (
     <React.Fragment>
-      <Title>{title}</Title>
-      <Subtitle>{subTitle}</Subtitle>
+      <TitleLine>
+        <Title>{title}</Title>
+        <Links>
+          {prev && (
+            <LinkMethod to={prev.id}>
+              {" "}
+              <FontAwesomeIcon icon={"arrow-left"} />
+              {prev.name}
+            </LinkMethod>
+          )}
+          {next && (
+            <LinkMethod to={next.id}>
+              <FontAwesomeIcon icon={"arrow-right"} />
+              {next.name}
+            </LinkMethod>
+          )}
+        </Links>
+      </TitleLine>
+      <Subtitle>{description ? description : subTitle}</Subtitle>
       <MainContainer>
         <Side grow>
-          <SideTitle>
-            {"Method demo"}
-          </SideTitle>
-            <FuncEvalLive>{children}</FuncEvalLive>
+          <SideTitle>{"Method demo"}</SideTitle>
+          <FuncEvalLive>{children}</FuncEvalLive>
         </Side>
       </MainContainer>
     </React.Fragment>
   );
 };
+
+const TitleLine = styled("div")`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: ${Spacing.lg};  
+`;
+
+const Links = styled("div")`
+  display: flex;
+  flex-direction: column;
+`;
+
+const LinkMethod = styled(Link)`
+  svg {
+    margin-right: ${Spacing.sm};
+  }
+  margin: ${Spacing.sm};
+`;
 
 const MainContainer = styled("div")`
   display: flex;

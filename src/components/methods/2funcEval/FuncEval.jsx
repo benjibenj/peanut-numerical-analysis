@@ -1,6 +1,8 @@
 import React, {useState} from "react";
-import Method from "./Method";
-import {RowContainer, Parameters, Eval, Error} from "../../containers/BigContainer";
+import Method from "../Method";
+import {RowContainer, Parameters, Eval, Error} from "../../../containers/BigContainer";
+
+import FuncEvalDescription from "./funcEvalDescription";
 
 import * as math from "mathjs";
 import {parse} from "mathjs";
@@ -9,7 +11,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const FuncEval = () => {
   const title = "Function Evaluator";
-  const subTitle = "This method simply evaluates each value passed (x) with the function selected (f(x)).";
   const [functionText, setFunctionText] = useState("x^2");
   const [x, setX] = useState(2);
   const [resultEval, setResultEval] = useState(math.evaluate("x^2", {x: 2}));
@@ -35,8 +36,9 @@ const FuncEval = () => {
   return (
     <Method
       title={title}
-      subTitle={subTitle}
-      >
+      next={{ index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search" }}
+      description={<FuncEvalDescription/>}
+    >
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
