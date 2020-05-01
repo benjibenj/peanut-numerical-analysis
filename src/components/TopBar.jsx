@@ -64,23 +64,6 @@ const Logo = styled("div")`
   padding: ${Spacing.md} 26px 12px;
 `;
 
-const DropDownButton = styled("button")`
-  border: none;
-  background-color: inherit;
-  color: ${Colors.utility.white.default};
-  padding: ${Spacing.md};
-  margin: 0;
-  cursor: pointer; 
-  font-weight: 700;
-  font: inherit;
-`;
-
-const DropDownClickZone = styled("div")`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  color: ${Colors.utility.white.default};
-`;
 
 
 export default TopBar;

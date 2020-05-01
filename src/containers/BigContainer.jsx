@@ -79,4 +79,12 @@ export const Error = styled("div")`
   margin: ${Spacing.md} 0;
 `;
 
+export const TableStyle = styled("div")`
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: ${Spacing.xs};
+  }
+`;
+
 export default BigContainer;

@@ -6,7 +6,6 @@ import { Subtitle, Title } from "../../containers/BigContainer";
 import { Link } from "@reach/router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Spa} from "mathjs";
 
 const Method = ({
   title = "Title to be defined",
