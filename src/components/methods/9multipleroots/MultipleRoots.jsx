@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import Method from "./Method";
-import {RowContainer, Parameters, Eval, Params} from "../../containers/BigContainer";
+import Method from "../Method";
+import {RowContainer, Parameters, Eval, Params} from "../../../containers/BigContainer";
 
-const SolutionOthers = () => {
-  const title = "Others (added value)";
+const MultipleRoots = ({name}) => {
   const [functionText, setFunctionText] = useState("x^2");
   const handleSubmit = event => {
     event.preventDefault();
@@ -11,7 +10,7 @@ const SolutionOthers = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
     >
       <RowContainer>
         <Parameters>
@@ -21,7 +20,7 @@ const SolutionOthers = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           <Params>
             <ul>
               <li>The input function : {functionText}</li>
@@ -33,4 +32,4 @@ const SolutionOthers = () => {
   );
 };
 
-export default SolutionOthers;
+export default MultipleRoots;

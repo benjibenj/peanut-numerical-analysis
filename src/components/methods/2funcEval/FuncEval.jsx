@@ -9,8 +9,7 @@ import {parse} from "mathjs";
 import {Link} from "@reach/router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const FuncEval = () => {
-  const title = "Function Evaluator";
+const FuncEval = ({name}) => {
   const [functionText, setFunctionText] = useState("x^2");
   const [x, setX] = useState(2);
   const [resultEval, setResultEval] = useState(math.evaluate("x^2", {x: 2}));
@@ -35,7 +34,7 @@ const FuncEval = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
       next={{ index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search" }}
       description={<FuncEvalDescription/>}
     >
@@ -48,7 +47,7 @@ const FuncEval = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           {!error ? (
             <ul>
               {"f(" + x +  ") = " + resultEval.toString()}

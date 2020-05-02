@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import Method from "../Method";
 import {RowContainer, Parameters, Eval, Params} from "../../../containers/BigContainer";
 
-const FalsePosition = () => {
-  const title = "False Position (Regla Falsa)";
+const FalsePosition = ({name}) => {
   const [functionText, setFunctionText] = useState("x^2");
   const handleSubmit = event => {
     event.preventDefault();
@@ -11,9 +10,9 @@ const FalsePosition = () => {
   };
   return (
     <Method
-      title={title}
-      prev={{ index: 4,  id: "/methods/get-solution-bisection", theme: "one-var", name: "Bisection"}}
-      next={{ index: 6,  id: "/methods/get-solution-fixed-point", theme: "one-var", name: "Fixed point" }}
+      title={name}
+      prev={{ index: 4,  id: "/methods/bisection", theme: "one-var", name: "Bisection"}}
+      next={{ index: 6,  id: "/methods/fixed-point", theme: "one-var", name: "Fixed point" }}
     >
       <RowContainer>
         <Parameters>
@@ -23,7 +22,7 @@ const FalsePosition = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           <Params>
             <ul>
               <li>The input function : {functionText}</li>

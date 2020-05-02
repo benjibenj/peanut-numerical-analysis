@@ -7,8 +7,7 @@ import {
   Params,
 } from "../../../containers/BigContainer";
 
-const SolutionWithNewton = () => {
-  const title = "Newton method";
+const SolutionWithNewton = ({name}) => {
   const [functionText, setFunctionText] = useState("x^2");
   const handleSubmit = event => {
     event.preventDefault();
@@ -16,16 +15,16 @@ const SolutionWithNewton = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
       prev={{
         index: 6,
-        id: "/methods/get-solution-fixed-point",
+        id: "/methods/fixed-point",
         theme: "one-var",
         name: "Fixed point",
       }}
       next={{
         index: 8,
-        id: "/methods/get-solution-secante",
+        id: "/methods/secante",
         theme: "one-var",
         name: "Secant method",
       }}
@@ -41,7 +40,7 @@ const SolutionWithNewton = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           <Params>
             <ul>
               <li>The input function : {functionText}</li>

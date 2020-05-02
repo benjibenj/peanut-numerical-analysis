@@ -8,8 +8,7 @@ import {
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
 
-const FixedPoint = () => {
-  const title = "Fixed Point (Punto Fijo)";
+const FixedPoint = ({name}) => {
   const [functionTextF, setFunctionTextF] = useState("log(sin(x)^2 + 1)-(1/2)-x");
   const [functionTextG, setFunctionTextG] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [initialValue, setInitialValue] = useState(-0.5);
@@ -35,16 +34,16 @@ const FixedPoint = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
       prev={{
         index: 5,
-        id: "/methods/get-solution-false-position",
+        id: "/methods/false-position",
         theme: "one-var",
         name: "False position",
       }}
       next={{
         index: 7,
-        id: "/methods/get-solution-newton",
+        id: "/methods/newton-raphson",
         theme: "one-var",
         name: "Newton method",
       }}
@@ -84,7 +83,7 @@ const FixedPoint = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           <TableStyle>
             <table>
               <thead>

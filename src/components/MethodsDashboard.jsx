@@ -1,41 +1,137 @@
 import React from "react";
 import styled from "styled-components";
-import {Link} from "@reach/router";
+import { Link } from "@reach/router";
 import { Title, Subtitle } from "../containers/BigContainer";
-import {BorderRadius, Colors, Spacing, Typography} from "../rules";
-import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { BorderRadius, Colors, Spacing, Typography } from "../rules";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MethodsDashboard = () => {
   const methods = [
-    { index: 2, id: "/methods/function-evaluator", theme: "one-var", name: "Function evaluator" },
-    { index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search" },
-    { index: 4,  id: "/methods/get-solution-bisection", theme: "one-var", name: "Bisection" },
-    { index: 5,  id: "/methods/get-solution-false-position", theme: "one-var", name: "False position" },
-    { index: 6,  id: "/methods/get-solution-fixed-point", theme: "one-var", name: "Fixed point" },
-    { index: 7,  id: "/methods/get-solution-newton", theme: "one-var", name: "Newton method" },
-    { index: 8,  id: "/methods/get-solution-secante", theme: "one-var", name: "Secant method" },
-    { index: 9,  id: "/methods/get-solution-multiple-roots", theme: "one-var", name: "Multiple roots"},
-    { index: 10,  id: "/methods/get-solution-others", theme: "one-var", name: "Others (added value)"},
-    { index: 11,  id: "/methods/matrix", theme: "sys-eq", name: "Matrix"},
-    { index: 12,  id: "/methods/gauss-elimination-simple", theme: "sys-eq", name: "Gaussian elimination (simple)"},
-    { index: 13,  id: "/methods/gauss-elimination-partial-piv", theme: "sys-eq", name: "Gaussian elimination (partial pivot)"},
-    { index: 14,  id: "/methods/gauss-elimination-total-piv", theme: "sys-eq", name: "Gaussian elimination (total pivot)"},
-    { index: 15,  id: "/methods/direct-factorization-simple", theme: "sys-eq", name: "Direct Factorization LU - simple (value added)"},
-    { index: 16,  id: "/methods/direct-factorization-pivot", theme: "sys-eq", name: "Direct Factorization LU - partial (value added)"},
-    { index: 17,  id: "/methods/direct-factorization-direct-croult", theme: "sys-eq", name: "Direct factorization (Croult)"},
-    { index: 18,  id: "/methods/direct-factorization-direct-doolittle", theme: "sys-eq", name: "Direct factorization (Doolittle)"},
-    { index: 19,  id: "/methods/direct-factorization-direct-cholesky", theme: "sys-eq", name: "Direct factorization (Cholesky)"},
-    { index: 20,  id: "/methods/direct-factorization-diagonal-matrix", theme: "sys-eq", name: "Diagonal matrix"},
-    { index: 21,  id: "/methods/iterative-jacobi", theme: "sys-eq", name: "Iterative method : Jacobi"},
-    { index: 22,  id: "/methods/iterative-jacobi-relaxation", theme: "sys-eq", name: "Iterative relaxation method : Jacobi"},
-    { index: 23,  id: "/methods/iterative-gauss-seidel", theme: "sys-eq", name: "Iterative method : Gauss Seidel"},
-    { index: 24,  id: "/methods/iterative-gauss-seidel-relaxation", theme: "sys-eq", name: "Iterative relaxation method : Gauss Seidel"},
-    { index: 25,  id: "/methods/inter-newton", theme: "interpolation", name: "Newton"},
-    { index: 26,  id: "/methods/inter-lagrange", theme: "interpolation", name: "Lagrange"},
-    { index: 27,  id: "/methods/inter-neville", theme: "interpolation", name: "Neville"},
-    { index: 28,  id: "/methods/inter-splines-linear", theme: "interpolation", name: "Splines (linear)"},
-    { index: 29,  id: "/methods/inter-splines-square", theme: "interpolation", name: "Splines (quadratic)"},
-    { index: 30,  id: "/methods/inter-splines-cube", theme: "interpolation", name: "Splines (cubic)"},
+    {
+      index: 0,
+      id: "/methods/function-evaluator",
+      theme: "one-var",
+      name: "Function evaluator",
+    },
+    {
+      index: 1,
+      id: "/methods/incremental-search",
+      theme: "one-var",
+      name: "Incremental search",
+    },
+    { index: 2, id: "/methods/bisection", theme: "one-var", name: "Bisection" },
+    {
+      index: 3,
+      id: "/methods/false-position",
+      theme: "one-var",
+      name: "False position",
+    },
+    {
+      index: 4,
+      id: "/methods/fixed-point",
+      theme: "one-var",
+      name: "Fixed point",
+    },
+    {
+      index: 5,
+      id: "/methods/newton-raphson",
+      theme: "one-var",
+      name: "Newton-Raphson method",
+    },
+    {
+      index: 6,
+      id: "/methods/secante",
+      theme: "one-var",
+      name: "Secant method",
+    },
+    {
+      index: 7,
+      id: "/methods/multiple-roots",
+      theme: "one-var",
+      name: "Multiple roots",
+    },
+    {
+      index: 8,
+      id: "/methods/gauss-simple",
+      theme: "sys-eq",
+      name: "Gaussian elimination (simple)",
+    },
+    {
+      index: 9,
+      id: "/methods/gauss-partial",
+      theme: "sys-eq",
+      name: "Gaussian elimination (partial pivot)",
+    },
+    {
+      index: 10,
+      id: "/methods/gauss-total",
+      theme: "sys-eq",
+      name: "Gaussian elimination (total pivot)",
+    },
+    {
+      index: 11,
+      id: "/methods/LU-simple",
+      theme: "sys-eq",
+      name: "Direct Factorization LU - simple",
+    },
+    {
+      index: 12,
+      id: "/methods/LU-partial-pivot",
+      theme: "sys-eq",
+      name: "Direct Factorization LU - partial",
+    },
+    { index: 13, id: "/methods/croult", theme: "sys-eq", name: "Croult" },
+    { index: 14, id: "/methods/doolittle", theme: "sys-eq", name: "Doolittle" },
+    { index: 15, id: "/methods/cholesky", theme: "sys-eq", name: "Cholesky" },
+    { index: 16, id: "/methods/jacobi", theme: "sys-eq", name: "Jacobi" },
+    {
+      index: 17,
+      id: "/methods/gauss-seidel",
+      theme: "sys-eq",
+      name: "Gauss Seidel",
+    },
+    {
+      index: 18,
+      id: "/methods/gauss-seidel-SOR",
+      theme: "sys-eq",
+      name: "Gauss Seidel (SOR)",
+    },
+    {
+      index: 19,
+      id: "/methods/vandermonde",
+      theme: "interpolation",
+      name: "Vandermonde",
+    },
+    {
+      index: 20,
+      id: "/methods/newton-interpolation",
+      theme: "interpolation",
+      name: "Newton (Método de las diferencias divididas)",
+    },
+    {
+      index: 21,
+      id: "/methods/lagrange",
+      theme: "interpolation",
+      name: "Lagrange",
+    },
+    {
+      index: 22,
+      id: "/methods/inter-splines-linear",
+      theme: "interpolation",
+      name: "Splines (linear)",
+    },
+    {
+      index: 23,
+      id: "/methods/inter-splines-square",
+      theme: "interpolation",
+      name: "Splines (quadratic)",
+    },
+    {
+      index: 24,
+      id: "/methods/inter-splines-cube",
+      theme: "interpolation",
+      name: "Splines (cubic)",
+    },
   ];
   return (
     <React.Fragment>
@@ -43,49 +139,55 @@ const MethodsDashboard = () => {
       <Subtitle>30 methods to solve numerical problems</Subtitle>
       <MainContainer>
         <ThemeTitle>
-          <FontAwesomeIcon icon={"otter"}/>
+          <FontAwesomeIcon icon={"otter"} />
           Solving equations of one variable
         </ThemeTitle>
         <Theme>
-          {methods.filter(module => {
-            return (module.theme === "one-var");
-          }).map(module => {
-            return (
-              <ModuleLink key={module.id} to={module.id}>
-                {module.name}
-              </ModuleLink>
-            )
-          })}
+          {methods
+            .filter(module => {
+              return module.theme === "one-var";
+            })
+            .map(module => {
+              return (
+                <ModuleLink key={module.id} to={module.id}>
+                  {module.name}
+                </ModuleLink>
+              );
+            })}
         </Theme>
         <ThemeTitle>
-          <FontAwesomeIcon icon={"horse-head"}/>
+          <FontAwesomeIcon icon={"horse-head"} />
           Solution of systems of equations
         </ThemeTitle>
         <Theme>
-          {methods.filter(module => {
-            return (module.theme === "sys-eq");
-          }).map(module => {
-            return (
-              <ModuleLink key={module.id} to={module.id}>
-                {module.name}
-              </ModuleLink>
-            )
-          })}
+          {methods
+            .filter(module => {
+              return module.theme === "sys-eq";
+            })
+            .map(module => {
+              return (
+                <ModuleLink key={module.id} to={module.id}>
+                  {module.name}
+                </ModuleLink>
+              );
+            })}
         </Theme>
         <ThemeTitle>
-          <FontAwesomeIcon icon={"kiwi-bird"}/>
+          <FontAwesomeIcon icon={"kiwi-bird"} />
           Interpolation
         </ThemeTitle>
         <Theme>
-          {methods.filter(module => {
-            return (module.theme === "interpolation");
-          }).map(module => {
-            return (
-              <ModuleLink key={module.id} to={module.id}>
-                {module.name}
-              </ModuleLink>
-            )
-          })}
+          {methods
+            .filter(module => {
+              return module.theme === "interpolation";
+            })
+            .map(module => {
+              return (
+                <ModuleLink key={module.id} to={module.id}>
+                  {module.name}
+                </ModuleLink>
+              );
+            })}
         </Theme>
       </MainContainer>
     </React.Fragment>
@@ -121,7 +223,7 @@ const Theme = styled("div")`
 `;
 
 const MainContainer = styled("div")`
-  margin: ${Spacing.lg} ${Spacing.xxl} ;
+  margin: ${Spacing.lg} ${Spacing.xxl};
 `;
 
 const ModuleLink = styled(Link)`
@@ -135,7 +237,6 @@ const ModuleLink = styled(Link)`
     transform: translateY(-3px);
   }
   text-decoration: none;
-  
 `;
 
 export default MethodsDashboard;

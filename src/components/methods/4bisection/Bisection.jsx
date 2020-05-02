@@ -9,8 +9,7 @@ import {
 
 import bisectionFunction from "./bisectionFunction";
 
-const Bisection = () => {
-  const title = "Bisection";
+const Bisection = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [lowValue, setLowValue] = useState(0);
   const [highValue, setHighValue] = useState(1);
@@ -36,9 +35,9 @@ const Bisection = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
       prev={{ index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search"}}
-      next={{ index: 5,  id: "/methods/get-solution-false-position", theme: "one-var", name: "False position" }}
+      next={{ index: 5,  id: "/methods/false-position", theme: "one-var", name: "False position" }}
     >
       <RowContainer>
         <Parameters>
@@ -71,7 +70,7 @@ const Bisection = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           <TableStyle>
             <table>
               <thead>

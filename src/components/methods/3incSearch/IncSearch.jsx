@@ -12,8 +12,7 @@ import {
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
 
-const IncSearch = () => {
-  const title = "Incremental Search";
+const IncSearch = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1) - (1/2)");
   const [initialValue, setInitialValue] = useState(-3);
   const [delta, setDelta] = useState(0.5);
@@ -48,9 +47,9 @@ const IncSearch = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
       prev={{ index: 2, id: "/methods/function-evaluator", theme: "one-var", name: "Function evaluator" }}
-      next={{ index: 4,  id: "/methods/get-solution-bisection", theme: "one-var", name: "Bisection" }}
+      next={{ index: 4,  id: "/methods/bisection", theme: "one-var", name: "Bisection" }}
     >
       <RowContainer>
         <Parameters>
@@ -83,7 +82,7 @@ const IncSearch = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           {!error ? (
             <ul>
               {results.map((result, index) => {
