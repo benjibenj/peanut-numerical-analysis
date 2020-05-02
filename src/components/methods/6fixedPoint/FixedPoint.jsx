@@ -33,7 +33,6 @@ const FixedPoint = () => {
       ),
     );
   };
-  console.log(results);
   return (
     <Method
       title={title}
