@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import Method from "./Method";
-import {RowContainer, Parameters, Eval, Params} from "../../containers/BigContainer";
+import Method from "../Method";
+import {RowContainer, Parameters, Eval, Params} from "../../../containers/BigContainer";
 
-const FixedPoint = () => {
-  const title = "Fixed Point";
+const FalsePosition = () => {
+  const title = "False Position (Regla Falsa)";
   const [functionText, setFunctionText] = useState("x^2");
   const handleSubmit = event => {
     event.preventDefault();
@@ -12,6 +12,8 @@ const FixedPoint = () => {
   return (
     <Method
       title={title}
+      prev={{ index: 4,  id: "/methods/get-solution-bisection", theme: "one-var", name: "Bisection"}}
+      next={{ index: 6,  id: "/methods/get-solution-fixed-point", theme: "one-var", name: "Fixed point" }}
     >
       <RowContainer>
         <Parameters>
@@ -33,4 +35,4 @@ const FixedPoint = () => {
   );
 };
 
-export default FixedPoint;
+export default FalsePosition;

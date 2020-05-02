@@ -5,10 +5,10 @@ import MethodsDashboard from "../components/MethodsDashboard";
 import FuncEval from "../components/methods/2funcEval/FuncEval.jsx";
 import IncSearch from "../components/methods/3incSearch/IncSearch.jsx";
 import Bisection from "../components/methods/4bisection/Bisection";
-import FalsePosition from "../components/methods/FalsePosition";
-import FixedPoint from "../components/methods/FixedPoint";
-import SolutionWithNewton from "../components/methods/SolutionWithNewton";
-import SolutionWithSecante from "../components/methods/SolutionWithSecante";
+import FalsePosition from "../components/methods/5falsePosition/FalsePosition";
+import FixedPoint from "../components/methods/6fixedPoint/FixedPoint.jsx";
+import SolutionWithNewton from "../components/methods/7newton/SolutionWithNewton";
+import SolutionWithSecante from "../components/methods/8secante/SolutionWithSecante";
 import MultipleRoots from "../components/methods/MultipleRoots";
 import SolutionOthers from "../components/methods/SolutionOthers";
 

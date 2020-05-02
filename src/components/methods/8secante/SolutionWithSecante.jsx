@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import Method from "./Method";
-import {RowContainer, Parameters, Eval, Params} from "../../containers/BigContainer";
+import Method from "../Method";
+import {RowContainer, Parameters, Eval, Params} from "../../../containers/BigContainer";
 
-const SolutionWithNewton = () => {
-  const title = "Newton method";
+const SolutionWithSecante = () => {
+  const title = "Secante method";
   const [functionText, setFunctionText] = useState("x^2");
   const handleSubmit = event => {
     event.preventDefault();
@@ -33,4 +33,4 @@ const SolutionWithNewton = () => {
   );
 };
 
-export default SolutionWithNewton;
+export default SolutionWithSecante;
