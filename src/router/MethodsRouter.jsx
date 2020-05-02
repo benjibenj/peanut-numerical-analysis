@@ -10,6 +10,7 @@ import FixedPoint from "../components/methods/6fixedPoint/FixedPoint.jsx";
 import SolutionWithNewton from "../components/methods/7newton/SolutionWithNewton";
 import SolutionWithSecante from "../components/methods/8secante/SolutionWithSecante";
 import MultipleRoots from "../components/methods/9multipleroots/MultipleRoots";
+import GaussSimple from "../components/methods/10gaussSimple/GaussSimple";
 
 import Page404 from "../components/Page404";
 
@@ -25,6 +26,7 @@ const MethodsRouter = () => {
       <SolutionWithNewton path="newton-raphson" name={"Newton-Raphson method"} />
       <SolutionWithSecante path="secante" name={"Secante method"} />
       <MultipleRoots path="multiple-roots" name={"Multiple roots"} />
+      <GaussSimple path={"gauss-simple"} name={"Gaussian elimination (simple)"} />
       <Page404 default />
     </Router>
   );
