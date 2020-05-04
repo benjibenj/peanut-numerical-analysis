@@ -60,7 +60,7 @@ const SolutionWithNewton = ({name}) => {
               />
             </label>
             <label>
-              Function f' (derivative of f)
+              Function f' (first derivative of f)
               <input
                 type="text"
                 name="functionDerivative"
