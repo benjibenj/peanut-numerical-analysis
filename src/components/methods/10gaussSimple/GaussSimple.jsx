@@ -72,6 +72,8 @@ const GaussSimple = ({ name }) => {
   );
 };
 
-const Matrix = styled("div")``;
+const Matrix = styled("div")`
+  font-size: 2rem;
+`;
 
 export default GaussSimple;
