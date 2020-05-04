@@ -1,58 +1,60 @@
 import { Parameters, RowContainer } from "../containers/BigContainer";
-import Method from "./methods/Method";
 import React from "react";
 
 const MatrixInputSize = (
   {
-    setMatrixNbRows,
-    setMatrixNbColumns,
-    setMatrixInputVisible,
-    setMatrixInputSizeVisible,
-    matrixNbColumns,
-    matrixNbRows,
+    setMatrixSize,
+    matrixSize,
+    setMethodState,
   }
 ) => {
   return (
     <RowContainer>
       <Parameters>
         <label>
-          Matrix number of rows
+          Number of rows (A)
           <input
             type="number"
-            name="matrixNbRows"
             min="2"
             max="8"
             defaultValue={3}
             onChange={e => {
-              const size = parseInt(e.target.value);
-              if (2 <= size && size <= 8) {
-                setMatrixNbRows(size);
+              const rows = parseInt(e.target.value);
+              if (2 <= rows && rows <= 8) {
+                setMatrixSize(prevSize => ({
+                  ...prevSize,
+                  rows: rows
+                }));
               }
             }}
           />
         </label>
         <label>
-          Matrix number of columns
+          Number of rows columns (A)
           <input
             type="number"
-            name="matrixNbColumns"
             min="2"
             max="8"
             defaultValue={3}
             onChange={e => {
-              const size = parseInt(e.target.value);
-              if (2 <= size && size <= 8) {
-                setMatrixNbColumns(size);
+              const columns = parseInt(e.target.value);
+              if (2 <= columns && columns <= 8) {
+                setMatrixSize(prevSize => ({
+                  ...prevSize,
+                  columns: columns
+                }));
               }
             }}
           />
         </label>
         <button onClick={() => {
-          setMatrixInputVisible(true);
-          setMatrixInputSizeVisible(false);
+          setMethodState(prevState => ({
+            ...prevState,
+            matrixA: "inputMatrix"
+          }));
         }}>
-          Enter a matrix of <strong>{matrixNbColumns}</strong> columns and{" "}
-          <strong>{matrixNbRows}</strong> rows.
+          Validate A size (<strong>{matrixSize.rows}</strong> rows and{" "}
+          <strong>{matrixSize.columns}</strong> columns)
         </button>
       </Parameters>
     </RowContainer>

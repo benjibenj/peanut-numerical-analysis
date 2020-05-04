@@ -1,29 +1,30 @@
 import React from "react";
-import BigContainer, { Parameters } from "../containers/BigContainer";
+import { Parameters } from "../containers/BigContainer";
 import styled from "styled-components";
 import { randomInt } from "mathjs";
 const MatrixInput = ({
-  matrixNbColumns = 3,
-  matrixNbRows = 3,
-  matrix = [],
+  matrixSize,
   setMatrix,
-  setMatrixInputVisible,
-  setMatrixVisible,
+  setMethodState,
 }) => {
-  matrix = Array(matrixNbRows);
-  for (let i = 0; i < matrixNbRows; i++) {
-    matrix[i] = new Array(matrixNbColumns).fill(0);
+  let matrix = Array(matrixSize.rows);
+  for (let i = 0; i < matrixSize.rows; i++) {
+    matrix[i] = new Array(matrixSize.columns).fill(0);
   }
   const handleSubmit = event => {
     event.preventDefault();
-    for (let i = 0; i < matrixNbRows; i++) {
-      for (let j = 0; j < matrixNbColumns; j++) {
-        matrix[i][j] = event.target[i + j].value;
+    let count = 0;
+    for (let i = 0; i < matrixSize.rows; i++) {
+      for (let j = 0; j < matrixSize.columns; j++) {
+        matrix[i][j] = event.target[count].value;
+        count += 1;
       }
     }
     setMatrix(matrix);
-    setMatrixInputVisible(false);
-    setMatrixVisible(true);
+    setMethodState(prevState => ({
+      ...prevState,
+      matrixA: "matrix"
+    }));
   };
   return (
     <MatrixParameters>

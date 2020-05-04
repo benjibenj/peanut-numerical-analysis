@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
+import renderLatexMatrix from "../../../utils/renderLatexMatrix";
+//import gaussSimpleFunction from "./gaussSimpleFunction";
 
 import styled from "styled-components";
 
@@ -9,25 +11,23 @@ import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 
 const GaussSimple = ({ name }) => {
-  const [matrixNbColumns, setMatrixNbColumns] = useState(3);
-  const [matrixNbRows, setMatrixNbRows] = useState(3);
-  const [matrix, setMatrix] = useState([]);
-  const [matrixInputSizeVisible, setMatrixInputSizeVisible] = useState(true);
-  const [matrixInputVisible, setMatrixInputVisible] = useState(false);
-  const [matrixVisible, setMatrixVisible] = useState(false);
-  const [latexMatrix, setLatexMatrix] = useState(
+  const [matrixASize, setMatrixASize] = useState({
+    rows : 3,
+    columns: 3
+  });
+  const [matrixA, setMatrixA] = useState([]);
+  const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );
+  //const [results, setResults] = useState(gaussSimpleFunction(matrixA));
+  const [methodState, setMethodState] = useState({
+    matrixA: "inputSize",
+    B: undefined,
+    solving: undefined,
+  });
   useEffect(() => {
-    const latexMatrixTemp =
-      "\\begin{pmatrix}\n" +
-      matrix.map((row, index) => {
-        if (index === matrix.length) return row.join(" & ") + "\n";
-        else return row.join(" & ") + "\\\\\n";
-      }).join("") +
-      "\\end{pmatrix}";
-    setLatexMatrix(latexMatrixTemp);
-  }, [matrix]);
+    setLatexMatrixA(renderLatexMatrix(matrixA));
+  }, [matrixA]);
   return (
     <Method
       title={name}
@@ -44,35 +44,32 @@ const GaussSimple = ({ name }) => {
         name: "Gaussian elimination (partial pivot)",
       }}
     >
-      {matrixInputSizeVisible && (
+      {methodState.matrixA === "inputSize" ? (
         <MatrixInputSize
-          matrixNbColumns={matrixNbColumns}
-          matrixNbRows={matrixNbRows}
-          setMatrixNbRows={nb => setMatrixNbRows(nb)}
-          setMatrixNbColumns={nb => setMatrixNbColumns(nb)}
-          setMatrixInputSizeVisible={value => setMatrixInputSizeVisible(value)}
-          setMatrixInputVisible={value => setMatrixInputVisible(value)}
+          matrixSize={matrixASize}
+          setMatrixSize={object => setMatrixASize(object)}
+          setMethodState={object => setMethodState(object)}
+          methodState={methodState}
         />
-      )}
-      {matrixInputVisible && (
+      ) : methodState.matrixA === "inputMatrix" ? (
         <MatrixInput
-          matrixNbColumns={matrixNbColumns}
-          matrixNbRows={matrixNbRows}
-          setMatrix={matrix => setMatrix(matrix)}
-          setMatrixInputVisible={value => setMatrixInputVisible(value)}
-          setMatrixVisible={value => setMatrixVisible(value)}
+          matrixSize={matrixASize}
+          setMatrix={matrix => setMatrixA(matrix)}
+          setMethodState={value => setMethodState(value)}
+          methodState={methodState}
         />
-      )}
-      {matrixVisible && (
-        <Matrix>
-          <BlockMath math={latexMatrix} />
-        </Matrix>
+      ) : (
+        methodState.matrixA === "matrix" && (
+          <Results>
+            <BlockMath math={latexMatrixA} />
+          </Results>
+        )
       )}
     </Method>
   );
 };
 
-const Matrix = styled("div")`
+const Results = styled("div")`
   font-size: 2rem;
 `;
 
