@@ -8,6 +8,7 @@ const MatrixInput = ({
   matrix = [],
   setMatrix,
   setMatrixInputVisible,
+  setMatrixVisible,
 }) => {
   matrix = Array(matrixNbRows);
   for (let i = 0; i < matrixNbRows; i++) {
@@ -22,6 +23,7 @@ const MatrixInput = ({
     }
     setMatrix(matrix);
     setMatrixInputVisible(false);
+    setMatrixVisible(true);
   };
   return (
     <MatrixParameters>
