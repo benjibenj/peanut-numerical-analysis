@@ -8,8 +8,7 @@ import {
 } from "../../../containers/BigContainer";
 import secanteFunction from "./secanteFunction";
 
-const SolutionWithSecante = () => {
-  const title = "Secante ";
+const SolutionWithSecante = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [initialValueX0, setInitialValueX0] = useState(0.5);
   const [initialValueX1, setInitialValueX1] = useState(1);
@@ -35,7 +34,7 @@ const SolutionWithSecante = () => {
   };
   return (
     <Method
-      title={title}
+      title={name}
       prev={{
         index: 7,
         id: "/methods/newton-raphson",
@@ -80,7 +79,7 @@ const SolutionWithSecante = () => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{title}</strong>
+          <strong>{name}</strong>
           <TableStyle>
             <table>
               <thead>
