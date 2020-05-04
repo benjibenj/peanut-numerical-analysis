@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
-import { RowContainer, Parameters } from "../../../containers/BigContainer";
+import MatrixInputSize from "../../MatrixSizeInput";
 
 const GaussSimple = ({ name }) => {
   const [matrixNbColumns, setMatrixNbColumns] = useState(3);
   const [matrixNbRows, setMatrixNbRows] = useState(3);
   const [matrix, setMatrix] = useState([]);
+  const [matrixInputSizeVisible, setMatrixInputSizeVisible] = useState(true);
   const [matrixInputVisible, setMatrixInputVisible] = useState(false);
   return (
     <Method
@@ -24,52 +25,22 @@ const GaussSimple = ({ name }) => {
         name: "Gaussian elimination (partial pivot)",
       }}
     >
-      <RowContainer>
-        <Parameters>
-          <label>
-            Matrix number of rows
-            <input
-              type="number"
-              name="matrixNbRows"
-              min="2"
-              max="8"
-              defaultValue={3}
-              onChange={e => {
-                const size = parseInt(e.target.value);
-                if (2 <= size && size <= 8) {
-                  setMatrixNbRows(size);
-                }
-              }}
-            />
-          </label>
-          <label>
-            Matrix number of columns
-            <input
-              type="number"
-              name="matrixNbColumns"
-              min="2"
-              max="8"
-              defaultValue={3}
-              onChange={e => {
-                const size = parseInt(e.target.value);
-                if (2 <= size && size <= 8) {
-                  setMatrixNbColumns(size);
-                }
-              }}
-            />
-          </label>
-          <button onClick={() => setMatrixInputVisible(true)}>
-            Enter a matrix of <strong>{matrixNbColumns}</strong> columns
-            and <strong>{matrixNbRows}</strong> rows.
-          </button>
-        </Parameters>
-      </RowContainer>
+      {matrixInputSizeVisible && (
+        <MatrixInputSize
+          matrixNbColumns={matrixNbColumns}
+          matrixNbRows={matrixNbRows}
+          setMatrixNbRows={nb => setMatrixNbRows(nb)}
+          setMatrixNbColumns={nb => setMatrixNbColumns(nb)}
+          setMatrixInputSizeVisible={value => setMatrixInputSizeVisible(value)}
+          setMatrixInputVisible={value => setMatrixInputVisible(value)}
+        />
+      )}
       {matrixInputVisible && (
         <MatrixInput
           matrixNbColumns={matrixNbColumns}
           matrixNbRows={matrixNbRows}
-          setMatrix={() => setMatrix}
-          setMatrixInputVisible={() => setMatrixInputVisible}
+          setMatrix={matrix => setMatrix(matrix)}
+          setMatrixInputVisible={value => setMatrixInputVisible(value)}
         />
       )}
     </Method>
