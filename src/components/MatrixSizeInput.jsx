@@ -30,7 +30,7 @@ const MatrixInputSize = (
           />
         </label>
         <label>
-          Number of rows columns (A)
+          Number of columns (A)
           <input
             type="number"
             min="2"

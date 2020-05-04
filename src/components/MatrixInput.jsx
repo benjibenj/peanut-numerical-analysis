@@ -6,6 +6,7 @@ const MatrixInput = ({
   matrixSize,
   setMatrix,
   setMethodState,
+  type = "A"
 }) => {
   let matrix = Array(matrixSize.rows);
   for (let i = 0; i < matrixSize.rows; i++) {
@@ -21,10 +22,18 @@ const MatrixInput = ({
       }
     }
     setMatrix(matrix);
-    setMethodState(prevState => ({
-      ...prevState,
-      matrixA: "matrix"
-    }));
+    if (type === "A") {
+      setMethodState(prevState => ({
+        ...prevState,
+        matrixA: "matrix"
+      }));
+    } else if (type === "B") {
+      setMethodState(prevState => ({
+        ...prevState,
+        B: "matrix"
+      }));
+    }
+
   };
   return (
     <MatrixParameters>
@@ -46,7 +55,7 @@ const MatrixInput = ({
             </MatrixRow>
           );
         })}
-        <button>Save</button>
+        <button>{type === "A" ? "Save A" : type === "B" ? "Save B" : "Save"}</button>
       </form>
     </MatrixParameters>
   );

@@ -1,5 +1,4 @@
 const renderLatexMatrix = matrix => {
-  console.log(matrix);
   return (
     "\\begin{pmatrix}\n" +
     matrix

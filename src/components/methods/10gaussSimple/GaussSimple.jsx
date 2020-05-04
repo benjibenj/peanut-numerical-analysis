@@ -12,22 +12,27 @@ import { BlockMath } from "react-katex";
 
 const GaussSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows : 3,
-    columns: 3
+    rows: 3,
+    columns: 3,
   });
   const [matrixA, setMatrixA] = useState([]);
+  const [B, setB] = useState([]);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
+  );
+  const [latexB, setLatexB] = useState(
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
   );
   //const [results, setResults] = useState(gaussSimpleFunction(matrixA));
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
-    B: undefined,
+    B: "input",
     solving: undefined,
   });
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
-  }, [matrixA]);
+    setLatexB(renderLatexMatrix(B));
+  }, [matrixA, B]);
   return (
     <Method
       title={name}
@@ -44,6 +49,7 @@ const GaussSimple = ({ name }) => {
         name: "Gaussian elimination (partial pivot)",
       }}
     >
+      <Inputs>
       {methodState.matrixA === "inputSize" ? (
         <MatrixInputSize
           matrixSize={matrixASize}
@@ -53,24 +59,46 @@ const GaussSimple = ({ name }) => {
         />
       ) : methodState.matrixA === "inputMatrix" ? (
         <MatrixInput
+          type={"A"}
           matrixSize={matrixASize}
           setMatrix={matrix => setMatrixA(matrix)}
           setMethodState={value => setMethodState(value)}
-          methodState={methodState}
         />
       ) : (
         methodState.matrixA === "matrix" && (
           <Results>
-            <BlockMath math={latexMatrixA} />
+            <BlockMath math={"A = " + latexMatrixA} />
           </Results>
         )
       )}
+      {methodState.B === "input" ? (
+        <MatrixInput
+          type={"B"}
+          matrixSize={{ ...matrixASize, columns: 1 }}
+          setMatrix={matrix => setB(matrix)}
+          setMethodState={value => setMethodState(value)}
+        />
+      ) : (
+        methodState.B === "matrix" && (
+          <Results>
+            <BlockMath math={"B = " + latexB} />
+          </Results>
+        )
+      )}
+      </Inputs>
     </Method>
   );
 };
 
 const Results = styled("div")`
   font-size: 2rem;
+`;
+
+const Inputs = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 export default GaussSimple;
