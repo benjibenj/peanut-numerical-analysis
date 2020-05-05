@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Method from "../Method";
 import {RowContainer, Parameters, Eval, TableStyle} from "../../../containers/BigContainer";
 import falsePositionFunction from "./falsePositionFunction";
+import {methods} from "../../../data/methods";
 
 const FalsePosition = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
@@ -30,8 +31,8 @@ const FalsePosition = ({name}) => {
   return (
     <Method
       title={name}
-      prev={{ index: 4,  id: "/methods/bisection", theme: "one-var", name: "Bisection"}}
-      next={{ index: 6,  id: "/methods/fixed-point", theme: "one-var", name: "Fixed point" }}
+      prev={methods.find(method => method.index === 2)}
+      next={methods.find( method => method.index === 4)}
     >
       <RowContainer>
         <Parameters>

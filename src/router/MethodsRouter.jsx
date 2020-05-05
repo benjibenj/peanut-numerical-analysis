@@ -2,31 +2,53 @@ import React from "react";
 import { Router } from "@reach/router";
 
 import MethodsDashboard from "../components/MethodsDashboard";
-import FuncEval from "../components/methods/2funcEval/FuncEval.jsx";
-import IncSearch from "../components/methods/3incSearch/IncSearch.jsx";
-import Bisection from "../components/methods/4bisection/Bisection";
-import FalsePosition from "../components/methods/5falsePosition/FalsePosition";
-import FixedPoint from "../components/methods/6fixedPoint/FixedPoint.jsx";
-import SolutionWithNewton from "../components/methods/7newton/SolutionWithNewton";
-import SolutionWithSecante from "../components/methods/8secante/SolutionWithSecante";
-import MultipleRoots from "../components/methods/9multipleroots/MultipleRoots";
-import GaussSimple from "../components/methods/10gaussSimple/GaussSimple";
 
+import {methods} from "../data/methods";
+
+import FuncEval from "../components/methods/0funcEval/FuncEval.jsx";
+import IncSearch from "../components/methods/1incSearch/IncSearch.jsx";
+import Bisection from "../components/methods/2bisection/Bisection";
+import FalsePosition from "../components/methods/3falsePosition/FalsePosition";
+import FixedPoint from "../components/methods/4fixedPoint/FixedPoint.jsx";
+import SolutionWithNewton from "../components/methods/5newton/SolutionWithNewton";
+import SolutionWithSecante from "../components/methods/6secante/SolutionWithSecante";
+import MultipleRoots from "../components/methods/7multipleroots/MultipleRoots";
+import GaussSimple from "../components/methods/8gaussSimple/GaussSimple";
+import GaussPartial from "../components/methods/9gaussPartial/GaussPartial";
+import GaussTotal from "../components/methods/10gaussTotal/GaussTotal";
+import LuSimple from "../components/methods/11LuSimple/LuSimple";
+import LuPartial from "../components/methods/12LuPartial/LuPartial";
+import Croult from "../components/methods/13Croult/Croult";
+import Doolittle from "../components/methods/14Doolittle/Doolittle";
+import Cholesky from "../components/methods/15Cholesky/Cholesky";
+import Jacobi from "../components/methods/16Jacobi/Jacobi";
+import GaussSheidel from "../components/methods/17GaussSeidel/GaussSheidel";
+import GaussSheidelSOR from "../components/methods/18GaussSeidelSOR/GaussSheidelSOR";
 import Page404 from "../components/Page404";
 
 const MethodsRouter = () => {
   return (
     <Router>
       <MethodsDashboard path="/" />
-      <FuncEval path="function-evaluator" name={"Function evaluator"} />
-      <IncSearch path="incremental-search" name={"Incremental search"}/>
-      <Bisection path="bisection" name={"Bisection"}/>
-      <FalsePosition path="false-position" name={"False position"} />
-      <FixedPoint path="fixed-point" name={"Fixed point"} />
-      <SolutionWithNewton path="newton-raphson" name={"Newton-Raphson method"} />
-      <SolutionWithSecante path="secante" name={"Secante method"} />
-      <MultipleRoots path="multiple-roots" name={"Multiple roots"} />
-      <GaussSimple path={"gauss-simple"} name={"Gaussian elimination (simple)"} />
+      <FuncEval path={methods.find(method => method.index === 0).id} name={methods.find(method => method.index === 0).name} />
+      <IncSearch path={methods.find(method => method.index === 1).id} name={methods.find(method => method.index === 1).name} />
+      <Bisection path={methods.find(method => method.index === 2).id} name={methods.find(method => method.index === 2).name} />
+      <FalsePosition path={methods.find(method => method.index === 3).id} name={methods.find(method => method.index === 3).name} />
+      <FixedPoint path={methods.find(method => method.index === 4).id} name={methods.find(method => method.index === 4).name} />
+      <SolutionWithNewton path={methods.find(method => method.index === 5).id} name={methods.find(method => method.index === 5).name} />
+      <SolutionWithSecante path={methods.find(method => method.index === 6).id} name={methods.find(method => method.index === 6).name} />
+      <MultipleRoots path={methods.find(method => method.index === 7).id} name={methods.find(method => method.index === 7).name} />
+      <GaussSimple path={methods.find(method => method.index === 8).id} name={methods.find(method => method.index === 8).name} />
+      <GaussPartial path={methods.find(method => method.index === 9).id} name={methods.find(method => method.index === 9).name} />
+      <GaussTotal path={methods.find(method => method.index === 10).id} name={methods.find(method => method.index === 10).name} />
+      <LuSimple path={methods.find(method => method.index === 11).id} name={methods.find(method => method.index === 11).name} />
+      <LuPartial path={methods.find(method => method.index === 12).id} name={methods.find(method => method.index === 12).name} />
+      <Croult path={methods.find(method => method.index === 13).id} name={methods.find(method => method.index === 13).name} />
+      <Doolittle path={methods.find(method => method.index === 14).id} name={methods.find(method => method.index === 14).name} />
+      <Cholesky path={methods.find(method => method.index === 15).id} name={methods.find(method => method.index === 15).name} />
+      <Jacobi path={methods.find(method => method.index === 16).id} name={methods.find(method => method.index === 16).name} />
+      <GaussSheidel path={methods.find(method => method.index === 17).id} name={methods.find(method => method.index === 17).name} />
+      <GaussSheidelSOR path={methods.find(method => method.index === 18).id} name={methods.find(method => method.index === 18).name} />
       <Page404 default />
     </Router>
   );

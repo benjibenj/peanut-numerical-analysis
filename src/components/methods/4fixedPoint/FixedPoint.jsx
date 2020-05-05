@@ -7,6 +7,7 @@ import {
   TableStyle,
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
+import {methods} from "../../../data/methods";
 
 const FixedPoint = ({name}) => {
   const [functionTextF, setFunctionTextF] = useState("log(sin(x)^2 + 1)-(1/2)-x");
@@ -35,18 +36,8 @@ const FixedPoint = ({name}) => {
   return (
     <Method
       title={name}
-      prev={{
-        index: 5,
-        id: "/methods/false-position",
-        theme: "one-var",
-        name: "False position",
-      }}
-      next={{
-        index: 7,
-        id: "/methods/newton-raphson",
-        theme: "one-var",
-        name: "Newton method",
-      }}
+      prev={methods.find(method => method.index === 3)}
+      next={methods.find( method => method.index === 5)}
     >
       <RowContainer>
         <Parameters>

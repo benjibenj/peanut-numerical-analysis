@@ -6,7 +6,8 @@ import {
   Eval,
   TableStyle,
 } from "../../../containers/BigContainer";
-import newtonFunction from "../7newton/newtonFunction";
+import newtonFunction from ".//newtonFunction";
+import {methods} from "../../../data/methods";
 
 const SolutionWithNewton = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
@@ -35,18 +36,8 @@ const SolutionWithNewton = ({name}) => {
   return (
     <Method
       title={name}
-      prev={{
-        index: 6,
-        id: "/methods/fixed-point",
-        theme: "one-var",
-        name: "Fixed point",
-      }}
-      next={{
-        index: 8,
-        id: "/methods/secante",
-        theme: "one-var",
-        name: "Secant method",
-      }}
+      prev={methods.find(method => method.index === 4)}
+      next={methods.find( method => method.index === 6)}
     >
       <RowContainer>
         <Parameters>

@@ -8,6 +8,7 @@ import {
 } from "../../../containers/BigContainer";
 
 import bisectionFunction from "./bisectionFunction";
+import {methods} from "../../../data/methods";
 
 const Bisection = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
@@ -36,8 +37,8 @@ const Bisection = ({name}) => {
   return (
     <Method
       title={name}
-      prev={{ index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search"}}
-      next={{ index: 5,  id: "/methods/false-position", theme: "one-var", name: "False position" }}
+      prev={methods.find(method => method.index === 1)}
+      next={methods.find( method => method.index === 3)}
     >
       <RowContainer>
         <Parameters>

@@ -11,6 +11,7 @@ import {
   Error
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
+import {methods} from "../../../data/methods";
 
 const IncSearch = ({name}) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1) - (1/2)");
@@ -48,8 +49,8 @@ const IncSearch = ({name}) => {
   return (
     <Method
       title={name}
-      prev={{ index: 2, id: "/methods/function-evaluator", theme: "one-var", name: "Function evaluator" }}
-      next={{ index: 4,  id: "/methods/bisection", theme: "one-var", name: "Bisection" }}
+      prev={methods.find(method => method.index === 0)}
+      next={methods.find( method => method.index === 2)}
     >
       <RowContainer>
         <Parameters>

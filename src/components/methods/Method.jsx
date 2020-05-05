@@ -21,14 +21,14 @@ const Method = ({
         <Title>{title}</Title>
         <Links>
           {prev && (
-            <LinkMethod to={prev.id}>
+            <LinkMethod to={"/methods/" + prev.id}>
               {" "}
               <FontAwesomeIcon icon={"arrow-left"} />
               {prev.name}
             </LinkMethod>
           )}
           {next && (
-            <LinkMethod to={next.id}>
+            <LinkMethod to={"/methods/" + next.id}>
               <FontAwesomeIcon icon={"arrow-right"} />
               {next.name}
             </LinkMethod>

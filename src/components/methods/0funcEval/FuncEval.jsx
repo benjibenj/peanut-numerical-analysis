@@ -8,6 +8,7 @@ import * as math from "mathjs";
 import {parse} from "mathjs";
 import {Link} from "@reach/router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {methods} from "../../../data/methods";
 
 const FuncEval = ({name}) => {
   const [functionText, setFunctionText] = useState("x^2");
@@ -35,7 +36,7 @@ const FuncEval = ({name}) => {
   return (
     <Method
       title={name}
-      next={{ index: 3,  id: "/methods/incremental-search", theme: "one-var", name: "Incremental search" }}
+      next={methods.find( method => method.index === 1)}
       description={<FuncEvalDescription/>}
     >
       <RowContainer>

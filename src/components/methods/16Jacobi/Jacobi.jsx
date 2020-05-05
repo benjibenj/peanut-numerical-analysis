@@ -3,14 +3,15 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/renderLatexMatrix";
-import gaussSimpleFunction from "./gaussSimpleFunction";
+import jacobiFunction from "./JacobiFunction";
 
 import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
+import {methods} from "../../../data/methods";
 
-const GaussSimple = ({ name }) => {
+const Jacobi = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 3,
     columns: 3,
@@ -32,27 +33,15 @@ const GaussSimple = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    console.log(matrixA);
-    console.log(B);
     if (matrixA.length !== 0 && B.length !== 0) {
-      setResults(gaussSimpleFunction(matrixA, B));
+      setResults(jacobiFunction(matrixA, B));
     }
   }, [matrixA, B]);
   return (
     <Method
       title={name}
-      prev={{
-        index: 7,
-        id: "/methods/multiple-roots",
-        theme: "one-var",
-        name: "Multiple roots",
-      }}
-      next={{
-        index: 9,
-        id: "/methods/gauss-partial",
-        theme: "sys-eq",
-        name: "Gaussian elimination (partial pivot)",
-      }}
+      prev={methods.find(method => method.index === 15)}
+      next={methods.find( method => method.index === 17)}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -117,4 +106,4 @@ const Inputs = styled("div")`
   align-items: center;
 `;
 
-export default GaussSimple;
+export default Jacobi;
