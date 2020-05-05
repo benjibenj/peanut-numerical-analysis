@@ -1,11 +1,16 @@
 //import findPivot from "../../../utils/findPivot";
 
-const gaussSimpleFunction = (matrix) => {
+const gaussSimpleFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
+    finalSolution: [],
   };
-  return matrix;
+  results.iterations.push(matrixA);
+  results.iterations.push(matrixA);
+  results.conclusion = "After applying regressive substitution we get :";
+  results.finalSolution = [[2], [3], [12], [12.828]];
+  return results;
 };
 
 export default gaussSimpleFunction;

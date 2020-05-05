@@ -1,4 +1,4 @@
-import { format, evaluate, abs } from "mathjs";
+import { format } from "mathjs";
 
 const multipleRootsFunction = (h, firstDerivate, secondDerivate, x0, tol = 10e-7, maxCount = 100) => {
   let results = {

@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/renderLatexMatrix";
-//import gaussSimpleFunction from "./gaussSimpleFunction";
+import gaussSimpleFunction from "./gaussSimpleFunction";
 
 import styled from "styled-components";
 
@@ -23,7 +23,7 @@ const GaussSimple = ({ name }) => {
   const [latexB, setLatexB] = useState(
     "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
   );
-  //const [results, setResults] = useState(gaussSimpleFunction(matrixA));
+  const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
@@ -32,6 +32,11 @@ const GaussSimple = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
+    console.log(matrixA);
+    console.log(B);
+    if (matrixA.length !== 0 && B.length !== 0) {
+      setResults(gaussSimpleFunction(matrixA, B));
+    }
   }, [matrixA, B]);
   return (
     <Method
@@ -50,48 +55,59 @@ const GaussSimple = ({ name }) => {
       }}
     >
       <Inputs>
-      {methodState.matrixA === "inputSize" ? (
-        <MatrixInputSize
-          matrixSize={matrixASize}
-          setMatrixSize={object => setMatrixASize(object)}
-          setMethodState={object => setMethodState(object)}
-          methodState={methodState}
-        />
-      ) : methodState.matrixA === "inputMatrix" ? (
-        <MatrixInput
-          type={"A"}
-          matrixSize={matrixASize}
-          setMatrix={matrix => setMatrixA(matrix)}
-          setMethodState={value => setMethodState(value)}
-        />
-      ) : (
-        methodState.matrixA === "matrix" && (
-          <Results>
+        {methodState.matrixA === "inputSize" ? (
+          <MatrixInputSize
+            matrixSize={matrixASize}
+            setMatrixSize={object => setMatrixASize(object)}
+            setMethodState={object => setMethodState(object)}
+            methodState={methodState}
+          />
+        ) : methodState.matrixA === "inputMatrix" ? (
+          <MatrixInput
+            type={"A"}
+            matrixSize={matrixASize}
+            setMatrix={matrix => setMatrixA(matrix)}
+            setMethodState={value => setMethodState(value)}
+          />
+        ) : (
+          methodState.matrixA === "matrix" && (
             <BlockMath math={"A = " + latexMatrixA} />
-          </Results>
-        )
-      )}
-      {methodState.B === "input" ? (
-        <MatrixInput
-          type={"B"}
-          matrixSize={{ ...matrixASize, columns: 1 }}
-          setMatrix={matrix => setB(matrix)}
-          setMethodState={value => setMethodState(value)}
-        />
-      ) : (
-        methodState.B === "matrix" && (
-          <Results>
-            <BlockMath math={"B = " + latexB} />
-          </Results>
-        )
-      )}
+          )
+        )}
+        {methodState.B === "input" ? (
+          <MatrixInput
+            type={"B"}
+            matrixSize={{ ...matrixASize, columns: 1 }}
+            setMatrix={matrix => setB(matrix)}
+            setMethodState={value => setMethodState(value)}
+          />
+        ) : (
+          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+        )}
       </Inputs>
+      {results && (
+        <Results>
+          {results.iterations.map((matrix, index) => {
+            return (
+              <BlockMath
+                key={index}
+                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
+              />
+            );
+          })}
+          <p>{results.conclusion}</p>
+          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+        </Results>
+      )}
     </Method>
   );
 };
 
 const Results = styled("div")`
-  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Inputs = styled("div")`
