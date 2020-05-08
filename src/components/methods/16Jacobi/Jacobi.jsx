@@ -5,13 +5,17 @@ import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/renderLatexMatrix";
 import jacobiFunction from "./JacobiFunction";
 
-import {Button} from "../../../containers/BigContainer";
-
+import {
+  RowContainer,
+  Parameters,
+  Button,
+} from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
+import fixedPointFunction from "../4fixedPoint/fixedPointFunction";
 
 const Jacobi = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -37,6 +41,8 @@ const Jacobi = ({ name }) => {
   const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
   const [tol, setTol] = useState(1e-7);
   const [norm, setNorm] = useState(2);
+  const [maxCount, setMaxCount] = useState(100);
+  const [paramSet, setParamSet] = useState(false);
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
@@ -44,23 +50,68 @@ const Jacobi = ({ name }) => {
     initialValueX0: "input",
     solving: undefined,
   });
+  const handleSubmit = event => {
+    event.preventDefault();
+    setTol(parseFloat(event.target.tol.value));
+    setNorm(event.target.norm.value);
+    setMaxCount(parseInt(event.target.maxCount.value));
+    setParamSet(true);
+  };
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
     setLatexInitialValueX0(renderLatexMatrix(initialValueX0));
-    if (methodState.matrixA === "matrix" && methodState.B === "matrix" && methodState.initialValueX0 === "matrix") {
+    if (
+      methodState.matrixA === "matrix" &&
+      methodState.B === "matrix" &&
+      methodState.initialValueX0 === "matrix" &&
+      paramSet
+    ) {
       setResults(jacobiFunction(matrixA, B));
     } else {
       setResults(undefined);
     }
-  }, [matrixA, B, methodState]);
+  }, [matrixA, B, methodState, paramSet]);
   return (
     <Method
       title={name}
       prev={methods.find(method => method.index === 15)}
       next={methods.find(method => method.index === 17)}
     >
-
+      <ParametersMatrix>
+        {!paramSet ? (
+          <form onSubmit={handleSubmit}>
+            <label>
+              Tolerance
+              <input type="text" name="tol" defaultValue={tol} />
+            </label>
+            <label>
+              Norm {" "}
+              <select name="norm" defaultValue={norm}>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="inf">inf</option>
+              </select>
+            </label>
+            <label>
+              Max iterations (max 100)
+              <input type="number" name="maxCount" defaultValue={100} />
+            </label>
+            <Button>Confirm</Button>
+          </form>
+        ) : (
+          <Column>
+            <ul>
+              <li>Tolerance : {tol}</li>
+              <li>Norm : {norm}</li>
+              <li>NMax : {maxCount}</li>
+            </ul>
+            <Button onClick={() => setParamSet(false)}>
+              Change parameters
+            </Button>
+          </Column>
+        )}
+      </ParametersMatrix>
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
           <MatrixInputSize
@@ -71,30 +122,38 @@ const Jacobi = ({ name }) => {
           />
         ) : methodState.matrixA === "inputMatrix" ? (
           <Column>
-          <MatrixInput
-            type={"A"}
-            matrix={matrixA}
-            matrixSize={matrixASize}
-            setMatrix={matrix => setMatrixA(matrix)}
-            setMethodState={value => setMethodState(value)}
-          />
-          <Button onClick={() => {
-            setMethodState(prevState => ({
-              ...prevState,
-              matrixA: "inputSize",
-            }));
-          }}>Change matrix size</Button>
+            <MatrixInput
+              type={"A"}
+              matrix={matrixA}
+              matrixSize={matrixASize}
+              setMatrix={matrix => setMatrixA(matrix)}
+              setMethodState={value => setMethodState(value)}
+            />
+            <Button
+              onClick={() => {
+                setMethodState(prevState => ({
+                  ...prevState,
+                  matrixA: "inputSize",
+                }));
+              }}
+            >
+              Change matrix size
+            </Button>
           </Column>
         ) : (
           methodState.matrixA === "matrix" && (
             <Column>
               <BlockMath math={"A = " + latexMatrixA} />
-              <Button onClick={() => {
-                setMethodState(prevState => ({
-                  ...prevState,
-                  matrixA: "inputMatrix",
-                }));
-              }}>Change A</Button>
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    matrixA: "inputMatrix",
+                  }));
+                }}
+              >
+                Change A
+              </Button>
             </Column>
           )
         )}
@@ -108,15 +167,19 @@ const Jacobi = ({ name }) => {
           />
         ) : (
           methodState.initialValueX0 === "matrix" && (
-          <Column>
-            <BlockMath math={"x0 = " + latexInitialValueX0} />
-            <Button onClick={() => {
-              setMethodState(prevState => ({
-                ...prevState,
-                initialValueX0: "input",
-              }));
-            }}>Change x0</Button>
-          </Column>
+            <Column>
+              <BlockMath math={"x0 = " + latexInitialValueX0} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    initialValueX0: "input",
+                  }));
+                }}
+              >
+                Change x0
+              </Button>
+            </Column>
           )
         )}
         {methodState.B === "input" ? (
@@ -128,17 +191,21 @@ const Jacobi = ({ name }) => {
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" &&  (
-          <Column>
-            <BlockMath math={"B = " + latexB} />
-            <Button onClick={() => {
-              setMethodState(prevState => ({
-                ...prevState,
-                B: "input",
-              }));
-            }}>Change B</Button>
-          </Column>
-            )
+          methodState.B === "matrix" && (
+            <Column>
+              <BlockMath math={"B = " + latexB} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    B: "input",
+                  }));
+                }}
+              >
+                Change B
+              </Button>
+            </Column>
+          )
         )}
       </Inputs>
       {results && (
@@ -176,6 +243,17 @@ const Inputs = styled("div")`
 const Column = styled("div")`
   display: flex;
   flex-direction: column;
+`;
+
+const ParametersMatrix = styled(Parameters)`
+  display: flex;
+  justify-content: center;
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
 `;
 
 export default Jacobi;
