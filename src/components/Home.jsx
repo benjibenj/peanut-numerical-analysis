@@ -29,6 +29,12 @@ const Home = () => {
             Learn more about this website
           </Link>
         </p>
+        <p>
+          <Link to={"/methods"}>
+            <FontAwesomeIcon icon={["fas", "dot-circle"]} />
+            Explore methods
+          </Link>
+        </p>
       </CenteredSubTitle>
       <MainContainer>
         <h3>Provide a function for the graph : </h3>
@@ -49,7 +55,7 @@ const CenteredSubTitle = styled(Subtitle)`
 `;
 
 const MainContainer = styled("div")`
-  margin: ${Spacing.lg} auto ${Spacing.xxl} auto;
+  margin: 0 auto ${Spacing.xxl} auto;
   display: flex;
   justify-content: center;
   max-width: 700px;

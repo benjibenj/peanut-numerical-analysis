@@ -2,6 +2,8 @@ import React from "react";
 import { Parameters } from "../containers/BigContainer";
 import styled from "styled-components";
 import { randomInt } from "mathjs";
+import {Spacing} from "../rules";
+
 const MatrixInput = ({
   matrixSize,
   setMatrix,
@@ -17,7 +19,8 @@ const MatrixInput = ({
     let count = 0;
     for (let i = 0; i < matrixSize.rows; i++) {
       for (let j = 0; j < matrixSize.columns; j++) {
-        matrix[i][j] = event.target[count].value;
+        // If the floating point number cannot be parsed, we set 0 for this value
+        matrix[i][j] = !isNaN(parseFloat(event.target[count].value)) ? parseFloat(event.target[count].value) : 0;
         count += 1;
       }
     }
@@ -45,8 +48,7 @@ const MatrixInput = ({
                 return (
                   <input
                     key={indexRow + " " + indexColumn}
-                    type="number"
-                    step="0.01"
+                    type="text"
                     defaultValue={randomInt(1, 10)}
                     name={indexRow + "," + indexColumn}
                   />
@@ -64,11 +66,19 @@ const MatrixInput = ({
 const MatrixRow = styled("div")`
   display: flex;
   flex-direction: row;
+  margin: ${Spacing.lg};
 `;
 
 const MatrixParameters = styled(Parameters)`
   input {
-    border: 1px solid black;
+    padding: 13px 0;
+    text-align: center;
+    margin: 0px 5px;
+    height: 12px;
+    width: 50px;
+  }
+  form {
+    text-align: center;
   }
 `;
 
