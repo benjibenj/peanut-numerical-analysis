@@ -9,14 +9,19 @@ import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
-import {methods} from "../../../data/methods";
+import { methods } from "../../../data/methods";
 
 const Jacobi = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   });
-  const [matrixA, setMatrixA] = useState([]);
+  const [matrixA, setMatrixA] = useState([
+    [4, -1, 0, 3],
+    [1, 15.5, 3, 8],
+    [0, -1.3, -4, 1.1],
+    [14, 5, -2, 30],
+  ]);
   const [B, setB] = useState([]);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
@@ -24,6 +29,9 @@ const Jacobi = ({ name }) => {
   const [latexB, setLatexB] = useState(
     "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
   );
+  const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
+  const [tol, setTol] = useState(1e-7);
+  const [norm, setNorm] = useState(2);
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
@@ -41,7 +49,7 @@ const Jacobi = ({ name }) => {
     <Method
       title={name}
       prev={methods.find(method => method.index === 15)}
-      next={methods.find( method => method.index === 17)}
+      next={methods.find(method => method.index === 17)}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
