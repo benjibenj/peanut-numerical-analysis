@@ -1,18 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import {BorderRadius, Colors, Spacing, Typography} from "../rules";
+import { BorderRadius, Colors, Spacing, Typography } from "../rules";
 
-const BigContainer = ({children}) => {
-  return (
-    <Container>
-      {children}
-    </Container>
-  );
+const BigContainer = ({ children }) => {
+  return <Container>{children}</Container>;
 };
 
 const Container = styled("div")`
   margin: ${Spacing.lg} ${Spacing.xxl};
-  padding: ${Spacing.lg} ${Spacing.xl} ;
+  padding: ${Spacing.lg} ${Spacing.xl};
   border-radius: ${BorderRadius.lg};
   border: 2px solid ${Colors.utility.headline.default};
 `;
@@ -41,7 +37,7 @@ export const Eval = styled("div")`
 `;
 
 export const Params = styled("div")`
-  li{
+  li {
     margin: ${Spacing.md} 0;
   }
 `;
@@ -61,13 +57,6 @@ export const Parameters = styled("div")`
     margin: 8px 0;
     box-sizing: border-box;
   }
-  button {
-    font-size: inherit;
-    border: 2px solid ${Colors.primary.ocean.default};
-    color: ${Colors.primary.ocean.darker};
-    border-radius: ${BorderRadius.sm};
-    font-weight: bold;
-  }
 `;
 
 export const Error = styled("div")`
@@ -80,11 +69,21 @@ export const Error = styled("div")`
 `;
 
 export const TableStyle = styled("div")`
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: ${Spacing.xs};
   }
+`;
+
+export const Button = styled("button")`
+  font-size: inherit;
+  border: 2px solid ${Colors.primary.ocean.default};
+  color: ${Colors.primary.ocean.darker};
+  border-radius: ${BorderRadius.sm};
+  font-weight: bold;
 `;
 
 export default BigContainer;

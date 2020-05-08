@@ -1,5 +1,5 @@
 import React from "react";
-import { Parameters } from "../containers/BigContainer";
+import { Parameters, Button } from "../containers/BigContainer";
 import styled from "styled-components";
 import { randomInt } from "mathjs";
 import {Spacing} from "../rules";
@@ -8,11 +8,23 @@ const MatrixInput = ({
   matrixSize,
   setMatrix,
   setMethodState,
-  type = "A"
+  matrix,
+  type = "A",
 }) => {
-  let matrix = Array(matrixSize.rows);
-  for (let i = 0; i < matrixSize.rows; i++) {
-    matrix[i] = new Array(matrixSize.columns).fill(0);
+  if (
+    !matrix ||
+    Array.isArray(!matrix) ||
+    Array.isArray(!matrix[0]) ||
+    matrix.length !== matrixSize.rows ||
+    matrix[0].length !== matrixSize.columns
+  ) {
+    matrix = Array(matrixSize.rows);
+    for (let i = 0; i < matrixSize.rows; i++) {
+      matrix[i] = new Array(matrixSize.columns).fill(0);
+      for (let j = 0; j < matrixSize.columns; j++) {
+        matrix[i][j] = randomInt(1, 15);
+      }
+    }
   }
   const handleSubmit = event => {
     event.preventDefault();
@@ -20,7 +32,9 @@ const MatrixInput = ({
     for (let i = 0; i < matrixSize.rows; i++) {
       for (let j = 0; j < matrixSize.columns; j++) {
         // If the floating point number cannot be parsed, we set 0 for this value
-        matrix[i][j] = !isNaN(parseFloat(event.target[count].value)) ? parseFloat(event.target[count].value) : 0;
+        matrix[i][j] = !isNaN(parseFloat(event.target[count].value))
+          ? parseFloat(event.target[count].value)
+          : 0;
         count += 1;
       }
     }
@@ -28,15 +42,19 @@ const MatrixInput = ({
     if (type === "A") {
       setMethodState(prevState => ({
         ...prevState,
-        matrixA: "matrix"
+        matrixA: "matrix",
       }));
     } else if (type === "B") {
       setMethodState(prevState => ({
         ...prevState,
-        B: "matrix"
+        B: "matrix",
+      }));
+    } else if (type === "initialValueX0") {
+      setMethodState(prevState => ({
+        ...prevState,
+        initialValueX0: "matrix",
       }));
     }
-
   };
   return (
     <MatrixParameters>
@@ -49,7 +67,7 @@ const MatrixInput = ({
                   <input
                     key={indexRow + " " + indexColumn}
                     type="text"
-                    defaultValue={randomInt(1, 10)}
+                    defaultValue={matrix[indexRow][indexColumn]}
                     name={indexRow + "," + indexColumn}
                   />
                 );
@@ -57,7 +75,9 @@ const MatrixInput = ({
             </MatrixRow>
           );
         })}
-        <button>{type === "A" ? "Save A" : type === "B" ? "Save B" : "Save"}</button>
+        <Button>
+          {type === "A" ? "Save A" : type === "B" ? "Save B" : type === "initialValueX0" ? "Save x0" : "Save"}
+        </Button>
       </form>
     </MatrixParameters>
   );
@@ -80,6 +100,7 @@ const MatrixParameters = styled(Parameters)`
   form {
     text-align: center;
   }
+  margin-bottom: ${Spacing.xs};
 `;
 
 export default MatrixInput;

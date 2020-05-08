@@ -5,6 +5,8 @@ import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/renderLatexMatrix";
 import jacobiFunction from "./JacobiFunction";
 
+import {Button} from "../../../containers/BigContainer";
+
 import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
@@ -22,11 +24,14 @@ const Jacobi = ({ name }) => {
     [0, -1.3, -4, 1.1],
     [14, 5, -2, 30],
   ]);
-  const [B, setB] = useState([]);
+  const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );
   const [latexB, setLatexB] = useState(
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+  );
+  const [latexInitialValueX0, setLatexInitialValueX0] = useState(
     "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
   );
   const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
@@ -36,21 +41,26 @@ const Jacobi = ({ name }) => {
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
+    initialValueX0: "input",
     solving: undefined,
   });
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
+    setLatexInitialValueX0(renderLatexMatrix(initialValueX0));
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix" && methodState.initialValueX0 === "matrix") {
       setResults(jacobiFunction(matrixA, B));
+    } else {
+      setResults(undefined);
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
       prev={methods.find(method => method.index === 15)}
       next={methods.find(method => method.index === 17)}
     >
+
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
           <MatrixInputSize
@@ -60,26 +70,75 @@ const Jacobi = ({ name }) => {
             methodState={methodState}
           />
         ) : methodState.matrixA === "inputMatrix" ? (
+          <Column>
           <MatrixInput
             type={"A"}
+            matrix={matrixA}
             matrixSize={matrixASize}
             setMatrix={matrix => setMatrixA(matrix)}
             setMethodState={value => setMethodState(value)}
           />
+          <Button onClick={() => {
+            setMethodState(prevState => ({
+              ...prevState,
+              matrixA: "inputSize",
+            }));
+          }}>Change matrix size</Button>
+          </Column>
         ) : (
           methodState.matrixA === "matrix" && (
-            <BlockMath math={"A = " + latexMatrixA} />
+            <Column>
+              <BlockMath math={"A = " + latexMatrixA} />
+              <Button onClick={() => {
+                setMethodState(prevState => ({
+                  ...prevState,
+                  matrixA: "inputMatrix",
+                }));
+              }}>Change A</Button>
+            </Column>
+          )
+        )}
+        {methodState.initialValueX0 === "input" ? (
+          <MatrixInput
+            type={"initialValueX0"}
+            matrix={initialValueX0}
+            matrixSize={{ ...matrixASize, columns: 1 }}
+            setMatrix={matrix => setInitialValueX0(matrix)}
+            setMethodState={value => setMethodState(value)}
+          />
+        ) : (
+          methodState.initialValueX0 === "matrix" && (
+          <Column>
+            <BlockMath math={"x0 = " + latexInitialValueX0} />
+            <Button onClick={() => {
+              setMethodState(prevState => ({
+                ...prevState,
+                initialValueX0: "input",
+              }));
+            }}>Change x0</Button>
+          </Column>
           )
         )}
         {methodState.B === "input" ? (
           <MatrixInput
             type={"B"}
+            matrix={B}
             matrixSize={{ ...matrixASize, columns: 1 }}
             setMatrix={matrix => setB(matrix)}
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+          methodState.B === "matrix" &&  (
+          <Column>
+            <BlockMath math={"B = " + latexB} />
+            <Button onClick={() => {
+              setMethodState(prevState => ({
+                ...prevState,
+                B: "input",
+              }));
+            }}>Change B</Button>
+          </Column>
+            )
         )}
       </Inputs>
       {results && (
@@ -112,6 +171,11 @@ const Inputs = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Column = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default Jacobi;

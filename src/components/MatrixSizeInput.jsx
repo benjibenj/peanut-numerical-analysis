@@ -1,5 +1,6 @@
-import { Parameters, RowContainer } from "../containers/BigContainer";
+import { Parameters, RowContainer, Button } from "../containers/BigContainer";
 import React from "react";
+
 
 const MatrixInputSize = ({
   setMatrixSize,
@@ -54,7 +55,7 @@ const MatrixInputSize = ({
             />
           </label>
         )}
-        <button
+        <Button
           onClick={() => {
             setMethodState(prevState => ({
               ...prevState,
@@ -64,7 +65,7 @@ const MatrixInputSize = ({
         >
           Validate A size (<strong>{matrixSize.rows}</strong> rows and{" "}
           <strong>{matrixSize.columns}</strong> columns)
-        </button>
+        </Button>
       </Parameters>
     </RowContainer>
   );

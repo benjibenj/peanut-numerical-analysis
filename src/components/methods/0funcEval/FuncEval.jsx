@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Method from "../Method";
-import {RowContainer, Parameters, Eval, Error} from "../../../containers/BigContainer";
+import {RowContainer, Parameters, Eval, Error, Button} from "../../../containers/BigContainer";
 
 import FuncEvalDescription from "./funcEvalDescription";
 
@@ -44,7 +44,7 @@ const FuncEval = ({name}) => {
           <form onSubmit={handleSubmit}>
             <label>Function<input type="text" name="functionText" defaultValue={functionText} /></label>
             <label>Value of x (can be an array)<input type="text" name="x" defaultValue={x} /></label>
-            <button>Apply</button>
+            <Button>Apply</Button>
           </form>
         </Parameters>
         <Eval>

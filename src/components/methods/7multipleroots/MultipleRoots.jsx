@@ -5,6 +5,7 @@ import {
   Parameters,
   Eval,
   TableStyle,
+  Button
 } from "../../../containers/BigContainer";
 import multipleRootsFunction from "./multipleRootsFunction";
 import {methods} from "../../../data/methods";
@@ -81,7 +82,7 @@ const MultipleRoots = ({ name }) => {
               Max iterations (max 100)
               <input type="text" name="maxCount" defaultValue={100} />
             </label>
-            <button>Run</button>
+            <Button>Run</Button>
           </form>
         </Parameters>
         <Eval>
