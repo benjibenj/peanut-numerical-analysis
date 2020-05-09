@@ -5,17 +5,13 @@ import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/renderLatexMatrix";
 import jacobiFunction from "./JacobiFunction";
 
-import {
-  RowContainer,
-  Parameters,
-  Button,
-} from "../../../containers/BigContainer";
+import { Parameters, Button } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
-import fixedPointFunction from "../4fixedPoint/fixedPointFunction";
+import { Colors } from "../../../rules";
 
 const Jacobi = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -41,7 +37,7 @@ const Jacobi = ({ name }) => {
   const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
   const [tol, setTol] = useState(1e-7);
   const [norm, setNorm] = useState(2);
-  const [maxCount, setMaxCount] = useState(100);
+  const [NMax, setNMax] = useState(100);
   const [paramSet, setParamSet] = useState(false);
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
@@ -54,7 +50,7 @@ const Jacobi = ({ name }) => {
     event.preventDefault();
     setTol(parseFloat(event.target.tol.value));
     setNorm(event.target.norm.value);
-    setMaxCount(parseInt(event.target.maxCount.value));
+    setNMax(parseInt(event.target.NMax.value));
     setParamSet(true);
   };
   useEffect(() => {
@@ -67,7 +63,7 @@ const Jacobi = ({ name }) => {
       methodState.initialValueX0 === "matrix" &&
       paramSet
     ) {
-      setResults(jacobiFunction(matrixA, B));
+      setResults(jacobiFunction(matrixA, B, initialValueX0, tol, NMax, norm));
     } else {
       setResults(undefined);
     }
@@ -86,7 +82,7 @@ const Jacobi = ({ name }) => {
               <input type="text" name="tol" defaultValue={tol} />
             </label>
             <label>
-              Norm {" "}
+              Norm{" "}
               <select name="norm" defaultValue={norm}>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -95,7 +91,7 @@ const Jacobi = ({ name }) => {
             </label>
             <label>
               Max iterations (max 100)
-              <input type="number" name="maxCount" defaultValue={100} />
+              <input type="number" name="NMax" defaultValue={100} />
             </label>
             <Button>Confirm</Button>
           </form>
@@ -104,7 +100,7 @@ const Jacobi = ({ name }) => {
             <ul>
               <li>Tolerance : {tol}</li>
               <li>Norm : {norm}</li>
-              <li>NMax : {maxCount}</li>
+              <li>NMax : {NMax}</li>
             </ul>
             <Button onClick={() => setParamSet(false)}>
               Change parameters
@@ -210,6 +206,15 @@ const Jacobi = ({ name }) => {
       </Inputs>
       {results && (
         <Results>
+          <BlockMath
+            math={"D = " + renderLatexMatrix(results.D)}
+          />
+          <BlockMath
+            math={"L = " + renderLatexMatrix(results.L)}
+          />
+          <BlockMath
+            math={"U = " + renderLatexMatrix(results.U)}
+          />
           {results.iterations.map((matrix, index) => {
             return (
               <BlockMath
@@ -253,6 +258,9 @@ const ParametersMatrix = styled(Parameters)`
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+  }
+  select {
+    border: 2px solid ${Colors.primary.ocean.default};
   }
 `;
 
