@@ -22,6 +22,7 @@ const incrementalSearch = (functionText, initialValue, delta, maxCount) => {
     fB = math.evaluate(functionText, b);
     count += 1;
   }
+  if(results.length===0) results.push("No root was found in [" + initialValue + ", " + b.x + "]");
   return results;
 };
 

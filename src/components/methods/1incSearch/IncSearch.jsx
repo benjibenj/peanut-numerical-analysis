@@ -30,6 +30,7 @@ const IncSearch = ({name}) => {
       setFunctionText(event.target.functionText.value);
       setInitialValue(event.target.initialValue.value);
       setDelta(event.target.delta.value);
+      setError(null);
       setResults(
         incSearchFunction(
           event.target.functionText.value,
@@ -42,7 +43,7 @@ const IncSearch = ({name}) => {
       if (e instanceof TypeError) {
         setError("The function you entered cannot be parsed");
       } else {
-        setError("There was an unknown error");
+        setError(e + "");
       }
       setResults([]); // re-render empty results while processing
     }

@@ -14,7 +14,7 @@ export const methods = [
   { index: 2, id: "bisection", path: "/methods/bisection", theme: "one-var", name: "Bisection" },
   {
     index: 3,
-    id: "/methods/false-position",
+    id: "false-position",
     theme: "one-var",
     name: "False position",
   },
