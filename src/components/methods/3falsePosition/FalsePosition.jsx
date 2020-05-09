@@ -97,7 +97,7 @@ const FalsePosition = ({ name }) => {
                     <th>a</th>
                     <th>xm</th>
                     <th>b</th>
-                    <th>f(xm)</th>
+                    <th>f(Xm)</th>
                     <th>E</th>
                   </tr>
                 </thead>

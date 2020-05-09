@@ -1,4 +1,4 @@
-import { format, evaluate } from "mathjs";
+import { format, evaluate, abs} from "mathjs";
 
 const bisectionFunction = (functionText, a, b, tol, maxCount) => {
   let results = {
@@ -30,7 +30,7 @@ const bisectionFunction = (functionText, a, b, tol, maxCount) => {
       a = m;
       fA = fM;
     }
-    m = (a + b) / 2;
+    m = abs((a + b) / 2);
     fM = evaluate(functionText, { x: m }); // we evaluate f(m)
     count += 1;
     error = (b-a)/2;
