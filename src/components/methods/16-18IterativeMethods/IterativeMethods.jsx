@@ -3,26 +3,35 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/renderLatexMatrix";
-import jacobiFunction from "./JacobiFunction";
+import iterativeMethodsFunctions from "./IterativeMethodsFunctions";
 
-import { Parameters, Button } from "../../../containers/BigContainer";
+import {
+  Parameters,
+  Button,
+  TableStyle,
+  Error,
+} from "../../../containers/BigContainer";
 import styled from "styled-components";
+
+import { format } from "mathjs";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
 import { Colors } from "../../../rules";
+import { Link } from "@reach/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Jacobi = ({ name }) => {
+const IterativeMethods = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 4,
     columns: 4,
   });
   const [matrixA, setMatrixA] = useState([
-    [4, -1, 0, 3],
-    [1, 15.5, 3, 8],
-    [0, -1.3, -4, 1.1],
-    [14, 5, -2, 30],
+    [7, -2, -2, -1],
+    [-2, 8, -2, -2],
+    [-2, -2, 6, 2],
+    [-1, -2, -2, 10],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
@@ -35,9 +44,12 @@ const Jacobi = ({ name }) => {
     "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
   );
   const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
+  const [method, setMethod] = useState(1);
   const [tol, setTol] = useState(1e-7);
-  const [norm, setNorm] = useState(2);
+  const [normValue, setnormValue] = useState("inf");
   const [NMax, setNMax] = useState(100);
+  const [wValue, setWValue] = useState(1);
+  const [error, setError] = useState(null);
   const [paramSet, setParamSet] = useState(false);
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
@@ -49,7 +61,8 @@ const Jacobi = ({ name }) => {
   const handleSubmit = event => {
     event.preventDefault();
     setTol(parseFloat(event.target.tol.value));
-    setNorm(event.target.norm.value);
+    setnormValue(event.target.normValue.value);
+    setWValue(event.target.wValue && event.target.wValue.value);
     setNMax(parseInt(event.target.NMax.value));
     setParamSet(true);
   };
@@ -63,7 +76,18 @@ const Jacobi = ({ name }) => {
       methodState.initialValueX0 === "matrix" &&
       paramSet
     ) {
-      setResults(jacobiFunction(matrixA, B, initialValueX0, tol, NMax, norm));
+      setResults(
+        iterativeMethodsFunctions(
+          matrixA,
+          B,
+          initialValueX0,
+          tol,
+          NMax,
+          normValue,
+          method,
+          wValue,
+        ),
+      );
     } else {
       setResults(undefined);
     }
@@ -78,14 +102,39 @@ const Jacobi = ({ name }) => {
         {!paramSet ? (
           <form onSubmit={handleSubmit}>
             <label>
+              Method{"  "}
+              <select
+                name="method"
+                value={method}
+                onChange={event => setMethod(parseInt(event.target.value))}
+              >
+                <option value={1}>Jacobi</option>
+                <option value={2}>Gauss-Seidel</option>
+                <option value={3}>SOR</option>
+              </select>
+            </label>
+            {method === 3 && (
+              <label>
+                w value (relaxation parameter)
+                <input
+                  type="number"
+                  name="wValue"
+                  step={0.01}
+                  min={0}
+                  max={2}
+                  defaultValue={1}
+                />
+              </label>
+            )}
+            <label>
               Tolerance
               <input type="text" name="tol" defaultValue={tol} />
             </label>
             <label>
-              Norm{" "}
-              <select name="norm" defaultValue={norm}>
-                <option value="2">2</option>
-                <option value="3">3</option>
+              Norm value{"  "}
+              <select name="normValue" defaultValue={normValue}>
+                {/*<option value="2">2</option>
+                <option value="3">3</option>*/}
                 <option value="inf">inf</option>
               </select>
             </label>
@@ -99,8 +148,19 @@ const Jacobi = ({ name }) => {
           <Column>
             <ul>
               <li>Tolerance : {tol}</li>
-              <li>Norm : {norm}</li>
+              <li>Norm value : {normValue}</li>
               <li>NMax : {NMax}</li>
+              <li>
+                Method :{" "}
+                {method === 1
+                  ? "Jacobi"
+                  : method === 2
+                  ? "Gauss-Seider"
+                  : "SOR"}
+              </li>
+              {method === 3 && (
+                <li>w value (relaxation parameter) : {wValue}</li>
+              )}
             </ul>
             <Button onClick={() => setParamSet(false)}>
               Change parameters
@@ -206,25 +266,58 @@ const Jacobi = ({ name }) => {
       </Inputs>
       {results && (
         <Results>
-          <BlockMath
-            math={"D = " + renderLatexMatrix(results.D)}
-          />
-          <BlockMath
-            math={"L = " + renderLatexMatrix(results.L)}
-          />
-          <BlockMath
-            math={"U = " + renderLatexMatrix(results.U)}
-          />
-          {results.iterations.map((matrix, index) => {
-            return (
-              <BlockMath
-                key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
-              />
-            );
-          })}
-          <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+          <BlockMath math={"D = " + renderLatexMatrix(results.D)} />
+          <BlockMath math={"L = " + renderLatexMatrix(results.L)} />
+          <BlockMath math={"U = " + renderLatexMatrix(results.U)} />
+          <BlockMath math={"T = " + renderLatexMatrix(results.T)} />
+          <BlockMath math={"C = " + renderLatexMatrix(results.C)} />
+          <p>
+            <strong>Spectral radiance</strong> : {results.spectralRadiance}
+          </p>
+          {!error ? (
+            <TableStyle>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Iteration (i)</th>
+                    <th>Error</th>
+                    <th> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {results.iterations.map((result, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{result[0]}</td>
+                        <td>
+                          {format(result[1], {
+                            notation: "exponential",
+                            precision: 2,
+                          })}
+                        </td>
+                        <td>
+                          {result[2] && (
+                            <BlockMath math={renderLatexMatrix(result[2])} />
+                          )}
+                          {/*result[2].map(value => {
+                              return format(value, { notation: "fixed", precision: 10 });
+                            })}*/}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </TableStyle>
+          ) : (
+            <React.Fragment>
+              <Error>{error}</Error>
+              <Link to={"help"}>
+                <FontAwesomeIcon icon={"question-circle"} /> Help Page
+              </Link>
+            </React.Fragment>
+          )}
+          <p>{results.conclusion && results.conclusion}</p>
         </Results>
       )}
     </Method>
@@ -264,4 +357,4 @@ const ParametersMatrix = styled(Parameters)`
   }
 `;
 
-export default Jacobi;
+export default IterativeMethods;

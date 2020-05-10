@@ -75,19 +75,7 @@ export const methods = [
   { index: 13, id: "croult", theme: "sys-eq", name: "Croult" },
   { index: 14, id: "doolittle", theme: "sys-eq", name: "Doolittle" },
   { index: 15, id: "cholesky", theme: "sys-eq", name: "Cholesky" },
-  { index: 16, id: "jacobi", theme: "sys-eq", name: "Jacobi" },
-  {
-    index: 17,
-    id: "gauss-seidel",
-    theme: "sys-eq",
-    name: "Gauss Seidel",
-  },
-  {
-    index: 18,
-    id: "gauss-seidel-SOR",
-    theme: "sys-eq",
-    name: "Gauss Seidel (SOR)",
-  },
+  { index: 16, id: "iterative-methods", theme: "sys-eq", name: "Iterative methods (Jacobi, Gauss-Seidel & SOR)" },
   {
     index: 19,
     id: "vandermonde",

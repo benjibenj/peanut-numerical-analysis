@@ -21,9 +21,7 @@ import LuPartial from "../components/methods/12LuPartial/LuPartial";
 import Croult from "../components/methods/13Croult/Croult";
 import Doolittle from "../components/methods/14Doolittle/Doolittle";
 import Cholesky from "../components/methods/15Cholesky/Cholesky";
-import Jacobi from "../components/methods/16Jacobi/Jacobi";
-import GaussSheidel from "../components/methods/17GaussSeidel/GaussSheidel";
-import GaussSheidelSOR from "../components/methods/18GaussSeidelSOR/GaussSheidelSOR";
+import IterativeMethods from "../components/methods/16-18IterativeMethods/IterativeMethods";
 import Page404 from "../components/Page404";
 
 const MethodsRouter = () => {
@@ -46,9 +44,7 @@ const MethodsRouter = () => {
       <Croult path={methods.find(method => method.index === 13).id} name={methods.find(method => method.index === 13).name} />
       <Doolittle path={methods.find(method => method.index === 14).id} name={methods.find(method => method.index === 14).name} />
       <Cholesky path={methods.find(method => method.index === 15).id} name={methods.find(method => method.index === 15).name} />
-      <Jacobi path={methods.find(method => method.index === 16).id} name={methods.find(method => method.index === 16).name} />
-      <GaussSheidel path={methods.find(method => method.index === 17).id} name={methods.find(method => method.index === 17).name} />
-      <GaussSheidelSOR path={methods.find(method => method.index === 18).id} name={methods.find(method => method.index === 18).name} />
+      <IterativeMethods path={methods.find(method => method.index === 16).id} name={methods.find(method => method.index === 16).name} />
       <Page404 default />
     </Router>
   );
