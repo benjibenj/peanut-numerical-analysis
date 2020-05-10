@@ -1,4 +1,4 @@
-import {det, diag, add, unaryMinus, inv, multiply, subtract, abs, max, norm, format, usolve} from "mathjs";
+import {det, diag, add, unaryMinus, inv, multiply, subtract, abs, max, norm} from "mathjs";
 import {eig} from "numericjs"; //didn't exist for non-symmetrical matrices in mathjs
 import zeroInDiagonal from "../../../utils/matrixFunctions/zeroInDiagonal";
 import tril from "../../../utils/matrixFunctions/tril";
@@ -78,7 +78,7 @@ const iterativeMethodsFunctions = (
   xAnt = initialValueX0;
   results.iterations.push([
     count,
-    error,
+    undefined,
     xAnt
   ]);
   while(error > tol && count < NMax) {
@@ -92,6 +92,7 @@ const iterativeMethodsFunctions = (
       x
     ]);
   }
+  // handle the case where it couldn't find with this NMAX
   return results;
 };
 

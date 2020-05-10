@@ -266,13 +266,15 @@ const IterativeMethods = ({ name }) => {
       </Inputs>
       {results && (
         <Results>
-          <BlockMath math={"D = " + renderLatexMatrix(results.D)} />
-          <BlockMath math={"L = " + renderLatexMatrix(results.L)} />
-          <BlockMath math={"U = " + renderLatexMatrix(results.U)} />
-          <BlockMath math={"T = " + renderLatexMatrix(results.T)} />
-          <BlockMath math={"C = " + renderLatexMatrix(results.C)} />
+          <BlockMath math={"T = " + renderLatexMatrix(results.T, 6)} />
+          <BlockMath math={"C = " + renderLatexMatrix(results.C, 6)} />
           <p>
-            <strong>Spectral radiance</strong> : {results.spectralRadiance}
+            <strong>Spectral radiance</strong> :{" "}
+            {results.spectralRadiance &&
+              format(results.spectralRadiance, {
+                notation: "fixed",
+                precision: 6,
+              })}
           </p>
           {!error ? (
             <TableStyle>
@@ -290,18 +292,17 @@ const IterativeMethods = ({ name }) => {
                       <tr key={index}>
                         <td>{result[0]}</td>
                         <td>
-                          {format(result[1], {
+                          {result[1] && format(result[1], {
                             notation: "exponential",
                             precision: 2,
                           })}
                         </td>
                         <td>
                           {result[2] && (
-                            <BlockMath math={renderLatexMatrix(result[2])} />
+                            <BlockMath
+                              math={renderLatexMatrix(result[2], 10)}
+                            />
                           )}
-                          {/*result[2].map(value => {
-                              return format(value, { notation: "fixed", precision: 10 });
-                            })}*/}
                         </td>
                       </tr>
                     );
