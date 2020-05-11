@@ -58,7 +58,10 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
                   );
                 })}
                 <td>
-                  <button onClick={() => setNbPoints(points.x.length + 1)}>
+                  <button
+                    type="button"
+                    onClick={() => setNbPoints(points.x.length + 1)}
+                  >
                     +
                   </button>
                 </td>
@@ -79,7 +82,10 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
                   );
                 })}
                 <td>
-                  <button onClick={() => setNbPoints(points.x.length - 1)}>
+                  <button
+                    type="button"
+                    onClick={() => setNbPoints(points.x.length - 1)}
+                  >
                     -
                   </button>
                 </td>
