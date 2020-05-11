@@ -7889,6 +7889,13 @@ jws@^4.0.0:
     jwa "^2.0.0"
     safe-buffer "^5.0.1"
 
+katex@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.10.2.tgz#39973edbb65eda5b6f9e7f41648781e557dd4932"
+  integrity sha512-cQOmyIRoMloCoSIOZ1+gEwsksdJZ1EW4SWm3QzxSza/QsnZr6D4U1V9S4q+B/OLm2OQ8TCBecQ8MaIfnScI7cw==
+  dependencies:
+    commander "^2.19.0"
+
 katex@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/katex/-/katex-0.11.1.tgz#df30ca40c565c9df01a466a00d53e079e84ffaa2"
@@ -10810,6 +10817,13 @@ react-katex@^2.0.2:
   integrity sha512-mk1ezfUF4mBIstjvpfELf9g1rWF1Y1+idXMiOvkFvCLi0JFZDCQdui59VqQcI2ynOpb0jj52TM4kyBjKG+qEBg==
   dependencies:
     katex "^0.9.0"
+
+react-latex@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-latex/-/react-latex-1.6.0.tgz#ed02983422224282c1e545ca5ebb94eed4394842"
+  integrity sha512-QD1lp9dGxfAjHi2V98SBNiyhj0vMdtnVgCIzqEpSjnFfap5QPSsgYDGBBdYSE+XiyDwE+S+FpVRVVikWcPwdQQ==
+  dependencies:
+    katex "^0.10.2"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"

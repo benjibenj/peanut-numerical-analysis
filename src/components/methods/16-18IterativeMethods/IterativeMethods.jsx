@@ -96,7 +96,7 @@ const IterativeMethods = ({ name }) => {
     <Method
       title={name}
       prev={methods.find(method => method.index === 15)}
-      next={methods.find(method => method.index === 17)}
+      next={methods.find(method => method.index === 19)}
     >
       <ParametersMatrix>
         {!paramSet ? (

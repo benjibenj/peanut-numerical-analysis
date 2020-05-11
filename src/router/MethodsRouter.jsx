@@ -23,6 +23,7 @@ import Doolittle from "../components/methods/14Doolittle/Doolittle";
 import Cholesky from "../components/methods/15Cholesky/Cholesky";
 import IterativeMethods from "../components/methods/16-18IterativeMethods/IterativeMethods";
 import Page404 from "../components/Page404";
+import Vandermonde from "../components/methods/19Vandermonde/Vandermonde";
 
 const MethodsRouter = () => {
   return (
@@ -45,6 +46,7 @@ const MethodsRouter = () => {
       <Doolittle path={methods.find(method => method.index === 14).id} name={methods.find(method => method.index === 14).name} />
       <Cholesky path={methods.find(method => method.index === 15).id} name={methods.find(method => method.index === 15).name} />
       <IterativeMethods path={methods.find(method => method.index === 16).id} name={methods.find(method => method.index === 16).name} />
+      <Vandermonde path={methods.find(method => method.index === 19).id} name={methods.find(method => method.index === 19).name} />
       <Page404 default />
     </Router>
   );
