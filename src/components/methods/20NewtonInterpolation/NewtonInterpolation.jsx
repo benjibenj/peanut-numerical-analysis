@@ -12,7 +12,7 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Vandermonde = ({ name }) => {
+const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-2, -1, 0, 1, 2],
     y: [23, 13, 5, -1, -5],
@@ -29,6 +29,9 @@ const Vandermonde = ({ name }) => {
       " \\hline\n" +
       "\\end{array}",
   );
+  const [latexPolynom, setLatexPolynom] = useState(
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+  );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   useEffect(() => {
@@ -37,8 +40,8 @@ const Vandermonde = ({ name }) => {
   return (
     <Method
       title={name}
-      prev={methods.find(method => method.index === 16)}
-      next={methods.find(method => method.index === 20)}
+      prev={methods.find(method => method.index === 19)}
+      next={methods.find(method => method.index === 21)}
     >
       {methodState.points === "input" ? (
         <SetOfPointsInput
@@ -91,4 +94,4 @@ const Results = styled("div")`
   align-items: center;
 `;
 
-export default Vandermonde;
+export default NewtonInterpolation;

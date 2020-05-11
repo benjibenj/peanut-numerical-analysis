@@ -24,6 +24,8 @@ import Cholesky from "../components/methods/15Cholesky/Cholesky";
 import IterativeMethods from "../components/methods/16-18IterativeMethods/IterativeMethods";
 import Page404 from "../components/Page404";
 import Vandermonde from "../components/methods/19Vandermonde/Vandermonde";
+import NewtonInterpolation from "../components/methods/20NewtonInterpolation/NewtonInterpolation";
+import Lagrange from "../components/methods/21Lagrange/Lagrange";
 
 const MethodsRouter = () => {
   return (
@@ -47,6 +49,9 @@ const MethodsRouter = () => {
       <Cholesky path={methods.find(method => method.index === 15).id} name={methods.find(method => method.index === 15).name} />
       <IterativeMethods path={methods.find(method => method.index === 16).id} name={methods.find(method => method.index === 16).name} />
       <Vandermonde path={methods.find(method => method.index === 19).id} name={methods.find(method => method.index === 19).name} />
+      <NewtonInterpolation path={methods.find(method => method.index === 20).id} name={methods.find(method => method.index === 20).name} />
+      <Lagrange path={methods.find(method => method.index === 21).id} name={methods.find(method => method.index === 21).name} />
+
       <Page404 default />
     </Router>
   );
