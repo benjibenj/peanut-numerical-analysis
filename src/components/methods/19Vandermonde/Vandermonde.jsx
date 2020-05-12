@@ -4,13 +4,16 @@ import SetOfPointsInput from "../../SetOfPointsInput";
 import { Button, Error } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
-import Latex from 'react-latex';
-
+import Latex from "react-latex";
+import vandermondeFunction from "./vandermondeFunction";
 import renderLatexTable from "../../../utils/renderLatexTable";
 import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BlockMath } from "react-katex";
+import renderLatexMatrix from "../../../utils/renderLatexMatrix";
+import renderLatexPolynom from "../../../utils/renderLatexPolynom";
 
 const Vandermonde = ({ name }) => {
   const [points, setPoints] = useState({
@@ -33,6 +36,7 @@ const Vandermonde = ({ name }) => {
   const [results, setResults] = useState(undefined);
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
+    methodState.points !== "input" && setResults(vandermondeFunction(points));
   }, [points]);
   return (
     <Method
@@ -64,7 +68,17 @@ const Vandermonde = ({ name }) => {
       {results && (
         <Results>
           {!error ? (
-            <p>No error</p>
+            <React.Fragment>
+              <BlockMath
+                math={
+                  renderLatexMatrix(results.matrixA) +
+                  renderLatexMatrix(results.ai) +
+                  " = " +
+                  renderLatexMatrix(results.B)
+                }
+              />
+              <BlockMath math={renderLatexPolynom(results.polynom)} />
+            </React.Fragment>
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
