@@ -71,8 +71,11 @@ const gaussSimpleFunction = (matrixA, B) => {
       }
     }
   }
+  results.iterations.push(M);
  }
  results.iterations.push(M);
+
+ M[1][1]=0;
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = [[2], [3], [12], [12.828]];
   return results;
