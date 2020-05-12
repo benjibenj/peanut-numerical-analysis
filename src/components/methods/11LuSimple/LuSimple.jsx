@@ -13,11 +13,16 @@ import {methods} from "../../../data/methods";
 
 const LuSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   });
-  const [matrixA, setMatrixA] = useState([]);
-  const [B, setB] = useState([]);
+  const [matrixA, setMatrixA] = useState([
+    [2, -1, 0, 3],
+    [1, 0.5, 3, 8],
+    [0, 13, -2, 11],
+    [14, 5, -2, 3],
+  ]);
+  const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );

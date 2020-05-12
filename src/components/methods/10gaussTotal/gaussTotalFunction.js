@@ -1,6 +1,6 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
 import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
-import { usolve, abs } from "mathjs";
+import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import getCol from "../../../utils/matrixFunctions/getCol";
 
