@@ -1,4 +1,3 @@
-//import findPivot from "../../../utils/findPivot";
 import determinant from "../../../utils/matrixFunctions/determinant";
 import regressiveSubstitution from "../../../utils/matrixFunctions/regressiveSubstitution";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
