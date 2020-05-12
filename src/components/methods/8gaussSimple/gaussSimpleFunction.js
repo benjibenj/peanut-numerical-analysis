@@ -1,7 +1,6 @@
 //import findPivot from "../../../utils/findPivot";
 import determinant from "../../../utils/matrixFunctions/determinant";
-import findElement from "../../../utils/matrixFunctions/findElement";
-
+import deepCopyFunction from "../../../utils/deepCopyFunction";
 const gaussSimpleFunction = (matrixA, B) => {
   let results = {
     iterations: [],
@@ -41,9 +40,11 @@ const gaussSimpleFunction = (matrixA, B) => {
    M[i][n] = B[i];
  }
 
- for(let i = 0; i < n-1; i++){
-   
-  /*if(M[i][i] === 0){
+ results.iterations.push(deepCopyFunction(M));
+
+ for(let i = 0; i < n; i++){
+
+  if(M[i][i] === 0){
     
     for(let j = i+1; j < n; j++){
       if(M[j][i] !== 0){
@@ -56,26 +57,20 @@ const gaussSimpleFunction = (matrixA, B) => {
         break;
       }
     }
-  }*/
+  }
 
   for(let j = i+1; j < n; j++){
 
-    if(M[j][i] !== 0){
+    
       for(let k = i; k < n+1; k++){
-        var auxOp = Array(n+1);
-
-        for(let l= i; l < n+1; l++){
-          auxOp[l] = M[j][l] - ((M[j][i]/M[i][i])*M[i][l]);
-        }
-        M[j][k] = auxOp[k]; 
-      }
+        M[j][k] =  M[j][k] - ((M[j][i]/M[i][i])*M[i][k]);
+      } 
     }
-  }
-  results.iterations.push(M);
+  
+    results.iterations.push(deepCopyFunction(M));
+    M = deepCopyFunction(M);
  }
- results.iterations.push(M);
 
- M[1][1]=0;
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = [[2], [3], [12], [12.828]];
   return results;
