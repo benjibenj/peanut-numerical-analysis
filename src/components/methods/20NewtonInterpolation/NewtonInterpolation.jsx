@@ -5,7 +5,6 @@ import { Button, Error } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
-import Polynomial from "polynomial";
 import renderLatexTable from "../../../utils/LaTeX/renderLatexTable";
 import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
@@ -13,7 +12,6 @@ import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import newtonInterpolationFunction from "./newtonInterpolationFunction";
 import { BlockMath } from "react-katex";
-import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
 
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
@@ -32,9 +30,6 @@ const NewtonInterpolation = ({ name }) => {
       " \\hline\n" +
       "\\end{array}",
   );
-  const [latexPolynom, setLatexPolynom] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
-  );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   useEffect(() => {
@@ -50,13 +45,15 @@ const NewtonInterpolation = ({ name }) => {
       next={methods.find(method => method.index === 21)}
     >
       {methodState.points === "input" ? (
-        <SetOfPointsInput
-          points={points}
-          setPoints={points => setPoints(points)}
-          setMethodState={state => setMethodState(state)}
-        />
+        <CenteredColumn>
+          <SetOfPointsInput
+            points={points}
+            setPoints={points => setPoints(points)}
+            setMethodState={state => setMethodState(state)}
+          />
+        </CenteredColumn>
       ) : (
-        <Column>
+        <CenteredColumn>
           <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
           <Button
             onClick={() => {
@@ -68,12 +65,12 @@ const NewtonInterpolation = ({ name }) => {
           >
             Change the points
           </Button>
-        </Column>
+        </CenteredColumn>
       )}
-      {results && (
+      {results ? (
         <Results>
           {!error ? (
-            <p>No error</p>
+            results.polynom && <BlockMath math={results.polynom.replace(/\\cdot/g,"")} />
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
@@ -82,17 +79,20 @@ const NewtonInterpolation = ({ name }) => {
               </Link>
             </React.Fragment>
           )}
-          {results.polynom && (
-            <BlockMath math={results.polynom} />
-          )}
         </Results>
+      ) : (
+        methodState.points !== "input" && (
+          <Results><h3>This might take a while</h3></Results>
+        )
       )}
     </Method>
   );
 };
-const Column = styled("div")`
+const CenteredColumn = styled("div")`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Results = styled("div")`
