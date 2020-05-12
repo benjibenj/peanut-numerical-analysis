@@ -51,7 +51,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
                     <td key={index}>
                       <input
                         type="number"
-                        step={0.01}
+                        step={0.00000001}
                         defaultValue={points.x[index]}
                       />
                     </td>
@@ -75,7 +75,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
                     <td key={index}>
                       <input
                         type="number"
-                        step={0.01}
+                        step={0.00000001}
                         defaultValue={points.y[index]}
                       />
                     </td>

@@ -4,18 +4,20 @@ import SetOfPointsInput from "../../SetOfPointsInput";
 import { Button, Error } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
-import Latex from 'react-latex';
+import Latex from "react-latex";
 
 import renderLatexTable from "../../../utils/LaTeX/renderLatexTable";
 import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {BlockMath} from "react-katex";
+import lagrangeFunction from "./lagrangeFunction";
 
 const Lagrange = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-2, -1, 0, 1, 2],
-    y: [23, 13, 5, -1, -5],
+    x: [-2, -1, 2, 3],
+    y: [12.13533528, 6.367879441, -4.610943901, 2.085536923],
   });
   const [methodState, setMethodState] = useState({
     points: "input",
@@ -29,27 +31,26 @@ const Lagrange = ({ name }) => {
       " \\hline\n" +
       "\\end{array}",
   );
-  const [latexPolynom, setLatexPolynom] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
-  );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
-  }, [points]);
+    methodState.points !== "input"
+      ? setResults(lagrangeFunction(points))
+      : setResults(undefined);
+  }, [points, methodState]);
   return (
-    <Method
-      title={name}
-      prev={methods.find(method => method.index === 20)}
-    >
+    <Method title={name} prev={methods.find(method => method.index === 20)}>
       {methodState.points === "input" ? (
-        <SetOfPointsInput
-          points={points}
-          setPoints={points => setPoints(points)}
-          setMethodState={state => setMethodState(state)}
-        />
+        <CenteredColumn>
+          <SetOfPointsInput
+            points={points}
+            setPoints={points => setPoints(points)}
+            setMethodState={state => setMethodState(state)}
+          />
+        </CenteredColumn>
       ) : (
-        <Column>
+        <CenteredColumn>
           <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
           <Button
             onClick={() => {
@@ -61,12 +62,12 @@ const Lagrange = ({ name }) => {
           >
             Change the points
           </Button>
-        </Column>
+        </CenteredColumn>
       )}
-      {results && (
+      {results ? (
         <Results>
           {!error ? (
-            <p>No error</p>
+            results.polynom && <BlockMath math={results.polynom.replace(/\\cdot/g,"")} />
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
@@ -75,15 +76,20 @@ const Lagrange = ({ name }) => {
               </Link>
             </React.Fragment>
           )}
-          <p>{results.conclusion && results.conclusion}</p>
         </Results>
+      ) : (
+        methodState.points !== "input" && (
+          <Results><h3>This might take a while</h3></Results>
+        )
       )}
     </Method>
   );
 };
-const Column = styled("div")`
+const CenteredColumn = styled("div")`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Results = styled("div")`
