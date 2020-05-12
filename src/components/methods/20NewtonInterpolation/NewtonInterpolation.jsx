@@ -111,9 +111,7 @@ const NewtonInterpolation = ({ name }) => {
                               <td>{indexY}</td>
                               <td>{points.x[indexY]}</td>
                               {row.map((elem, indexX) => {
-                                return elem === 0 ? (
-                                  <td key={indexX}> </td>
-                                ) : indexY === 0 ? (
+                                return indexY === 0 ? (
                                   <td key={indexX}>
                                     <strong>
                                       {format(elem, {
