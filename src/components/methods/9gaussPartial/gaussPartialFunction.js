@@ -64,37 +64,25 @@ const gaussPartialFunction = (matrixA, B) => {
      
      //let auxOp = new Array(n+1);
      for(let j = i; j < n+1; j++){
-
-           let temp = M[indexMax[0]][j]; 
-           M[indexMax[0]][j] = M[i][j];
-           M[i][j] = temp;
-         }
+      let temp = M[indexMax[0]][j]; 
+      M[indexMax[0]][j] = M[i][j];
+       M[i][j] = temp;
+    }
      
    
  
  
  
    for(let j = i+1; j < n; j++){
- 
      if(M[j][i] !== 0){
        M = deepCopyFunction(M);
        let auxOp = Array(n+1);
        for(let k = i; k < n+1; k++){
-         
            auxOp[k] = M[j][k] - ((M[j][i]/M[i][i])*M[i][k]);
-           console.log(auxOp);
-           console.log(auxOp[k]);
        }
- 
          for(let k= i; k < n+1; k++){
            M[j][k] = auxOp[k]; 
-           console.log(auxOp[k]);
-           console.log(M[j][k]);
          }
-       
- 
-         console.log(M);
-  
      }
    }
    
@@ -107,7 +95,7 @@ const gaussPartialFunction = (matrixA, B) => {
     }),
     getCol(M, n), // B = last column of M
   );
-  
+
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = resultX;
   return results;
