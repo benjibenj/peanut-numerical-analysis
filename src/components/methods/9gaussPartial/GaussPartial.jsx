@@ -10,6 +10,7 @@ import styled from "styled-components";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import {methods} from "../../../data/methods";
+import gaussSimpleFunction from "../8gaussSimple/gaussSimpleFunction";
 
 const GaussPartial = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -38,10 +39,10 @@ const GaussPartial = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
-      setResults(gaussPartialFunction(matrixA, B));
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
+      setResults(gaussSimpleFunction(matrixA, B));
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
@@ -87,12 +88,12 @@ const GaussPartial = ({ name }) => {
             return (
               <BlockMath
                 key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
+                math={"Step " + index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
         </Results>
       )}
     </Method>

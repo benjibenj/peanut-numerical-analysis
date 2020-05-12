@@ -87,12 +87,12 @@ const GaussSimple = ({ name }) => {
             return (
               <BlockMath
                 key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
+                math={"Step " + index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
         </Results>
       )}
     </Method>
