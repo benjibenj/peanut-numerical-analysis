@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, Parameters } from "../../../containers/BigContainer";
+import { Button, Error } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
 import vandermondeFunction from "./vandermondeFunction";
-import renderLatexTable from "../../../utils/renderLatexTable";
+import renderLatexTable from "../../../utils/LaTeX/renderLatexTable";
 import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlockMath } from "react-katex";
-import renderLatexMatrix from "../../../utils/renderLatexMatrix";
-import renderLatexPolynom from "../../../utils/renderLatexPolynom";
+import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
+import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
 
 const Vandermonde = ({ name }) => {
   const [points, setPoints] = useState({

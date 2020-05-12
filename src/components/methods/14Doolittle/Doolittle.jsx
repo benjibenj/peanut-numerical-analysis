@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
-import renderLatexMatrix from "../../../utils/renderLatexMatrix";
+import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
 import doolittleFunction from "./DoolittleFunction";
 
 import styled from "styled-components";

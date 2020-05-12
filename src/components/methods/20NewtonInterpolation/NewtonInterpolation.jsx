@@ -4,18 +4,21 @@ import SetOfPointsInput from "../../SetOfPointsInput";
 import { Button, Error } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
-import Latex from 'react-latex';
-
-import renderLatexTable from "../../../utils/renderLatexTable";
+import Latex from "react-latex";
+import Polynomial from "polynomial";
+import renderLatexTable from "../../../utils/LaTeX/renderLatexTable";
 import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import newtonInterpolationFunction from "./newtonInterpolationFunction";
+import { BlockMath } from "react-katex";
+import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
 
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-2, -1, 0, 1, 2],
-    y: [23, 13, 5, -1, -5],
+    x: [-1, 0, 1, 2],
+    y: [1, 1, 2, 0],
   });
   const [methodState, setMethodState] = useState({
     points: "input",
@@ -36,7 +39,10 @@ const NewtonInterpolation = ({ name }) => {
   const [results, setResults] = useState(undefined);
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
-  }, [points]);
+    methodState.points !== "input"
+      ? setResults(newtonInterpolationFunction(points))
+      : setResults(undefined);
+  }, [points, methodState]);
   return (
     <Method
       title={name}
@@ -76,7 +82,9 @@ const NewtonInterpolation = ({ name }) => {
               </Link>
             </React.Fragment>
           )}
-          <p>{results.conclusion && results.conclusion}</p>
+          {results.polynom && (
+            <BlockMath math={results.polynom} />
+          )}
         </Results>
       )}
     </Method>
