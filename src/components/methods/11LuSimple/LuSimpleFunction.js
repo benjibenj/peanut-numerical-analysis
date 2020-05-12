@@ -23,6 +23,19 @@ const luSimpleFunction = (matrixA, B) => {
   
   let M = deepCopyFunction(matrixA);
   
+  if (m !== n) {
+    results.conclusion = "The matrix is not square";
+    return results;
+  }
+  if (m !== B.length) {
+    results.conclusion = "B has different dimension";
+    return results;
+  }
+  if (determinant(matrixA) === 0) {
+    results.conclusion = "Determinant of the matrix cannot be zero";
+    return results;
+  }
+  
  results.iterations.push(deepCopyFunction(M));
 
 for (let i = 0; i < n-1; i++) {

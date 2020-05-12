@@ -1,8 +1,9 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
 import { usolve } from "mathjs";
+import getCol from "../../../utils/matrixFunctions/getCol";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import {abs} from "mathjs";
-import getCol from "../../../utils/matrixFunctions/getCol";
+
 
 const gaussPartialFunction = (matrixA, B) => {
   let results = {
