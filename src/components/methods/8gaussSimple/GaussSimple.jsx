@@ -13,14 +13,13 @@ import { methods } from "../../../data/methods";
 
 const GaussSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 4,
-    columns: 4,
+    rows: 3,
+    columns: 3,
   });
   const [matrixA, setMatrixA] = useState([
-    [2, -1, 0, 3],
-    [1, 0.5, 3, 8],
-    [0, 13, -2, 11],
-    [14, 5, -2, 3],
+    [3, 4, 4],
+    [3, 4, 3],
+    [5, 5, 10],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
