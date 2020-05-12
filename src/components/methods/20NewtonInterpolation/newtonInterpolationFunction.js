@@ -50,7 +50,8 @@ const newtonInterpolationFunction = points => {
       }
     }
   }
-  results.polynom = rationalize(expression).toTex({
+  results.polynom = rationalize(expression).toTex({ // We get simple polynomials via the rationalize() function
+    // e.g. : rationalize("(x-1)(x)") = "x^2 - x"
     parenthesis: 'auto',    // parenthesis option
     implicit: 'show'        // how to treat implicit multiplication
   });
