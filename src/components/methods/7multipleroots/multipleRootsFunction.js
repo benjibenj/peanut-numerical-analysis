@@ -46,9 +46,6 @@ const multipleRootsFunction = (funct, firstDerivate, secondDerivate, x0, tol = 1
       format(fX, { notation: "exponential", precision: 2 }),
       format(err, { notation: "exponential", precision: 2 }),
     ]);
-
-    
-    
   } while (err > tol && d !== 0 && cont < maxCount);
 
   
