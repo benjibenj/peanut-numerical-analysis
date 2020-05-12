@@ -1,6 +1,8 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
-import regressiveSubstitution from "../../../utils/matrixFunctions/regressiveSubstitution";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
+import { usolve } from "mathjs";
+import getCol from "../../../utils/matrixFunctions/getCol";
+
 const gaussSimpleFunction = (matrixA, B) => {
   let results = {
     iterations: [],
@@ -71,7 +73,12 @@ const gaussSimpleFunction = (matrixA, B) => {
 
     results.iterations.push(deepCopyFunction(M));
   }
-  let resultX = regressiveSubstitution(M);
+  let resultX = usolve(
+    M.map(function(val) { // A = all columns of M except the last one
+      return val.slice(0, -1);
+    }),
+    getCol(M, n), // B = last column of M
+  );
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = resultX;
   return results;

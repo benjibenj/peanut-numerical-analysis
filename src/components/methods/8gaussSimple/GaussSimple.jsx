@@ -13,13 +13,14 @@ import { methods } from "../../../data/methods";
 
 const GaussSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   });
   const [matrixA, setMatrixA] = useState([
-    [3, 4, 4],
-    [3, 4, 3],
-    [5, 5, 10],
+    [2, -1, 0, 3],
+    [1, 0.5, 3, 8],
+    [0, 13, -2, 11],
+    [14, 5, -2, 3],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
@@ -37,10 +38,7 @@ const GaussSimple = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (
-      methodState.matrixA === "matrix" &&
-      methodState.B === "matrix"
-    ) {
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(gaussSimpleFunction(matrixA, B));
     }
   }, [matrixA, B, methodState]);
