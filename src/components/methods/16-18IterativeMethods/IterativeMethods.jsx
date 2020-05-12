@@ -56,7 +56,6 @@ const IterativeMethods = ({ name }) => {
     matrixA: "inputSize",
     B: "input",
     initialValueX0: "input",
-    solving: undefined,
   });
   const handleSubmit = event => {
     event.preventDefault();
