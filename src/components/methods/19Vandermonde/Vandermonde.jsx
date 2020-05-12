@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error } from "../../../containers/BigContainer";
+import { Button, Error, Parameters } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -36,8 +36,10 @@ const Vandermonde = ({ name }) => {
   const [results, setResults] = useState(undefined);
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
-    methodState.points !== "input" && setResults(vandermondeFunction(points));
-  }, [points]);
+    methodState.points !== "input"
+      ? setResults(vandermondeFunction(points))
+      : setResults(undefined);
+  }, [points, methodState]);
   return (
     <Method
       title={name}
@@ -45,13 +47,15 @@ const Vandermonde = ({ name }) => {
       next={methods.find(method => method.index === 20)}
     >
       {methodState.points === "input" ? (
-        <SetOfPointsInput
-          points={points}
-          setPoints={points => setPoints(points)}
-          setMethodState={state => setMethodState(state)}
-        />
+        <CenteredColumn>
+          <SetOfPointsInput
+            points={points}
+            setPoints={points => setPoints(points)}
+            setMethodState={state => setMethodState(state)}
+          />
+        </CenteredColumn>
       ) : (
-        <Column>
+        <CenteredColumn>
           <Latex displayMode={true}>{`$$` + latexTable + `$$`}</Latex>
           <Button
             onClick={() => {
@@ -63,7 +67,7 @@ const Vandermonde = ({ name }) => {
           >
             Change the points
           </Button>
-        </Column>
+        </CenteredColumn>
       )}
       {results && (
         <Results>
@@ -93,9 +97,11 @@ const Vandermonde = ({ name }) => {
     </Method>
   );
 };
-const Column = styled("div")`
+const CenteredColumn = styled("div")`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Results = styled("div")`

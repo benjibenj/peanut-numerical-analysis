@@ -43,9 +43,9 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
           <table>
             <tbody>
               <tr>
-                <td>
+                <FirstRow>
                   <strong>x</strong>
-                </td>
+                </FirstRow>
                 {points.x.map((set, index) => {
                   return (
                     <td key={index}>
@@ -67,9 +67,9 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
                 </td>
               </tr>
               <tr>
-                <td>
+                <FirstRow>
                   <strong>y</strong>
-                </td>
+                </FirstRow>
                 {points.y.map((set, index) => {
                   return (
                     <td key={index}>
@@ -93,6 +93,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
             </tbody>
           </table>
         </TableStyle>
+        <br />
         <Button>{"Save"}</Button>
       </form>
     </CustomParameters>
@@ -108,6 +109,10 @@ const CustomParameters = styled(Parameters)`
     width: 50px;
   }
   margin-bottom: ${Spacing.xs};
+`;
+
+const FirstRow = styled("td")`
+  padding: ${Spacing.sm} ${Spacing.md} !important;
 `;
 
 export default SetOfPointsInput;
