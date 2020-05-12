@@ -8,95 +8,73 @@ const gaussSimpleFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: [],
   };
-   
- let m = matrixA.length;
- let n = matrixA[0].length;
 
- if(m !== n){
-  results.conclusion =
-  "The matrix is not square";
- return results;
- }
- if(m !== B.length){
-  results.conclusion =
-  "B has different dimension";
- return results;
- }
- if(determinant(matrixA)===0){
-  results.conclusion =
-  "Determinant of the matrix cannot be zero";
- return results;
- }
+  let m = matrixA.length;
+  let n = matrixA[0].length;
 
- let M = new Array(n);
- 
- for(let i = 0; i < n; i++){
-  M[i] = new Array(n+1);
-}
-
- for(let i = 0; i < n; i++){
-   for(let j = 0; j < n; j++){
-     M[i][j] = matrixA[i][j];
-   }
-   M[i][n] = B[i][0];
- }
-
- results.iterations.push(deepCopyFunction(M));
-
- for(let i = 0; i < n; i++){
-
-  if(M[i][i] === 0){
-    M = deepCopyFunction(M);
-    console.log("entro");
-    for(let j = i+1; j < n; j++){
-      if(M[j][i] !== 0){
-        let aux = new Array(n+1);
-        for(let k = i; k < n+1; k++){
-          aux[k] = M[j][k]; 
-          M[j][k] = M[i][k];
-          M[i][k] = aux[k];
-        } 
-        break;
-      }
-    }
+  if (m !== n) {
+    results.conclusion = "The matrix is not square";
+    return results;
+  }
+  if (m !== B.length) {
+    results.conclusion = "B has different dimension";
+    return results;
+  }
+  if (determinant(matrixA) === 0) {
+    results.conclusion = "Determinant of the matrix cannot be zero";
+    return results;
   }
 
+  let M = new Array(n);
 
-
-  for(let j = i+1; j < n; j++){
-
-    if(M[j][i] !== 0){
-      M = deepCopyFunction(M);
-      let auxOp = Array(n+1);
-      for(let k = i; k < n+1; k++){
-        
-          auxOp[k] = M[j][k] - ((M[j][i]/M[i][i])*M[i][k]);
-          console.log(auxOp);
-          console.log(auxOp[k]);
-      }
-
-        for(let k= i; k < n+1; k++){
-          M[j][k] = auxOp[k]; 
-          console.log(auxOp[k]);
-          console.log(M[j][k]);
-        }
-      
-
-        console.log(M);
- 
-    }
+  for (let i = 0; i < n; i++) {
+    M[i] = new Array(n + 1);
   }
-  
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      M[i][j] = matrixA[i][j];
+    }
+    M[i][n] = B[i][0];
+  }
+
   results.iterations.push(deepCopyFunction(M));
-     
- }
+
+  for (let i = 0; i < n; i++) {
+    if (M[i][i] === 0) {
+      M = deepCopyFunction(M);
+      for (let j = i + 1; j < n; j++) {
+        if (M[j][i] !== 0) {
+          let aux = new Array(n + 1);
+          for (let k = i; k < n + 1; k++) {
+            aux[k] = M[j][k];
+            M[j][k] = M[i][k];
+            M[i][k] = aux[k];
+          }
+          break;
+        }
+      }
+    }
+
+    for (let j = i + 1; j < n; j++) {
+      if (M[j][i] !== 0) {
+        M = deepCopyFunction(M);
+        let auxOp = Array(n + 1);
+        for (let k = i; k < n + 1; k++) {
+          auxOp[k] = M[j][k] - (M[j][i] / M[i][i]) * M[i][k];
+        }
+
+        for (let k = i; k < n + 1; k++) {
+          M[j][k] = auxOp[k];
+        }
+      }
+    }
+
+    results.iterations.push(deepCopyFunction(M));
+  }
   let resultX = regressiveSubstitution(M);
-  
   results.conclusion = "After applying regressive substitution we get :";
-  
-    results.finalSolution = resultX;
-  
-  //results.finalSolution = [[2], [3], [12], [12.828]];
+  results.finalSolution = resultX;
   return results;
 };
 
