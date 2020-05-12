@@ -1,6 +1,7 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
+import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import { abs, usolve } from "mathjs";
+import {abs} from "mathjs";
 import getCol from "../../../utils/matrixFunctions/getCol";
 
 const gaussPartialFunction = (matrixA, B) => {
@@ -12,82 +13,92 @@ const gaussPartialFunction = (matrixA, B) => {
 
   let m = matrixA.length;
   let n = matrixA[0].length;
-
-  if (m !== n) {
-    results.conclusion = "The matrix is not square";
-    return results;
+ 
+  if(m !== n){
+   results.conclusion =
+   "The matrix is not square";
+  return results;
   }
-  if (m !== B.length) {
-    results.conclusion = "B has different dimension";
-    return results;
+  if(m !== B.length){
+   results.conclusion =
+   "B has different dimension";
+  return results;
   }
-  if (determinant(matrixA) === 0) {
-    results.conclusion = "Determinant of the matrix cannot be zero";
-    return results;
+  if(determinant(matrixA)===0){
+   results.conclusion =
+   "Determinant of the matrix cannot be zero";
+  return results;
   }
-
+ 
   let M = new Array(n);
-
-  for (let i = 0; i < n; i++) {
-    M[i] = new Array(n + 1);
-  }
-
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
+  
+  for(let i = 0; i < n; i++){
+   M[i] = new Array(n+1);
+ }
+ 
+  for(let i = 0; i < n; i++){
+    for(let j = 0; j < n; j++){
       M[i][j] = matrixA[i][j];
     }
     M[i][n] = B[i][0];
   }
-
+ console.log("cargar");
   results.iterations.push(deepCopyFunction(M));
-
-  for (let i = 0; i < n - 1; i++) {
+ 
+  for(let i = 0; i < n-1; i++){
+ 
     M = deepCopyFunction(M);
+     let indexMax = new Array(2);
+     let max = 0;
 
-    let indexMax = new Array(2);
-    let max = 0;
-    for (let j = i; j < n; j++) {
-      if (abs(M[j][i]) > abs(max)) {
-        max = M[j][i];
-        indexMax[0] = j;
-        indexMax[1] = i;
-      }
-    }
-    for (let j = i; j < n; j++) {
-      if (abs(M[j][i]) > abs(max)) {
-        max = M[j][i];
-        indexMax[0] = j;
-        indexMax[1] = i;
-      }
-    }
-    //let auxOp = new Array(n+1);
-    for (let j = i; j < n + 1; j++) {
-      let temp = M[indexMax[0]][j];
+     for(let j = i; j < n; j ++){
+       if(abs(M[j][i]) > abs(max)){
+         max = M[j][i];
+         indexMax[0] = j;
+         indexMax[1] = i; 
+       }
+     }
+     console.log(indexMax);
+     
+     //let auxOp = new Array(n+1);
+     
+     for(let j = i; j < n+1; j++){
+      let temp = M[indexMax[0]][j]; 
       M[indexMax[0]][j] = M[i][j];
-      M[i][j] = temp;
+       M[i][j] = temp;
     }
-    for (let j = i + 1; j < n; j++) {
-      if (M[j][i] !== 0) {
-        M = deepCopyFunction(M);
-        let auxOp = Array(n + 1);
-        for (let k = i; k < n + 1; k++) {
-          auxOp[k] = M[j][k] - (M[j][i] / M[i][i]) * M[i][k];
-        }
-        for (let k = i; k < n + 1; k++) {
-          M[j][k] = auxOp[k];
-        }
-      }
-    }
-
-    results.iterations.push(deepCopyFunction(M));
+     console.log(M);
+   
+ 
+ 
+ 
+   for(let j = i+1; j < n; j++){
+    
+     if(M[j][i] !== 0){
+      M = deepCopyFunction(M);
+       let auxOp = Array(n+1);
+       for(let k = i; k < n+1; k++){
+           auxOp[k] = M[j][k] - ((M[j][i]/M[i][i])*M[i][k]);
+           console.log(auxOp[k]);
+       }
+       console.log(auxOp);
+         for(let k= i; k < n+1; k++){
+           M[j][k] = auxOp[k]; 
+           console.log(M[j][k]);
+         }
+     }
+   }
+   
+   results.iterations.push(deepCopyFunction(M));
+      
   }
   let resultX = usolve(
-    M.map(function(val) {
-      // A = all columns of M except the last one
+    M.map(function(val) { // A = all columns of M except the last one
       return val.slice(0, -1);
     }),
     getCol(M, n), // B = last column of M
   );
+
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = resultX;
   return results;

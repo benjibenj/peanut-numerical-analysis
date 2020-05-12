@@ -10,7 +10,6 @@ import styled from "styled-components";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import {methods} from "../../../data/methods";
-import gaussSimpleFunction from "../8gaussSimple/gaussSimpleFunction";
 
 const GaussTotal = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -40,7 +39,7 @@ const GaussTotal = ({ name }) => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
     if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
-      setResults(gaussSimpleFunction(matrixA, B));
+      setResults(gaussTotalFunction(matrixA, B));
     }
   }, [matrixA, B, methodState]);
   return (
