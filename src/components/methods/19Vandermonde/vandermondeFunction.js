@@ -24,7 +24,7 @@ const vandermondeFunction = (
   results.matrixA = matrixA;
   results.B = B;
   results.ai = ai;
-  // Apply gauss simple for example
+  // Apply method to get x (gauss simple for example)
   results.polynom = [[0.412412027], [0.939374043], [5.836217905], [0.004699521], [183.1818]];
   return results;
 };

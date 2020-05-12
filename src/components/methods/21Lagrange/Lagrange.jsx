@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import Latex from 'react-latex';
 
-import renderLatexTable from "../../../utils/renderLatexTable";
+import renderLatexTable from "../../../utils/LaTeX/renderLatexTable";
 import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";

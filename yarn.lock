@@ -2796,7 +2796,7 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-big-integer@^1.6.17, big-integer@^1.6.32:
+big-integer@*, big-integer@^1.6.17, big-integer@^1.6.32:
   version "1.6.48"
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.48.tgz#8fd88bd1632cba4a1c8c3e3d7159f08bb95b4b9e"
   integrity sha512-j51egjPa7/i+RdiRuJbPdJ2FIUYYPhvYLjzoYbcMMm62ooO6F94fETG4MTs46zPAF9Brs04OajboA/qTGuz78w==
@@ -3625,7 +3625,7 @@ compare-semver@^1.0.0:
   dependencies:
     semver "^5.0.1"
 
-complex.js@^2.0.11:
+complex.js@*, complex.js@^2.0.11:
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/complex.js/-/complex.js-2.0.11.tgz#09a873fbf15ffd8c18c9c2201ccef425c32b8bf1"
   integrity sha512-6IArJLApNtdg1P1dFtn3dnyzoZBEF0MwMnrfF1exSBRpZYoy4yieMkpZhQDC0uwctw48vii0CFVyHfpgZ/DfGw==
@@ -5650,7 +5650,7 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
-fraction.js@^4.0.12:
+fraction.js@*, fraction.js@^4.0.12:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.0.12.tgz#0526d47c65a5fb4854df78bc77f7bec708d7b8c3"
   integrity sha512-8Z1K0VTG4hzYY7kA/1sj4/r1/RWLBD3xwReT/RCrUCbzPszjNQCCsy3ktkU/eaEqX3MYa4pY37a52eiBlPMlhA==
@@ -9782,6 +9782,16 @@ pnp-webpack-plugin@1.6.0:
   dependencies:
     ts-pnp "^1.1.2"
 
+polynomial@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/polynomial/-/polynomial-1.4.3.tgz#7c329d64e489ba98247837e6896cea6defec3684"
+  integrity sha512-Yf9er7dXiA5jTVaaJc9oGSFB41JW7wigbc1m/nUQ0bOzz0gaY0Ti3HSrvIc4K6vwJ6MsN4eja+8ytLno1z/y1A==
+  dependencies:
+    big-integer "*"
+    complex.js "*"
+    fraction.js "*"
+    quaternion "*"
+
 portfinder@^1.0.23, portfinder@^1.0.25:
   version "1.0.25"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.25.tgz#254fd337ffba869f4b9d37edc298059cb4d35eca"
@@ -10673,6 +10683,11 @@ qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+
+quaternion@*:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/quaternion/-/quaternion-1.1.0.tgz#ca55f78bf3e79246f1d22b8a0ee10f992533ae30"
+  integrity sha512-mLTtnzuMtUzguemuvsxD+KPS4F05H1Bw/4cNsQQvzfvPEGvkmWLRoAKsHT0V9go4X4hOU3LCtuxqWXQi3JN+SA==
 
 query-string@^4.1.0:
   version "4.3.4"
