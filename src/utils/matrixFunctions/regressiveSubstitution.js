@@ -11,6 +11,7 @@ const regressiveSubstitution = (M) => {
 			}
 			auxT[i] = (auxT[i] - sum) / M[i][i];
 		}
+		console.log(auxT);
 		return auxT;
 	
   };
