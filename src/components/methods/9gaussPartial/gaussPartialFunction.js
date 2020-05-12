@@ -1,8 +1,9 @@
 //import findPivot from "../../../utils/findPivot";
 import determinant from "../../../utils/matrixFunctions/determinant";
-import regressiveSubstitution from "../../../utils/matrixFunctions/regressiveSubstitution";
+import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import { abs, max } from "mathjs";
+import getCol from "../../../utils/matrixFunctions/getCol";
 
 const gaussPartialFunction = (matrixA, B) => {
   let results = {
@@ -100,10 +101,15 @@ const gaussPartialFunction = (matrixA, B) => {
    results.iterations.push(deepCopyFunction(M));
       
   }
-   //let resultX = regressiveSubstitution(M);
-
+  let resultX = usolve(
+    M.map(function(val) { // A = all columns of M except the last one
+      return val.slice(0, -1);
+    }),
+    getCol(M, n), // B = last column of M
+  );
+  
   results.conclusion = "After applying regressive substitution we get :";
-  results.finalSolution = [[2], [3], [12], [12.828]];
+  results.finalSolution = resultX;
   return results;
 };
 
