@@ -54,14 +54,19 @@ const gaussPartialFunction = (matrixA, B) => {
         indexMax[1] = i;
       }
     }
-
+    for (let j = i; j < n; j++) {
+      if (abs(M[j][i]) > abs(max)) {
+        max = M[j][i];
+        indexMax[0] = j;
+        indexMax[1] = i;
+      }
+    }
     //let auxOp = new Array(n+1);
     for (let j = i; j < n + 1; j++) {
       let temp = M[indexMax[0]][j];
       M[indexMax[0]][j] = M[i][j];
       M[i][j] = temp;
     }
-
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
         M = deepCopyFunction(M);
