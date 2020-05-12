@@ -1,6 +1,7 @@
 const renderLatexPolynom = array => {
   let values = array.flat();
   let size = values.length;
+  let count = 0;
   return values
     .map((value, index) => {
       let sign;
@@ -9,9 +10,18 @@ const renderLatexPolynom = array => {
       if (index === 0) {
         sign = "";
       } else {
-        value < 0 ? (sign = " - ") : (sign = " + ");
+        value < 0 ? (sign = " ") : (sign = " + ");
       }
-      return sign + value + x;
+      if (value !== 0) {
+        count += 1;
+        if (count === 1) {
+          sign = "";
+        }
+        if(value === 1){
+          value = "";
+        }
+        return sign + value + x;
+      }
     })
     .join("");
 };

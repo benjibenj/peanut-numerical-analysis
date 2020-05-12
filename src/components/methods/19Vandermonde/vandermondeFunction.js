@@ -1,3 +1,5 @@
+import gaussSimpleFunction from "../8gaussSimple/gaussSimpleFunction";
+
 const vandermondeFunction = (
   points
 ) => {
@@ -23,8 +25,7 @@ const vandermondeFunction = (
   results.B = B;
   results.ai = ai;
   // Apply method to get x (gauss simple for example)
-  results.polynom = [[0.412412027], [0.939374043], [5.836217905], [0.004699521], [183.1818]];
-  // To get these results, a method must be applied
+  results.polynom = gaussSimpleFunction(matrixA, B).finalSolution;
   return results;
 };
 

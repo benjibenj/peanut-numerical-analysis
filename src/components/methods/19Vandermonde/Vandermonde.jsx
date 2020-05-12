@@ -81,7 +81,7 @@ const Vandermonde = ({ name }) => {
                   renderLatexMatrix(results.B)
                 }
               />
-              <BlockMath math={renderLatexPolynom(results.polynom)} />
+              <BlockMath math={"p(x) = " + renderLatexPolynom(results.polynom)} />
             </React.Fragment>
           ) : (
             <React.Fragment>
