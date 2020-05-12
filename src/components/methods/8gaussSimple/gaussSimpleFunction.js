@@ -23,7 +23,7 @@ const gaussSimpleFunction = (matrixA, B) => {
  }
  if(determinant(matrixA)===0){
   results.conclusion =
-  "Determinant of the matrix must be zero";
+  "Determinant of the matrix cannot be zero";
  return results;
  }
 

@@ -33,15 +33,17 @@ const GaussSimple = ({ name }) => {
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
-    solving: undefined,
   });
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
+    if (
+      methodState.matrixA === "matrix" &&
+      methodState.B === "matrix"
+    ) {
       setResults(gaussSimpleFunction(matrixA, B));
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
