@@ -1,6 +1,7 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
+import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import { abs, usolve } from "mathjs";
+import { abs, max, usolve } from "mathjs";
 import getCol from "../../../utils/matrixFunctions/getCol";
 
 const gaussPartialFunction = (matrixA, B) => {
@@ -46,7 +47,6 @@ const gaussPartialFunction = (matrixA, B) => {
 
     let indexMax = new Array(2);
     let max = 0;
-
     for (let j = i; j < n; j++) {
       if (abs(M[j][i]) > abs(max)) {
         max = M[j][i];
