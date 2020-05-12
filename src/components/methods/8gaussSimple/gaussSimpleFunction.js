@@ -39,7 +39,7 @@ const gaussSimpleFunction = (matrixA, B) => {
 
   results.iterations.push(deepCopyFunction(M));
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < n-1; i++) {
     if (M[i][i] === 0) {
       M = deepCopyFunction(M);
       for (let j = i + 1; j < n; j++) {

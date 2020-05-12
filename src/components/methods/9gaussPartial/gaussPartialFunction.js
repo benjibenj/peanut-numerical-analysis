@@ -2,13 +2,15 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
 import regressiveSubstitution from "../../../utils/matrixFunctions/regressiveSubstitution";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
+import { abs, max } from "mathjs";
+
 const gaussPartialFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
     finalSolution: [],
   };
-  
+
   let m = matrixA.length;
   let n = matrixA[0].length;
  
@@ -43,23 +45,31 @@ const gaussPartialFunction = (matrixA, B) => {
  
   results.iterations.push(deepCopyFunction(M));
  
-  for(let i = 0; i < n; i++){
+  for(let i = 0; i < n-1; i++){
  
-   if(M[i][i] === 0){
+   
      M = deepCopyFunction(M);
-     console.log("entro");
-     for(let j = i+1; j < n; j++){
-       if(M[j][i] !== 0){
-         let aux = new Array(n+1);
-         for(let k = i; k < n+1; k++){
-           aux[k] = M[j][k]; 
-           M[j][k] = M[i][k];
-           M[i][k] = aux[k];
-         } 
-         break;
+
+     let indexMax = new Array(2);
+     let max = 0;
+
+     for(let j = i; j < n; j ++){
+       if(abs(M[j][i]) > abs(max)){
+         max = M[j][i];
+         indexMax[0] = j;
+         indexMax[1] = i; 
        }
      }
-   }
+     
+     //let auxOp = new Array(n+1);
+     for(let j = i; j < n+1; j++){
+
+           let temp = M[indexMax[0]][j]; 
+           M[indexMax[0]][j] = M[i][j];
+           M[i][j] = temp;
+         }
+     
+   
  
  
  
@@ -90,10 +100,8 @@ const gaussPartialFunction = (matrixA, B) => {
    results.iterations.push(deepCopyFunction(M));
       
   }
-   let resultX = regressiveSubstitution(M);
+   //let resultX = regressiveSubstitution(M);
 
-  results.iterations.push(matrixA);
-  results.iterations.push(matrixA);
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = [[2], [3], [12], [12.828]];
   return results;
