@@ -1,7 +1,7 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
-import { usolve } from "mathjs";
+import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
+import { usolve, abs } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import {abs} from "mathjs";
 import getCol from "../../../utils/matrixFunctions/getCol";
 
 const gaussTotalFunction = (matrixA, B) => {
@@ -10,7 +10,7 @@ const gaussTotalFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: [],
   };
-  
+
   let m = matrixA.length;
   let n = matrixA[0].length;
  
@@ -48,20 +48,23 @@ const gaussTotalFunction = (matrixA, B) => {
   for(let i = 0; i < n-1; i++){
  
    
-     M = deepCopyFunction(M);
-
-     let indexMax = new Array(2);
-     let max = 0;
-
-     for(let j = i; j < n; j ++){
-       if(abs(M[j][i]) > abs(max)){
-         max = M[j][i];
-         indexMax[0] = j;
-         indexMax[1] = i; 
-       }
-     }
      
-     //let auxOp = new Array(n+1);
+
+    M = deepCopyFunction(M);
+     // cambio de columna 
+     let indexMax = new Array(2);
+
+     
+     indexMax = findMaxElement(M,i,i);
+     
+
+    for(let j = 0; j < n; j++){
+      let temp = M[j][indexMax[1]]; 
+      M[j][indexMax[1]] = M[j][i];
+       M[j][i] = temp;
+    }
+     //Cambio de fila
+     M = deepCopyFunction(M);
      for(let j = i; j < n+1; j++){
       let temp = M[indexMax[0]][j]; 
       M[indexMax[0]][j] = M[i][j];
@@ -80,7 +83,7 @@ const gaussTotalFunction = (matrixA, B) => {
            auxOp[k] = M[j][k] - ((M[j][i]/M[i][i])*M[i][k]);
        }
          for(let k= i; k < n+1; k++){
-           M[j][k] = auxOp[k]; 
+           M[j][k] = auxOp[k].toFixed(15); 
          }
      }
    }
