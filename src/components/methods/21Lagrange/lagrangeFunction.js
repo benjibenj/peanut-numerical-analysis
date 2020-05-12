@@ -36,11 +36,9 @@ const lagrangeFunction = points => {
     }
     interpolationPolynomials.push("("+ numerator + ")/(" + denominator+")");
   }
-  console.log(interpolationPolynomials);
   expression = interpolationPolynomials.map((pol, index) => {
     return ("(" + points.y[index] + "*" + pol + ")")
   }).join(" + ");
-  console.log(expression);
   results.polynom = rationalize(expression).toTex({
     // We get simple polynomials via the rationalize() function
     // e.g. : rationalize("(x-1)(x)") = "x^2 - x"
