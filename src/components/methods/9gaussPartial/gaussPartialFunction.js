@@ -42,7 +42,7 @@ const gaussPartialFunction = (matrixA, B) => {
     }
     M[i][n] = B[i][0];
   }
- console.log("cargar");
+  
   results.iterations.push(deepCopyFunction(M));
  
   for(let i = 0; i < n-1; i++){
@@ -58,7 +58,7 @@ const gaussPartialFunction = (matrixA, B) => {
          indexMax[1] = i; 
        }
      }
-     console.log(indexMax);
+     
      
      //let auxOp = new Array(n+1);
      
@@ -67,7 +67,7 @@ const gaussPartialFunction = (matrixA, B) => {
       M[indexMax[0]][j] = M[i][j];
        M[i][j] = temp;
     }
-     console.log(M);
+    
    
  
  
@@ -79,12 +79,10 @@ const gaussPartialFunction = (matrixA, B) => {
        let auxOp = Array(n+1);
        for(let k = i; k < n+1; k++){
            auxOp[k] = M[j][k] - ((M[j][i]/M[i][i])*M[i][k]);
-           console.log(auxOp[k]);
+           
        }
-       console.log(auxOp);
          for(let k= i; k < n+1; k++){
            M[j][k] = auxOp[k]; 
-           console.log(M[j][k]);
          }
      }
    }
