@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error } from "../../../containers/BigContainer";
+import { Button, Error, TableStyle } from "../../../containers/BigContainer";
 import styled from "styled-components";
+import { format } from "mathjs";
 
 import Latex from "react-latex";
 import renderLatexTable from "../../../utils/LaTeX/renderLatexTable";
@@ -11,12 +12,12 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import newtonInterpolationFunction from "./newtonInterpolationFunction";
-import { BlockMath } from "react-katex";
+import { BlockMath, InlineMath } from "react-katex";
 
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-1, 0, 1, 2],
-    y: [1, 1, 2, 0],
+    x: [1, 1.2, 1.4, 1.6, 1.8, 2],
+    y: [0.6747, 0.8491, 1.1214, 1.4921, 1.9607, 2.5258],
   });
   const [methodState, setMethodState] = useState({
     points: "input",
@@ -70,7 +71,73 @@ const NewtonInterpolation = ({ name }) => {
       {results ? (
         <Results>
           {!error ? (
-            results.polynom && <BlockMath math={results.polynom.replace(/\\cdot/g,"")} />
+            <React.Fragment>
+              {results.polynom && (
+                <BlockMath math={results.polynom.replace(/\\cdot/g, "")} />
+              )}
+              {results.dividedDifference && (
+                <TableStyle>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>
+                          <InlineMath>n</InlineMath>
+                        </th>
+                        <th>
+                          <InlineMath>x_i</InlineMath>
+                        </th>
+                        {results.dividedDifference.map((row, index) => {
+                          if (index === 0) {
+                            return (
+                              <th key={index}>
+                                <InlineMath>y = f[x_i]</InlineMath>
+                              </th>
+                            );
+                          } else {
+                            return (
+                              <th key={index}>
+                                <InlineMath>{index + "ra"}</InlineMath>
+                              </th>
+                            );
+                          }
+                        })}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {results.dividedDifference.map((row, indexY) => {
+                        return (
+                          <React.Fragment key={indexY}>
+                            <tr>
+                              <td>{indexY}</td>
+                              <td>{points.x[indexY]}</td>
+                              {row.map((elem, indexX) => {
+                                return indexY === 0 ? (
+                                  <td key={indexX}>
+                                    <strong>
+                                      {format(elem, {
+                                        notation: "fixed",
+                                        precision: 4,
+                                      })}
+                                    </strong>
+                                  </td>
+                                ) : (
+                                  <td key={indexX}>
+                                    {format(elem, {
+                                      notation: "fixed",
+                                      precision: 6,
+                                    })}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          </React.Fragment>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </TableStyle>
+              )}
+            </React.Fragment>
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
@@ -82,7 +149,9 @@ const NewtonInterpolation = ({ name }) => {
         </Results>
       ) : (
         methodState.points !== "input" && (
-          <Results><h3>This might take a while</h3></Results>
+          <Results>
+            <h3>This might take a while</h3>
+          </Results>
         )
       )}
     </Method>

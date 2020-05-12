@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error } from "../../../containers/BigContainer";
+import { Button, Error, TableStyle } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -11,8 +11,9 @@ import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {BlockMath} from "react-katex";
+import { BlockMath, InlineMath } from "react-katex";
 import lagrangeFunction from "./lagrangeFunction";
+import { rationalize } from "mathjs";
 
 const Lagrange = ({ name }) => {
   const [points, setPoints] = useState({
@@ -67,7 +68,40 @@ const Lagrange = ({ name }) => {
       {results ? (
         <Results>
           {!error ? (
-            results.polynom && <BlockMath math={results.polynom.replace(/\\cdot/g,"")} />
+            <React.Fragment>
+              <br />
+              {results.interpolationPolynomials.length !== 0 && (
+                <TableStyle>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>
+                          <InlineMath>i</InlineMath>
+                        </th>
+                        <th>
+                          <InlineMath>L_i(x)</InlineMath>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {results.interpolationPolynomials.map((Lx, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{index}</td>
+                            <td>
+                              <InlineMath>{rationalize(Lx).toTex()}</InlineMath>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </TableStyle>
+              )}
+              {results.polynom && (
+                <BlockMath math={"p(x) = " + results.polynom.replace(/\\cdot/g, "")} />
+              )}
+            </React.Fragment>
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
@@ -79,7 +113,9 @@ const Lagrange = ({ name }) => {
         </Results>
       ) : (
         methodState.points !== "input" && (
-          <Results><h3>This might take a while</h3></Results>
+          <Results>
+            <h3>This might take a while</h3>
+          </Results>
         )
       )}
     </Method>

@@ -3,6 +3,7 @@ import { rationalize } from "mathjs";
 const lagrangeFunction = points => {
   let results = {
     polynom: undefined,
+    interpolationPolynomials: []
   };
   let degree = points.x.length;
   let interpolationPolynomials = [];
@@ -34,9 +35,9 @@ const lagrangeFunction = points => {
         }
       }
     }
-    interpolationPolynomials.push("("+ numerator + ")/(" + denominator+")");
+    results.interpolationPolynomials.push("("+ numerator + ")/(" + denominator+")");
   }
-  expression = interpolationPolynomials.map((pol, index) => {
+  expression = results.interpolationPolynomials.map((pol, index) => {
     return ("(" + points.y[index] + "*" + pol + ")")
   }).join(" + ");
   results.polynom = rationalize(expression).toTex({

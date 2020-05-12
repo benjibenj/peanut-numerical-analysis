@@ -3,6 +3,7 @@ import { rationalize } from "mathjs";
 const newtonInterpolationFunction = points => {
   let results = {
     polynom: undefined,
+    dividedDifference: undefined,
   };
   let expression = "";
   let degree = points.x.length;
@@ -12,7 +13,7 @@ const newtonInterpolationFunction = points => {
     pyramid[i] = new Array(degree).fill(0);
     for (let j = 0; j < degree; j++) {
       // The first column is just y
-      if (j === 0) pyramid[i][j] = points.y[i];
+      if (j === 0) pyramid[i][j] = parseFloat(points.y[i]);
     }
   }
   for (let j = 1; j < degree; j++) { // we start with the second column
@@ -50,6 +51,7 @@ const newtonInterpolationFunction = points => {
       }
     }
   }
+  results.dividedDifference = pyramid;
   results.polynom = rationalize(expression).toTex({ // We get simple polynomials via the rationalize() function
     // e.g. : rationalize("(x-1)(x)") = "x^2 - x"
     parenthesis: 'auto',    // parenthesis option
