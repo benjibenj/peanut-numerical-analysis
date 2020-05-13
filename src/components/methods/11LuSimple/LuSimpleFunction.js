@@ -90,9 +90,7 @@ const luSimpleFunction = (matrixA, B) => {
   }
 
   U[n - 1][n - 1] = M[n - 1][n - 1];
-    console.log(L);
-    console.log(U);
-    console.log(B);
+    
     let resultZ = progressiveSustitution(L,B);
     let resultX = usolve(U, resultZ);
     console.log(resultZ);
