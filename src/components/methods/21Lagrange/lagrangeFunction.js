@@ -6,7 +6,6 @@ const lagrangeFunction = points => {
     interpolationPolynomials: [],
   };
   let degree = points.x.length;
-  let interpolationPolynomials = [];
   let expression = "";
   for (let k = 0; k < degree; k++) {
     let numerator = "";
@@ -38,7 +37,7 @@ const lagrangeFunction = points => {
     results.interpolationPolynomials.push(
       "(" + numerator + ")/(" + denominator + ")",
     );
-    console.log("(" + numerator + ")/(" + denominator + ")");
+    console.log("x_" + k + ": (" + numerator + ")/(" + denominator + ")");
   }
   expression = results.interpolationPolynomials
     .map((pol, index) => {
