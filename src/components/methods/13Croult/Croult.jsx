@@ -13,8 +13,8 @@ import {methods} from "../../../data/methods";
 
 const Croult = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   });
   const [matrixA, setMatrixA] = useState([
     [4, -1, -0, 3],
@@ -38,10 +38,10 @@ const Croult = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(croultFunction(matrixA, B));
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
@@ -59,6 +59,7 @@ const Croult = ({ name }) => {
         ) : methodState.matrixA === "inputMatrix" ? (
           <MatrixInput
             type={"A"}
+            matrix={matrixA}
             matrixSize={matrixASize}
             setMatrix={matrix => setMatrixA(matrix)}
             setMethodState={value => setMethodState(value)}
@@ -71,6 +72,7 @@ const Croult = ({ name }) => {
         {methodState.B === "input" ? (
           <MatrixInput
             type={"B"}
+            matrix={B}
             matrixSize={{ ...matrixASize, columns: 1 }}
             setMatrix={matrix => setB(matrix)}
             setMethodState={value => setMethodState(value)}
@@ -83,10 +85,17 @@ const Croult = ({ name }) => {
         <Results>
           {results.iterations.map((matrix, index) => {
             return (
-              <BlockMath
-                key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
-              />
+              <React.Fragment>
+                <p>Step {index}</p>
+                <BlockMath
+                  key={index}
+                  math={"L = " + renderLatexMatrix(matrix.L)}
+                />
+                <BlockMath
+                  key={index}
+                  math={"U = " + renderLatexMatrix(matrix.U)}
+                />
+              </React.Fragment>
             );
           })}
           <p>{results.conclusion}</p>
