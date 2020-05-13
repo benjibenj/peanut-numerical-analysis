@@ -11,7 +11,6 @@ const luSimpleFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: [],
   };
-  console.log(B);
   let n = matrixA[0].length;
   let m = matrixA.length;
 
@@ -93,8 +92,7 @@ const luSimpleFunction = (matrixA, B) => {
     
     let resultZ = progressiveSustitution(L,B);
     let resultX = usolve(U, resultZ);
-    console.log(resultZ);
-    console.log(resultX);
+
     results.conclusion = "After applying regressive substitution we get :";
     results.finalSolution = resultX;
     return results;

@@ -18,7 +18,7 @@ const progressiveSustitution = (A,B) => {
        xResult[i] = (B[i] -suma)/A[i][i];
     }
     xResult = transpose(xResult, xResult[0].length);
-    console.log(xResult[0]);
+    
     return xResult;
   };
   
