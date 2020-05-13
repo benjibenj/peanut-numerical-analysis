@@ -4,7 +4,6 @@ import zeros from "../../../utils/matrixFunctions/zeros";
 
 import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import getCol from "../../../utils/matrixFunctions/getCol";
 
 const luSimpleFunction = (matrixA, B) => {
   let results = {
@@ -12,6 +11,7 @@ const luSimpleFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: [],
   };
+  console.log(B);
   let n = matrixA[0].length;
   let m = matrixA.length;
 
@@ -90,8 +90,16 @@ const luSimpleFunction = (matrixA, B) => {
   }
 
   U[n - 1][n - 1] = M[n - 1][n - 1];
-
-  results.conclusion = "After applying regressive substitution we get :";
+    console.log(L);
+    console.log(U);
+    console.log(B);
+    let resultZ = usolve(L,B);
+    let resultX = usolve(U, resultZ);
+    console.log(resultZ);
+    console.log(resultX);
+    results.conclusion = "After applying regressive substitution we get :";
+    results.finalSolution = resultX;
+    return results;
 
   return results;
 };

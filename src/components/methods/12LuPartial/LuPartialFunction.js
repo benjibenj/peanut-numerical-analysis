@@ -42,7 +42,7 @@ for (let i = 0; i < n-1; i++) {
     M = deepCopyFunction(M);
 
     let indexMax = findMaxElement(M,i,i);
-    
+
 
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
@@ -93,9 +93,14 @@ for(let j = i+1; j < n; j++){
 
 U[n-1][n-1] = M[n-1][n-1];
 
-  results.conclusion = "After applying regressive substitution we get :";
+let resultZ = usolve(L,B);
+let resultX = usolve(U, resultZ);
+console.log(resultZ);
+console.log(resultX);
+results.conclusion = "After applying regressive substitution we get :";
+results.finalSolution = resultX;
+return results;
 
-  return results;
 };
 
 export default luPartialFunction;
