@@ -16,8 +16,8 @@ import { BlockMath, InlineMath } from "react-katex";
 
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [1, 1.2, 1.4, 1.6, 1.8, 2],
-    y: [0.6747, 0.8491, 1.1214, 1.4921, 1.9607, 2.5258],
+    x: [-1, 0, 3, 4],
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
     points: "input",

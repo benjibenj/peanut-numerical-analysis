@@ -17,8 +17,8 @@ import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
 
 const Vandermonde = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-2, -1, 0, 1, 2],
-    y: [23, 13, 5, -1, -5],
+    x: [-1, 0, 3, 4],
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
     points: "input",

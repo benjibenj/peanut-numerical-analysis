@@ -17,8 +17,8 @@ import { rationalize } from "mathjs";
 
 const Lagrange = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-2, -1, 2, 3],
-    y: [12.13533528, 6.367879441, -4.610943901, 2.085536923],
+    x: [-1, 0, 3, 4],
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
     points: "input",

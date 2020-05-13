@@ -87,7 +87,7 @@ const GaussSimple = ({ name }) => {
             return (
               <BlockMath
                 key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix, 6)}
+                math={"Stage_" + index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}

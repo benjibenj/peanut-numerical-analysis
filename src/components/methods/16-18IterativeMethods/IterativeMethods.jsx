@@ -28,10 +28,10 @@ const IterativeMethods = ({ name }) => {
     columns: 4,
   });
   const [matrixA, setMatrixA] = useState([
-    [7, -2, -2, -1],
-    [-2, 8, -2, -2],
-    [-2, -2, 6, 2],
-    [-1, -2, -2, 10],
+    [4, -1, -0, 3],
+    [1, 15.5, 3, 8],
+    [0, -1.3, -4, 1.1],
+    [14, 5, -2, 30],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(

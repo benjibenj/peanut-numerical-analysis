@@ -10,6 +10,7 @@ import styled from "styled-components";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
+import gaussTotalFunction from "../10gaussTotal/gaussTotalFunction";
 
 const LuSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -17,10 +18,10 @@ const LuSimple = ({ name }) => {
     columns: 4,
   });
   const [matrixA, setMatrixA] = useState([
-    [2, -1, 0, 3],
-    [1, 0.5, 3, 8],
-    [0, 13, -2, 11],
-    [14, 5, -2, 3],
+    [4, -1, -0, 3],
+    [1, 15.5, 3, 8],
+    [0, -1.3, -4, 1.1],
+    [14, 5, -2, 30],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
@@ -38,10 +39,11 @@ const LuSimple = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
+    console.log(renderLatexMatrix(B));
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(luSimpleFunction(matrixA, B));
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
@@ -59,6 +61,7 @@ const LuSimple = ({ name }) => {
         ) : methodState.matrixA === "inputMatrix" ? (
           <MatrixInput
             type={"A"}
+            matrix={matrixA}
             matrixSize={matrixASize}
             setMatrix={matrix => setMatrixA(matrix)}
             setMethodState={value => setMethodState(value)}
@@ -71,6 +74,7 @@ const LuSimple = ({ name }) => {
         {methodState.B === "input" ? (
           <MatrixInput
             type={"B"}
+            matrix={B}
             matrixSize={{ ...matrixASize, columns: 1 }}
             setMatrix={matrix => setB(matrix)}
             setMethodState={value => setMethodState(value)}
