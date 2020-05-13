@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
-import {methods} from "../../../data/methods";
+import { methods } from "../../../data/methods";
 
 const LuSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -46,7 +46,7 @@ const LuSimple = ({ name }) => {
     <Method
       title={name}
       prev={methods.find(method => method.index === 10)}
-      next={methods.find( method => method.index === 12)}
+      next={methods.find(method => method.index === 12)}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -83,10 +83,17 @@ const LuSimple = ({ name }) => {
         <Results>
           {results.iterations.map((matrix, index) => {
             return (
-              <BlockMath
-                key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
-              />
+              <React.Fragment>
+                <p>Step {index}</p>
+                <BlockMath
+                  key={index}
+                  math={"L = " + renderLatexMatrix(matrix.L)}
+                />
+                <BlockMath
+                  key={index}
+                  math={"U = " + renderLatexMatrix(matrix.U)}
+                />
+              </React.Fragment>
             );
           })}
           <p>{results.conclusion}</p>
