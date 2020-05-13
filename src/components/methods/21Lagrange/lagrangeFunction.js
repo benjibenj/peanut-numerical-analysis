@@ -3,7 +3,7 @@ import { rationalize } from "mathjs";
 const lagrangeFunction = points => {
   let results = {
     polynom: undefined,
-    interpolationPolynomials: []
+    interpolationPolynomials: [],
   };
   let degree = points.x.length;
   let interpolationPolynomials = [];
@@ -20,11 +20,6 @@ const lagrangeFunction = points => {
           } else {
             denominator += "(" + points.x[k] + "+" + -points.x[j] + ")";
           }
-        } else if (points.x[j] === 0) {
-          numerator += "(x) ";
-          if (points.x[k] !== 0) {
-            denominator += "(" + points.x[k] + ")";
-          }
         } else if (points.x[j] > 0) {
           numerator += "(x-" + points.x[j] + ")";
           if (points.x[k] === 0) {
@@ -32,14 +27,24 @@ const lagrangeFunction = points => {
           } else {
             denominator += "(" + points.x[k] + "-" + points.x[j] + ")";
           }
+        } else {
+          numerator += "(x)";
+          if (points.x[k] !== 0) {
+            denominator += "(" + points.x[k] + ")";
+          }
         }
       }
     }
-    results.interpolationPolynomials.push("("+ numerator + ")/(" + denominator+")");
+    results.interpolationPolynomials.push(
+      "(" + numerator + ")/(" + denominator + ")",
+    );
+    console.log("(" + numerator + ")/(" + denominator + ")");
   }
-  expression = results.interpolationPolynomials.map((pol, index) => {
-    return ("(" + points.y[index] + "*" + pol + ")")
-  }).join(" + ");
+  expression = results.interpolationPolynomials
+    .map((pol, index) => {
+      return "(" + points.y[index] + "*" + pol + ")";
+    })
+    .join(" + ");
   results.polynom = rationalize(expression).toTex({
     // We get simple polynomials via the rationalize() function
     // e.g. : rationalize("(x-1)(x)") = "x^2 - x"
