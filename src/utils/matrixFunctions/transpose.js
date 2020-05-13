@@ -14,6 +14,7 @@ const transpose = (A) => {
           matrixT[j][i] = A[i][j];
         }
       }
+      return matrixT;
   };
   
   export default transpose;

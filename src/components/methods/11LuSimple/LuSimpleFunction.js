@@ -1,7 +1,7 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
 import eye from "../../../utils/matrixFunctions/eye";
 import zeros from "../../../utils/matrixFunctions/zeros";
-
+import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
 import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 
@@ -93,15 +93,13 @@ const luSimpleFunction = (matrixA, B) => {
     console.log(L);
     console.log(U);
     console.log(B);
-    let resultZ = usolve(L,B);
+    let resultZ = progressiveSustitution(L,B);
     let resultX = usolve(U, resultZ);
     console.log(resultZ);
     console.log(resultX);
     results.conclusion = "After applying regressive substitution we get :";
     results.finalSolution = resultX;
     return results;
-
-  return results;
 };
 
 export default luSimpleFunction;
