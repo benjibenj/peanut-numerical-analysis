@@ -1,7 +1,4 @@
 import determinant from "../../../utils/matrixFunctions/determinant";
-import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
-import triu from "../../../utils/matrixFunctions/triu";
-
 import eye from "../../../utils/matrixFunctions/eye";
 import zeros from "../../../utils/matrixFunctions/zeros";
 
@@ -22,7 +19,13 @@ const luSimpleFunction = (matrixA, B) => {
   let U = zeros(n);
   
   let M = deepCopyFunction(matrixA);
-  
+
+  let xZeros = new Array(n);
+  for(let i = 0; i < n; i++){
+    xZeros[i]= new Array(1);
+    xZeros[i][0] = 0;
+  }
+
   if (m !== n) {
     results.conclusion = "The matrix is not square";
     return results;
@@ -35,7 +38,7 @@ const luSimpleFunction = (matrixA, B) => {
     results.conclusion = "Determinant of the matrix cannot be zero";
     return results;
   }
-  
+
  results.iterations.push(deepCopyFunction(M));
 
 for (let i = 0; i < n-1; i++) {
@@ -83,13 +86,13 @@ for(let j = i; j < n; j++){
 for(let j = i+1; j < n; j++){
   U[i+1][j] = M[i+1][j];
 }
-console.log(L);
-console.log(U);
+
   results.iterations.push(deepCopyFunction(L));
   results.iterations.push(deepCopyFunction(U));
 }
 
 U[n-1][n-1] = M[n-1][n-1];
+ 
   results.conclusion = "After applying regressive substitution we get :";
 
   return results;
