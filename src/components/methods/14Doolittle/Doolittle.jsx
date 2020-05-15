@@ -13,11 +13,16 @@ import {methods} from "../../../data/methods";
 
 const Doolittle = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   });
-  const [matrixA, setMatrixA] = useState([]);
-  const [B, setB] = useState([]);
+  const [matrixA, setMatrixA] = useState([
+    [4, -1, -0, 3],
+    [1, 15.5, 3, 8],
+    [0, -1.3, -4, 1.1],
+    [14, 5, -2, 30],
+  ]);
+  const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );
@@ -33,10 +38,10 @@ const Doolittle = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(doolittleFunction(matrixA, B));
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
@@ -54,6 +59,7 @@ const Doolittle = ({ name }) => {
         ) : methodState.matrixA === "inputMatrix" ? (
           <MatrixInput
             type={"A"}
+            matrix={matrixA}
             matrixSize={matrixASize}
             setMatrix={matrix => setMatrixA(matrix)}
             setMethodState={value => setMethodState(value)}
@@ -66,6 +72,7 @@ const Doolittle = ({ name }) => {
         {methodState.B === "input" ? (
           <MatrixInput
             type={"B"}
+            matrix={B}
             matrixSize={{ ...matrixASize, columns: 1 }}
             setMatrix={matrix => setB(matrix)}
             setMethodState={value => setMethodState(value)}
@@ -78,10 +85,17 @@ const Doolittle = ({ name }) => {
         <Results>
           {results.iterations.map((matrix, index) => {
             return (
-              <BlockMath
-                key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
-              />
+              <React.Fragment>
+                <p>Step {index}</p>
+                <BlockMath
+                  key={index}
+                  math={"L = " + renderLatexMatrix(matrix.L)}
+                />
+                <BlockMath
+                  key={index}
+                  math={"U = " + renderLatexMatrix(matrix.U)}
+                />
+              </React.Fragment>
             );
           })}
           <p>{results.conclusion}</p>

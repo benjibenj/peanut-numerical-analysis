@@ -22,7 +22,7 @@ const croultFunction = (matrixA, B) => {
   let U = deepCopyFunction(eye(n));
  
 
-  for(let i = 0; i < n; i++){
+  for(let i = 0; i < n-1; i++){
 
     for(let j=i; j < n; j++){
       let productS = 0;
@@ -51,6 +51,18 @@ const croultFunction = (matrixA, B) => {
     });
   }
 
+  let productS = 0;
+  for(let k = 0; k < n-1; k++){
+    productS += L[n-1][k]*U[k][n-1];
+  }
+  L[n-1][n-1] = matrixA[n-1][n-1]-productS;
+
+  results.iterations.push({
+    L: deepCopyFunction(L),
+    U: deepCopyFunction(U),
+  });
+  
+  
  
   results.conclusion = "After applying regressive and progressive substitution we get :";
     let resultZ = progressiveSustitution(L,B);
