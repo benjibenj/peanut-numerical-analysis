@@ -13,11 +13,16 @@ import {methods} from "../../../data/methods";
 
 const LuPartial = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
-    rows: 3,
-    columns: 3,
+    rows: 4,
+    columns: 4,
   });
-  const [matrixA, setMatrixA] = useState([]);
-  const [B, setB] = useState([]);
+  const [matrixA, setMatrixA] = useState([
+    [4, -1, -0, 3],
+    [1, 15.5, 3, 8],
+    [0, -1.3, -4, 1.1],
+    [14, 5, -2, 30],
+  ]);
+  const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );
@@ -54,6 +59,7 @@ const LuPartial = ({ name }) => {
         ) : methodState.matrixA === "inputMatrix" ? (
           <MatrixInput
             type={"A"}
+            matrix={matrixA}
             matrixSize={matrixASize}
             setMatrix={matrix => setMatrixA(matrix)}
             setMethodState={value => setMethodState(value)}
@@ -66,6 +72,7 @@ const LuPartial = ({ name }) => {
         {methodState.B === "input" ? (
           <MatrixInput
             type={"B"}
+            matrix={B}
             matrixSize={{ ...matrixASize, columns: 1 }}
             setMatrix={matrix => setB(matrix)}
             setMethodState={value => setMethodState(value)}

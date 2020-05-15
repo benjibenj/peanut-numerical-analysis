@@ -89,17 +89,17 @@ const Cholesky = ({ name }) => {
                 <p>Step {index}</p>
                 <BlockMath
                   key={index}
-                  math={"L = " + renderLatexMatrix(matrix.L)}
+                  math={"L = " + renderLatexMatrix(matrix.L, 6)}
                 />
                 <BlockMath
                   key={index}
-                  math={"U = " + renderLatexMatrix(matrix.U)}
+                  math={"U = " + renderLatexMatrix(matrix.U, 6)}
                 />
               </React.Fragment>
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
         </Results>
       )}
     </Method>
