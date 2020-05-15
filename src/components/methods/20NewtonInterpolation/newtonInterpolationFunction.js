@@ -1,5 +1,3 @@
-import { rationalize } from "mathjs";
-
 const newtonInterpolationFunction = points => {
   let results = {
     polynom: undefined,

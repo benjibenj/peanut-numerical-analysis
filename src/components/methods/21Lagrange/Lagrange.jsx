@@ -13,7 +13,6 @@ import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlockMath, InlineMath } from "react-katex";
 import lagrangeFunction from "./lagrangeFunction";
-import { rationalize } from "mathjs";
 
 const Lagrange = ({ name }) => {
   const [points, setPoints] = useState({
