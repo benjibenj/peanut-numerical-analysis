@@ -19,40 +19,47 @@ const doolittleFunction = (matrixA, B) => {
   let U = deepCopyFunction(eye(n));
  
 console.log(deepCopyFunction(matrixA));
-  for(let i = 0; i < n; i++){
+for(let i = 0; i < n-1; i++){
 
-    for (let j = i+1; j < n; j++){
-      
-      let productS = 0;
-      for(let k = 0; k < i; k++){
-        productS += L[i][k]*U[k][j];
-      }
-      
-      U[i][j] = matrixA[i][j]-productS;   
-      console.log(U[i][j]);
-      console.log(deepCopyFunction(U));
-    }
-
-    for(let j=i; j < n; j++){
-      let productS = 0;
-      
-      
-      for(let k = 0; k < i; k++){
-        productS += L[j][k]*U[k][i];
-      }
-      L[j][i] = (matrixA[j][i]+(-productS))/U[1][1];
-      console.log(L[j][i]);
-      console.log(deepCopyFunction(L));
-    }
-
-    console.log(deepCopyFunction(L));
-    console.log(deepCopyFunction(U));
+  for(let j=i; j < n; j++){
+    let productS = 0;
     
-    results.iterations.push({
-      L: deepCopyFunction(L),
-      U: deepCopyFunction(U),
-    });
+    
+    for(let k = 0; k < i; k++){
+      productS += L[i][k]*U[k][j];
+    }
+    U[i][j] = matrixA[i][j]-productS;
   }
+
+  for (let j = i+1; j < n; j++){
+    
+    let productS = 0;
+    for(let k = 0; k < i; k++){
+      productS += L[j][k]*U[k][i];
+    }
+    
+    L[j][i] = (matrixA[j][i]+(-productS))/U[0][0];
+    
+  } 
+  
+  results.iterations.push({
+    L: deepCopyFunction(L),
+    U: deepCopyFunction(U),
+  });
+  }
+
+  let productS = 0;
+  for(let k = 0; k < n-1; k++){
+    productS += L[n-1][k]*U[k][n-1];
+  }
+  U[n-1][n-1] = matrixA[n-1][n-1]-productS;
+
+  results.iterations.push({
+    L: deepCopyFunction(L),
+    U: deepCopyFunction(U),
+  });
+  
+  
 
  
   results.conclusion = "After applying regressive and progressive substitution we get :";
