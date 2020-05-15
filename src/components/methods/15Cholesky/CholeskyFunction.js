@@ -1,6 +1,6 @@
 import eye from "../../../utils/matrixFunctions/eye";
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
-import { usolve, sqrt, complex, divide, multiply, add} from "mathjs";
+import { usolve, sqrt, divide, multiply, add} from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 
 const choleskyFunction = (matrixA, B) => {
