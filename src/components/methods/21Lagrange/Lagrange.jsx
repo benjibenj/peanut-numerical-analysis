@@ -89,7 +89,7 @@ const Lagrange = ({ name }) => {
                           <tr key={index}>
                             <td>{index}</td>
                             <td>
-                              <InlineMath>{rationalize(Lx).toTex()}</InlineMath>
+                              <InlineMath>{Lx}</InlineMath>
                             </td>
                           </tr>
                         );
@@ -99,7 +99,7 @@ const Lagrange = ({ name }) => {
                 </TableStyle>
               )}
               {results.polynom && (
-                <BlockMath math={"p(x) = " + results.polynom.replace(/\\cdot/g, "")} />
+                <BlockMath math={"p(x) = " + results.polynom} />
               )}
             </React.Fragment>
           ) : (

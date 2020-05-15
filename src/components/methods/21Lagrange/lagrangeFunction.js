@@ -37,20 +37,12 @@ const lagrangeFunction = points => {
     results.interpolationPolynomials.push(
       "(" + numerator + ")/(" + denominator + ")",
     );
-    console.log("x_" + k + ": (" + numerator + ")/(" + denominator + ")");
   }
-  expression = results.interpolationPolynomials
+  results.polynom = results.interpolationPolynomials
     .map((pol, index) => {
       return "(" + points.y[index] + "*" + pol + ")";
     })
     .join(" + ");
-  results.polynom = rationalize(expression).toTex({
-    // We get simple polynomials via the rationalize() function
-    // e.g. : rationalize("(x-1)(x)") = "x^2 - x"
-    parenthesis: "auto", // parenthesis option
-    implicit: "show", // how to treat implicit multiplication
-  });
-
   return results;
 };
 
