@@ -83,7 +83,9 @@ const iterativeMethodsFunctions = (
   ]);
   while(error > tol && count < NMax) {
     x = add(multiply(T,xAnt), C);
-    error = norm(subtract(xAnt, x), "inf");
+    error = norm(subtract(xAnt, x), normValue);
+    // norm only accepts 1 or "inf" => we have to create a function
+    // to get the p-norm of a vector
     xAnt = x;
     count += 1;
     results.iterations.push([
