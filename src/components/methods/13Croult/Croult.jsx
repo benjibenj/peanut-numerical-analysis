@@ -84,6 +84,18 @@ const Croult = ({ name }) => {
       {results && (
         <Results>
           {results.iterations.map((matrix, index) => {
+            if (index === 0) {
+              return (
+                <React.Fragment>
+                  <p>Step {index}</p>
+                  <BlockMath
+                    key={index}
+                    math={"A = " + renderLatexMatrix(matrix, 6)}
+                  />
+                </React.Fragment>
+              );
+            }
+            else{
             return (
               <React.Fragment>
                 <p>Step {index}</p>
@@ -97,6 +109,7 @@ const Croult = ({ name }) => {
                 />
               </React.Fragment>
             );
+          }
           })}
           <p>{results.conclusion}</p>
           <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />

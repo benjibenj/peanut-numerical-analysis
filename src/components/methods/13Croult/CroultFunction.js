@@ -1,9 +1,7 @@
-import determinant from "../../../utils/matrixFunctions/determinant";
+
 import eye from "../../../utils/matrixFunctions/eye";
-import zeros from "../../../utils/matrixFunctions/zeros";
-import transpose from "../../../utils/matrixFunctions/transpose";
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
-import { usolve, sqrt} from "mathjs";
+import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 
 const croultFunction = (matrixA, B) => {
@@ -20,8 +18,8 @@ const croultFunction = (matrixA, B) => {
   let L = deepCopyFunction(eye(n));
   
   let U = deepCopyFunction(eye(n));
+  results.iterations.push(deepCopyFunction(matrixA));
  
-
   for(let i = 0; i < n-1; i++){
 
     for(let j=i; j < n; j++){

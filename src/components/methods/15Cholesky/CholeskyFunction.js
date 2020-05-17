@@ -18,7 +18,8 @@ const choleskyFunction = (matrixA, B) => {
   
   let U = deepCopyFunction(eye(n));
  
-
+  results.iterations.push(matrixA);
+  
   for(let i = 0; i < n-1; i++){
 
     let productS1 = 0;
