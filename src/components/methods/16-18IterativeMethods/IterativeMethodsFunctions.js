@@ -3,6 +3,7 @@ import {eig} from "numericjs"; //didn't exist for non-symmetrical matrices in ma
 import zeroInDiagonal from "../../../utils/matrixFunctions/zeroInDiagonal";
 import tril from "../../../utils/matrixFunctions/tril";
 import triu from "../../../utils/matrixFunctions/triu";
+import normP from "../../../utils/normP";
 
 const iterativeMethodsFunctions = (
   matrixA,
@@ -83,9 +84,15 @@ const iterativeMethodsFunctions = (
   ]);
   while(error > tol && count < NMax) {
     x = add(multiply(T,xAnt), C);
-    error = norm(subtract(xAnt, x), normValue);
-    // norm only accepts 1 or "inf" => we have to create a function
-    // to get the p-norm of a vector
+    
+    if(normValue === 1 || normValue === "inf"){
+      error = norm(subtract(xAnt, x), normValue);
+    }
+    //normP only accepts norms other different of 1 and inf
+    else{
+      error = normP(subtract(xAnt, x), normValue);
+    }
+
     xAnt = x;
     count += 1;
     results.iterations.push([
