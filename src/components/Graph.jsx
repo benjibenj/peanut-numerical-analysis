@@ -11,9 +11,10 @@ window.d3 = d3;
 const functionPlot = require("function-plot");
 
 const Graph = () => {
+  const params = new URLSearchParams(window.location.search);
   const size = useWindowDimensions();
   const node = useRef(null);
-  const [functionText, setFunctionText] = useState("x^2");
+  const [functionText, setFunctionText] = useState(params.has('function') ? params.get('function') : "x^2");
   const [errorMessage, setErrorMessage] = useState(null);
   const handleSubmit = event => {
     event.preventDefault();
@@ -50,7 +51,7 @@ const Graph = () => {
     <CenteredColumn>
       <Parameters>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="functionText" placeholder="x^2" />
+          <input type="text" name="functionText" defaultValue={functionText} />
           <button>Apply</button>
         </form>
       </Parameters>

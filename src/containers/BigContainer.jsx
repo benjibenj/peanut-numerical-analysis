@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BorderRadius, Colors, Spacing, Typography } from "../rules";
+import {Link} from "@reach/router";
 
 const BigContainer = ({ children }) => {
   return <Container>{children}</Container>;
@@ -84,6 +85,16 @@ export const Button = styled("button")`
   color: ${Colors.primary.ocean.darker};
   border-radius: ${BorderRadius.sm};
   font-weight: bold;
+`;
+
+export const LinkIcon = styled(Link)`
+  svg {
+    padding-left: ${Spacing.xs};
+  }
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default BigContainer;

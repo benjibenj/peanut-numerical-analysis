@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { parse } from "mathjs";
-import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "@reach/router";
 
 import Method from "../Method";
@@ -9,12 +9,13 @@ import {
   Parameters,
   Eval,
   Error,
-  Button
+  Button,
+  LinkIcon,
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
-import {methods} from "../../../data/methods";
+import { methods } from "../../../data/methods";
 
-const IncSearch = ({name}) => {
+const IncSearch = ({ name }) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1) - (1/2)");
   const [initialValue, setInitialValue] = useState(-3);
   const [delta, setDelta] = useState(0.5);
@@ -52,8 +53,12 @@ const IncSearch = ({name}) => {
     <Method
       title={name}
       prev={methods.find(method => method.index === 0)}
-      next={methods.find( method => method.index === 2)}
+      next={methods.find(method => method.index === 2)}
     >
+      <LinkIcon to={"../../graph/" + functionText}>
+        Graph {functionText}
+        <FontAwesomeIcon icon={"chart-line"} />
+      </LinkIcon>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
@@ -95,7 +100,9 @@ const IncSearch = ({name}) => {
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
-              <Link to={"help"}><FontAwesomeIcon icon={"question-circle"}/>   Help Page</Link>
+              <Link to={"help"}>
+                <FontAwesomeIcon icon={"question-circle"} /> Help Page
+              </Link>
             </React.Fragment>
           )}
         </Eval>
