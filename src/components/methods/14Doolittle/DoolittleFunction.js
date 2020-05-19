@@ -18,6 +18,8 @@ const doolittleFunction = (matrixA, B) => {
   
   let U = deepCopyFunction(eye(n));
  
+  results.iterations.push(deepCopyFunction(matrixA));
+  
 for(let i = 0; i < n-1; i++){
 
   for(let j=i; j < n; j++){

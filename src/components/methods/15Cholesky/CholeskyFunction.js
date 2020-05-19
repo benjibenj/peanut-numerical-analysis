@@ -18,6 +18,7 @@ const choleskyFunction = (matrixA, B) => {
   
   let U = deepCopyFunction(eye(n));
  
+  results.iterations.push(matrixA);
 
   for(let i = 0; i < n-1; i++){
 
@@ -71,7 +72,7 @@ const choleskyFunction = (matrixA, B) => {
     let resultZ = progressiveSustitution(L,B);
     let resultX = usolve(U, resultZ);
 
-  results.finalSolution = L;
+  results.finalSolution = resultX;
   return results;
 };
 

@@ -131,11 +131,7 @@ const IterativeMethods = ({ name }) => {
             </label>
             <label>
               Norm value{"  "}
-              <select name="normValue" defaultValue={normValue}>
-                {/*<option value="2">2</option>
-                <option value="3">3</option>*/}
-                <option value="inf">inf</option>
-              </select>
+              <input type="text" name="normValue" defaultValue={normValue} />
             </label>
             <label>
               Max iterations (max 100)
