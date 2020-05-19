@@ -47,7 +47,7 @@ const Graph = () => {
     }
   }, [node, functionText, size.width]);
   return (
-    <React.Fragment>
+    <CenteredColumn>
       <Parameters>
         <form onSubmit={handleSubmit}>
           <input type="text" name="functionText" placeholder="x^2" />
@@ -60,9 +60,16 @@ const Graph = () => {
           <FontAwesomeIcon icon={"exclamation-circle"}/>
           {errorMessage}
         </ErrorMessage>)}
-    </React.Fragment>
+    </CenteredColumn>
   );
 };
+
+const CenteredColumn = styled("div")`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 
 const GraphChart = styled("div")`
