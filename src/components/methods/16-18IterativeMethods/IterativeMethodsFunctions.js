@@ -4,6 +4,7 @@ import zeroInDiagonal from "../../../utils/matrixFunctions/zeroInDiagonal";
 import tril from "../../../utils/matrixFunctions/tril";
 import triu from "../../../utils/matrixFunctions/triu";
 import normP from "../../../utils/normP";
+import deepCopyFunction from "../../../utils/deepCopyFunction";
 
 const iterativeMethodsFunctions = (
   matrixA,
@@ -71,12 +72,12 @@ const iterativeMethodsFunctions = (
   results.U = U;
   results.C = C;
   results.T = T;
-  results.spectralRadiance = abs(max(eig(T).lambda.x));
+  results.spectralRadiance = max(abs((eig(T).lambda.x)));
   if(results.spectralRadiance > 1) {
     results.error = "Error : the spectral radiance is superior to 1, the method cannot be executed";
     return results;
   }
-  xAnt = initialValueX0;
+  xAnt = deepCopyFunction(initialValueX0);
   results.iterations.push([
     count,
     undefined,

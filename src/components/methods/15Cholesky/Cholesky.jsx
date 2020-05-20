@@ -9,7 +9,8 @@ import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
-import {methods} from "../../../data/methods";
+import { methods } from "../../../data/methods";
+import { Button } from "../../../containers/BigContainer";
 
 const Cholesky = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -40,6 +41,8 @@ const Cholesky = ({ name }) => {
     setLatexB(renderLatexMatrix(B));
     if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(choleskyFunction(matrixA, B));
+    } else {
+      setResults(undefined);
     }
   }, [matrixA, B, methodState]);
   return (
@@ -66,7 +69,19 @@ const Cholesky = ({ name }) => {
           />
         ) : (
           methodState.matrixA === "matrix" && (
-            <BlockMath math={"A = " + latexMatrixA} />
+            <Column>
+              <BlockMath math={"A = " + latexMatrixA} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    matrixA: "inputMatrix",
+                  }));
+                }}
+              >
+                Change A
+              </Button>
+            </Column>
           )
         )}
         {methodState.B === "input" ? (
@@ -78,41 +93,44 @@ const Cholesky = ({ name }) => {
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+          methodState.B === "matrix" && (
+            <Column>
+              <BlockMath math={"B = " + latexB} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    B: "input",
+                  }));
+                }}
+              >
+                Change B
+              </Button>
+            </Column>
+          )
         )}
       </Inputs>
       {results && (
         <Results>
           {results.iterations.map((matrix, index) => {
-            if (index === 0) {
               return (
                 <React.Fragment>
                   <p>Step {index}</p>
                   <BlockMath
                     key={index}
-                    math={"A = " + renderLatexMatrix(matrix, 6)}
+                    math={"L = " + renderLatexMatrix(matrix.L, 6)}
+                  />
+                  <BlockMath
+                    key={index}
+                    math={"U = " + renderLatexMatrix(matrix.U, 6)}
                   />
                 </React.Fragment>
               );
-            }
-            else{
-            return (
-              <React.Fragment>
-                <p>Step {index}</p>
-                <BlockMath
-                  key={index}
-                  math={"L = " + renderLatexMatrix(matrix.L, 6)}
-                />
-                <BlockMath
-                  key={index}
-                  math={"U = " + renderLatexMatrix(matrix.U, 6)}
-                />
-              </React.Fragment>
-            );
-          }
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
+          <BlockMath
+            math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
+          />
         </Results>
       )}
     </Method>
@@ -131,6 +149,11 @@ const Inputs = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Column = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default Cholesky;

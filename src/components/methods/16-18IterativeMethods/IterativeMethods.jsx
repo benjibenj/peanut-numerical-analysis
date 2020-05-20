@@ -46,9 +46,9 @@ const IterativeMethods = ({ name }) => {
   const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
   const [method, setMethod] = useState(1);
   const [tol, setTol] = useState(1e-7);
-  const [normValue, setnormValue] = useState("inf");
+  const [normValue, setnormValue] = useState(2);
   const [NMax, setNMax] = useState(100);
-  const [wValue, setWValue] = useState(1);
+  const [wValue, setWValue] = useState(1.5);
   const [error, setError] = useState(null);
   const [paramSet, setParamSet] = useState(false);
   const [results, setResults] = useState(undefined);
@@ -121,7 +121,7 @@ const IterativeMethods = ({ name }) => {
                   step={0.01}
                   min={0}
                   max={2}
-                  defaultValue={1}
+                  defaultValue={wValue}
                 />
               </label>
             )}
@@ -131,7 +131,12 @@ const IterativeMethods = ({ name }) => {
             </label>
             <label>
               Norm value{"  "}
-              <input type="text" name="normValue" defaultValue={normValue} />
+              <select name="normValue" defaultValue={normValue}>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value="inf">inf</option>
+              </select>
             </label>
             <label>
               Max iterations (max 100)
@@ -244,7 +249,7 @@ const IterativeMethods = ({ name }) => {
         ) : (
           methodState.B === "matrix" && (
             <Column>
-              <BlockMath math={"B = " + latexB} />
+              <BlockMath math={"b = " + latexB} />
               <Button
                 onClick={() => {
                   setMethodState(prevState => ({
@@ -264,7 +269,14 @@ const IterativeMethods = ({ name }) => {
           <BlockMath math={"T = " + renderLatexMatrix(results.T, 6)} />
           <BlockMath math={"C = " + renderLatexMatrix(results.C, 6)} />
           <p>
-            <strong>Spectral radiance</strong> :{" "}
+            <em>
+              There are some issues with the JS library used to calculate the
+              eigtenvalues, for a correct value of the spectral radius, use MathLab :
+              `max(abs(eig(T)))`.
+            </em>
+          </p>
+          <p>
+            <strong>Spectral radius</strong> :{" "}
             {results.spectralRadiance &&
               format(results.spectralRadiance, {
                 notation: "fixed",
@@ -287,16 +299,15 @@ const IterativeMethods = ({ name }) => {
                       <tr key={index}>
                         <td>{result[0]}</td>
                         <td>
-                          {result[1] && format(result[1], {
-                            notation: "exponential",
-                            precision: 2,
-                          })}
+                          {result[1] &&
+                            format(result[1], {
+                              notation: "exponential",
+                              precision: 2,
+                            })}
                         </td>
                         <td>
                           {result[2] && (
-                            <BlockMath
-                              math={renderLatexMatrix(result[2], 10)}
-                            />
+                            <BlockMath math={renderLatexMatrix(result[2], 6)} />
                           )}
                         </td>
                       </tr>
