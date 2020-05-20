@@ -73,6 +73,7 @@ const Vandermonde = ({ name }) => {
         <Results>
           {!error ? (
             <React.Fragment>
+              <p>Vandermonde matrix</p>
               <BlockMath
                 math={
                   renderLatexMatrix(results.matrixA) +
@@ -81,6 +82,8 @@ const Vandermonde = ({ name }) => {
                   renderLatexMatrix(results.B)
                 }
               />
+              <p>Polynomial coefficients :</p>
+              <p>[{results.polynom.join(", ")}]</p>
               <BlockMath math={"p(x) = " + renderLatexPolynom(results.polynom)} />
             </React.Fragment>
           ) : (
