@@ -9,7 +9,8 @@ import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
-import {methods} from "../../../data/methods";
+import { methods } from "../../../data/methods";
+import { Button } from "../../../containers/BigContainer";
 
 const LuPartial = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -38,15 +39,17 @@ const LuPartial = ({ name }) => {
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
-    if (matrixA.length !== 0 && B.length !== 0) {
+    if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(luPartialFunction(matrixA, B));
+    } else {
+      setResults(undefined);
     }
-  }, [matrixA, B]);
+  }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
-      prev={methods.find(method => method.index === 11)}
-      next={methods.find( method => method.index === 13)}
+      prev={methods.find(method => method.index === 10)}
+      next={methods.find(method => method.index === 12)}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -66,7 +69,19 @@ const LuPartial = ({ name }) => {
           />
         ) : (
           methodState.matrixA === "matrix" && (
-            <BlockMath math={"A = " + latexMatrixA} />
+            <Column>
+              <BlockMath math={"A = " + latexMatrixA} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    matrixA: "inputMatrix",
+                  }));
+                }}
+              >
+                Change A
+              </Button>
+            </Column>
           )
         )}
         {methodState.B === "input" ? (
@@ -78,21 +93,39 @@ const LuPartial = ({ name }) => {
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+          methodState.B === "matrix" && (
+            <Column>
+              <BlockMath math={"B = " + latexB} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    B: "input",
+                  }));
+                }}
+              >
+                Change B
+              </Button>
+            </Column>
+          )
         )}
       </Inputs>
       {results && (
         <Results>
-          {results.iterations.map((matrix, index) => {
+          {results.iterations.map((iter, index) => {
             return (
-              <BlockMath
-                key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix)}
-              />
+              <React.Fragment key={index}>
+                <p>Step {index + 1}</p>
+                <BlockMath math={renderLatexMatrix(iter.M, 6)} />
+                <BlockMath math={"L = " + renderLatexMatrix(iter.L, 6)} />
+                <BlockMath math={"U = " + renderLatexMatrix(iter.U, 6)} />
+              </React.Fragment>
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+          <BlockMath
+            math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
+          />
         </Results>
       )}
     </Method>
@@ -111,6 +144,11 @@ const Inputs = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Column = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default LuPartial;
