@@ -83,6 +83,7 @@ const luSimpleFunction = (matrixA, B) => {
       U[i + 1][j] = M[i + 1][j];
     }
     results.iterations.push({
+      M: deepCopyFunction(M),
       L: deepCopyFunction(L),
       U: deepCopyFunction(U),
     });
@@ -92,7 +93,6 @@ const luSimpleFunction = (matrixA, B) => {
 
   let resultZ = progressiveSustitution(L, B);
   let resultX = usolve(U, resultZ);
-
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = resultX;
   return results;

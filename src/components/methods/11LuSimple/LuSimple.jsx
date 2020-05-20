@@ -10,6 +10,7 @@ import styled from "styled-components";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
+import { Button } from "../../../containers/BigContainer";
 
 const LuSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -40,6 +41,8 @@ const LuSimple = ({ name }) => {
     setLatexB(renderLatexMatrix(B));
     if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(luSimpleFunction(matrixA, B));
+    } else {
+      setResults(undefined);
     }
   }, [matrixA, B, methodState]);
   return (
@@ -66,7 +69,19 @@ const LuSimple = ({ name }) => {
           />
         ) : (
           methodState.matrixA === "matrix" && (
-            <BlockMath math={"A = " + latexMatrixA} />
+            <Column>
+              <BlockMath math={"A = " + latexMatrixA} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    matrixA: "inputMatrix",
+                  }));
+                }}
+              >
+                Change A
+              </Button>
+            </Column>
           )
         )}
         {methodState.B === "input" ? (
@@ -78,28 +93,39 @@ const LuSimple = ({ name }) => {
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+          methodState.B === "matrix" && (
+            <Column>
+              <BlockMath math={"B = " + latexB} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    B: "input",
+                  }));
+                }}
+              >
+                Change B
+              </Button>
+            </Column>
+          )
         )}
       </Inputs>
       {results && (
         <Results>
-          {results.iterations.map((matrix, index) => {
+          {results.iterations.map((iter, index) => {
             return (
-              <React.Fragment>
-                <p>Step {index}</p>
-                <BlockMath
-                  key={index}
-                  math={"L = " + renderLatexMatrix(matrix.L, 6)}
-                />
-                <BlockMath
-                  key={index}
-                  math={"U = " + renderLatexMatrix(matrix.U, 6)}
-                />
+              <React.Fragment key={index}>
+                <p>Step {index + 1}</p>
+                <BlockMath math={renderLatexMatrix(iter.M, 6)} />
+                <BlockMath math={"L = " + renderLatexMatrix(iter.L, 6)} />
+                <BlockMath math={"U = " + renderLatexMatrix(iter.U, 6)} />
               </React.Fragment>
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution)} />
+          <BlockMath
+            math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
+          />
         </Results>
       )}
     </Method>
@@ -118,6 +144,11 @@ const Inputs = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Column = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default LuSimple;
