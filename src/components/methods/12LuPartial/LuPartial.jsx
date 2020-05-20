@@ -48,8 +48,8 @@ const LuPartial = ({ name }) => {
   return (
     <Method
       title={name}
-      prev={methods.find(method => method.index === 10)}
-      next={methods.find(method => method.index === 12)}
+      prev={methods.find(method => method.index === 11)}
+      next={methods.find(method => method.index === 13)}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
