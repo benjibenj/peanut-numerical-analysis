@@ -89,13 +89,13 @@ const luSimpleFunction = (matrixA, B) => {
   }
 
   U[n - 1][n - 1] = M[n - 1][n - 1];
-    
-    let resultZ = progressiveSustitution(L,B);
-    let resultX = usolve(U, resultZ);
 
-    results.conclusion = "After applying regressive substitution we get :";
-    results.finalSolution = resultX;
-    return results;
+  let resultZ = progressiveSustitution(L, B);
+  let resultX = usolve(U, resultZ);
+
+  results.conclusion = "After applying regressive substitution we get :";
+  results.finalSolution = resultX;
+  return results;
 };
 
 export default luSimpleFunction;

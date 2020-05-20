@@ -9,10 +9,8 @@ const gaussSimpleFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: [],
   };
-
   let m = matrixA.length;
   let n = matrixA[0].length;
-
   if (m !== n) {
     results.conclusion = "The matrix is not square";
     return results;
@@ -25,23 +23,18 @@ const gaussSimpleFunction = (matrixA, B) => {
     results.conclusion = "Determinant of the matrix cannot be zero";
     return results;
   }
-
   let M = new Array(n);
-
   for (let i = 0; i < n; i++) {
     M[i] = new Array(n + 1);
   }
-
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       M[i][j] = matrixA[i][j];
     }
     M[i][n] = B[i][0];
   }
-
   results.iterations.push(deepCopyFunction(M));
-
-  for (let i = 0; i < n-1; i++) {
+  for (let i = 0; i < n - 1; i++) {
     if (M[i][i] === 0) {
       M = deepCopyFunction(M);
       for (let j = i + 1; j < n; j++) {
@@ -56,7 +49,6 @@ const gaussSimpleFunction = (matrixA, B) => {
         }
       }
     }
-
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
         M = deepCopyFunction(M);
@@ -70,11 +62,11 @@ const gaussSimpleFunction = (matrixA, B) => {
         }
       }
     }
-
     results.iterations.push(deepCopyFunction(M));
   }
   let resultX = usolve(
-    M.map(function(val) { // A = all columns of M except the last one
+    M.map(function(val) {
+      // A = all columns of M except the last one
       return val.slice(0, -1);
     }),
     getCol(M, n), // B = last column of M

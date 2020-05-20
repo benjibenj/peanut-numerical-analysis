@@ -9,7 +9,8 @@ import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
-import {methods} from "../../../data/methods";
+import { methods } from "../../../data/methods";
+import { Button } from "../../../containers/BigContainer";
 
 const GaussPartial = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -40,13 +41,15 @@ const GaussPartial = ({ name }) => {
     setLatexB(renderLatexMatrix(B));
     if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(gaussPartialFunction(matrixA, B));
+    } else {
+      setResults(undefined);
     }
   }, [matrixA, B, methodState]);
   return (
     <Method
       title={name}
       prev={methods.find(method => method.index === 8)}
-      next={methods.find( method => method.index === 10)}
+      next={methods.find(method => method.index === 10)}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -59,14 +62,26 @@ const GaussPartial = ({ name }) => {
         ) : methodState.matrixA === "inputMatrix" ? (
           <MatrixInput
             type={"A"}
-            matrix={matrixA}
             matrixSize={matrixASize}
+            matrix={matrixA}
             setMatrix={matrix => setMatrixA(matrix)}
             setMethodState={value => setMethodState(value)}
           />
         ) : (
           methodState.matrixA === "matrix" && (
-            <BlockMath math={"A = " + latexMatrixA} />
+            <Column>
+              <BlockMath math={"A = " + latexMatrixA} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    matrixA: "inputMatrix",
+                  }));
+                }}
+              >
+                Change A
+              </Button>
+            </Column>
           )
         )}
         {methodState.B === "input" ? (
@@ -78,7 +93,21 @@ const GaussPartial = ({ name }) => {
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+          methodState.B === "matrix" && (
+            <Column>
+              <BlockMath math={"B = " + latexB} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    B: "input",
+                  }));
+                }}
+              >
+                Change B
+              </Button>
+            </Column>
+          )
         )}
       </Inputs>
       {results && (
@@ -87,12 +116,14 @@ const GaussPartial = ({ name }) => {
             return (
               <BlockMath
                 key={index}
-                math={"Step " + index + " = " + renderLatexMatrix(matrix, 6)}
+                math={"Step_" + index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
+          <BlockMath
+            math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
+          />
         </Results>
       )}
     </Method>
@@ -111,6 +142,11 @@ const Inputs = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Column = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default GaussPartial;

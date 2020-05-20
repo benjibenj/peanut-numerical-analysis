@@ -10,6 +10,7 @@ import styled from "styled-components";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
+import { Button } from "../../../containers/BigContainer";
 
 const GaussSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -40,6 +41,8 @@ const GaussSimple = ({ name }) => {
     setLatexB(renderLatexMatrix(B));
     if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
       setResults(gaussSimpleFunction(matrixA, B));
+    } else {
+      setResults(undefined);
     }
   }, [matrixA, B, methodState]);
   return (
@@ -66,7 +69,19 @@ const GaussSimple = ({ name }) => {
           />
         ) : (
           methodState.matrixA === "matrix" && (
-            <BlockMath math={"A = " + latexMatrixA} />
+            <Column>
+              <BlockMath math={"A = " + latexMatrixA} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    matrixA: "inputMatrix",
+                  }));
+                }}
+              >
+                Change A
+              </Button>
+            </Column>
           )
         )}
         {methodState.B === "input" ? (
@@ -78,7 +93,21 @@ const GaussSimple = ({ name }) => {
             setMethodState={value => setMethodState(value)}
           />
         ) : (
-          methodState.B === "matrix" && <BlockMath math={"B = " + latexB} />
+          methodState.B === "matrix" && (
+            <Column>
+              <BlockMath math={"B = " + latexB} />
+              <Button
+                onClick={() => {
+                  setMethodState(prevState => ({
+                    ...prevState,
+                    B: "input",
+                  }));
+                }}
+              >
+                Change B
+              </Button>
+            </Column>
+          )
         )}
       </Inputs>
       {results && (
@@ -87,12 +116,14 @@ const GaussSimple = ({ name }) => {
             return (
               <BlockMath
                 key={index}
-                math={"Stage_" + index + " = " + renderLatexMatrix(matrix, 6)}
+                math={"Step_" + index + " = " + renderLatexMatrix(matrix, 6)}
               />
             );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
+          <BlockMath
+            math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
+          />
         </Results>
       )}
     </Method>
@@ -111,6 +142,11 @@ const Inputs = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Column = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default GaussSimple;

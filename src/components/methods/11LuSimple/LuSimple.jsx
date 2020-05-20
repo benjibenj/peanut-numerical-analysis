@@ -89,11 +89,11 @@ const LuSimple = ({ name }) => {
                 <p>Step {index}</p>
                 <BlockMath
                   key={index}
-                  math={"L = " + renderLatexMatrix(matrix.L)}
+                  math={"L = " + renderLatexMatrix(matrix.L, 6)}
                 />
                 <BlockMath
                   key={index}
-                  math={"U = " + renderLatexMatrix(matrix.U)}
+                  math={"U = " + renderLatexMatrix(matrix.U, 6)}
                 />
               </React.Fragment>
             );
