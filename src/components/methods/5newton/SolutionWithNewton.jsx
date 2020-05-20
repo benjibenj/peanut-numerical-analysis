@@ -6,9 +6,9 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error,
+  Error, LinkIcon,
 } from "../../../containers/BigContainer";
-import newtonFunction from ".//newtonFunction";
+import newtonFunction from "./newtonFunction";
 import { methods } from "../../../data/methods";
 import { parse } from "mathjs";
 import { Link } from "@reach/router";
@@ -64,6 +64,9 @@ const SolutionWithNewton = ({ name }) => {
       prev={methods.find(method => method.index === 4)}
       next={methods.find(method => method.index === 6)}
     >
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
+        Graph {functionText}
+      </LinkIcon>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

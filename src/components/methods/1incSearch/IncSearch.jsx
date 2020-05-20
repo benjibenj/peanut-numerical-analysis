@@ -55,9 +55,8 @@ const IncSearch = ({ name }) => {
       prev={methods.find(method => method.index === 0)}
       next={methods.find(method => method.index === 2)}
     >
-      <LinkIcon to={"../../graph/" + functionText}>
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
         Graph {functionText}
-        <FontAwesomeIcon icon={"chart-line"} />
       </LinkIcon>
       <RowContainer>
         <Parameters>

@@ -7,6 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
+  LinkIcon,
 } from "../../../containers/BigContainer";
 import multipleRootsFunction from "./multipleRootsFunction";
 import { methods } from "../../../data/methods";
@@ -68,6 +69,17 @@ const MultipleRoots = ({ name }) => {
       prev={methods.find(method => method.index === 6)}
       next={methods.find(method => method.index === 8)}
     >
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
+        Graph f(x) = {functionText}
+      </LinkIcon>
+      {" or "}
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(firstDerivate)}>
+        Graph f'(x) = {firstDerivate}
+      </LinkIcon>
+      {" or "}
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(secondDerivate)}>
+        Graph f''(x) = {secondDerivate}
+      </LinkIcon>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

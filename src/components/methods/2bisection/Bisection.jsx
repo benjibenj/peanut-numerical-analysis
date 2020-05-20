@@ -6,7 +6,7 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error,
+  Error, LinkIcon,
 } from "../../../containers/BigContainer";
 
 import bisectionFunction from "./bisectionFunction";
@@ -57,6 +57,9 @@ const Bisection = ({ name }) => {
       prev={methods.find(method => method.index === 1)}
       next={methods.find(method => method.index === 3)}
     >
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
+        Graph {functionText}
+      </LinkIcon>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

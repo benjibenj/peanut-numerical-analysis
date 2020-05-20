@@ -6,12 +6,11 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error,
+  Error, LinkIcon,
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
 import { methods } from "../../../data/methods";
 import { parse } from "mathjs";
-import falsePositionFunction from "../3falsePosition/falsePositionFunction";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -66,6 +65,13 @@ const FixedPoint = ({ name }) => {
       prev={methods.find(method => method.index === 3)}
       next={methods.find(method => method.index === 5)}
     >
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionTextF)}>
+        Graph f(x) = {functionTextF}
+      </LinkIcon>
+      {" or "}
+      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionTextG)}>
+        Graph g(x) = {functionTextG}
+      </LinkIcon>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

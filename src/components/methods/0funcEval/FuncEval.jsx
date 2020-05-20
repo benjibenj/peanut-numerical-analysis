@@ -51,7 +51,6 @@ const FuncEval = ({ name }) => {
     >
       <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
         Graph {functionText}
-        <FontAwesomeIcon icon={"chart-line"} />
       </LinkIcon>
       <RowContainer>
         <Parameters>
