@@ -72,9 +72,7 @@ const NewtonInterpolation = ({ name }) => {
         <Results>
           {!error ? (
             <React.Fragment>
-              {results.polynom && (
-                <BlockMath math={results.polynom.replace(/\\cdot/g, "")} />
-              )}
+              <p>Newton’s Divided Difference Table</p>
               {results.dividedDifference && (
                 <TableStyle>
                   <table>
@@ -96,7 +94,7 @@ const NewtonInterpolation = ({ name }) => {
                           } else {
                             return (
                               <th key={index}>
-                                <InlineMath>{index + "ra"}</InlineMath>
+                                <InlineMath>{index+""}</InlineMath>
                               </th>
                             );
                           }
@@ -136,6 +134,12 @@ const NewtonInterpolation = ({ name }) => {
                     </tbody>
                   </table>
                 </TableStyle>
+              )}
+              <p>Newton's polynomial coefficients:</p>
+              <p>[{results.dividedDifference[0].join(", ")}]</p>
+              <p>Newton's polynom</p>
+              {results.polynom && (
+                <BlockMath math={results.polynom.replace(/\\cdot/g, "")} />
               )}
             </React.Fragment>
           ) : (
