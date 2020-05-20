@@ -16,8 +16,8 @@ import lagrangeFunction from "./lagrangeFunction";
 
 const Lagrange = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-2, -1, 0, 1, 2],
-    y: [23, 13, 5, -1, 5],
+    x: [-1, 0, 3, 4],
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
     points: "input",
@@ -68,7 +68,7 @@ const Lagrange = ({ name }) => {
         <Results>
           {!error ? (
             <React.Fragment>
-              <br />
+              <p>Lagrange interpolating polynomials</p>
               {results.interpolationPolynomials.length !== 0 && (
                 <TableStyle>
                   <table>
@@ -97,6 +97,7 @@ const Lagrange = ({ name }) => {
                   </table>
                 </TableStyle>
               )}
+              <p>Lagrange polynom</p>
               {results.polynom && (
                 <BlockMath math={"p(x) = " + results.polynom} />
               )}
