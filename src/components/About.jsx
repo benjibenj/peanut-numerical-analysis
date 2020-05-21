@@ -3,15 +3,14 @@ import styled from "styled-components";
 import BigContainer from "../containers/BigContainer";
 import CommentContainer from "../containers/CommentContainer";
 import { Typography, Spacing } from "../rules";
-import Disqus from "disqus-react"
-
+import Disqus from "disqus-react";
 
 const About = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
     url: "http://localhost:3000", //this.props.pageUrl
     identifier: "about-page", //this.props.uniqueId
-    title: "About" //this.props.title
+    title: "About", //this.props.title
   };
 
   return (
@@ -19,32 +18,57 @@ const About = () => {
       <Title>About</Title>
       <BigContainer>
         <p>
-          This awesome website was created in the semester of 2020-1 (January to June) by 2 mathematical engineers and 2 software
-          engineers students from <a href={"http://www.eafit.edu.co/"}>EAFIT University</a> in Medellín,
-          Colombia.
+          This website displays various numerical analysis methods. Those are single
+          variable solving methods, equations systems methods and interpolation
+          methods.
+        </p>
+        <p>Libraries/packages used for this project :</p>
+        <ul>
+          <li>
+            <a href={"https://mauriciopoppe.github.io/function-plot/"}>
+              function-plot
+            </a>{" "}
+            : A 2d function plotter powered by D3, by{" "}
+            <a href={"https://www.mauriciopoppe.com/"}>Mauricio Poppe</a>
+          </li>
+          <li>
+            <a href={"https://mathjs.org/"}>mathsjs</a> : an extensive math
+            library for JavaScript and Node.js
+          </li>
+          <li>
+            <a href={"https://www.npmjs.com/package/react-katex"}>
+              react-katex
+            </a>{" "}
+            : display math expressions with{" "}
+            <a href={"https://katex.org/"}>KaTeX</a> and React
+          </li>
+          <li>
+            <a href={"https://fontawesome.com/"}>FontAwesome</a> : SVG, font,
+            and CSS toolkit
+          </li>
+        </ul>
+        <p>
+          If you wish to contribute to this project, or to install it locally,
+          check out the{" "}
+          <a href="https://github.com/benjamin-vaysse/peanut-numerical-analysis">
+            GitHub page.
+          </a>
         </p>
         <p>
-          This website serves a double purpose:
-          <ol>
-            <li>
-              Firstly, it is a platform for the students to turn in assignments to the professor, and for the professor
-              to give feedback to the students in the form of comments.
-            </li>
-            <li>
-              Secondly, it displays various numerical analysis methods seen in the course "Numerical Analysis - ST0256".
-              Those are single variable solving methods, equations systems methods, interpolation methods. Also, methods
-              used to solve differentiation and differential equations.
-            </li>
-          </ol>
+          <strong>
+            This project is released under{" "}
+            <a href="https://opensource.org/licenses/MIT">MIT License</a>.
+          </strong>
         </p>
-        <p>If you wish to contribute to this project, or to install it locally, check out the <a href="https://github.com/benjamin-vaysse/peanut-numerical-analysis">GitHub page.</a></p>
-        <p><strong>This project is released under <a href="https://opensource.org/licenses/MIT">MIT License</a>.</strong></p>
+        <p>
+          Built with <a href={"https://reactjs.org/"}>React</a>
+        </p>
       </BigContainer>
       <CommentContainer>
-      <Disqus.DiscussionEmbed
-        shortname={disqusShortname}
-        config={disqusConfig}
-      />
+        <Disqus.DiscussionEmbed
+          shortname={disqusShortname}
+          config={disqusConfig}
+        />
       </CommentContainer>
     </React.Fragment>
   );
