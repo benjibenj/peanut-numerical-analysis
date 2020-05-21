@@ -3,6 +3,10 @@ import styled from "styled-components";
 import {Colors, Shadows, Spacing} from "../rules";
 import { Link } from "@reach/router";
 import logo from "../img/logo0.png";
+import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {LinkIcon} from "../containers/BigContainer";
+
+
 
 const TopBar = () => {
   return (
@@ -14,16 +18,13 @@ const TopBar = () => {
       </Logo>
       <ul>
         <li>
-          <Link to="/methods">Methods</Link>
+          <LinkIcon to="/methods">Methods</LinkIcon>
         </li>
         <li>
-          <Link to="/help">Help</Link>
+          <LinkIcon to="/about">About</LinkIcon>
         </li>
         <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/oversight">Oversight</Link>
+          <LinkIcon to="/help">Help<FontAwesomeIcon icon={"question-circle"}/></LinkIcon>
         </li>
       </ul>
     </TopBarContainer>

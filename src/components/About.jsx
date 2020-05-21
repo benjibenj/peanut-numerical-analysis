@@ -4,6 +4,7 @@ import BigContainer from "../containers/BigContainer";
 import CommentContainer from "../containers/CommentContainer";
 import { Typography, Spacing } from "../rules";
 import Disqus from "disqus-react";
+import {Link} from "@reach/router";
 
 const About = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
@@ -62,6 +63,9 @@ const About = () => {
         </p>
         <p>
           Built with <a href={"https://reactjs.org/"}>React</a>
+        </p>
+        <p>
+          <Link to="/oversight">Have a look at the project oversight (academic stuff)</Link>
         </p>
       </BigContainer>
       <CommentContainer>
