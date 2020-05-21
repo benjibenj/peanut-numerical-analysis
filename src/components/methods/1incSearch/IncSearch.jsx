@@ -10,7 +10,7 @@ import {
   Eval,
   Error,
   Button,
-  LinkIcon,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
 import { methods } from "../../../data/methods";
@@ -55,9 +55,11 @@ const IncSearch = ({ name }) => {
       prev={methods.find(method => method.index === 0)}
       next={methods.find(method => method.index === 2)}
     >
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
-        Graph {functionText}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+          Graph {functionText}
+        </Link>
+      </LinkGraph>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

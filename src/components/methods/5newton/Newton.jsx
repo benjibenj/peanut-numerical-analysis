@@ -6,7 +6,7 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error, LinkIcon,
+  Error, LinkIcon, LinkGraph,
 } from "../../../containers/BigContainer";
 import newtonFunction from "./newtonFunction";
 import { methods } from "../../../data/methods";
@@ -14,7 +14,7 @@ import { parse } from "mathjs";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SolutionWithNewton = ({ name }) => {
+const Newton = ({ name }) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [functionDerivative, setFunctionDerivative] = useState(
     "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))",
@@ -64,9 +64,11 @@ const SolutionWithNewton = ({ name }) => {
       prev={methods.find(method => method.index === 4)}
       next={methods.find(method => method.index === 6)}
     >
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
-        Graph {functionText}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+          Graph {functionText}
+        </Link>
+      </LinkGraph>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
@@ -147,4 +149,4 @@ const SolutionWithNewton = ({ name }) => {
   );
 };
 
-export default SolutionWithNewton;
+export default Newton;

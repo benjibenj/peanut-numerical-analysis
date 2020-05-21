@@ -6,7 +6,7 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error, LinkIcon,
+  Error, LinkIcon, LinkGraph,
 } from "../../../containers/BigContainer";
 import secanteFunction from "./secanteFunction";
 import { methods } from "../../../data/methods";
@@ -56,9 +56,11 @@ const SolutionWithSecante = ({ name }) => {
       prev={methods.find(method => method.index === 5)}
       next={methods.find(method => method.index === 7)}
     >
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
-        Graph {functionText}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+          Graph {functionText}
+        </Link>
+      </LinkGraph>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

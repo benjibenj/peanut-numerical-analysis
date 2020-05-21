@@ -6,7 +6,8 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error, LinkIcon,
+  Error,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import falsePositionFunction from "./falsePositionFunction";
 import { methods } from "../../../data/methods";
@@ -56,9 +57,11 @@ const FalsePosition = ({ name }) => {
       prev={methods.find(method => method.index === 2)}
       next={methods.find(method => method.index === 4)}
     >
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
-        Graph {functionText}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+          Graph {functionText}
+        </Link>
+      </LinkGraph>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>

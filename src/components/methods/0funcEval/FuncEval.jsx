@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
-import styled from "styled-components";
 import {
   RowContainer,
   Parameters,
   Eval,
   Error,
   Button,
+  LinkGraph
 } from "../../../containers/BigContainer";
 
 import FuncEvalDescription from "./funcEvalDescription";
@@ -16,7 +16,6 @@ import { parse } from "mathjs";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { methods } from "../../../data/methods";
-import { BorderRadius, Colors, Spacing } from "../../../rules";
 
 const FuncEval = ({ name }) => {
   const [functionText, setFunctionText] = useState("x^2");
@@ -76,7 +75,7 @@ const FuncEval = ({ name }) => {
                 type="text"
                 name="functionText"
                 defaultValue={functionText}
-                onChange={(e) => setFunctionText(e.target.value)}
+                onChange={e => setFunctionText(e.target.value)}
               />
             </label>
             <label>
@@ -103,19 +102,5 @@ const FuncEval = ({ name }) => {
     </Method>
   );
 };
-
-const LinkGraph = styled("div")`
-  margin: ${Spacing.xs} 0;
-  padding: ${Spacing.xs} ${Spacing.md};
-  border-radius: ${BorderRadius.md};
-  background-color: ${Colors.primary.tan.default};
-  text-align: center;
-  display: inline-block;
-  a {
-    color: ${Colors.utility.white.default} !important;
-    text-decoration: none;
-    font-weight: bold;
-  }
-`;
 
 export default FuncEval;

@@ -97,4 +97,18 @@ export const LinkIcon = styled(Link)`
   }
 `;
 
+export const LinkGraph = styled("div")`
+  margin: ${Spacing.xs} 0;
+  padding: ${Spacing.xs} ${Spacing.md};
+  border-radius: ${BorderRadius.md};
+  background-color: ${Colors.primary.tan.default};
+  text-align: center;
+  display: inline-block;
+  a {
+    color: ${Colors.utility.white.default} !important;
+    text-decoration: none;
+    font-weight: bold;
+  }
+`;
+
 export default BigContainer;

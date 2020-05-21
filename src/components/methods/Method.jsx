@@ -51,7 +51,7 @@ const TitleLine = styled("div")`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-right: ${Spacing.lg};  
+  margin-right: ${Spacing.lg};
 `;
 
 const Links = styled("div")`

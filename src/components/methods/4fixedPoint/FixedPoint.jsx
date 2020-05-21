@@ -6,7 +6,8 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error, LinkIcon,
+  Error,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
 import { methods } from "../../../data/methods";
@@ -65,13 +66,17 @@ const FixedPoint = ({ name }) => {
       prev={methods.find(method => method.index === 3)}
       next={methods.find(method => method.index === 5)}
     >
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionTextF)}>
-        Graph f(x) = {functionTextF}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionTextF)}>
+          Graph f(x) = {functionTextF}
+        </Link>
+      </LinkGraph>
       {" or "}
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionTextG)}>
-        Graph g(x) = {functionTextG}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionTextG)}>
+          Graph g(x) = {functionTextG}
+        </Link>
+      </LinkGraph>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
