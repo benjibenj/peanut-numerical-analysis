@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Method from "../Method";
+import styled from "styled-components";
 import {
   RowContainer,
   Parameters,
   Eval,
   Error,
   Button,
-  LinkIcon,
 } from "../../../containers/BigContainer";
 
 import FuncEvalDescription from "./funcEvalDescription";
@@ -16,12 +16,25 @@ import { parse } from "mathjs";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { methods } from "../../../data/methods";
+import { BorderRadius, Colors, Spacing } from "../../../rules";
 
 const FuncEval = ({ name }) => {
   const [functionText, setFunctionText] = useState("x^2");
   const [x, setX] = useState(2);
   const [resultEval, setResultEval] = useState(math.evaluate("x^2", { x: 2 }));
   const [error, setError] = useState(null);
+  useEffect(() => {
+    try {
+      setError(null);
+      parse(functionText);
+    } catch (e) {
+      if (e instanceof TypeError) {
+        setError("The function you entered cannot be parsed");
+      } else {
+        setError(e.toString());
+      }
+    }
+  }, [functionText]);
   const handleSubmit = event => {
     event.preventDefault();
     try {
@@ -49,9 +62,11 @@ const FuncEval = ({ name }) => {
       next={methods.find(method => method.index === 1)}
       description={<FuncEvalDescription />}
     >
-      <LinkIcon to={"/graph?function=" + encodeURIComponent(functionText)}>
-        Graph {functionText}
-      </LinkIcon>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+          Graph {functionText}
+        </Link>
+      </LinkGraph>
       <RowContainer>
         <Parameters>
           <form onSubmit={handleSubmit}>
@@ -61,6 +76,7 @@ const FuncEval = ({ name }) => {
                 type="text"
                 name="functionText"
                 defaultValue={functionText}
+                onChange={(e) => setFunctionText(e.target.value)}
               />
             </label>
             <label>
@@ -87,5 +103,19 @@ const FuncEval = ({ name }) => {
     </Method>
   );
 };
+
+const LinkGraph = styled("div")`
+  margin: ${Spacing.xs} 0;
+  padding: ${Spacing.xs} ${Spacing.md};
+  border-radius: ${BorderRadius.md};
+  background-color: ${Colors.primary.tan.default};
+  text-align: center;
+  display: inline-block;
+  a {
+    color: ${Colors.utility.white.default} !important;
+    text-decoration: none;
+    font-weight: bold;
+  }
+`;
 
 export default FuncEval;
