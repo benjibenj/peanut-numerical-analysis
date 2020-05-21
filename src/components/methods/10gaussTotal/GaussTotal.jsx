@@ -60,13 +60,25 @@ const GaussTotal = ({ name }) => {
             methodState={methodState}
           />
         ) : methodState.matrixA === "inputMatrix" ? (
-          <MatrixInput
-            type={"A"}
-            matrixSize={matrixASize}
-            matrix={matrixA}
-            setMatrix={matrix => setMatrixA(matrix)}
-            setMethodState={value => setMethodState(value)}
-          />
+          <Column>
+            <MatrixInput
+              type={"A"}
+              matrix={matrixA}
+              matrixSize={matrixASize}
+              setMatrix={matrix => setMatrixA(matrix)}
+              setMethodState={value => setMethodState(value)}
+            />
+            <Button
+              onClick={() => {
+                setMethodState(prevState => ({
+                  ...prevState,
+                  matrixA: "inputSize",
+                }));
+              }}
+            >
+              Change matrix size
+            </Button>
+          </Column>
         ) : (
           methodState.matrixA === "matrix" && (
             <Column>

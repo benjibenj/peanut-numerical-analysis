@@ -7,7 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph,
+  LinkGraph, MediaContainer,
 } from "../../../containers/BigContainer";
 
 import bisectionFunction from "./bisectionFunction";
@@ -63,8 +63,11 @@ const Bisection = ({ name }) => {
           Graph {functionText}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"1100px"}>
+        <Parameters width={"1100px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function
@@ -94,7 +97,7 @@ const Bisection = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p><strong>{name}</strong></p>
           {!error ? (
             <TableStyle>
               <table>
@@ -134,7 +137,7 @@ const Bisection = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

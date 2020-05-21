@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Method from "../Method";
 import {
-  RowContainer,
+  MediaContainer,
   Parameters,
   Eval,
   TableStyle,
   Button,
-  Error, LinkIcon, LinkGraph,
+  Error,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import newtonFunction from "./newtonFunction";
 import { methods } from "../../../data/methods";
@@ -69,8 +70,11 @@ const Newton = ({ name }) => {
           Graph {functionText}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"900px"}>
+        <Parameters width={"900px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function f
@@ -108,7 +112,7 @@ const Newton = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p><strong>{name}</strong></p>
           {!error ? (
             <TableStyle>
               <table>
@@ -144,7 +148,7 @@ const Newton = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

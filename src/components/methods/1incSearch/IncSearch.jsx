@@ -5,7 +5,7 @@ import { Link } from "@reach/router";
 
 import Method from "../Method";
 import {
-  RowContainer,
+  MediaContainer,
   Parameters,
   Eval,
   Error,
@@ -60,8 +60,11 @@ const IncSearch = ({ name }) => {
           Graph {functionText}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"950px"}>
+        <Parameters width={"950px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function
@@ -91,7 +94,9 @@ const IncSearch = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <ul>
               {results.map((result, index) => {
@@ -107,7 +112,7 @@ const IncSearch = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

@@ -1,4 +1,4 @@
-import { Parameters, RowContainer, Button } from "../containers/BigContainer";
+import { MatrixParameters, RowContainer, Button } from "../containers/BigContainer";
 import React from "react";
 
 
@@ -10,7 +10,7 @@ const MatrixInputSize = ({
 }) => {
   return (
     <RowContainer>
-      <Parameters>
+      <MatrixParameters>
         <label>
           {type === "square" ? "Size" : "Number of rows (A)"}
           <input
@@ -66,7 +66,7 @@ const MatrixInputSize = ({
           Validate A size (<strong>{matrixSize.rows}</strong> rows and{" "}
           <strong>{matrixSize.columns}</strong> columns)
         </Button>
-      </Parameters>
+      </MatrixParameters>
     </RowContainer>
   );
 };

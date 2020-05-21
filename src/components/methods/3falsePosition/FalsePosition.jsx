@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Method from "../Method";
 import {
-  RowContainer,
+  MediaContainer,
   Parameters,
   Eval,
   TableStyle,
@@ -62,8 +62,11 @@ const FalsePosition = ({ name }) => {
           Graph {functionText}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"1100px"}>
+        <Parameters width={"1100px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function
@@ -93,7 +96,7 @@ const FalsePosition = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p><strong>{name}</strong></p>
           {!error ? (
             <TableStyle>
               <table>
@@ -133,7 +136,7 @@ const FalsePosition = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

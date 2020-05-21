@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import {
-  RowContainer,
+  MediaContainer,
   Parameters,
   Eval,
   Error,
   Button,
-  LinkGraph
+  LinkGraph,
 } from "../../../containers/BigContainer";
-
-import FuncEvalDescription from "./funcEvalDescription";
 
 import * as math from "mathjs";
 import { parse } from "mathjs";
@@ -56,18 +54,17 @@ const FuncEval = ({ name }) => {
     }
   };
   return (
-    <Method
-      title={name}
-      next={methods.find(method => method.index === 1)}
-      description={<FuncEvalDescription />}
-    >
+    <Method title={name} next={methods.find(method => method.index === 1)}>
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
           Graph {functionText}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"700px"}>
+        <Parameters width={"700px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function
@@ -86,9 +83,11 @@ const FuncEval = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
-            <ul>{"f(" + x + ") = " + resultEval.toString()}</ul>
+            <p>{"f(" + x + ") = " + resultEval.toString()}</p>
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
@@ -98,7 +97,7 @@ const FuncEval = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

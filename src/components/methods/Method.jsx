@@ -11,7 +11,6 @@ const Method = ({
   title = "Title to be defined",
   prev,
   next,
-  subTitle = "Method description to be defined",
   description,
   children,
 }) => {
@@ -35,10 +34,10 @@ const Method = ({
           )}
         </Links>
       </TitleLine>
-      <Subtitle>{description ? description : subTitle}</Subtitle>
+      {description && <Subtitle> description </Subtitle>}
       <MainContainer>
         <Side grow>
-          <SideTitle>{"Method demo"}</SideTitle>
+          <SideTitle>{"Method playground"}</SideTitle>
           <FuncEvalLive>{children}</FuncEvalLive>
         </Side>
       </MainContainer>
@@ -68,7 +67,7 @@ const LinkMethod = styled(Link)`
 
 const MainContainer = styled("div")`
   display: flex;
-  margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
+  margin: ${Spacing.md} ${Spacing.xxl} ${Spacing.xl};
   flex-direction: row;
   @media (max-width: 1200px) {
     flex-direction: column;

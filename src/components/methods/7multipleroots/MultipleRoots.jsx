@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Method from "../Method";
 import {
-  RowContainer,
+  MediaContainer,
   Parameters,
   Eval,
   TableStyle,
   Button,
   Error,
-  LinkIcon, LinkGraph,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import multipleRootsFunction from "./multipleRootsFunction";
 import { methods } from "../../../data/methods";
@@ -71,23 +71,24 @@ const MultipleRoots = ({ name }) => {
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
-          Graph {functionText}
+          Graph f(x) = {functionText}
         </Link>
       </LinkGraph>
-      {" or "}
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(firstDerivate)}>
           Graph f'(x) = {firstDerivate}
         </Link>
       </LinkGraph>
-      {" or "}
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(secondDerivate)}>
           Graph f''(x) = {secondDerivate}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"900px"}>
+        <Parameters width={"900px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function f
@@ -133,7 +134,7 @@ const MultipleRoots = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p><strong>{name}</strong></p>
           {!error ? (
             <TableStyle>
               <table>
@@ -169,7 +170,7 @@ const MultipleRoots = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

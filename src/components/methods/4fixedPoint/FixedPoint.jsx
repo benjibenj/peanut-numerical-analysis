@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Method from "../Method";
 import {
-  RowContainer,
+  MediaContainer,
   Parameters,
   Eval,
   TableStyle,
@@ -71,14 +71,16 @@ const FixedPoint = ({ name }) => {
           Graph f(x) = {functionTextF}
         </Link>
       </LinkGraph>
-      {" or "}
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionTextG)}>
           Graph g(x) = {functionTextG}
         </Link>
       </LinkGraph>
-      <RowContainer>
-        <Parameters>
+      <MediaContainer width={"1030px"}>
+        <Parameters width={"1030px"}>
+          <p>
+            <strong>Parameters</strong>
+          </p>
           <form onSubmit={handleSubmit}>
             <label>
               Function f
@@ -116,7 +118,7 @@ const FixedPoint = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <strong>{name}</strong>
+          <p><strong>{name}</strong></p>
           {!error ? (
             <TableStyle>
               <table>
@@ -154,7 +156,7 @@ const FixedPoint = ({ name }) => {
             </React.Fragment>
           )}
         </Eval>
-      </RowContainer>
+      </MediaContainer>
     </Method>
   );
 };

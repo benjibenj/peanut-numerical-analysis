@@ -1,5 +1,5 @@
 import React from "react";
-import { Parameters, Button } from "../containers/BigContainer";
+import { MatrixParameters, Button } from "../containers/BigContainer";
 import styled from "styled-components";
 import { randomInt } from "mathjs";
 import {Spacing} from "../rules";
@@ -22,7 +22,7 @@ const MatrixInput = ({
     for (let i = 0; i < matrixSize.rows; i++) {
       matrix[i] = new Array(matrixSize.columns).fill(0);
       for (let j = 0; j < matrixSize.columns; j++) {
-        matrix[i][j] = randomInt(1, 15);
+        matrix[i][j] = 1;
       }
     }
   }
@@ -87,20 +87,6 @@ const MatrixRow = styled("div")`
   display: flex;
   flex-direction: row;
   margin: ${Spacing.lg};
-`;
-
-const MatrixParameters = styled(Parameters)`
-  input {
-    padding: 13px 0;
-    text-align: center;
-    margin: 0px 5px;
-    height: 12px;
-    width: 50px;
-  }
-  form {
-    text-align: center;
-  }
-  margin-bottom: ${Spacing.xs};
 `;
 
 export default MatrixInput;

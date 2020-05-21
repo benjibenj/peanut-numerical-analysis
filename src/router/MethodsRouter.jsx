@@ -11,7 +11,7 @@ import Bisection from "../components/methods/2bisection/Bisection";
 import FalsePosition from "../components/methods/3falsePosition/FalsePosition";
 import FixedPoint from "../components/methods/4fixedPoint/FixedPoint.jsx";
 import Newton from "../components/methods/5newton/Newton";
-import SolutionWithSecante from "../components/methods/6secante/SolutionWithSecante";
+import Secante from "../components/methods/6secante/Secante";
 import MultipleRoots from "../components/methods/7multipleroots/MultipleRoots";
 import GaussSimple from "../components/methods/8gaussSimple/GaussSimple";
 import GaussPartial from "../components/methods/9gaussPartial/GaussPartial";
@@ -37,7 +37,7 @@ const MethodsRouter = () => {
       <FalsePosition path={methods.find(method => method.index === 3).id} name={methods.find(method => method.index === 3).name} />
       <FixedPoint path={methods.find(method => method.index === 4).id} name={methods.find(method => method.index === 4).name} />
       <Newton path={methods.find(method => method.index === 5).id} name={methods.find(method => method.index === 5).name} />
-      <SolutionWithSecante path={methods.find(method => method.index === 6).id} name={methods.find(method => method.index === 6).name} />
+      <Secante path={methods.find(method => method.index === 6).id} name={methods.find(method => method.index === 6).name} />
       <MultipleRoots path={methods.find(method => method.index === 7).id} name={methods.find(method => method.index === 7).name} />
       <GaussSimple path={methods.find(method => method.index === 8).id} name={methods.find(method => method.index === 8).name} />
       <GaussPartial path={methods.find(method => method.index === 9).id} name={methods.find(method => method.index === 9).name} />
