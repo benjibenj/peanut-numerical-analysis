@@ -9,11 +9,9 @@ import Disqus from "disqus-react"
 const Help = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
-    url: "http://localhost:3000", //this.props.pageUrl
     identifier: "help-page", //this.props.uniqueId
     title: "Help" //this.props.title
   };
-
   return (
     <React.Fragment>
       <Title>Help</Title>

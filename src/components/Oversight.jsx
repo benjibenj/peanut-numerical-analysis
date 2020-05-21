@@ -30,7 +30,6 @@ const Oversight = ({ user, signOut, signInWithGoogle }) => {
     "sag.arangog@gmail.com"];
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
-    url: "http://localhost:3000", //this.props.pageUrl
     identifier: "oversight-page", //this.props.uniqueId
     title: "Oversight", //this.props.title
   };

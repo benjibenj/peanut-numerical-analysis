@@ -4,12 +4,11 @@ import BigContainer from "../containers/BigContainer";
 import CommentContainer from "../containers/CommentContainer";
 import { Typography, Spacing } from "../rules";
 import Disqus from "disqus-react";
-import {Link} from "@reach/router";
+import { Link } from "@reach/router";
 
 const About = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
-    url: "http://localhost:3000", //this.props.pageUrl
     identifier: "about-page", //this.props.uniqueId
     title: "About", //this.props.title
   };
@@ -19,9 +18,10 @@ const About = () => {
       <Title>About</Title>
       <BigContainer>
         <p>
-          This website displays various numerical analysis methods. Those are single
-          variable solving methods, equations systems methods and interpolation
-          methods.
+          This website displays various numerical analysis methods. Those are{" "}
+          <strong>single variable</strong>,{" "}
+          <strong>systems of equations</strong>, and{" "}
+          <strong>interpolation</strong> solving methods.
         </p>
         <p>Libraries/packages used for this project :</p>
         <ul>
@@ -49,6 +49,9 @@ const About = () => {
           </li>
         </ul>
         <p>
+          Big thanks to <em>open-source</em> for existing!
+        </p>
+        <p>
           If you wish to contribute to this project, or to install it locally,
           check out the{" "}
           <a href="https://github.com/benjamin-vaysse/peanut-numerical-analysis">
@@ -56,16 +59,17 @@ const About = () => {
           </a>
         </p>
         <p>
+          Built with <a href={"https://reactjs.org/"}>React</a>
+        </p>
+        <p>
+          Have a look at the
+          <Link to="/oversight"> project oversight </Link>(academic stuff).
+        </p>
+        <p>
           <strong>
             This project is released under{" "}
             <a href="https://opensource.org/licenses/MIT">MIT License</a>.
           </strong>
-        </p>
-        <p>
-          Built with <a href={"https://reactjs.org/"}>React</a>
-        </p>
-        <p>
-          <Link to="/oversight">Have a look at the project oversight (academic stuff)</Link>
         </p>
       </BigContainer>
       <CommentContainer>

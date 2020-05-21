@@ -14,11 +14,6 @@ const Home = () => {
     <React.Fragment>
       <CenteredTitle>
         Peanut
-        <h3>
-          <span role={"img"} aria-label={"peanut-emoji"}>
-            🥜
-          </span>
-        </h3>
       </CenteredTitle>
       <CenteredSubTitle>
         Peanut is a website where you'll find several methods used to solve
@@ -51,7 +46,7 @@ const CenteredTitle = styled(Title)`
 
 const CenteredSubTitle = styled(Subtitle)`
   text-align: center;
-  max-width: none;
+  max-width: none; 
 `;
 
 const MainContainer = styled("div")`
