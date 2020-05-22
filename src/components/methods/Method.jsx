@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BorderRadius, Spacing } from "../../rules";
+import { BorderRadius, Colors, Shadows, Spacing } from "../../rules";
 import { Subtitle, Title } from "../../containers/BigContainer";
 
 import { Link } from "@reach/router";
@@ -22,13 +22,13 @@ const Method = ({
           {prev && (
             <LinkMethod to={"/methods/" + prev.id}>
               {" "}
-              <FontAwesomeIcon icon={"arrow-left"} />
+              <FontAwesomeIcon icon={"arrow-alt-circle-left"} />
               {prev.name}
             </LinkMethod>
           )}
           {next && (
             <LinkMethod to={"/methods/" + next.id}>
-              <FontAwesomeIcon icon={"arrow-right"} />
+              <FontAwesomeIcon icon={"arrow-alt-circle-right"} />
               {next.name}
             </LinkMethod>
           )}
@@ -62,7 +62,17 @@ const LinkMethod = styled(Link)`
   svg {
     margin-right: ${Spacing.sm};
   }
+  padding: ${Spacing.sm} ${Spacing.md};
   margin: ${Spacing.sm};
+  border-radius: ${BorderRadius.lg};
+  background-color: ${Colors.primary.tan.default};
+  color: ${Colors.utility.white.default} !important;
+  text-decoration: none;
+  box-shadow: ${Shadows.level3};
+  &:hover {
+    transform: translateY(-1px);
+    background-color: ${Colors.primary.tan.darker};
+  }
 `;
 
 const MainContainer = styled("div")`
