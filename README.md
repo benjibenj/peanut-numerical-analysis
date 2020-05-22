@@ -2,7 +2,7 @@
 
 Web app presenting several methods used to solve numerical problems.
 
-[Hosted version of the app](https://peanut-numerical-analysis.firebaseapp.com/) (firebase)
+[Hosted version of the app]()
 
 ## 🚀 Getting started 🚀
 
