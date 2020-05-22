@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import useWindowDimensions from "../utils/windowDimensionsHook";
-import {Colors, Spacing, Typography} from "../rules";
+import { Spacing, Typography } from "../rules";
+import {
+  Button,
+  MediaContainer,
+  Parameters,
+  Eval,
+} from "../containers/BigContainer";
 
-import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styled from "styled-components";
 import * as d3 from "d3";
@@ -14,64 +20,146 @@ const Graph = () => {
   const params = new URLSearchParams(window.location.search);
   const size = useWindowDimensions();
   const node = useRef(null);
-  const [functionText, setFunctionText] = useState(params.has('function') ? params.get('function') : "x^2");
+  const [functionText, setFunctionText] = useState(
+    params.has("function") ? params.get("function") : "x^2",
+  );
   const [errorMessage, setErrorMessage] = useState(null);
+  const [grid, setGrid] = useState(false);
+  const [domainIsOn, setDomainIsOn] = useState(false);
+  const [xAxis1Domain, setXAxis1Domain] = useState(-7);
+  const [xAxis2Domain, setXAxis2Domain] = useState(7);
+  const [yAxis1Domain, setYAxis1Domain] = useState(undefined);
+  const [yAxis2Domain, setYAxis2Domain] = useState(undefined);
   const handleSubmit = event => {
     event.preventDefault();
     setErrorMessage(null);
     setFunctionText(event.target.functionText.value);
   };
   useEffect(() => {
+    setErrorMessage(null);
     if (node.current) {
       try {
         functionPlot({
           target: node.current,
           width: size.width > 800 ? 700 : size.width - 80,
           xAxis: {
+            domain:
+              xAxis1Domain && xAxis2Domain
+                ? [xAxis1Domain, xAxis2Domain]
+                : undefined,
             label: "x - axis",
           },
           yAxis: {
+            domain:
+              yAxis1Domain && yAxis2Domain
+                ? [yAxis1Domain, yAxis2Domain]
+                : undefined,
             label: "y - axis",
           },
           height: 480,
-          data: [
-            {
-              fn: functionText,
-            },
-          ],
+          data: [{ fn: functionText, color: "#358180" }],
+          grid: grid,
         });
+      } catch (err) {
+        setErrorMessage(err.toString());
       }
-      catch (err) {
-        setErrorMessage("The provided function isn't correct, please enter an other function")
-      }
-
     }
-  }, [node, functionText, size.width]);
+  }, [
+    node,
+    functionText,
+    size.width,
+    grid,
+    xAxis1Domain,
+    xAxis2Domain,
+    yAxis1Domain,
+    yAxis2Domain,
+  ]);
   return (
-    <CenteredColumn>
-      <Parameters>
+    <MediaContainer width={"1050px"}>
+      <Parameters width={"1050px"}>
+        <p>
+          <strong>Parameters</strong>
+        </p>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="functionText" defaultValue={functionText} />
-          <button>Apply</button>
+          <label>
+            Function f
+            <input
+              type="text"
+              name="functionText"
+              defaultValue={functionText}
+            />
+          </label>
+          <label>
+            Grid on
+            <input
+              type="checkbox"
+              onChange={() => setGrid(!grid)}
+              defaultChecked={grid}
+            />
+          </label>
+          <Button type={"button"} onClick={() => setDomainIsOn(!domainIsOn)}>
+            {domainIsOn ? "Hide domain inputs" : "Define domain"}
+          </Button>
+          {domainIsOn && (
+            <React.Fragment>
+              <div />
+              <label>
+                x - axis : lower value
+                <input
+                  type="number"
+                  step={0.1}
+                  onChange={event => setXAxis1Domain(event.target.value)}
+                  defaultValue={xAxis1Domain}
+                />
+              </label>
+              <label>
+                x - axis : higher value
+                <input
+                  type="number"
+                  step={0.1}
+                  onChange={event => setXAxis2Domain(event.target.value)}
+                  defaultValue={xAxis2Domain}
+                />
+              </label>
+              <label>
+                y - axis : lower value
+                <input
+                  type="number"
+                  step={0.1}
+                  onChange={event => setYAxis1Domain(event.target.value)}
+                  defaultValue={yAxis1Domain}
+                />
+              </label>
+              <label>
+                y - axis : higher value
+                <input
+                  type="number"
+                  step={0.1}
+                  onChange={event => setYAxis2Domain(event.target.value)}
+                  defaultValue={yAxis2Domain}
+                />
+              </label>
+            </React.Fragment>
+          )}
+          <Button primary>Plot the function</Button>
         </form>
       </Parameters>
-      <GraphTitle>f(x) = {functionText}</GraphTitle>
-      {!errorMessage ? (<GraphChart ref={node} />) : (
-        <ErrorMessage>
-          <FontAwesomeIcon icon={"exclamation-circle"}/>
-          {errorMessage}
-        </ErrorMessage>)}
-    </CenteredColumn>
+      <Eval>
+        <p>
+          <strong>Graph</strong>
+        </p>
+        {!errorMessage ? (
+          <GraphChart ref={node} />
+        ) : (
+          <ErrorMessage>
+            <FontAwesomeIcon icon={"exclamation-circle"} />
+            {errorMessage}
+          </ErrorMessage>
+        )}
+      </Eval>
+    </MediaContainer>
   );
 };
-
-const CenteredColumn = styled("div")`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 
 const GraphChart = styled("div")`
   margin: 0 0 ${Spacing.md} 0;
@@ -89,49 +177,5 @@ const GraphTitle = styled("div")`
   font-size: ${Typography.subTitle.fontSize};
   text-align: center;
 `;
-
-const Parameters = styled("div")`
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  margin: ${Spacing.md} 0;
-  input {
-    width: 360px;
-    background: #fff;
-    color: ${Colors.utility.black.default};
-    font: inherit;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
-    border: 0;
-    outline: 0;
-    padding: 22px 18px;
-  }
-  button {
-      display: inline-block;
-      color: inherit;
-      font: inherit;
-      border: 0;
-      outline: 0;
-      padding: 0;
-      transition: all 200ms ease-in;
-      cursor: pointer;
-      background: ${Colors.primary.ocean.default};
-      color: white;
-      box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
-      border-radius: 2px;
-      padding: 12px 36px;
-      
-      &:hover {
-        background: ${Colors.primary.ocean.darker};
-      }
-      
-      &:active {
-        box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
-      }
-      margin-left: -85px;
-    }
-  }
-`;
-
-
 
 export default Graph;

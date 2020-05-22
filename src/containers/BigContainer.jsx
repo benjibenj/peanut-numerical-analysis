@@ -63,7 +63,7 @@ export const Parameters = styled("div")`
     text-align: center;
   }
   form {
-    margin-left: ${Spacing.md};
+    padding: ${Spacing.md};
     display: grid;
     grid-template-columns: 300px;
     grid-template-rows: 75px;
@@ -77,6 +77,9 @@ export const Parameters = styled("div")`
     }
     justify-items: left;
     align-items: flex-start;
+    border-radius: ${BorderRadius.sm};
+    border: 1px solid ${Colors.primary.ocean.lighter};
+    box-shadow: ${Shadows.level3};
   }
   label {
     display: block;
@@ -90,9 +93,6 @@ export const Parameters = styled("div")`
     padding: 12px 20px;
     box-sizing: border-box;
   }
-  border-radius: ${BorderRadius.sm};
-  border: 1px solid ${Colors.primary.ocean.lighter};
-  box-shadow: ${Shadows.level3};
 `;
 
 export const Error = styled("div")`
@@ -108,20 +108,31 @@ export const TableStyle = styled("div")`
   table,
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid #ccc;
     border-collapse: collapse;
     padding: ${Spacing.xs};
     margin-left:auto; 
     margin-right:auto;
+  }
+  /* Zebra striping */
+  tr:nth-of-type(odd) { 
+    background: #eee;   
+  }
+  th { 
+    background: ${Colors.primary.ocean.darker}; 
+    color: white; 
+    font-weight: bold; 
   }
 `;
 
 export const Button = styled("button")`
   font-size: inherit;
   border: 2px solid ${Colors.primary.ocean.default};
-  color: ${Colors.primary.ocean.darker};
+  color: ${props => props.primary ? Colors.utility.white.default : Colors.primary.ocean.darker};
+  background-color: ${props => props.primary ? Colors.primary.ocean.default : Colors.utility.white.default};
   border-radius: ${BorderRadius.sm};
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const LinkIcon = styled(Link)`
@@ -146,6 +157,10 @@ export const LinkGraph = styled("div")`
     border-radius: ${BorderRadius.md};
     background-color: ${Colors.primary.tan.default};
     text-align: center;
+  }
+  a:hover {
+    transform: translateY(-1px);
+    background-color: ${Colors.primary.tan.darker};
   }
 `;
 
