@@ -102,8 +102,7 @@ const Graph = () => {
           </Button>
           {domainIsOn && (
             <React.Fragment>
-              <div />
-              <label>
+              <LabelGridFirstColumn>
                 x - axis : lower value
                 <input
                   type="number"
@@ -111,7 +110,7 @@ const Graph = () => {
                   onChange={event => setXAxis1Domain(event.target.value)}
                   defaultValue={xAxis1Domain}
                 />
-              </label>
+              </LabelGridFirstColumn>
               <label>
                 x - axis : higher value
                 <input
@@ -171,6 +170,10 @@ const ErrorMessage = styled("div")`
   svg {
     padding: 0 ${Spacing.md};
   }
+`;
+
+const LabelGridFirstColumn = styled("label")`
+  grid-column-start: 1;
 `;
 
 export default Graph;

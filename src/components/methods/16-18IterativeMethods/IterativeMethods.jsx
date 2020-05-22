@@ -99,51 +99,53 @@ const IterativeMethods = ({ name }) => {
     >
       <ParametersMatrix>
         {!paramSet ? (
-          <form onSubmit={handleSubmit}>
-            <label>
-              Method{"  "}
-              <select
-                name="method"
-                value={method}
-                onChange={event => setMethod(parseInt(event.target.value))}
-              >
-                <option value={1}>Jacobi</option>
-                <option value={2}>Gauss-Seidel</option>
-                <option value={3}>SOR</option>
-              </select>
-            </label>
-            {method === 3 && (
+          <React.Fragment>
+            <form onSubmit={handleSubmit}>
               <label>
-                w value (relaxation parameter)
-                <input
-                  type="number"
-                  name="wValue"
-                  step={0.01}
-                  min={0}
-                  max={2}
-                  defaultValue={wValue}
-                />
+                Method{"  "}
+                <select
+                  name="method"
+                  value={method}
+                  onChange={event => setMethod(parseInt(event.target.value))}
+                >
+                  <option value={1}>Jacobi</option>
+                  <option value={2}>Gauss-Seidel</option>
+                  <option value={3}>SOR</option>
+                </select>
               </label>
-            )}
-            <label>
-              Tolerance
-              <input type="text" name="tol" defaultValue={tol} />
-            </label>
-            <label>
-              Norm value{"  "}
-              <select name="normValue" defaultValue={normValue}>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value="inf">inf</option>
-              </select>
-            </label>
-            <label>
-              Max iterations (max 100)
-              <input type="number" name="NMax" defaultValue={100} />
-            </label>
-            <Button>Confirm</Button>
-          </form>
+              {method === 3 && (
+                <label>
+                  w value (relaxation parameter)
+                  <input
+                    type="number"
+                    name="wValue"
+                    step={0.01}
+                    min={0}
+                    max={2}
+                    defaultValue={wValue}
+                  />
+                </label>
+              )}
+              <label>
+                Tolerance
+                <input type="text" name="tol" defaultValue={tol} />
+              </label>
+              <label>
+                Norm value{"  "}
+                <select name="normValue" defaultValue={normValue}>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value="inf">inf</option>
+                </select>
+              </label>
+              <label>
+                Max iterations (max 100)
+                <input type="number" name="NMax" defaultValue={100} />
+              </label>
+              <Button>Confirm</Button>
+            </form>
+          </React.Fragment>
         ) : (
           <Column>
             <ul>
@@ -271,8 +273,8 @@ const IterativeMethods = ({ name }) => {
           <p>
             <em>
               There are some issues with the JS library used to calculate the
-              eigtenvalues, for a correct value of the spectral radius, use MathLab :
-              `max(abs(eig(T)))`.
+              eigtenvalues, for a correct value of the spectral radius, use
+              MathLab : `max(abs(eig(T)))`.
             </em>
           </p>
           <p>
@@ -354,10 +356,23 @@ const ParametersMatrix = styled(Parameters)`
   display: flex;
   justify-content: center;
   form {
-    display: flex;
+    display: grid;
+    grid-template-rows: 75px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: 200px 200px 200px 200px;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+    @media (max-width: 990px) {
+      grid-template-columns: 200px 200px 200px;
+    }
+    @media (max-width: 790px) {
+      grid-template-columns: 200px 200px;
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: 200px;
+    }
   }
   select {
     border: 2px solid ${Colors.primary.ocean.default};

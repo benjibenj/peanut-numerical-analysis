@@ -133,6 +133,7 @@ export const Button = styled("button")`
   border-radius: ${BorderRadius.sm};
   font-weight: bold;
   cursor: pointer;
+  grid-column-start: 1;
 `;
 
 export const LinkIcon = styled(Link)`

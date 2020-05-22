@@ -34,7 +34,6 @@ const Oversight = () => {
             Check out Github project
           </a>
         </OverSightContainer>
-        )}
       </BigContainer>
       <CommentContainer>
         <Disqus.DiscussionEmbed
@@ -50,7 +49,7 @@ const OverSightContainer = styled("div")`
   display: flex;
   flex-direction: column;
   a {
-    margin: ${Spacing.lg} 0;
+    margin: ${Spacing.md} 0;
   }
 `;
 

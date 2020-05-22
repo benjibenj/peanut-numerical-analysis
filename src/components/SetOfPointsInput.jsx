@@ -39,7 +39,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
   return (
     <CustomParameters>
       <form onSubmit={handleSubmit}>
-        <TableStyle>
+        <TableSetOfPointsStyle>
           <table>
             <tbody>
               <tr>
@@ -92,7 +92,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
               </tr>
             </tbody>
           </table>
-        </TableStyle>
+        </TableSetOfPointsStyle>
         <br />
         <Button>{"Save"}</Button>
       </form>
@@ -108,11 +108,21 @@ const CustomParameters = styled(Parameters)`
     height: 12px;
     width: 50px;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
   margin-bottom: ${Spacing.xs};
 `;
 
 const FirstRow = styled("td")`
   padding: ${Spacing.sm} ${Spacing.md} !important;
+`;
+
+const TableSetOfPointsStyle = styled(TableStyle)`
+  tr { 
+    background: white !important;
+  }
 `;
 
 export default SetOfPointsInput;
