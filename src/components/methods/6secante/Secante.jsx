@@ -6,7 +6,8 @@ import {
   Eval,
   TableStyle,
   Button,
-  Error, LinkIcon, LinkGraph,
+  Error,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import secanteFunction from "./secanteFunction";
 import { methods } from "../../../data/methods";

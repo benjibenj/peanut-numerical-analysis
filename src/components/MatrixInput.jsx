@@ -1,7 +1,6 @@
 import React from "react";
 import { MatrixParameters, Button } from "../containers/BigContainer";
 import styled from "styled-components";
-import { randomInt } from "mathjs";
 import {Spacing} from "../rules";
 
 const MatrixInput = ({

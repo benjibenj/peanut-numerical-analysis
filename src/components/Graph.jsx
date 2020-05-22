@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import useWindowDimensions from "../utils/windowDimensionsHook";
-import { Spacing, Typography } from "../rules";
+import { Spacing } from "../rules";
 import {
   Button,
   MediaContainer,
@@ -171,11 +171,6 @@ const ErrorMessage = styled("div")`
   svg {
     padding: 0 ${Spacing.md};
   }
-`;
-
-const GraphTitle = styled("div")`
-  font-size: ${Typography.subTitle.fontSize};
-  text-align: center;
 `;
 
 export default Graph;

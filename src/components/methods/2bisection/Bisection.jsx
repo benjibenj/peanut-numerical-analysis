@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Method from "../Method";
 import {
-  RowContainer,
   Parameters,
   Eval,
   TableStyle,
   Button,
   Error,
-  LinkGraph, MediaContainer,
+  LinkGraph,
+  MediaContainer,
 } from "../../../containers/BigContainer";
 
 import bisectionFunction from "./bisectionFunction";

@@ -1,4 +1,3 @@
-import { rationalize } from "mathjs";
 
 const lagrangeFunction = points => {
   let results = {
@@ -6,7 +5,6 @@ const lagrangeFunction = points => {
     interpolationPolynomials: [],
   };
   let degree = points.x.length;
-  let expression = "";
   for (let k = 0; k < degree; k++) {
     let numerator = "";
     let denominator = "";

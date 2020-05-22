@@ -1,5 +1,5 @@
 const tril = m => {
-  if (m.length !== m[0].length) throw "Not a square matrix";
+  if (m.length !== m[0].length) throw new Error("Not a square matrix");
   let returnMatrix = Array(m.length);
   for (let i = 0; i < m.length; i++) {
     returnMatrix[i] = new Array(m[0].length).fill(0);

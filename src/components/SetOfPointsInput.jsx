@@ -17,7 +17,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
         y: points.y.slice(0, nbPoints),
       }));
     }
-  }, [nbPoints]);
+  }, [nbPoints, points.x, points.y, setPoints]);
   const handleSubmit = event => {
     event.preventDefault();
     let tempPoints = {

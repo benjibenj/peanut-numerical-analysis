@@ -20,8 +20,8 @@ const renderLatexPolynom = array => {
         if(value === 1){
           value = "";
         }
-        return sign + value + x;
       }
+      return sign + value + x;
     })
     .join("");
 };
