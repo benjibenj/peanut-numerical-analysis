@@ -99,7 +99,7 @@ const Lagrange = ({ name }) => {
               )}
               <p>Lagrange polynom</p>
               {results.polynom && (
-                <BlockMath math={"p(x) = " + results.polynom} />
+                <BlockMath math={results.polynom} />
               )}
             </React.Fragment>
           ) : (

@@ -84,7 +84,8 @@ const Vandermonde = ({ name }) => {
               />
               <p>Polynomial coefficients :</p>
               <p>[{results.polynom.join(", ")}]</p>
-              <BlockMath math={"p(x) = " + renderLatexPolynom(results.polynom)} />
+              <p>Vandermonde polynom</p>
+              <BlockMath math={renderLatexPolynom(results.polynom)} />
             </React.Fragment>
           ) : (
             <React.Fragment>
