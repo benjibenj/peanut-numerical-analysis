@@ -40,7 +40,11 @@ const SplinesLinear = ({ name }) => {
       : setResults(undefined);
   }, [points, methodState]);
   return (
-    <Method title={name} prev={methods.find(method => method.index === 20)}>
+    <Method
+      title={name}
+      prev={methods.find(method => method.index === 21)}
+      next={methods.find(method => method.index === 23)}
+    >
       {methodState.points === "input" ? (
         <CenteredColumn>
           <SetOfPointsInput

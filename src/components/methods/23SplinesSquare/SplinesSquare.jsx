@@ -12,9 +12,9 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlockMath, InlineMath } from "react-katex";
-import splinesCubicFunction from "./splinesCubicFunction";
+import splinesSquareFunction from "./SplinesSquare";
 
-const SplinesCubic = ({ name }) => {
+const SplinesSquare = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
     y: [15.5, 3, 8, 1],
@@ -36,11 +36,15 @@ const SplinesCubic = ({ name }) => {
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
     methodState.points !== "input"
-      ? setResults(splinesCubicFunction(points))
+      ? setResults(splinesSquareFunction(points))
       : setResults(undefined);
   }, [points, methodState]);
   return (
-    <Method title={name} prev={methods.find(method => method.index === 20)}>
+    <Method
+      title={name}
+      prev={methods.find(method => method.index === 22)}
+      next={methods.find(method => method.index === 24)}
+    >
       {methodState.points === "input" ? (
         <CenteredColumn>
           <SetOfPointsInput
@@ -135,4 +139,4 @@ const Results = styled("div")`
   align-items: center;
 `;
 
-export default SplinesCubic;
+export default SplinesSquare;

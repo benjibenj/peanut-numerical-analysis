@@ -12,9 +12,9 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlockMath, InlineMath } from "react-katex";
-import splinesSquareFunction from "./splinesSquare";
+import splinesCubicFunction from "./splinesCubicFunction";
 
-const SplinesSquare = ({ name }) => {
+const SplinesCubic = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
     y: [15.5, 3, 8, 1],
@@ -36,11 +36,11 @@ const SplinesSquare = ({ name }) => {
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
     methodState.points !== "input"
-      ? setResults(splinesSquareFunction(points))
+      ? setResults(splinesCubicFunction(points))
       : setResults(undefined);
   }, [points, methodState]);
   return (
-    <Method title={name} prev={methods.find(method => method.index === 20)}>
+    <Method title={name} prev={methods.find(method => method.index === 23)}>
       {methodState.points === "input" ? (
         <CenteredColumn>
           <SetOfPointsInput
@@ -98,9 +98,7 @@ const SplinesSquare = ({ name }) => {
                 </TableStyle>
               )}
               <p>Lagrange polynom</p>
-              {results.polynom && (
-                <BlockMath math={results.polynom} />
-              )}
+              {results.polynom && <BlockMath math={results.polynom} />}
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -135,4 +133,4 @@ const Results = styled("div")`
   align-items: center;
 `;
 
-export default SplinesSquare;
+export default SplinesCubic;

@@ -40,7 +40,11 @@ const Lagrange = ({ name }) => {
       : setResults(undefined);
   }, [points, methodState]);
   return (
-    <Method title={name} prev={methods.find(method => method.index === 20)}>
+    <Method
+      title={name}
+      prev={methods.find(method => method.index === 20)}
+      next={methods.find(method => method.index === 22)}
+    >
       {methodState.points === "input" ? (
         <CenteredColumn>
           <SetOfPointsInput
@@ -98,9 +102,7 @@ const Lagrange = ({ name }) => {
                 </TableStyle>
               )}
               <p>Lagrange polynom</p>
-              {results.polynom && (
-                <BlockMath math={results.polynom} />
-              )}
+              {results.polynom && <BlockMath math={results.polynom} />}
             </React.Fragment>
           ) : (
             <React.Fragment>

@@ -27,8 +27,8 @@ import Vandermonde from "../components/methods/19Vandermonde/Vandermonde";
 import NewtonInterpolation from "../components/methods/20NewtonInterpolation/NewtonInterpolation";
 import Lagrange from "../components/methods/21Lagrange/Lagrange";
 import SplinesLinear from "../components/methods/22SplinesLinear/SplinesLinear";
-import SplinesSquare from "../components/methods/22SplinesSquare/SplinesSquare";
-import SplinesCubic from "../components/methods/23SplinesCubic/SplinesCubic";
+import SplinesSquare from "../components/methods/23SplinesSquare/SplinesSquare";
+import SplinesCubic from "../components/methods/24SplinesCubic/SplinesCubic";
 
 const MethodsRouter = () => {
   return (
