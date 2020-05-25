@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, TableStyle } from "../../../containers/BigContainer";
+import { Button, Error, TableStyle, Results, Inputs } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -132,11 +132,6 @@ const CenteredColumn = styled("div")`
   align-items: center;
 `;
 
-const Results = styled("div")`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+
 
 export default SplinesSquare;

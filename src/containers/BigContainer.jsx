@@ -217,4 +217,30 @@ export const MatrixParameters = styled("div")`
   margin-bottom: ${Spacing.xs};
 `;
 
+export const Results = styled("div")`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 780px) {
+    font-size: 13px;
+  }
+  @media (max-width: 660px) {
+    font-size: 11px;
+  }
+  @media (max-width: 570px) {
+    font-size: 9px;
+  }
+`;
+
+export const Inputs = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (max-width: 570px) {
+    flex-direction: column;
+  }
+`;
+
 export default BigContainer;

@@ -10,6 +10,8 @@ import {
   Button,
   TableStyle,
   Error,
+  Results,
+  Inputs
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -332,20 +334,6 @@ const IterativeMethods = ({ name }) => {
     </Method>
   );
 };
-
-const Results = styled("div")`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Inputs = styled("div")`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-`;
 
 const Column = styled("div")`
   display: flex;

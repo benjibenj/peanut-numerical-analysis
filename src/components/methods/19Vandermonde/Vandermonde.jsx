@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error } from "../../../containers/BigContainer";
+import { Button, Error, Results} from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -102,13 +102,6 @@ const Vandermonde = ({ name }) => {
   );
 };
 const CenteredColumn = styled("div")`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Results = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: center;
