@@ -32,7 +32,7 @@ const Home = () => {
         </p>
       </CenteredSubTitle>
       <MainContainer>
-        <h3>Provide a function for the graph : </h3>
+        <h4>Provide a function for the graph : </h4>
         <Graph />
       </MainContainer>
     </React.Fragment>
@@ -47,6 +47,9 @@ const CenteredTitle = styled(Title)`
 const CenteredSubTitle = styled(Subtitle)`
   text-align: center;
   max-width: none; 
+  @media (max-width: 425px){
+    font-size: 15px;
+  }
 `;
 
 const MainContainer = styled("div")`

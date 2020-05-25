@@ -99,7 +99,7 @@ const FalsePosition = ({ name }) => {
           <p><strong>{name}</strong></p>
           {!error ? (
             <TableStyle>
-              <table>
+            <table>
                 <thead>
                   <tr>
                     <th>Iteration</th>

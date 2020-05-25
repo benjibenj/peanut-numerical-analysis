@@ -17,6 +17,12 @@ const Container = styled("div")`
 export const Title = styled("div")`
   font-size: ${Typography.largeTitle.fontSize};
   margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
+  @media (max-width: 440px) {
+    margin: ${Spacing.xl};
+  }
+  @media (max-width: 340px) {
+    margin: ${Spacing.lg};
+  }
 `;
 
 export const Subtitle = styled("div")`
@@ -25,6 +31,12 @@ export const Subtitle = styled("div")`
   margin: ${Spacing.lg} ${Spacing.xxl} ${Spacing.xl};
   svg {
     margin-right: ${Spacing.sm};
+  }
+  @media (max-width: 440px) {
+    margin: ${Spacing.xl};
+  }
+  @media (max-width: 340px) {
+    margin: ${Spacing.lg};
   }
 `;
 
@@ -63,6 +75,7 @@ export const Parameters = styled("div")`
     text-align: center;
   }
   form {
+    background-color: white;
     padding: ${Spacing.md};
     display: grid;
     grid-template-columns: 300px;
@@ -75,7 +88,11 @@ export const Parameters = styled("div")`
     @media (max-width: 800px) {
       grid-template-columns: 300px;
     }
+    @media (max-width: 360px) {
+      grid-template-columns: 250px;
+    }
     justify-items: left;
+    text-align: left;
     align-items: flex-start;
     border-radius: ${BorderRadius.sm};
     border: 1px solid ${Colors.primary.ocean.lighter};
@@ -122,6 +139,17 @@ export const TableStyle = styled("div")`
     background: ${Colors.primary.ocean.darker}; 
     color: white; 
     font-weight: bold; 
+  }
+  @media (max-width: ${props => props.width ? props.width : "700px"}) {
+    font-size: 12px;
+  }
+  @media (max-width: ${props => props.widthTwo ? props.widthTwo : "580px"}) {
+    th,
+    td {
+      padding: 0;
+      word-wrap: break-word;
+      max-width: 50px;
+    }
   }
 `;
 

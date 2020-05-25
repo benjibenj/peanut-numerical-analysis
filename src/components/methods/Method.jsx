@@ -51,11 +51,24 @@ const TitleLine = styled("div")`
   align-items: center;
   justify-content: space-between;
   margin-right: ${Spacing.lg};
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const Links = styled("div")`
   display: flex;
   flex-direction: column;
+  @media (max-width: 500px) {
+    flex-direction: row;
+    margin: 0 ${Spacing.xxl};
+  }
+  @media (max-width: 440px) {
+    margin: 0 ${Spacing.xl};
+  }
+  @media (max-width: 340px) {
+    margin: 0 ${Spacing.lg};
+  }
 `;
 
 const LinkMethod = styled(Link)`
@@ -64,6 +77,9 @@ const LinkMethod = styled(Link)`
   }
   padding: ${Spacing.sm} ${Spacing.md};
   margin: ${Spacing.sm};
+  @media (max-width: 500px) {
+    margin: 0 ${Spacing.sm} 0 0;
+  }
   border-radius: ${BorderRadius.lg};
   background-color: ${Colors.primary.tan.default};
   color: ${Colors.utility.white.default} !important;
@@ -78,6 +94,13 @@ const LinkMethod = styled(Link)`
 const MainContainer = styled("div")`
   display: flex;
   margin: ${Spacing.md} ${Spacing.xxl} ${Spacing.xl};
+  @media (max-width: 440px) {
+    margin: ${Spacing.md} ${Spacing.xl} ${Spacing.xl};
+    font-size: 13px;
+  }
+  @media (max-width: 340px) {
+    margin: ${Spacing.md} ${Spacing.lg} ${Spacing.xl};
+  }
   flex-direction: row;
   @media (max-width: 1200px) {
     flex-direction: column;

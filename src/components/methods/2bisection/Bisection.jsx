@@ -99,7 +99,7 @@ const Bisection = ({ name }) => {
         <Eval>
           <p><strong>{name}</strong></p>
           {!error ? (
-            <TableStyle>
+            <TableStyle widthTwo={"584px"}>
               <table>
                 <thead>
                   <tr>
