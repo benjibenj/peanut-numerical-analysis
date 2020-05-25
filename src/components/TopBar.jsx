@@ -52,6 +52,17 @@ const TopBarContainer = styled("nav")`
     padding: ${Spacing.md};
     text-decoration: none;
   }
+  @media (max-width: 420px) {
+    li a {
+      font-size: 13px;
+    }
+  }
+  @media (max-width: 384px) {
+    li a {
+      padding: 18px 8px;
+      font-size: 11px;
+    }
+  }
   width: 100%;
   background-color: ${Colors.primary.tan.default};
   border-bottom: 2px solid ${Colors.utility.black.default};
