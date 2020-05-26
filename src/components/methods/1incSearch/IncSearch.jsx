@@ -54,6 +54,8 @@ const IncSearch = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 0)}
       next={methods.find(method => method.index === 2)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/1incSearch/incSearchFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/1incSearch/pseudoCode/incrementalSearch.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
