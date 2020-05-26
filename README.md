@@ -2,7 +2,7 @@
 
 Web app presenting several methods used to solve numerical problems.
 
-[Hosted version of the app]()
+[Hosted version of the app](https://peanut-eight.now.sh)
 
 ## 🚀 Getting started 🚀
 
