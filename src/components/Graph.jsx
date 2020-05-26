@@ -57,7 +57,12 @@ const Graph = () => {
             label: "y - axis",
           },
           height: 480,
-          data: [{ fn: functionText, color: "#358180" }],
+          data: [{
+            fn: functionText,
+            color: "#358180",
+            sampler: 'builtIn',
+            graphType: 'polyline'
+          }],
           grid: grid,
         });
       } catch (err) {

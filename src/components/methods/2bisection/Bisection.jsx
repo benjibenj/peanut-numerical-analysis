@@ -131,7 +131,7 @@ const Bisection = ({ name }) => {
           ) : (
             <React.Fragment>
               <Error>{error}</Error>
-              <Link to={"help"}>
+              <Link to={"/help"}>
                 <FontAwesomeIcon icon={"question-circle"} /> Help Page
               </Link>
             </React.Fragment>

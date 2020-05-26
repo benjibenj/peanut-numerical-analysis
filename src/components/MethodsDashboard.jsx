@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 import { Title, Subtitle } from "../containers/BigContainer";
 import { BorderRadius, Colors, Spacing, Typography } from "../rules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {methods} from "../data/methods";
+import { methods } from "../data/methods";
 
 const MethodsDashboard = () => {
   return (
@@ -12,6 +12,13 @@ const MethodsDashboard = () => {
       <Title>Methods</Title>
       <Subtitle>30 methods to solve numerical problems</Subtitle>
       <MainContainer>
+        <ThemeTitle>
+          <FontAwesomeIcon icon={"dove"} />
+          Solving systems by graphing
+        </ThemeTitle>
+        <Theme>
+          <ModuleLink to={"/graph"}>Function plotter</ModuleLink>
+        </Theme>
         <ThemeTitle>
           <FontAwesomeIcon icon={"otter"} />
           Solving equations of one variable
