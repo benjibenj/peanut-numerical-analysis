@@ -1,4 +1,4 @@
-# Peanut Numerical Analysis
+# Peanut - A Numerical Analysis Web App
 
 Web app presenting several methods used to solve numerical problems.
 
