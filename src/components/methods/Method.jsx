@@ -47,9 +47,11 @@ const Method = ({
         <AlgoInfo>
           <h2>{title + " "}algorithm</h2>
           <ExternalStyledLink target="_blank" href={jsAlgorithm}>
+            <FontAwesomeIcon icon={"code"} />
             Code (javascript)
           </ExternalStyledLink>
           <ExternalStyledLink target="_blank" href={pseudoCode}>
+            <FontAwesomeIcon icon={"align-left"} />
             Pseudo-code
           </ExternalStyledLink>
         </AlgoInfo>
