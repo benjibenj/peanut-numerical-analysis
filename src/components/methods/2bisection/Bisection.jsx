@@ -57,6 +57,8 @@ const Bisection = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 1)}
       next={methods.find(method => method.index === 3)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/2bisection/bisectionFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/2bisection/pseudoCode/bisection.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
