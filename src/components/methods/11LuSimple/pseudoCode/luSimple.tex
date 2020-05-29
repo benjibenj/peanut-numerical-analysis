@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.0in,paperwidth=8.5in,left=1.18in,right=1.18in,top=0.98in,bottom=0.98in,headheight=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.5in,1.0in,1.5in,2.0in,2.5in,3.0in,3.5in,4.0in,4.5in,5.0in,5.5in,6.0in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\Alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\textbf{\uline{LU Factorization (SIMPLE)}}\par
+
+\begin{enumerate}
+	\item Ask the user to input a matrix. We will call it A. Has to be a squared matrix. \par
+
+	\item Now we take the size of matrix A and store in in a variable we will call n. \par
+
+	\item Next, we create 2 more matrices, we call them L and U. Matrices L and U need to have the following characteristics, they both need to be the same size as matrix A, all of the diagonal elements of L will be 1 and the rest will be 0. All the elements of U will be 0. \par
+
+	\item Next step is to create an auxiliary variable we will call M and its initial value is the same as A.\par
+
+	\item Show the user the zero-step printing the matrices L and U.\par
+
+	\item Now we will begin to execute the method.\par
+
+\begin{enumerate}
+	\item we make a cycle for i=1 < n-1\par
+
+\begin{enumerate}
+	\item if a diagonal element = 0 \par
+
+\begin{enumerate}
+	\item print $``$Method doesn’t work, other method needed$"$ \par
+
+	\item for j = i+1 <n\par
+
+	\item if element M\textsubscript{ji }$ \neq $  0, we then find the multipliers for the pivot. We will assign these as elements of L: L\textsubscript{ji }= M\textsubscript{ji}/ M\textsubscript{ii }\par
+
+
+\end{enumerate}
+	\item Now the row operation commences for the elements of the matrix that are below the element M\textsubscript{ii. }Turning them all 0\par
+
+	\item End cycle j\par
+
+
+\end{enumerate}
+	\item Now we assign each element in row i of M and of row i in U and we add 1 to i so it can take the next element in the diagonal. \par
+
+	\item Print each step so the user can see the process.\par
+
+	\item End of cycle i\par
+
+
+\end{enumerate}
+	\item End of method 
+\end{enumerate}\par
+
+
+\printbibliography
+\end{document}

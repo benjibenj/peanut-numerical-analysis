@@ -1,0 +1,222 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.0in,paperwidth=8.5in,left=1.18in,right=1.18in,top=0.98in,bottom=0.98in,headheight=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.5in,1.0in,1.5in,2.0in,2.5in,3.0in,3.5in,4.0in,4.5in,5.0in,5.5in,6.0in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\setlength{\parskip}{0.0pt}
+\textbf{\uline{Guassian Simple }}\par
+
+
+\vspace{\baselineskip}
+\begin{enumerate}
+	\item Ask the user for matrix A \par
+
+
+\vspace{\baselineskip}
+	\item Ask the user for computable vector b and whole number n\par
+
+
+\vspace{\baselineskip}
+\setlength{\parskip}{8.04pt}
+\setlength{\parskip}{0.0pt}
+\begin{enumerate}
+	\item For i = 1< n\par
+
+\begin{enumerate}
+	\item For j = 1 < n+1\par
+
+	\item Read A\textsubscript{ij}\par
+
+
+\end{enumerate}
+	\item Next j\par
+
+	\item Next i\par
+
+
+\end{enumerate}
+	\item Apply Gauss elimination on Matrix A\par
+
+\begin{enumerate}
+	\item For i = 1 < n-1\par
+
+\begin{enumerate}
+	\item If A\textsubscript{ij} = 0\par
+
+	\item Print $``$Mathematical Error!$"$ \par
+
+	\item Stop\par
+
+
+\end{enumerate}
+	\item End if\par
+
+	\item For j = i+1 < n\par
+
+\begin{enumerate}
+	\item Ratio = A\textsubscript{ij }/ A\textsubscript{ii }\par
+
+	\item For k = 1 to n+1\par
+
+\begin{enumerate}
+	\item A\textsubscript{jk }= A\textsubscript{jk }– Ratio $\ast$  A\textsubscript{ik}\par
+
+
+\end{enumerate}
+\end{enumerate}
+	\item Next k\par
+
+	\item Next j\par
+
+	\item Next i\par
+
+
+\end{enumerate}
+	\item Obtaining solution by back substitution \par
+
+\begin{enumerate}
+	\item X\textsubscript{n\  }= A\textsubscript{n,n+1 }/ A\textsubscript{nn}\par
+
+	\item For i = n-1 < 1 (Step: -1)\par
+
+\begin{enumerate}
+	\item X\textsubscript{i }= A\textsubscript{i,n+1 }\par
+
+	\item For j = i +1 < n\par
+
+\begin{enumerate}
+	\item x\textsubscript{i }= x\textsubscript{i}- A\textsubscript{ij }$\ast$  x\textsubscript{j }\par
+
+
+\end{enumerate}
+	\item next j\par
+
+	\item x\textsubscript{i }= x\textsubscript{i }/ A\textsubscript{ii }\par
+
+
+\end{enumerate}
+	\item next i \par
+
+
+\end{enumerate}
+	\item  Display solution \par
+
+\begin{enumerate}
+	\item For i = 1<n\par
+
+\begin{enumerate}
+	\item Print x\textsubscript{i\  }\par
+
+
+\end{enumerate}
+	\item Next i \par
+
+
+\end{enumerate}
+	\item Stop 
+\end{enumerate}\par
+
+---------------\par
+
+Note: All array indexes are assumed to start from 1.\par
+
+
+\printbibliography
+\end{document}

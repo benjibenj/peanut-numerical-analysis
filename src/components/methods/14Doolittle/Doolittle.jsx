@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
-import doolittleFunction from "./DoolittleFunction";
+import doolittleFunction from "./doolittleFunction";
 
 import styled from "styled-components";
 
@@ -50,6 +50,8 @@ const Doolittle = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 13)}
       next={methods.find(method => method.index === 15)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/14Doolittle/doolittleFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/14Doolittle/pseudoCode/doolittle.pdf"}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (

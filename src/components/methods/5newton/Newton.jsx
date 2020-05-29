@@ -64,6 +64,8 @@ const Newton = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 4)}
       next={methods.find(method => method.index === 6)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/5newton/newtonFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/5newton/pseudoCode/newton.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>

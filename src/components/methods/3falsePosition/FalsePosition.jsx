@@ -56,6 +56,8 @@ const FalsePosition = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 2)}
       next={methods.find(method => method.index === 4)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/3falsePosition/falsePositionFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/3falsePosition/pseudoCode/falsePosition.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>

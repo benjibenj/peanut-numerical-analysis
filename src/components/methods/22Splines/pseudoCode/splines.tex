@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.0in,paperwidth=8.5in,left=1.18in,right=1.18in,top=0.98in,bottom=0.98in,headheight=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.5in,1.0in,1.5in,2.0in,2.5in,3.0in,3.5in,4.0in,4.5in,5.0in,5.5in,6.0in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\Alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\textbf{\uline{Spline}}\par
+
+\begin{enumerate}
+	\item We ask the user for X\textsubscript{1}, X\textsubscript{2},$ \ldots $ ,X\textsubscript{n} and f(X\textsubscript{1}), f(X\textsubscript{2}),$ \ldots $ ,f(X\textsubscript{n}) and we ask the user to input a 1 if lineal is required, a 2 if quadratic is required, or a 3 if cubic is required. \par
+
+	\item If input was 1 (for lineal)\par
+
+\begin{enumerate}
+	\item for i = 0 < i = n-1\par
+
+\begin{enumerate}
+	\item M\textsubscript{i} = (f(X\textsubscript{i+1}) – f(X\textsubscript{i})) / (X\textsubscript{i+1 }-X\textsubscript{i})\par
+
+	\item Return p(X) = (f(X\textsubscript{i+1})-f(X\textsubscript{i})) = M\textsubscript{i}$\ast$(X-X\textsubscript{i})\par
+
+
+\end{enumerate}
+\end{enumerate}
+	\item If input was 2 (for quadratic)\par
+
+\begin{enumerate}
+	\item for i = 1 < i =n\par
+
+\begin{enumerate}
+	\item p(X) = A\textsubscript{i}$\ast$X\textsubscript{i}\textsuperscript{2} + B\textsubscript{i}$\ast$X\textsubscript{i} + C\textsubscript{i}\par
+
+
+\end{enumerate}
+	\item for i = 2 < i = n\par
+
+\begin{enumerate}
+	\item p(X)  = 2$\ast$A\textsubscript{i-1}$\ast$X\textsubscript{i-1 }+ B\textsubscript{i-1 }= 2$\ast$A\textsubscript{i}$\ast$X\textsubscript{i-1 }+ B\textsubscript{i}\par
+
+
+\end{enumerate}
+	\item To be natural Spline \par
+
+\begin{enumerate}
+	\item p(X) = 2$\ast$A\textsubscript{i-1}$\ast$X\textsubscript{n} + B\textsubscript{i-1}=0\par
+
+	\item p(X) = 2$\ast$A\textsubscript{i}$\ast$X\textsubscript{n }+ B\textsubscript{i} = 0\par
+
+
+\end{enumerate}
+\end{enumerate}
+	\item If input was 3 (for cubic)\par
+
+\begin{enumerate}
+	\item for i = 1 < i = n\par
+
+\begin{enumerate}
+	\item p(X) = A\textsubscript{i}$\ast$X\textsubscript{i}\textsuperscript{3} + B\textsubscript{i}$\ast$X\textsubscript{i}\textsuperscript{2} + C\textsubscript{i}$\ast$X\textsubscript{i} + D\textsubscript{i}\par
+
+
+\end{enumerate}
+	\item for i = 2 < i = n\par
+
+\begin{enumerate}
+	\item p(X) = 3$\ast$A\textsubscript{i-1}$\ast$X\textsubscript{i-1}\textsuperscript{2} + 2$\ast$B\textsubscript{i-1}$\ast$X\textsubscript{i-1 }+ C\textsubscript{i-1} = 3$\ast$A\textsubscript{i}$\ast$X\textsubscript{i-1}\textsuperscript{2} + 2$\ast$B\textsubscript{i}$\ast$X\textsubscript{i-1}+ C\textsubscript{i}\par
+
+
+\end{enumerate}
+	\item for i = 3 < i = n \par
+
+\begin{enumerate}
+	\item p(X) = 6$\ast$A\textsubscript{i-1}$\ast$X\textsubscript{i-1}+ 2$\ast$B\textsubscript{i-1 }= 6$\ast$A\textsubscript{i-1}$\ast$X\textsubscript{i} + 2$\ast$B\textsubscript{i-1}\par
+
+
+\end{enumerate}
+	\item To be natural Spline\par
+
+\begin{enumerate}
+	\item p(X) = 6$\ast$A\textsubscript{i-1}$\ast$X\textsubscript{0} + B\textsubscript{i-1}= 0\par
+
+	\item p(X) = 6$\ast$A\textsubscript{i}$\ast$X\textsubscript{n} + B\textsubscript{i} = 0
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}\par
+
+
+\vspace{\baselineskip}
+
+\printbibliography
+\end{document}

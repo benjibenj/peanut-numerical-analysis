@@ -44,6 +44,12 @@ const NewtonInterpolation = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 19)}
       next={methods.find(method => method.index === 21)}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/20NewtonInterpolation/newtonInterpolationFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/20NewtonInterpolation/pseudoCode/newtonInterpolation.pdf"
+      }
     >
       {methodState.points === "input" ? (
         <CenteredColumn>

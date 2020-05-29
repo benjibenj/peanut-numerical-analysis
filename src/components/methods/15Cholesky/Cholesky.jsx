@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
-import choleskyFunction from "./CholeskyFunction";
+import choleskyFunction from "./choleskyFunction";
 
 import styled from "styled-components";
 
@@ -50,6 +50,12 @@ const Cholesky = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 14)}
       next={methods.find(method => method.index === 16)}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/15Cholesky/choleskyFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/15Cholesky/pseudoCode/cholesky.pdf"
+      }
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -113,19 +119,19 @@ const Cholesky = ({ name }) => {
       {results && (
         <Results>
           {results.iterations.map((matrix, index) => {
-              return (
-                <React.Fragment>
-                  <p>Step {index+1}</p>
-                  <BlockMath
-                    key={index+1}
-                    math={"L = " + renderLatexMatrix(matrix.L, 6)}
-                  />
-                  <BlockMath
-                    key={index+1}
-                    math={"U = " + renderLatexMatrix(matrix.U, 6)}
-                  />
-                </React.Fragment>
-              );
+            return (
+              <React.Fragment>
+                <p>Step {index + 1}</p>
+                <BlockMath
+                  key={index + 1}
+                  math={"L = " + renderLatexMatrix(matrix.L, 6)}
+                />
+                <BlockMath
+                  key={index + 1}
+                  math={"U = " + renderLatexMatrix(matrix.U, 6)}
+                />
+              </React.Fragment>
+            );
           })}
           <p>{results.conclusion}</p>
           <BlockMath

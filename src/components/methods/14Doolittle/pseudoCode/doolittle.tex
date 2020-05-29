@@ -1,0 +1,229 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.0in,paperwidth=8.5in,left=1.18in,right=1.18in,top=0.98in,bottom=0.98in,headheight=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.5in,1.0in,1.5in,2.0in,2.5in,3.0in,3.5in,4.0in,4.5in,5.0in,5.5in,6.0in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\Alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\textbf{\uline{Doolittle Factorization }}\par
+
+
+\vspace{\baselineskip}
+\begin{enumerate}
+	\item Ask the user for a matrix A. Needs to be a squared matrix. \par
+
+	\item Ask the use for vector b and make sure that is the same length as matrix A, and a whole number n. \par
+
+	\item Next, we create 2 more matrices, we call them L and U. Matrices L and U need to have the following characteristics\par
+
+\begin{enumerate}
+	\item Have the same size as matrix A \par
+
+	\item L will have the same elements that are below the diagonal in A but with the opposite sign. The diagonal in L will be the same as A, and all other elements will be 0. \par
+
+	\item U will have the same elements in A that are above the diagonal with opposite signs, and will have the same elements in the diagonal as A and the rest of the elements will be 0.\par
+
+
+\end{enumerate}
+	\item Time for a cycle\par
+
+\begin{enumerate}
+	\item \begin{enumerate}
+	\item For k = 1 < n, with 1 step increments (k++)\par
+
+\begin{enumerate}
+	\item sum1 = 0\par
+
+
+\end{enumerate}
+	\item For p = 1 < k-1, with 1 step increments (p++)\par
+
+\begin{enumerate}
+	\item sum1 = sum1 + L\textsubscript{kp}$\ast$  U\textsubscript{kp}\par
+
+
+\end{enumerate}
+	\item For i = k+1 < n , with 1 step increments (i++)\par
+
+\begin{enumerate}
+	\item sum2 = 0\par
+
+\begin{enumerate}
+	\item For r = 1 < k-1 , with 1 step increments (r++)\par
+
+
+\end{enumerate}
+	\item sum2=sum2+L\textsubscript{ir }$\ast$  U\textsubscript{rk }\par
+
+
+\end{enumerate}
+	\item L\textsubscript{ik} = (a\textsubscript{kk} $-$  sum2)/U\textsubscript{kk}\par
+
+
+\end{enumerate}
+	\item For j = k+1 < n , with 1 step increments (j++) \par
+
+\begin{enumerate}
+	\item sum3 = 0\par
+
+\begin{enumerate}
+	\item For s = 1 < s-1, with 1 step increments (s++) \par
+
+\begin{enumerate}
+	\item sum3 = sum3 + L\textsubscript{ks}$\ast$ U\textsubscript{sj}\par
+
+	\item U\textsubscript{kj} =(a\textsubscript{kj}$-$ sum3)\par
+
+
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+	\item z = progressive replacement (1,b) x = regressive replacement (u,z)\par
+
+	\item Regressive Replacement \par
+
+\begin{enumerate}
+	\item Para i = n < 1 , with 1 step increments (i++) \par
+
+\begin{enumerate}
+	\item sum = 0\par
+
+\begin{enumerate}
+	\item for j = i +1 < n , with 1 step increments (j++) \par
+
+\begin{enumerate}
+	\item sum = sum+a\textsubscript{ij}$\ast$ x\textsubscript{ij}\par
+
+
+\end{enumerate}
+	\item xi =(a\textsubscript{in+1}$-$ sum)/a\textsubscript{ii}\par
+
+
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+	\item Progressive Replacement \par
+
+\begin{enumerate}
+	\item Para i = 1 < n , with 1 step increments (i++) \par
+
+\begin{enumerate}
+	\item sum = 0\par
+
+\begin{enumerate}
+	\item for j = i +1 < n , with 1 step increments (j++) \par
+
+\begin{enumerate}
+	\item sum = sum+a\textsubscript{ij}$\ast$ x\textsubscript{ij}\par
+
+
+\end{enumerate}
+	\item xi =(a\textsubscript{in+1}$-$ sum)/a\textsubscript{ii}
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\printbibliography
+\end{document}

@@ -65,6 +65,8 @@ const FixedPoint = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 3)}
       next={methods.find(method => method.index === 5)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/4fixedPoint/fixedPointFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/4fixedPoint/pseudoCode/fixedPoint.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionTextF)}>

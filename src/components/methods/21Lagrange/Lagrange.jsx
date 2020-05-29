@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, TableStyle, Results} from "../../../containers/BigContainer";
+import {
+  Button,
+  Error,
+  TableStyle,
+  Results,
+} from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -44,6 +49,12 @@ const Lagrange = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 20)}
       next={methods.find(method => method.index === 22)}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/21Lagrange/lagrangeFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/21Lagrange/pseudoCode/lagrange.pdf"
+      }
     >
       {methodState.points === "input" ? (
         <CenteredColumn>

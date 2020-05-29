@@ -68,6 +68,8 @@ const MultipleRoots = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 6)}
       next={methods.find(method => method.index === 8)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/7multipleRoots/multipleRootsFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/7multipleRoots/pseudoCode/multipleRoots.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>

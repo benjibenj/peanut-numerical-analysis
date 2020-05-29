@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
-import luSimpleFunction from "./LuSimpleFunction";
+import luSimpleFunction from "./luSimpleFunction";
 
 import styled from "styled-components";
 
@@ -50,6 +50,8 @@ const LuSimple = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 10)}
       next={methods.find(method => method.index === 12)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/11LuSimple/luSimpleFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/11LuSimple/pseudoCode/luSimple.pdf"}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (

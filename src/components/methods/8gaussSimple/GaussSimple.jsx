@@ -49,6 +49,8 @@ const GaussSimple = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 7)}
       next={methods.find(method => method.index === 9)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/8gaussSimple/gaussSimpleFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/8gaussSimple/pseudoCode/gaussSimple.pdf"}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (

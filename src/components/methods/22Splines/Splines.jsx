@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, TableStyle, Results } from "../../../containers/BigContainer";
+import {
+  Button,
+  Error,
+  TableStyle,
+  Results,
+} from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -44,6 +49,12 @@ const Splines = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 21)}
       next={methods.find(method => method.index === 23)}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/splinesFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/pseudoCode/splines.pdf"
+      }
     >
       {methodState.points === "input" ? (
         <CenteredColumn>
@@ -102,9 +113,7 @@ const Splines = ({ name }) => {
                 </TableStyle>
               )}
               <p>Lagrange polynom</p>
-              {results.polynom && (
-                <BlockMath math={results.polynom} />
-              )}
+              {results.polynom && <BlockMath math={results.polynom} />}
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -131,7 +140,5 @@ const CenteredColumn = styled("div")`
   justify-content: center;
   align-items: center;
 `;
-
-
 
 export default Splines;

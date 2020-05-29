@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
-import luPartialFunction from "./LuPartialFunction";
+import luPartialFunction from "./luPartialFunction";
 
 import styled from "styled-components";
 
@@ -50,6 +50,8 @@ const LuPartial = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 11)}
       next={methods.find(method => method.index === 13)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/12LuParcial/luParcialFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/12LuParcial/pseudoCode/luParcial.pdf"}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (

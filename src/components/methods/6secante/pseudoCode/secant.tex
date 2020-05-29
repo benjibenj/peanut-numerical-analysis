@@ -1,0 +1,154 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.0in,paperwidth=8.5in,left=1.18in,right=1.18in,top=0.98in,bottom=0.98in,headheight=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.5in,1.0in,1.5in,2.0in,2.5in,3.0in,3.5in,4.0in,4.5in,5.0in,5.5in,6.0in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\Alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+{\fontsize{16pt}{19.2pt}\selectfont \textbf{\uline{Secant }}\par}\par
+
+$\ast$ The user should guarantee that the function f(X) is continuous. \par
+
+\begin{enumerate}
+	\item Ask the user for the function f(X), the tolerance, and the maximum number of iterations. \par
+
+	\item Ask the user for two initial values we will call X\textsubscript{0 }and X\textsubscript{1 }\par
+
+	\item We evaluate X\textsubscript{0 }and X\textsubscript{1 }in the function to obtain f(X\textsubscript{0}) and f(X\textsubscript{1}). If f(X\textsubscript{0}) = 0 or f(X\textsubscript{1}) = 0, then we will tell the user that this is the root\par
+
+	\item Now we find the following value of X by storing it in the variable X\textsubscript{n }$ \ldots $  we find it using the following formula : X\textsubscript{n }= X\textsubscript{1 }– [f(X\textsubscript{1})$\ast$ ( X\textsubscript{1 }– X\textsubscript{0 }) / f(X\textsubscript{1}) – f(X\textsubscript{0})] then we evaluate this in the function f(X)$ \ldots $  if this answer gives zero, then we alert the user that this is the root. \par
+
+	\item We make an iterations counter, calling it n and we start with 1\par
+
+	\item Error = $ \vert $  X\textsubscript{1 }– X\textsubscript{n\  }$ \vert $ \textsubscript{  }\par
+
+	\item Now we make a cycle$ \ldots $ . While the error > tolerance, f(X\textsubscript{n}) $ \neq $  0, n<max number of iterations, do: \par
+
+\begin{enumerate}
+	\item X\textsubscript{0 }= X\textsubscript{1 }\par
+
+	\item X\textsubscript{1 }= X\textsubscript{n }\par
+
+	\item f(X\textsubscript{0}) = the new value of X\textsubscript{0} evaluated in the function \par
+
+	\item f(X\textsubscript{1}) = the new value of X\textsubscript{1 }evaluated in the function\par
+
+	\item X\textsubscript{n }= X\textsubscript{1 }– [f(X\textsubscript{1})$\ast$ ( X\textsubscript{1 }– X\textsubscript{0 }) / f(X\textsubscript{1}) – f(X\textsubscript{0})] (with the new values)\par
+
+	\item f(X\textsubscript{n}) = the new value of X\textsubscript{n }evaluated in the function \par
+
+	\item n = n+1 \par
+
+\begin{enumerate}
+	\item inside the function we put a conditional , that if f(X\textsubscript{1}) – f(X\textsubscript{0}) = 0, as the denominator will be zero we tell the user that he cannot continue with the method given that the denominator is zero and that the root is approximately X\textsubscript{n }(final value) with an error of :\_\_\_ (with the final value of the error)\par
+
+
+\end{enumerate}
+\end{enumerate}
+	\item If the error $ \leq $  tolerance, tell the user that the root is approximately X\textsubscript{n }(final\ value) with an error of \_\_\_\_ (with the final value of the error)\par
+
+	\item If f(X\textsubscript{n}) = 0 tell the user that X\textsubscript{n }is the root. \par
+
+	\item If n is equal to the number of iterations tell the user that he has reached the maximum number of iterations and that the root will be approximately X\textsubscript{n }(final value) with an error of\_\_\_\_(with the final value of the error)
+\end{enumerate}\par
+
+
+\vspace{\baselineskip}
+
+\printbibliography
+\end{document}

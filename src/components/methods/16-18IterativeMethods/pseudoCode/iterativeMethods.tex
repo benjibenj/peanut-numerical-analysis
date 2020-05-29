@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.0in,paperwidth=8.5in,left=1.18in,right=1.18in,top=0.98in,bottom=0.98in,headheight=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.5in,1.0in,1.5in,2.0in,2.5in,3.0in,3.5in,4.0in,4.5in,5.0in,5.5in,6.0in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\Alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\textbf{\uline{Jacobi, Gauss Seidel y Gauss Seidel (SOR)}}\par
+
+
+\vspace{\baselineskip}
+\begin{enumerate}
+	\item We ask the user for a matrix. We call the matrix A. The matrix must be a square matrix.\par
+
+	\item We ask for a vector b and we make sure that it is the same length as matrix A.\par
+
+	\item Now ask the user for an initial value approximation which we will call x0, a tolerance (tol) and we make sure it is not negative, we also aks for a maximum number of iterations(Nmax), which also has to be nonnegative, l (it will be 1 if you want to execute Jacobi, or 2 if you want to execute Guass Seidel) y w if you want to use the method of relation. \par
+
+	\item We make sure that A does not have any 0’s in the diagonal, and that the det(A) $ \neq $  0. \par
+
+	\item Now make 3 new matrices, named D, L and U. All must be the same size as A and must have the following parameters:\par
+
+\begin{enumerate}
+	\item  D must be a matrix that has the same main diagonal elements that matrix A has and the rest of the elements must be 0.\par
+
+	\item  L will have the same elements that are below the diagonal in A but with the opposite sign. The diagonal in L will be the same as A, and all other elements will be 0. \par
+
+	\item U will have the same elements in A that are above the diagonal with opposite signs, and will have the same elements in the diagonal as A and the rest of the elements will be 0.\par
+
+
+\end{enumerate}
+	\item Now we begin to execute the method. \par
+
+\begin{enumerate}
+	\item If l is equal to 1, execute Jacobi method,\par
+
+\begin{enumerate}
+	\item T = D\textsuperscript{-1 }$\ast$  (L+U)\par
+
+	\item C = D\textsuperscript{-1\  }$\ast$  b\par
+
+
+\end{enumerate}
+	\item If l is equal to 2 execute the Gauss Seidel Method: \par
+
+\begin{enumerate}
+	\item T = (D-L)\textsuperscript{-1 }$\ast$  U\par
+
+	\item C = (D-L)\textsuperscript{-1 }$\ast$  b\par
+
+
+\end{enumerate}
+	\item All other cases execute SOR\par
+
+\begin{enumerate}
+	\item T = (D-w$\ast$ L)\textsuperscript{-1 }$\ast$  ((1-w)$\ast$ (D+w$\ast$ U))\par
+
+	\item C = (w$\ast$ (D-w$\ast$ L))\textsuperscript{-1} $\ast$  b\par
+
+
+\end{enumerate}
+\end{enumerate}
+	\item Now we find and make the spectral radiance as the as the absolute value of the largest proper values making sure they are less than 1. \par
+
+	\item Now we make a counter for the iterations beginning with 0, a variable for the error which begins with 1, and a variable for the old X , we will call Xant, and we will start it off as Xant=x0 our initial approximation\par
+
+	\item Now we make a cycle, while the Error > the tolerance , iterations(counter) < Nmax, Do:\par
+
+\begin{enumerate}
+	\item Xact = Xant$\ast$ T+C\par
+
+	\item Error = norm of Xant – Xact\par
+
+	\item Xant = Xact\par
+
+	\item Counter++ 
+\end{enumerate}
+\end{enumerate}\par
+
+
+\vspace{\baselineskip}
+
+\printbibliography
+\end{document}

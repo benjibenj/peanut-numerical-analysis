@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
-import croultFunction from "./CroultFunction";
+import croultFunction from "./croultFunction";
 
 import styled from "styled-components";
 
@@ -50,6 +50,8 @@ const Croult = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 12)}
       next={methods.find(method => method.index === 14)}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/13Croult/croultFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/13Croult/pseudoCode/croult.pdf"}
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (

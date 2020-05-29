@@ -3,7 +3,7 @@ import Method from "../Method";
 import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
-import iterativeMethodsFunctions from "./IterativeMethodsFunctions";
+import iterativeMethodsFunctions from "./iterativeMethodsFunctions";
 
 import {
   Parameters,
@@ -98,6 +98,12 @@ const IterativeMethods = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 15)}
       next={methods.find(method => method.index === 19)}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/16-18IterativeMethods/iterativeMethodsFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/16-18IterativeMethods/pseudoCode/iterativeMethods.pdf"
+      }
     >
       <ParametersMatrix>
         {!paramSet ? (
