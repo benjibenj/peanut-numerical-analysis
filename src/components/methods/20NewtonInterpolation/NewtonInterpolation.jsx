@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, TableStyle, Results} from "../../../containers/BigContainer";
+import {
+  Button,
+  Error,
+  TableStyle,
+  Results
+} from "../../../containers/BigContainer";
 import styled from "styled-components";
 import { format } from "mathjs";
 
@@ -17,10 +22,10 @@ import { BlockMath, InlineMath } from "react-katex";
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1],
+    y: [15.5, 3, 8, 1]
   });
   const [methodState, setMethodState] = useState({
-    points: "input",
+    points: "input"
   });
   const [latexTable, setLatexTable] = useState(
     "\\begin{array}{ |c|c|c|c|c|c|}  \n" +
@@ -29,7 +34,7 @@ const NewtonInterpolation = ({ name }) => {
       " \\hline\n" +
       "y & 23 & 13 & 5 & -1 & -5\\\\ \n" +
       " \\hline\n" +
-      "\\end{array}",
+      "\\end{array}"
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
@@ -66,7 +71,7 @@ const NewtonInterpolation = ({ name }) => {
             onClick={() => {
               setMethodState(prevState => ({
                 ...prevState,
-                points: "input",
+                points: "input"
               }));
             }}
           >
@@ -100,7 +105,7 @@ const NewtonInterpolation = ({ name }) => {
                           } else {
                             return (
                               <th key={index}>
-                                <InlineMath>{index+""}</InlineMath>
+                                <InlineMath>{index + ""}</InlineMath>
                               </th>
                             );
                           }
@@ -120,7 +125,7 @@ const NewtonInterpolation = ({ name }) => {
                                     <strong>
                                       {format(elem, {
                                         notation: "fixed",
-                                        precision: 4,
+                                        precision: 4
                                       })}
                                     </strong>
                                   </td>
@@ -128,7 +133,7 @@ const NewtonInterpolation = ({ name }) => {
                                   <td key={indexX}>
                                     {format(elem, {
                                       notation: "fixed",
-                                      precision: 6,
+                                      precision: 6
                                     })}
                                   </td>
                                 );

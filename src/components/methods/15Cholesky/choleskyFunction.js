@@ -7,7 +7,7 @@ const choleskyFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: [],
+    finalSolution: []
   };
 
   let n = matrixA.length;
@@ -17,7 +17,7 @@ const choleskyFunction = (matrixA, B) => {
   for (let i = 0; i < n - 1; i++) {
     let productS1 = 0;
     for (let k = 0; k < i; k++) {
-      productS1 = add(productS1, multiply(L[i][k],U[k][i]));
+      productS1 = add(productS1, multiply(L[i][k], U[k][i]));
     }
     L[i][i] = sqrt(add(matrixA[i][i], -productS1));
     U[i][i] = L[i][i];
@@ -26,7 +26,7 @@ const choleskyFunction = (matrixA, B) => {
       for (let k = 0; k < i; k++) {
         productS = add(productS, multiply(L[j][k], U[k][i]));
       }
-      L[j][i] = divide(add(matrixA[j][i],-productS), U[i][i]);
+      L[j][i] = divide(add(matrixA[j][i], -productS), U[i][i]);
     }
     for (let j = i + 1; j < n; j++) {
       let productS = 0;
@@ -37,18 +37,18 @@ const choleskyFunction = (matrixA, B) => {
     }
     results.iterations.push({
       L: deepCopyFunction(L),
-      U: deepCopyFunction(U),
+      U: deepCopyFunction(U)
     });
   }
   let productS = 0;
   for (let k = 0; k < n - 1; k++) {
     productS = add(productS, multiply(L[n - 1][k], U[k][n - 1]));
   }
-  L[n-1][n-1] = sqrt(matrixA[n-1][n-1] - productS);
-  U[n-1][n-1] = L[n-1][n-1];
+  L[n - 1][n - 1] = sqrt(matrixA[n - 1][n - 1] - productS);
+  U[n - 1][n - 1] = L[n - 1][n - 1];
   results.iterations.push({
     L: deepCopyFunction(L),
-    U: deepCopyFunction(U),
+    U: deepCopyFunction(U)
   });
   results.conclusion =
     "After applying regressive and progressive substitution we get :";

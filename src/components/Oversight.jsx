@@ -10,7 +10,7 @@ const Oversight = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
     identifier: "oversight-page", //this.props.uniqueId
-    title: "Oversight", //this.props.title
+    title: "Oversight" //this.props.title
   };
 
   return (

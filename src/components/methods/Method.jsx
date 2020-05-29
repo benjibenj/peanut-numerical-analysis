@@ -14,7 +14,7 @@ const Method = ({
   description,
   jsAlgorithm,
   pseudoCode,
-  children,
+  children
 }) => {
   return (
     <React.Fragment>

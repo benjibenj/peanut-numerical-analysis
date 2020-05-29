@@ -14,7 +14,7 @@ const BigRouter = () => {
   return (
     <Router>
       <Home path="/" />
-      <Help path="help"/>
+      <Help path="help" />
       <About path="about" />
       <Oversight path="oversight" />
       <MethodsRouter path="methods/*" />

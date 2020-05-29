@@ -10,7 +10,7 @@ import {
   Eval,
   Error,
   Button,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
 import { methods } from "../../../data/methods";
@@ -20,7 +20,7 @@ const IncSearch = ({ name }) => {
   const [initialValue, setInitialValue] = useState(-3);
   const [delta, setDelta] = useState(0.5);
   const [results, setResults] = useState(
-    incSearchFunction("log(sin(x)^2 + 1) - (1/2)", -3, 0.5, 100),
+    incSearchFunction("log(sin(x)^2 + 1) - (1/2)", -3, 0.5, 100)
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -37,8 +37,8 @@ const IncSearch = ({ name }) => {
           event.target.functionText.value,
           parseFloat(event.target.initialValue.value),
           parseFloat(event.target.delta.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
     } catch (e) {
       if (e instanceof TypeError) {
@@ -54,8 +54,12 @@ const IncSearch = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 0)}
       next={methods.find(method => method.index === 2)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/1incSearch/incSearchFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/1incSearch/pseudoCode/incrementalSearch.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/1incSearch/incSearchFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/1incSearch/pseudoCode/incrementalSearch.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>

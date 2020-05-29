@@ -7,7 +7,7 @@ const slowSpeed = "1s";
 const Animation = {
   fastSpeed,
   defaultSpeed,
-  slowSpeed,
+  slowSpeed
 };
 
 export default Animation;

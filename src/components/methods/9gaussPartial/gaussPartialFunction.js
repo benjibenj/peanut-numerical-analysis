@@ -8,7 +8,7 @@ const gaussPartialFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: [],
+    finalSolution: []
   };
   let m = matrixA.length;
   let n = matrixA[0].length;
@@ -70,7 +70,7 @@ const gaussPartialFunction = (matrixA, B) => {
       // A = all columns of M except the last one
       return val.slice(0, -1);
     }),
-    getCol(M, n), // B = last column of M
+    getCol(M, n) // B = last column of M
   );
   results.conclusion = "After applying regressive substitution we get :";
   results.finalSolution = resultX;

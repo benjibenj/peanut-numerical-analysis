@@ -15,26 +15,26 @@ import { Button, Results, Inputs } from "../../../containers/BigContainer";
 const Cholesky = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 4,
-    columns: 4,
+    columns: 4
   });
   const [matrixA, setMatrixA] = useState([
     [4, -1, -0, 3],
     [1, 15.5, 3, 8],
     [0, -1.3, -4, 1.1],
-    [14, 5, -2, 30],
+    [14, 5, -2, 30]
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
-    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}"
   );
   const [latexB, setLatexB] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}"
   );
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
-    solving: undefined,
+    solving: undefined
   });
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
@@ -81,7 +81,7 @@ const Cholesky = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    matrixA: "inputMatrix",
+                    matrixA: "inputMatrix"
                   }));
                 }}
               >
@@ -106,7 +106,7 @@ const Cholesky = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    B: "input",
+                    B: "input"
                   }));
                 }}
               >

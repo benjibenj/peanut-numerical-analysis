@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, Results} from "../../../containers/BigContainer";
+import { Button, Error, Results } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -18,10 +18,10 @@ import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
 const Vandermonde = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1],
+    y: [15.5, 3, 8, 1]
   });
   const [methodState, setMethodState] = useState({
-    points: "input",
+    points: "input"
   });
   const [latexTable, setLatexTable] = useState(
     "\\begin{array}{ |c|c|c|c|c|c|}  \n" +
@@ -30,7 +30,7 @@ const Vandermonde = ({ name }) => {
       " \\hline\n" +
       "y & 23 & 13 & 5 & -1 & -5\\\\ \n" +
       " \\hline\n" +
-      "\\end{array}",
+      "\\end{array}"
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
@@ -67,7 +67,7 @@ const Vandermonde = ({ name }) => {
             onClick={() => {
               setMethodState(prevState => ({
                 ...prevState,
-                points: "input",
+                points: "input"
               }));
             }}
           >

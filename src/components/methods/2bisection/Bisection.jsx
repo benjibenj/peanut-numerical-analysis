@@ -7,7 +7,7 @@ import {
   Button,
   Error,
   LinkGraph,
-  MediaContainer,
+  MediaContainer
 } from "../../../containers/BigContainer";
 
 import bisectionFunction from "./bisectionFunction";
@@ -22,7 +22,7 @@ const Bisection = ({ name }) => {
   const [highValue, setHighValue] = useState(1);
   const [tol, setTol] = useState(1e-7);
   const [results, setResults] = useState(
-    bisectionFunction("log(sin(x)^2 + 1)-(1/2)", 0, 1, 1e-7, 100),
+    bisectionFunction("log(sin(x)^2 + 1)-(1/2)", 0, 1, 1e-7, 100)
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -40,8 +40,8 @@ const Bisection = ({ name }) => {
           parseFloat(event.target.lowValue.value),
           parseFloat(event.target.highValue.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
     } catch (e) {
       if (e instanceof TypeError) {
@@ -57,8 +57,12 @@ const Bisection = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 1)}
       next={methods.find(method => method.index === 3)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/2bisection/bisectionFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/2bisection/pseudoCode/bisection.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/2bisection/bisectionFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/2bisection/pseudoCode/bisection.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
@@ -99,7 +103,9 @@ const Bisection = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <p><strong>{name}</strong></p>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <TableStyle widthTwo={"584px"}>
               <table>

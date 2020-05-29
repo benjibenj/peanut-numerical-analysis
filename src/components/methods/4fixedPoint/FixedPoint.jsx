@@ -7,7 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
 import { methods } from "../../../data/methods";
@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FixedPoint = ({ name }) => {
   const [functionTextF, setFunctionTextF] = useState(
-    "log(sin(x)^2 + 1)-(1/2)-x",
+    "log(sin(x)^2 + 1)-(1/2)-x"
   );
   const [functionTextG, setFunctionTextG] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [initialValue, setInitialValue] = useState(-0.5);
@@ -28,8 +28,8 @@ const FixedPoint = ({ name }) => {
       "log(sin(x)^2 + 1)-(1/2)",
       -0.5,
       1e-7,
-      100,
-    ),
+      100
+    )
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -47,8 +47,8 @@ const FixedPoint = ({ name }) => {
           event.target.functionTextG.value,
           parseFloat(event.target.initialValue.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
       setError(null);
     } catch (e) {
@@ -65,8 +65,12 @@ const FixedPoint = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 3)}
       next={methods.find(method => method.index === 5)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/4fixedPoint/fixedPointFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/4fixedPoint/pseudoCode/fixedPoint.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/4fixedPoint/fixedPointFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/4fixedPoint/pseudoCode/fixedPoint.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionTextF)}>
@@ -120,7 +124,9 @@ const FixedPoint = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <p><strong>{name}</strong></p>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <TableStyle>
               <table>

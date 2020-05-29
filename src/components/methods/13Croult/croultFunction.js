@@ -3,12 +3,11 @@ import deepCopyFunction from "../../../utils/deepCopyFunction";
 import { usolve, sqrt, divide, multiply, add } from "mathjs";
 import eye from "../../../utils/matrixFunctions/eye";
 
-
 const croultFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: [],
+    finalSolution: []
   };
   let n = matrixA.length;
   let L = deepCopyFunction(eye(n));
@@ -30,7 +29,7 @@ const croultFunction = (matrixA, B) => {
     }
     results.iterations.push({
       L: deepCopyFunction(L),
-      U: deepCopyFunction(U),
+      U: deepCopyFunction(U)
     });
   }
   let productS = 0;
@@ -40,7 +39,7 @@ const croultFunction = (matrixA, B) => {
   L[n - 1][n - 1] = matrixA[n - 1][n - 1] - productS;
   results.iterations.push({
     L: deepCopyFunction(L),
-    U: deepCopyFunction(U),
+    U: deepCopyFunction(U)
   });
   results.conclusion =
     "After applying regressive and progressive substitution we get :";

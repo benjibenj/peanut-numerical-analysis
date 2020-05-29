@@ -1,14 +1,14 @@
 import React from "react";
 import { MatrixParameters, Button } from "../containers/BigContainer";
 import styled from "styled-components";
-import {Spacing} from "../rules";
+import { Spacing } from "../rules";
 
 const MatrixInput = ({
   matrixSize,
   setMatrix,
   setMethodState,
   matrix,
-  type = "A",
+  type = "A"
 }) => {
   if (
     !matrix ||
@@ -41,17 +41,17 @@ const MatrixInput = ({
     if (type === "A") {
       setMethodState(prevState => ({
         ...prevState,
-        matrixA: "matrix",
+        matrixA: "matrix"
       }));
     } else if (type === "B") {
       setMethodState(prevState => ({
         ...prevState,
-        B: "matrix",
+        B: "matrix"
       }));
     } else if (type === "initialValueX0") {
       setMethodState(prevState => ({
         ...prevState,
-        initialValueX0: "matrix",
+        initialValueX0: "matrix"
       }));
     }
   };
@@ -75,7 +75,13 @@ const MatrixInput = ({
           );
         })}
         <Button>
-          {type === "A" ? "Save A" : type === "B" ? "Save B" : type === "initialValueX0" ? "Save x0" : "Save"}
+          {type === "A"
+            ? "Save A"
+            : type === "B"
+            ? "Save B"
+            : type === "initialValueX0"
+            ? "Save x0"
+            : "Save"}
         </Button>
       </form>
     </MatrixParameters>

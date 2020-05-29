@@ -1,5 +1,16 @@
-import {det, diag, add, unaryMinus, inv, multiply, subtract, abs, max, norm} from "mathjs";
-import {eig} from "numericjs"; //didn't exist for non-symmetrical matrices in mathjs
+import {
+  det,
+  diag,
+  add,
+  unaryMinus,
+  inv,
+  multiply,
+  subtract,
+  abs,
+  max,
+  norm
+} from "mathjs";
+import { eig } from "numericjs"; //didn't exist for non-symmetrical matrices in mathjs
 import zeroInDiagonal from "../../../utils/matrixFunctions/zeroInDiagonal";
 import tril from "../../../utils/matrixFunctions/tril";
 import triu from "../../../utils/matrixFunctions/triu";
@@ -14,7 +25,7 @@ const iterativeMethodsFunctions = (
   NMax,
   normValue,
   l = 1,
-  w = 1,
+  w = 1
 ) => {
   let results = {
     D: [[]],
@@ -26,7 +37,7 @@ const iterativeMethodsFunctions = (
     iterations: [],
     conclusion: undefined,
     error: null,
-    finalSolution: [],
+    finalSolution: []
   };
   let T = [[]];
   let C = [[]];
@@ -63,7 +74,7 @@ const iterativeMethodsFunctions = (
     // SOR
     T = multiply(
       inv(subtract(D, multiply(w, L))),
-      add(multiply(1 - w, D), multiply(w, U)),
+      add(multiply(1 - w, D), multiply(w, U))
     );
     C = multiply(multiply(w, inv(subtract(D, multiply(w, L)))), B);
   }
@@ -72,35 +83,28 @@ const iterativeMethodsFunctions = (
   results.U = U;
   results.C = C;
   results.T = T;
-  results.spectralRadiance = max(abs((eig(T).lambda.x)));
-  if(results.spectralRadiance > 1) {
-    results.error = "Error : the spectral radiance is superior to 1, the method cannot be executed";
+  results.spectralRadiance = max(abs(eig(T).lambda.x));
+  if (results.spectralRadiance > 1) {
+    results.error =
+      "Error : the spectral radiance is superior to 1, the method cannot be executed";
     return results;
   }
   xAnt = deepCopyFunction(initialValueX0);
-  results.iterations.push([
-    count,
-    undefined,
-    xAnt
-  ]);
-  while(error > tol && count < NMax) {
-    x = add(multiply(T,xAnt), C);
-    
-    if(normValue === 1 || normValue === "inf"){
+  results.iterations.push([count, undefined, xAnt]);
+  while (error > tol && count < NMax) {
+    x = add(multiply(T, xAnt), C);
+
+    if (normValue === 1 || normValue === "inf") {
       error = norm(subtract(xAnt, x), normValue);
     }
     //normP only accepts norms other different of 1 and inf
-    else{
+    else {
       error = normP(subtract(xAnt, x), normValue);
     }
 
     xAnt = x;
     count += 1;
-    results.iterations.push([
-      count,
-      error,
-      x
-    ]);
+    results.iterations.push([count, error, x]);
   }
   // handle the case where it couldn't find with this NMAX
   return results;

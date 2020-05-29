@@ -6,7 +6,7 @@ import {
   Eval,
   Error,
   Button,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 
 import * as math from "mathjs";
@@ -40,8 +40,8 @@ const FuncEval = ({ name }) => {
       setX(event.target.x.value);
       setResultEval(
         math.evaluate(event.target.functionText.value, {
-          x: event.target.x.value,
-        }),
+          x: event.target.x.value
+        })
       );
       setError(null);
     } catch (e) {

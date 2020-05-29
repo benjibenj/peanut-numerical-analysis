@@ -9,12 +9,12 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
     if (points.x.length < nbPoints) {
       setPoints(() => ({
         x: points.x.concat(0),
-        y: points.y.concat(0),
+        y: points.y.concat(0)
       }));
     } else if (points.x.length > nbPoints) {
       setPoints(() => ({
         x: points.x.slice(0, nbPoints),
-        y: points.y.slice(0, nbPoints),
+        y: points.y.slice(0, nbPoints)
       }));
     }
   }, [nbPoints, points.x, points.y, setPoints]);
@@ -22,7 +22,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
     event.preventDefault();
     let tempPoints = {
       x: [],
-      y: [],
+      y: []
     };
     for (let i = 0; i < nbPoints; i++) {
       tempPoints.x.push(event.target[i].value);
@@ -33,7 +33,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
     setPoints(tempPoints);
     setMethodState(prevState => ({
       ...prevState,
-      points: "fixed",
+      points: "fixed"
     }));
   };
   return (
@@ -120,7 +120,7 @@ const FirstRow = styled("td")`
 `;
 
 const TableSetOfPointsStyle = styled(TableStyle)`
-  tr { 
+  tr {
     background: white !important;
   }
 `;

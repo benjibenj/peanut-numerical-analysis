@@ -17,7 +17,7 @@ const renderLatexPolynom = array => {
         if (count === 1) {
           sign = "";
         }
-        if(value === 1){
+        if (value === 1) {
           value = "";
         }
       }

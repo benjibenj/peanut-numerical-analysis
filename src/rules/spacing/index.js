@@ -14,7 +14,7 @@ const Spacing = {
   md,
   lg,
   xl,
-  xxl,
+  xxl
 };
 
 export default Spacing;

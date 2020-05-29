@@ -1,15 +1,20 @@
-import {format} from "mathjs";
+import { format } from "mathjs";
 
 const renderLatexMatrix = (matrix, fixedNumber) => {
-  if(fixedNumber) {
+  if (fixedNumber) {
     for (let i = 0; i < matrix.length; i++) {
       if (matrix[0]) {
         for (let j = 0; j < matrix[0].length; j++) {
-          matrix[i][j] = format(matrix[i][j], { notation: "fixed", precision: fixedNumber });
+          matrix[i][j] = format(matrix[i][j], {
+            notation: "fixed",
+            precision: fixedNumber
+          });
         }
-      }
-      else {
-        matrix[i] = format(matrix[i], { notation: "fixed", precision: fixedNumber });
+      } else {
+        matrix[i] = format(matrix[i], {
+          notation: "fixed",
+          precision: fixedNumber
+        });
       }
     }
   }

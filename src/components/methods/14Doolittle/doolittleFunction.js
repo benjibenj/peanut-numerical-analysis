@@ -3,13 +3,11 @@ import deepCopyFunction from "../../../utils/deepCopyFunction";
 import { usolve, sqrt, divide, multiply, add } from "mathjs";
 import eye from "../../../utils/matrixFunctions/eye";
 
-
 const doolittleFunction = (matrixA, B) => {
-
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: [],
+    finalSolution: []
   };
 
   let n = matrixA.length;
@@ -17,7 +15,6 @@ const doolittleFunction = (matrixA, B) => {
   let U = deepCopyFunction(eye(n));
 
   for (let i = 0; i < n - 1; i++) {
-
     for (let j = i; j < n; j++) {
       let productS = 0;
       for (let k = 0; k < i; k++) {
@@ -34,17 +31,17 @@ const doolittleFunction = (matrixA, B) => {
     }
     results.iterations.push({
       L: deepCopyFunction(L),
-      U: deepCopyFunction(U),
+      U: deepCopyFunction(U)
     });
   }
   let productS = 0;
   for (let k = 0; k < n - 1; k++) {
-    productS = add(productS, multiply(L[n-1][k], U[k][n-1])) ;
+    productS = add(productS, multiply(L[n - 1][k], U[k][n - 1]));
   }
-  U[n-1][n-1] = add(matrixA[n-1][n-1], - productS);
+  U[n - 1][n - 1] = add(matrixA[n - 1][n - 1], -productS);
   results.iterations.push({
     L: deepCopyFunction(L),
-    U: deepCopyFunction(U),
+    U: deepCopyFunction(U)
   });
 
   results.conclusion =

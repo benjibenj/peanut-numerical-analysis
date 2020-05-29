@@ -1,7 +1,7 @@
 const newtonInterpolationFunction = points => {
   let results = {
     polynom: undefined,
-    dividedDifference: undefined,
+    dividedDifference: undefined
   };
   let expression = "";
   let degree = points.x.length;
@@ -14,8 +14,10 @@ const newtonInterpolationFunction = points => {
       if (j === 0) pyramid[i][j] = parseFloat(points.y[i]);
     }
   }
-  for (let j = 1; j < degree; j++) { // we start with the second column
-    for (let i = 0; i < degree - j; i++) { // create pyramid by updating other columns
+  for (let j = 1; j < degree; j++) {
+    // we start with the second column
+    for (let i = 0; i < degree - j; i++) {
+      // create pyramid by updating other columns
       pyramid[i][j] =
         (pyramid[i + 1][j - 1] - pyramid[i][j - 1]) /
         (points.x[i + j] - points.x[i]);
@@ -32,18 +34,16 @@ const newtonInterpolationFunction = points => {
       }
     } else {
       if (pyramid[0][i] >= 0) {
-        expression += " + " +  pyramid[0][i];
+        expression += " + " + pyramid[0][i];
       } else {
         expression += " " + pyramid[0][i];
       }
       for (let j = 0; j < i; j++) {
         if (points.x[j] < 0) {
           expression += "(x+" + -points.x[j] + ")";
-        }
-        else if (points.x[j] === 0) {
+        } else if (points.x[j] === 0) {
           expression += "(x)";
-        }
-        else {
+        } else {
           expression += "(x-" + points.x[j] + ")";
         }
       }

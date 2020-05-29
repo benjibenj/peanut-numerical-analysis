@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BigContainer, {MediaContainer} from "../containers/BigContainer";
+import BigContainer, { MediaContainer } from "../containers/BigContainer";
 import HelpBlocks from "./HelpBlocks";
 import CommentContainer from "../containers/CommentContainer";
 import { Typography, Spacing } from "../rules";
@@ -10,7 +10,7 @@ const Help = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
     identifier: "help-page", //this.props.uniqueId
-    title: "Help", //this.props.title
+    title: "Help" //this.props.title
   };
   return (
     <React.Fragment>

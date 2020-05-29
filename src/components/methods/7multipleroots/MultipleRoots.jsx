@@ -7,7 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 import multipleRootsFunction from "./multipleRootsFunction";
 import { methods } from "../../../data/methods";
@@ -28,8 +28,8 @@ const MultipleRoots = ({ name }) => {
       "exp(x)",
       1,
       1e-7,
-      100,
-    ),
+      100
+    )
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -50,8 +50,8 @@ const MultipleRoots = ({ name }) => {
           event.target.secondDerivate.value,
           parseFloat(event.target.initialValueX0.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
       setError(null);
     } catch (e) {
@@ -68,8 +68,12 @@ const MultipleRoots = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 6)}
       next={methods.find(method => method.index === 8)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/7multipleRoots/multipleRootsFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/7multipleRoots/pseudoCode/multipleRoots.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/7multipleroots/multipleRootsFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/7multipleroots/pseudoCode/multipleRoots.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
@@ -136,7 +140,9 @@ const MultipleRoots = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <p><strong>{name}</strong></p>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <TableStyle>
               <table>

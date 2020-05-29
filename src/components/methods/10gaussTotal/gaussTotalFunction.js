@@ -9,7 +9,7 @@ const gaussTotalFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: [],
+    finalSolution: []
   };
 
   let m = matrixA.length;
@@ -39,7 +39,7 @@ const gaussTotalFunction = (matrixA, B) => {
 
   let marca = new Array(n);
   for (let i = 0; i < n; i++) {
-    marca[i] = i+1;
+    marca[i] = i + 1;
   }
 
   results.iterations.push(deepCopyFunction(M));
@@ -47,8 +47,6 @@ const gaussTotalFunction = (matrixA, B) => {
     // cambio de columna
     let indexMax = new Array(2);
 
-    
-    
     indexMax = findMaxElement(M, i, i);
     let colMayor = indexMax[1];
 
@@ -75,7 +73,7 @@ const gaussTotalFunction = (matrixA, B) => {
       }
     }
 
-    if(colMayor !== i){
+    if (colMayor !== i) {
       let temp = marca[colMayor];
       marca[colMayor] = marca[i];
       marca[i] = temp;
@@ -85,17 +83,18 @@ const gaussTotalFunction = (matrixA, B) => {
 
   results.conclusion = "After applying regressive substitution we get :";
   let resultX = usolve(
-    M.map(function(val) { // A = all columns of M except the last one
+    M.map(function(val) {
+      // A = all columns of M except the last one
       return val.slice(0, -1);
     }),
-    getCol(M, m), // B = last column of M
+    getCol(M, m) // B = last column of M
   );
 
   let tempAr = deepCopyFunction(resultX);
-  for(let i = 0; i <n; i++){
-    resultX[i] = tempAr[marca[i]-1];
+  for (let i = 0; i < n; i++) {
+    resultX[i] = tempAr[marca[i] - 1];
   }
-  
+
   results.finalSolution = resultX;
 
   return results;

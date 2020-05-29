@@ -14,26 +14,26 @@ import { Button, Results, Inputs } from "../../../containers/BigContainer";
 const GaussSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 4,
-    columns: 4,
+    columns: 4
   });
   const [matrixA, setMatrixA] = useState([
     [2, -1, 0, 3],
     [1, 0.5, 3, 8],
     [0, 13, -2, 11],
-    [14, 5, -2, 3],
+    [14, 5, -2, 3]
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
-    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}"
   );
   const [latexB, setLatexB] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}"
   );
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
-    solving: undefined,
+    solving: undefined
   });
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
@@ -49,8 +49,12 @@ const GaussSimple = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 7)}
       next={methods.find(method => method.index === 9)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/8gaussSimple/gaussSimpleFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/8gaussSimple/pseudoCode/gaussSimple.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/8gaussSimple/gaussSimpleFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/8gaussSimple/pseudoCode/gaussSimple.pdf"
+      }
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -73,7 +77,7 @@ const GaussSimple = ({ name }) => {
               onClick={() => {
                 setMethodState(prevState => ({
                   ...prevState,
-                  matrixA: "inputSize",
+                  matrixA: "inputSize"
                 }));
               }}
             >
@@ -88,7 +92,7 @@ const GaussSimple = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    matrixA: "inputMatrix",
+                    matrixA: "inputMatrix"
                   }));
                 }}
               >
@@ -113,7 +117,7 @@ const GaussSimple = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    B: "input",
+                    B: "input"
                   }));
                 }}
               >

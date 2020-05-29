@@ -27,23 +27,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const IterativeMethods = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 4,
-    columns: 4,
+    columns: 4
   });
   const [matrixA, setMatrixA] = useState([
     [4, -1, -0, 3],
     [1, 15.5, 3, 8],
     [0, -1.3, -4, 1.1],
-    [14, 5, -2, 30],
+    [14, 5, -2, 30]
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
-    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}"
   );
   const [latexB, setLatexB] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}"
   );
   const [latexInitialValueX0, setLatexInitialValueX0] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}"
   );
   const [initialValueX0, setInitialValueX0] = useState([[0], [0], [0], [0]]);
   const [method, setMethod] = useState(1);
@@ -57,7 +57,7 @@ const IterativeMethods = ({ name }) => {
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
-    initialValueX0: "input",
+    initialValueX0: "input"
   });
   const handleSubmit = event => {
     event.preventDefault();
@@ -86,8 +86,8 @@ const IterativeMethods = ({ name }) => {
           NMax,
           normValue,
           method,
-          wValue,
-        ),
+          wValue
+        )
       );
     } else {
       setResults(undefined);
@@ -99,7 +99,7 @@ const IterativeMethods = ({ name }) => {
       prev={methods.find(method => method.index === 15)}
       next={methods.find(method => method.index === 19)}
       jsAlgorithm={
-        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/16-18IterativeMethods/iterativeMethodsFunction.js"
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/16-18IterativeMethods/iterativeMethodsFunctions.js"
       }
       pseudoCode={
         "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/16-18IterativeMethods/pseudoCode/iterativeMethods.pdf"
@@ -199,7 +199,7 @@ const IterativeMethods = ({ name }) => {
               onClick={() => {
                 setMethodState(prevState => ({
                   ...prevState,
-                  matrixA: "inputSize",
+                  matrixA: "inputSize"
                 }));
               }}
             >
@@ -214,7 +214,7 @@ const IterativeMethods = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    matrixA: "inputMatrix",
+                    matrixA: "inputMatrix"
                   }));
                 }}
               >
@@ -239,7 +239,7 @@ const IterativeMethods = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    initialValueX0: "input",
+                    initialValueX0: "input"
                   }));
                 }}
               >
@@ -264,7 +264,7 @@ const IterativeMethods = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    B: "input",
+                    B: "input"
                   }));
                 }}
               >
@@ -290,7 +290,7 @@ const IterativeMethods = ({ name }) => {
             {results.spectralRadiance &&
               format(results.spectralRadiance, {
                 notation: "fixed",
-                precision: 6,
+                precision: 6
               })}
           </p>
           {!error ? (
@@ -312,7 +312,7 @@ const IterativeMethods = ({ name }) => {
                           {result[1] &&
                             format(result[1], {
                               notation: "exponential",
-                              precision: 2,
+                              precision: 2
                             })}
                         </td>
                         <td>

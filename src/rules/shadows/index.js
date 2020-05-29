@@ -32,7 +32,7 @@ const Shadows = {
   level2,
   level3,
   level4,
-  level5,
+  level5
 };
 
 export default Shadows;

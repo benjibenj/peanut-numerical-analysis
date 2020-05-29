@@ -9,7 +9,7 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
   let fXN = evaluate(f, { x: xN });
   let results = {
     iterations: [],
-    conclusion: undefined,
+    conclusion: undefined
   };
   if (maxCount > 100) {
     maxCount = 100;
@@ -18,7 +18,7 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
     count,
     format(x0, { notation: "fixed", precision: 10 }),
     format(fX0, { notation: "exponential", precision: 2 }),
-    undefined,
+    undefined
   ]);
   if (fX0 === 0) {
     results.conclusion =
@@ -33,7 +33,7 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
     count,
     format(x1, { notation: "fixed", precision: 10 }),
     format(fX1, { notation: "exponential", precision: 2 }),
-    undefined,
+    undefined
   ]);
   if (fX1 === 0) {
     results.conclusion =
@@ -49,7 +49,7 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
     count,
     format(xN, { notation: "fixed", precision: 10 }),
     format(fXN, { notation: "exponential", precision: 2 }),
-    format(error, { notation: "exponential", precision: 2 }),
+    format(error, { notation: "exponential", precision: 2 })
   ]);
   if (fXN === 0) {
     results.conclusion =
@@ -72,7 +72,7 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
         count,
         format(xN, { notation: "fixed", precision: 10 }),
         format(fXN, { notation: "exponential", precision: 2 }),
-        format(error, { notation: "exponential", precision: 2 }),
+        format(error, { notation: "exponential", precision: 2 })
       ]);
     } else {
       results.conclusion =

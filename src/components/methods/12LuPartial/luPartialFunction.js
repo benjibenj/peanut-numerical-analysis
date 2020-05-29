@@ -9,7 +9,7 @@ const luPartialFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: [],
+    finalSolution: []
   };
 
   let n = matrixA[0].length;
@@ -66,7 +66,7 @@ const luPartialFunction = (matrixA, B) => {
     results.iterations.push({
       M: deepCopyFunction(M),
       L: deepCopyFunction(L),
-      U: deepCopyFunction(U),
+      U: deepCopyFunction(U)
     });
   }
 

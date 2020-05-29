@@ -1,12 +1,15 @@
-import { MatrixParameters, RowContainer, Button } from "../containers/BigContainer";
+import {
+  MatrixParameters,
+  RowContainer,
+  Button
+} from "../containers/BigContainer";
 import React from "react";
-
 
 const MatrixInputSize = ({
   setMatrixSize,
   matrixSize,
   setMethodState,
-  type = "square",
+  type = "square"
 }) => {
   return (
     <RowContainer>
@@ -24,12 +27,12 @@ const MatrixInputSize = ({
                 type !== "square"
                   ? setMatrixSize(prevSize => ({
                       ...prevSize,
-                      rows: rows,
+                      rows: rows
                     }))
                   : setMatrixSize(prevSize => ({
                       ...prevSize,
                       columns: rows,
-                      rows: rows,
+                      rows: rows
                     }));
               }
             }}
@@ -48,7 +51,7 @@ const MatrixInputSize = ({
                 if (2 <= columns && columns <= 8) {
                   setMatrixSize(prevSize => ({
                     ...prevSize,
-                    columns: columns,
+                    columns: columns
                   }));
                 }
               }}
@@ -59,7 +62,7 @@ const MatrixInputSize = ({
           onClick={() => {
             setMethodState(prevState => ({
               ...prevState,
-              matrixA: "inputMatrix",
+              matrixA: "inputMatrix"
             }));
           }}
         >

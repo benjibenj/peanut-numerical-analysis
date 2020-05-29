@@ -7,7 +7,7 @@ const vandermondeFunction = points => {
     B: [[]],
     ai: [[]],
     polynom: undefined,
-    coeffs: [],
+    coeffs: []
   };
   let degree = points.x.length; // number of points
   let matrixA = Array(degree);
@@ -26,7 +26,7 @@ const vandermondeFunction = points => {
   results.ai = ai;
   // Apply method to get x (gauss simple for example)
   results.polynom = gaussSimpleFunction(matrixA, B).finalSolution.map(coeff =>
-    format(coeff[0], { notation: "fixed", precision: 6 }),
+    format(coeff[0], { notation: "fixed", precision: 6 })
   );
   return results;
 };

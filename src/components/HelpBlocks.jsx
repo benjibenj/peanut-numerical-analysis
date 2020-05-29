@@ -98,7 +98,10 @@ const HelpBlocks = () => {
           </p>
         </React.Fragment>
       )}
-      <p>For any other question, feel free to <a href={"mailto:benjamin.vaysse@gmail.com"}>contact us</a>.</p>
+      <p>
+        For any other question, feel free to{" "}
+        <a href={"mailto:benjamin.vaysse@gmail.com"}>contact us</a>.
+      </p>
     </HelpContainer>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
-import {MediaContainer, Title} from "../containers/BigContainer";
-import {Spacing} from "../rules";
+import { MediaContainer, Title } from "../containers/BigContainer";
+import { Spacing } from "../rules";
 import styled from "styled-components";
 
 import page_not_found_illustation from "../img/page-not-found.png";

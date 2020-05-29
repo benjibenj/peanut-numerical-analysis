@@ -7,7 +7,7 @@ const lg = "12px";
 const BorderRadius = {
   sm,
   md,
-  lg,
+  lg
 };
 
 export default BorderRadius;

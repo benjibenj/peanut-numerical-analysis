@@ -7,7 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 import falsePositionFunction from "./falsePositionFunction";
 import { methods } from "../../../data/methods";
@@ -21,7 +21,7 @@ const FalsePosition = ({ name }) => {
   const [highValue, setHighValue] = useState(1);
   const [tol, setTol] = useState(1e-7);
   const [results, setResults] = useState(
-    falsePositionFunction("log(sin(x)^2 + 1)-(1/2)", 0, 1, 1e-7, 100),
+    falsePositionFunction("log(sin(x)^2 + 1)-(1/2)", 0, 1, 1e-7, 100)
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -39,8 +39,8 @@ const FalsePosition = ({ name }) => {
           parseFloat(event.target.lowValue.value),
           parseFloat(event.target.highValue.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
     } catch (e) {
       if (e instanceof TypeError) {
@@ -56,8 +56,12 @@ const FalsePosition = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 2)}
       next={methods.find(method => method.index === 4)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/3falsePosition/falsePositionFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/3falsePosition/pseudoCode/falsePosition.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/3falsePosition/falsePositionFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/3falsePosition/pseudoCode/falsePosition.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
@@ -98,10 +102,12 @@ const FalsePosition = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <p><strong>{name}</strong></p>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <TableStyle>
-            <table>
+              <table>
                 <thead>
                   <tr>
                     <th>Iteration</th>

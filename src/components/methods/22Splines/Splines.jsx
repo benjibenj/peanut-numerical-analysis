@@ -5,7 +5,7 @@ import {
   Button,
   Error,
   TableStyle,
-  Results,
+  Results
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -22,10 +22,10 @@ import splinesFunction from "./splinesFunction";
 const Splines = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1],
+    y: [15.5, 3, 8, 1]
   });
   const [methodState, setMethodState] = useState({
-    points: "input",
+    points: "input"
   });
   const [latexTable, setLatexTable] = useState(
     "\\begin{array}{ |c|c|c|c|c|c|}  \n" +
@@ -34,7 +34,7 @@ const Splines = ({ name }) => {
       " \\hline\n" +
       "y & 23 & 13 & 5 & -1 & -5\\\\ \n" +
       " \\hline\n" +
-      "\\end{array}",
+      "\\end{array}"
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
@@ -71,7 +71,7 @@ const Splines = ({ name }) => {
             onClick={() => {
               setMethodState(prevState => ({
                 ...prevState,
-                points: "input",
+                points: "input"
               }));
             }}
           >

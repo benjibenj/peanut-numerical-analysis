@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {Colors, Shadows, Spacing} from "../rules";
+import { Colors, Shadows, Spacing } from "../rules";
 import { Link } from "@reach/router";
 import logo from "../img/logo0.png";
-import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {LinkIcon} from "../containers/BigContainer";
-
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LinkIcon } from "../containers/BigContainer";
 
 const TopBar = () => {
   return (
@@ -24,7 +22,10 @@ const TopBar = () => {
           <LinkIcon to="/about">About</LinkIcon>
         </li>
         <li>
-          <LinkIcon to="/help">Help<FontAwesomeIcon icon={"question-circle"}/></LinkIcon>
+          <LinkIcon to="/help">
+            Help
+            <FontAwesomeIcon icon={"question-circle"} />
+          </LinkIcon>
         </li>
       </ul>
     </TopBarContainer>
@@ -75,7 +76,5 @@ const Logo = styled("div")`
   }
   padding: ${Spacing.md} 26px 12px;
 `;
-
-
 
 export default TopBar;

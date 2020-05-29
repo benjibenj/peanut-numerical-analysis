@@ -10,7 +10,7 @@ const About = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
     identifier: "about-page", //this.props.uniqueId
-    title: "About", //this.props.title
+    title: "About" //this.props.title
   };
 
   return (

@@ -6,7 +6,7 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
   let fX0 = evaluate(f, { x: x0 });
   let results = {
     iterations: [],
-    conclusion: undefined,
+    conclusion: undefined
   };
   if (maxCount > 100) {
     maxCount = 100;
@@ -15,7 +15,7 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     count,
     format(x0, { notation: "fixed", precision: 10 }),
     format(fX0, { notation: "exponential", precision: 2 }),
-    undefined,
+    undefined
   ]);
   if (fX0 === 0) {
     results.conclusion =
@@ -26,7 +26,7 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     return results;
   }
   let derivativeX0 = evaluate(derivative, { x: x0 });
-  let xN = x0 - (fX0 / (derivativeX0));
+  let xN = x0 - fX0 / derivativeX0;
   let fXN = evaluate(f, { x: xN });
   count += 1;
   error = abs(x0 - xN);
@@ -34,31 +34,35 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     count,
     format(xN, { notation: "fixed", precision: 10 }),
     format(fXN, { notation: "exponential", precision: 2 }),
-    format(error, { notation: "exponential", precision: 2 }),
+    format(error, { notation: "exponential", precision: 2 })
   ]);
   while (error > tol && count < maxCount && fXN !== 0) {
     x0 = xN;
     fX0 = fXN;
     derivativeX0 = evaluate(derivative, { x: x0 });
-    xN = xN = x0 - (fX0 / (derivativeX0));
+    xN = xN = x0 - fX0 / derivativeX0;
     error = abs(x0 - xN); //error at the current step
-    fXN = evaluate(f, {x: xN});
+    fXN = evaluate(f, { x: xN });
     count += 1;
     results.iterations.push([
       count,
       format(xN, { notation: "fixed", precision: 10 }),
       format(fXN, { notation: "exponential", precision: 2 }),
-      format(error, { notation: "exponential", precision: 2 }),
+      format(error, { notation: "exponential", precision: 2 })
     ]);
   }
   if (fXN === 0) {
     results.conclusion =
-      "The root was found for x " + count + "  = " +
+      "The root was found for x " +
+      count +
+      "  = " +
       format(xN, { notation: "fixed", precision: 15 });
     return results;
   } else if (error <= tol) {
     results.conclusion =
-      "An approximation of the root was found for x" + count + " = " +
+      "An approximation of the root was found for x" +
+      count +
+      " = " +
       format(xN, { notation: "fixed", precision: 15 });
     return results;
   } else if (count === maxCount) {

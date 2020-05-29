@@ -7,7 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 import secantFunction from "./secantFunction";
 import { methods } from "../../../data/methods";
@@ -21,7 +21,7 @@ const Secant = ({ name }) => {
   const [initialValueX1, setInitialValueX1] = useState(1);
   const [tol, setTol] = useState(1e-7);
   const [results, setResults] = useState(
-    secantFunction("log(sin(x)^2 + 1)-(1/2)", 0.5, 1, 1e-7, 100),
+    secantFunction("log(sin(x)^2 + 1)-(1/2)", 0.5, 1, 1e-7, 100)
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -38,8 +38,8 @@ const Secant = ({ name }) => {
           parseFloat(event.target.initialValueX0.value),
           parseFloat(event.target.initialValueX1.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
       setError(null);
     } catch (e) {
@@ -56,8 +56,12 @@ const Secant = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 5)}
       next={methods.find(method => method.index === 7)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secant/secantFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secant/pseudoCode/secant.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secant/secantFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secant/pseudoCode/secant.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
@@ -106,7 +110,9 @@ const Secant = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <p><strong>{name}</strong></p>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <TableStyle>
               <table>

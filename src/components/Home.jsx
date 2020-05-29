@@ -12,9 +12,7 @@ import Graph from "./Graph";
 const Home = () => {
   return (
     <React.Fragment>
-      <CenteredTitle>
-        Peanut
-      </CenteredTitle>
+      <CenteredTitle>Peanut</CenteredTitle>
       <CenteredSubTitle>
         Peanut is a website where you'll find several methods used to solve
         numerical analysis problems.{" "}
@@ -46,8 +44,8 @@ const CenteredTitle = styled(Title)`
 
 const CenteredSubTitle = styled(Subtitle)`
   text-align: center;
-  max-width: none; 
-  @media (max-width: 425px){
+  max-width: none;
+  @media (max-width: 425px) {
     font-size: 15px;
   }
 `;

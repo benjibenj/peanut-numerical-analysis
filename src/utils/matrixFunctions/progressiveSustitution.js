@@ -1,24 +1,23 @@
 import { divide, multiply, add, subtract } from "mathjs";
 import transpose from "./transpose";
 
-const progressiveSustitution = (A,B) => {
-    
-    let n = A[0].length;
-    
-    let xResult= new Array(n);
+const progressiveSustitution = (A, B) => {
+  let n = A[0].length;
 
-    xResult[0] = divide(B[0],A[0][0]);
+  let xResult = new Array(n);
 
-    for (let i = 1; i < n; i++) {
-      let suma = 0;
-        for(let j = 0; j < i; j++){
-            suma =add(suma, multiply(A[i][j],xResult[j]));
-       } 
-       xResult[i] = divide(subtract(B[i],suma),A[i][i]);
+  xResult[0] = divide(B[0], A[0][0]);
+
+  for (let i = 1; i < n; i++) {
+    let suma = 0;
+    for (let j = 0; j < i; j++) {
+      suma = add(suma, multiply(A[i][j], xResult[j]));
     }
-    //xResult = transpose(xResult, xResult[0].length);
-    
-    return xResult;
-  };
-  
-  export default progressiveSustitution;
+    xResult[i] = divide(subtract(B[i], suma), A[i][i]);
+  }
+  //xResult = transpose(xResult, xResult[0].length);
+
+  return xResult;
+};
+
+export default progressiveSustitution;

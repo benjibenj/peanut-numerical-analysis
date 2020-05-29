@@ -15,26 +15,26 @@ import { Button, Results, Inputs } from "../../../containers/BigContainer";
 const LuSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 4,
-    columns: 4,
+    columns: 4
   });
   const [matrixA, setMatrixA] = useState([
     [4, -1, -0, 3],
     [1, 15.5, 3, 8],
     [0, -1.3, -4, 1.1],
-    [14, 5, -2, 30],
+    [14, 5, -2, 30]
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
-    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}"
   );
   const [latexB, setLatexB] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}"
   );
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
-    solving: undefined,
+    solving: undefined
   });
   useEffect(() => {
     setLatexMatrixA(renderLatexMatrix(matrixA));
@@ -50,8 +50,12 @@ const LuSimple = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 10)}
       next={methods.find(method => method.index === 12)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/11LuSimple/luSimpleFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/11LuSimple/pseudoCode/luSimple.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/11LuSimple/luSimpleFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/11LuSimple/pseudoCode/luSimple.pdf"
+      }
     >
       <Inputs>
         {methodState.matrixA === "inputSize" ? (
@@ -77,7 +81,7 @@ const LuSimple = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    matrixA: "inputMatrix",
+                    matrixA: "inputMatrix"
                   }));
                 }}
               >
@@ -102,7 +106,7 @@ const LuSimple = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    B: "input",
+                    B: "input"
                   }));
                 }}
               >
@@ -133,10 +137,6 @@ const LuSimple = ({ name }) => {
     </Method>
   );
 };
-
-
-
-
 
 const Column = styled("div")`
   display: flex;

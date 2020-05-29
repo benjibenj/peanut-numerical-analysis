@@ -7,7 +7,7 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph,
+  LinkGraph
 } from "../../../containers/BigContainer";
 import newtonFunction from "./newtonFunction";
 import { methods } from "../../../data/methods";
@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Newton = ({ name }) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [functionDerivative, setFunctionDerivative] = useState(
-    "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))",
+    "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))"
   );
   const [initialValueX0, setInitialValueX0] = useState(0.5);
   const [tol, setTol] = useState(1e-7);
@@ -28,8 +28,8 @@ const Newton = ({ name }) => {
       "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))",
       0.5,
       1e-7,
-      100,
-    ),
+      100
+    )
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -46,8 +46,8 @@ const Newton = ({ name }) => {
           event.target.functionDerivative.value,
           parseFloat(event.target.initialValueX0.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value),
-        ),
+          parseInt(event.target.maxCount.value)
+        )
       );
       setError(null);
     } catch (e) {
@@ -64,8 +64,12 @@ const Newton = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 4)}
       next={methods.find(method => method.index === 6)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/5newton/newtonFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/5newton/pseudoCode/newton.pdf"}
+      jsAlgorithm={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/5newton/newtonFunction.js"
+      }
+      pseudoCode={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/5newton/pseudoCode/newton.pdf"
+      }
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
@@ -114,7 +118,9 @@ const Newton = ({ name }) => {
           </form>
         </Parameters>
         <Eval>
-          <p><strong>{name}</strong></p>
+          <p>
+            <strong>{name}</strong>
+          </p>
           {!error ? (
             <TableStyle>
               <table>

@@ -3,40 +3,40 @@
 const extraSmall = {
   fontSize: "9px",
   lineHeight: "1.25em",
-  fontFamily: "Montserrat, sans-serif",
+  fontFamily: "Montserrat, sans-serif"
 };
 
 const small = {
   fontSize: "12px",
   lineHeight: "1.25em",
-  fontFamily: "Montserrat, sans-serif",
+  fontFamily: "Montserrat, sans-serif"
 };
 
 const body = {
   fontSize: "14px",
   lineHeight: "1.25em",
-  fontFamily: "Montserrat, sans-serif",
+  fontFamily: "Montserrat, sans-serif"
 };
 
 const subTitle = {
   fontSize: "20px",
   lineHeight: "1.25em",
   fontFamily: "Montserrat, sans-serif",
-  fontWeight: "600",
+  fontWeight: "600"
 };
 
 const title = {
   fontSize: "30px",
   lineHeight: "1.25em",
   fontFamily: "Garamond, serif",
-  fontWeight: "800",
+  fontWeight: "800"
 };
 
 const largeTitle = {
   fontSize: "50px",
   lineHeight: "1.25em",
   fontFamily: "Garamond, serif",
-  fontWeight: "800",
+  fontWeight: "800"
 };
 
 const Typography = {
@@ -45,7 +45,7 @@ const Typography = {
   extraSmall,
   subTitle,
   title,
-  largeTitle,
+  largeTitle
 };
 
 export default Typography;

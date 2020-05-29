@@ -3,7 +3,7 @@ import { Router } from "@reach/router";
 
 import MethodsDashboard from "../components/MethodsDashboard";
 
-import {methods} from "../data/methods";
+import { methods } from "../data/methods";
 
 import FuncEval from "../components/methods/0funcEval/FuncEval.jsx";
 import IncSearch from "../components/methods/1incSearch/IncSearch.jsx";
@@ -32,27 +32,90 @@ const MethodsRouter = () => {
   return (
     <Router>
       <MethodsDashboard path="/" />
-      <FuncEval path={methods.find(method => method.index === 0).id} name={methods.find(method => method.index === 0).name} />
-      <IncSearch path={methods.find(method => method.index === 1).id} name={methods.find(method => method.index === 1).name} />
-      <Bisection path={methods.find(method => method.index === 2).id} name={methods.find(method => method.index === 2).name} />
-      <FalsePosition path={methods.find(method => method.index === 3).id} name={methods.find(method => method.index === 3).name} />
-      <FixedPoint path={methods.find(method => method.index === 4).id} name={methods.find(method => method.index === 4).name} />
-      <Newton path={methods.find(method => method.index === 5).id} name={methods.find(method => method.index === 5).name} />
-      <Secante path={methods.find(method => method.index === 6).id} name={methods.find(method => method.index === 6).name} />
-      <MultipleRoots path={methods.find(method => method.index === 7).id} name={methods.find(method => method.index === 7).name} />
-      <GaussSimple path={methods.find(method => method.index === 8).id} name={methods.find(method => method.index === 8).name} />
-      <GaussPartial path={methods.find(method => method.index === 9).id} name={methods.find(method => method.index === 9).name} />
-      <GaussTotal path={methods.find(method => method.index === 10).id} name={methods.find(method => method.index === 10).name} />
-      <LuSimple path={methods.find(method => method.index === 11).id} name={methods.find(method => method.index === 11).name} />
-      <LuPartial path={methods.find(method => method.index === 12).id} name={methods.find(method => method.index === 12).name} />
-      <Croult path={methods.find(method => method.index === 13).id} name={methods.find(method => method.index === 13).name} />
-      <Doolittle path={methods.find(method => method.index === 14).id} name={methods.find(method => method.index === 14).name} />
-      <Cholesky path={methods.find(method => method.index === 15).id} name={methods.find(method => method.index === 15).name} />
-      <IterativeMethods path={methods.find(method => method.index === 16).id} name={methods.find(method => method.index === 16).name} />
-      <Vandermonde path={methods.find(method => method.index === 19).id} name={methods.find(method => method.index === 19).name} />
-      <NewtonInterpolation path={methods.find(method => method.index === 20).id} name={methods.find(method => method.index === 20).name} />
-      <Lagrange path={methods.find(method => method.index === 21).id} name={methods.find(method => method.index === 21).name} />
-      <Splines path={methods.find(method => method.index === 22).id} name={methods.find(method => method.index === 22).name} />
+      <FuncEval
+        path={methods.find(method => method.index === 0).id}
+        name={methods.find(method => method.index === 0).name}
+      />
+      <IncSearch
+        path={methods.find(method => method.index === 1).id}
+        name={methods.find(method => method.index === 1).name}
+      />
+      <Bisection
+        path={methods.find(method => method.index === 2).id}
+        name={methods.find(method => method.index === 2).name}
+      />
+      <FalsePosition
+        path={methods.find(method => method.index === 3).id}
+        name={methods.find(method => method.index === 3).name}
+      />
+      <FixedPoint
+        path={methods.find(method => method.index === 4).id}
+        name={methods.find(method => method.index === 4).name}
+      />
+      <Newton
+        path={methods.find(method => method.index === 5).id}
+        name={methods.find(method => method.index === 5).name}
+      />
+      <Secante
+        path={methods.find(method => method.index === 6).id}
+        name={methods.find(method => method.index === 6).name}
+      />
+      <MultipleRoots
+        path={methods.find(method => method.index === 7).id}
+        name={methods.find(method => method.index === 7).name}
+      />
+      <GaussSimple
+        path={methods.find(method => method.index === 8).id}
+        name={methods.find(method => method.index === 8).name}
+      />
+      <GaussPartial
+        path={methods.find(method => method.index === 9).id}
+        name={methods.find(method => method.index === 9).name}
+      />
+      <GaussTotal
+        path={methods.find(method => method.index === 10).id}
+        name={methods.find(method => method.index === 10).name}
+      />
+      <LuSimple
+        path={methods.find(method => method.index === 11).id}
+        name={methods.find(method => method.index === 11).name}
+      />
+      <LuPartial
+        path={methods.find(method => method.index === 12).id}
+        name={methods.find(method => method.index === 12).name}
+      />
+      <Croult
+        path={methods.find(method => method.index === 13).id}
+        name={methods.find(method => method.index === 13).name}
+      />
+      <Doolittle
+        path={methods.find(method => method.index === 14).id}
+        name={methods.find(method => method.index === 14).name}
+      />
+      <Cholesky
+        path={methods.find(method => method.index === 15).id}
+        name={methods.find(method => method.index === 15).name}
+      />
+      <IterativeMethods
+        path={methods.find(method => method.index === 16).id}
+        name={methods.find(method => method.index === 16).name}
+      />
+      <Vandermonde
+        path={methods.find(method => method.index === 19).id}
+        name={methods.find(method => method.index === 19).name}
+      />
+      <NewtonInterpolation
+        path={methods.find(method => method.index === 20).id}
+        name={methods.find(method => method.index === 20).name}
+      />
+      <Lagrange
+        path={methods.find(method => method.index === 21).id}
+        name={methods.find(method => method.index === 21).name}
+      />
+      <Splines
+        path={methods.find(method => method.index === 22).id}
+        name={methods.find(method => method.index === 22).name}
+      />
       <Page404 default />
     </Router>
   );

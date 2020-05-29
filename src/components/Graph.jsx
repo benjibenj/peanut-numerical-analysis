@@ -6,7 +6,7 @@ import {
   Button,
   MediaContainer,
   Parameters,
-  Eval,
+  Eval
 } from "../containers/BigContainer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +21,7 @@ const Graph = () => {
   const size = useWindowDimensions();
   const node = useRef(null);
   const [functionText, setFunctionText] = useState(
-    params.has("function") ? params.get("function") : "x^2",
+    params.has("function") ? params.get("function") : "x^2"
   );
   const [errorMessage, setErrorMessage] = useState(null);
   const [grid, setGrid] = useState(false);
@@ -47,23 +47,25 @@ const Graph = () => {
               xAxis1Domain && xAxis2Domain
                 ? [xAxis1Domain, xAxis2Domain]
                 : undefined,
-            label: "x - axis",
+            label: "x - axis"
           },
           yAxis: {
             domain:
               yAxis1Domain && yAxis2Domain
                 ? [yAxis1Domain, yAxis2Domain]
                 : undefined,
-            label: "y - axis",
+            label: "y - axis"
           },
           height: 480,
-          data: [{
-            fn: functionText,
-            color: "#358180",
-            sampler: 'builtIn',
-            graphType: 'polyline'
-          }],
-          grid: grid,
+          data: [
+            {
+              fn: functionText,
+              color: "#358180",
+              sampler: "builtIn",
+              graphType: "polyline"
+            }
+          ],
+          grid: grid
         });
       } catch (err) {
         setErrorMessage(err.toString());
@@ -77,7 +79,7 @@ const Graph = () => {
     xAxis1Domain,
     xAxis2Domain,
     yAxis1Domain,
-    yAxis2Domain,
+    yAxis2Domain
   ]);
   return (
     <MediaContainer width={"1050px"}>

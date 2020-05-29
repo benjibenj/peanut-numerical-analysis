@@ -128,22 +128,22 @@ export const TableStyle = styled("div")`
     border: 1px solid #ccc;
     border-collapse: collapse;
     padding: ${Spacing.xs};
-    margin-left:auto; 
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   /* Zebra striping */
-  tr:nth-of-type(odd) { 
-    background: #eee;   
+  tr:nth-of-type(odd) {
+    background: #eee;
   }
-  th { 
-    background: ${Colors.primary.ocean.darker}; 
-    color: white; 
-    font-weight: bold; 
+  th {
+    background: ${Colors.primary.ocean.darker};
+    color: white;
+    font-weight: bold;
   }
-  @media (max-width: ${props => props.width ? props.width : "700px"}) {
+  @media (max-width: ${props => (props.width ? props.width : "700px")}) {
     font-size: 12px;
   }
-  @media (max-width: ${props => props.widthTwo ? props.widthTwo : "580px"}) {
+  @media (max-width: ${props => (props.widthTwo ? props.widthTwo : "580px")}) {
     th,
     td {
       padding: 0;
@@ -156,8 +156,12 @@ export const TableStyle = styled("div")`
 export const Button = styled("button")`
   font-size: inherit;
   border: 2px solid ${Colors.primary.ocean.default};
-  color: ${props => props.primary ? Colors.utility.white.default : Colors.primary.ocean.darker};
-  background-color: ${props => props.primary ? Colors.primary.ocean.default : Colors.utility.white.default};
+  color: ${props =>
+    props.primary ? Colors.utility.white.default : Colors.primary.ocean.darker};
+  background-color: ${props =>
+    props.primary
+      ? Colors.primary.ocean.default
+      : Colors.utility.white.default};
   border-radius: ${BorderRadius.sm};
   font-weight: bold;
   cursor: pointer;
