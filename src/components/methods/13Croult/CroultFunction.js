@@ -1,7 +1,8 @@
-import eye from "../../../utils/matrixFunctions/eye";
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
-import { usolve } from "mathjs";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
+import { usolve, sqrt, divide, multiply, add } from "mathjs";
+import eye from "../../../utils/matrixFunctions/eye";
+
 
 const croultFunction = (matrixA, B) => {
   let results = {

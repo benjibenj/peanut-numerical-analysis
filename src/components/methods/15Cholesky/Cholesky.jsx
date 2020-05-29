@@ -115,13 +115,13 @@ const Cholesky = ({ name }) => {
           {results.iterations.map((matrix, index) => {
               return (
                 <React.Fragment>
-                  <p>Step {index}</p>
+                  <p>Step {index+1}</p>
                   <BlockMath
-                    key={index}
+                    key={index+1}
                     math={"L = " + renderLatexMatrix(matrix.L, 6)}
                   />
                   <BlockMath
-                    key={index}
+                    key={index+1}
                     math={"U = " + renderLatexMatrix(matrix.U, 6)}
                   />
                 </React.Fragment>

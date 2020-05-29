@@ -112,21 +112,25 @@ const Doolittle = ({ name }) => {
       </Inputs>
       {results && (
         <Results>
-          {results.iterations.map((iter, index) => {
+          {results.iterations.map((matrix, index) => {
               return (
-                <React.Fragment key={index}>
+                <React.Fragment>
                   <p>Step {index+1}</p>
                   <BlockMath
-                    math={"L = " + renderLatexMatrix(iter.L, 6)}
+                    key={index+1}
+                    math={"L = " + renderLatexMatrix(matrix.L, 6)}
                   />
                   <BlockMath
-                    math={"U = " + renderLatexMatrix(iter.U, 6)}
+                    key={index+1}
+                    math={"U = " + renderLatexMatrix(matrix.U, 6)}
                   />
                 </React.Fragment>
               );
           })}
           <p>{results.conclusion}</p>
-          <BlockMath math={"x = " + renderLatexMatrix(results.finalSolution, 6)} />
+          <BlockMath 
+            math={"x = " + renderLatexMatrix(results.finalSolution, 6)} 
+          />
         </Results>
       )}
     </Method>
