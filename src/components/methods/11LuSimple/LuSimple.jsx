@@ -120,7 +120,7 @@ const LuSimple = ({ name }) => {
             return (
               <React.Fragment key={index}>
                 <p>Step {index + 1}</p>
-                <BlockMath math={renderLatexMatrix(iter.M, 6)} />
+                <BlockMath math={"M = " + renderLatexMatrix(iter.M, 6)} />
                 <BlockMath math={"L = " + renderLatexMatrix(iter.L, 6)} />
                 <BlockMath math={"U = " + renderLatexMatrix(iter.U, 6)} />
               </React.Fragment>
