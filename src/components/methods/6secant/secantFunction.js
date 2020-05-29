@@ -1,6 +1,6 @@
 import { format, evaluate, abs } from "mathjs";
 
-const secanteFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
+const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
   let error;
   let count = 0;
   let fX0 = evaluate(f, { x: x0 });
@@ -103,4 +103,4 @@ const secanteFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
   }
 };
 
-export default secanteFunction;
+export default secantFunction;

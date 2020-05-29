@@ -43,24 +43,23 @@ const Method = ({
           <FuncEvalLive>{children}</FuncEvalLive>
         </Side>
       </MainContainer>
-      {jsAlgorithm ||
-        (pseudoCode && (
-          <AlgoInfo>
-            <h2>{title + " "}algorithm</h2>
-            {jsAlgorithm && (
-              <ExternalStyledLink target="_blank" href={jsAlgorithm}>
-                <FontAwesomeIcon icon={"code"} />
-                Code (javascript)
-              </ExternalStyledLink>
-            )}
-            {pseudoCode && (
-              <ExternalStyledLink target="_blank" href={pseudoCode}>
-                <FontAwesomeIcon icon={"align-left"} />
-                Pseudo-code
-              </ExternalStyledLink>
-            )}
-          </AlgoInfo>
-        ))}
+      {(jsAlgorithm || pseudoCode) && (
+        <AlgoInfo>
+          <h2>{title + " "}algorithm</h2>
+          {jsAlgorithm && (
+            <ExternalStyledLink target="_blank" href={jsAlgorithm}>
+              <FontAwesomeIcon icon={"code"} />
+              Code (javascript)
+            </ExternalStyledLink>
+          )}
+          {pseudoCode && (
+            <ExternalStyledLink target="_blank" href={pseudoCode}>
+              <FontAwesomeIcon icon={"align-left"} />
+              Pseudo-code
+            </ExternalStyledLink>
+          )}
+        </AlgoInfo>
+      )}
     </React.Fragment>
   );
 };

@@ -9,19 +9,19 @@ import {
   Error,
   LinkGraph,
 } from "../../../containers/BigContainer";
-import secanteFunction from "./secanteFunction";
+import secantFunction from "./secantFunction";
 import { methods } from "../../../data/methods";
 import { parse } from "mathjs";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Secante = ({ name }) => {
+const Secant = ({ name }) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [initialValueX0, setInitialValueX0] = useState(0.5);
   const [initialValueX1, setInitialValueX1] = useState(1);
   const [tol, setTol] = useState(1e-7);
   const [results, setResults] = useState(
-    secanteFunction("log(sin(x)^2 + 1)-(1/2)", 0.5, 1, 1e-7, 100),
+    secantFunction("log(sin(x)^2 + 1)-(1/2)", 0.5, 1, 1e-7, 100),
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -33,7 +33,7 @@ const Secante = ({ name }) => {
       setInitialValueX1(event.target.initialValueX1.value);
       setTol(event.target.tol.value);
       setResults(
-        secanteFunction(
+        secantFunction(
           event.target.functionText.value,
           parseFloat(event.target.initialValueX0.value),
           parseFloat(event.target.initialValueX1.value),
@@ -56,8 +56,8 @@ const Secante = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 5)}
       next={methods.find(method => method.index === 7)}
-      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secante/secanteFunction.js"}
-      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secante/pseudoCode/secante.pdf"}
+      jsAlgorithm={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secant/secantFunction.js"}
+      pseudoCode={"https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/6secant/pseudoCode/secant.pdf"}
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
@@ -147,4 +147,4 @@ const Secante = ({ name }) => {
   );
 };
 
-export default Secante;
+export default Secant;

@@ -11,7 +11,7 @@ import Bisection from "../components/methods/2bisection/Bisection";
 import FalsePosition from "../components/methods/3falsePosition/FalsePosition";
 import FixedPoint from "../components/methods/4fixedPoint/FixedPoint.jsx";
 import Newton from "../components/methods/5newton/Newton";
-import Secante from "../components/methods/6secante/Secante";
+import Secante from "../components/methods/6secant/Secant";
 import MultipleRoots from "../components/methods/7multipleroots/MultipleRoots";
 import GaussSimple from "../components/methods/8gaussSimple/GaussSimple";
 import GaussPartial from "../components/methods/9gaussPartial/GaussPartial";

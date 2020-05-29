@@ -32,7 +32,7 @@ export const methods = [
   },
   {
     index: 6,
-    id: "secante",
+    id: "secant",
     theme: "one-var",
     name: "Secant method",
   },
