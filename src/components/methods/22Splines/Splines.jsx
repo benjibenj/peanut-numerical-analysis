@@ -48,7 +48,6 @@ const Splines = ({ name }) => {
     <Method
       title={name}
       prev={methods.find(method => method.index === 21)}
-      next={methods.find(method => method.index === 23)}
       jsAlgorithm={
         "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/splinesFunction.js"
       }

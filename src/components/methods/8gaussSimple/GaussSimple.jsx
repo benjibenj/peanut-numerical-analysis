@@ -4,12 +4,11 @@ import MatrixInput from "../../MatrixInput";
 import MatrixInputSize from "../../MatrixSizeInput";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
 import gaussSimpleFunction from "./gaussSimpleFunction";
-import styled from "styled-components";
 
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
-import { Button, Results, Inputs } from "../../../containers/BigContainer";
+import { Button, Results, Inputs, Column } from "../../../containers/BigContainer";
 
 const GaussSimple = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
@@ -146,10 +145,5 @@ const GaussSimple = ({ name }) => {
     </Method>
   );
 };
-
-const Column = styled("div")`
-  display: flex;
-  flex-direction: column;
-`;
 
 export default GaussSimple;

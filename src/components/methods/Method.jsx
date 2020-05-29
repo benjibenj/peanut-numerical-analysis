@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BorderRadius, Colors, Shadows, Spacing } from "../../rules";
-import { LinkIcon, Subtitle, Title } from "../../containers/BigContainer";
+import { Subtitle, Title } from "../../containers/BigContainer";
 
 import { Link } from "@reach/router";
 import styled from "styled-components";

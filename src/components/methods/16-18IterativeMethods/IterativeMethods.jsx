@@ -11,7 +11,8 @@ import {
   TableStyle,
   Error,
   Results,
-  Inputs
+  Inputs,
+  Column
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -340,11 +341,6 @@ const IterativeMethods = ({ name }) => {
     </Method>
   );
 };
-
-const Column = styled("div")`
-  display: flex;
-  flex-direction: column;
-`;
 
 const ParametersMatrix = styled(Parameters)`
   display: flex;

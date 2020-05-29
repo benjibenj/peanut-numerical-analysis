@@ -1,6 +1,6 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import { usolve, sqrt, divide, multiply, add } from "mathjs";
+import { usolve, divide, multiply, add } from "mathjs";
 import eye from "../../../utils/matrixFunctions/eye";
 
 const doolittleFunction = (matrixA, B) => {

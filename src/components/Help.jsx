@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import BigContainer, { MediaContainer } from "../containers/BigContainer";
 import HelpBlocks from "./HelpBlocks";
 import CommentContainer from "../containers/CommentContainer";
 import { Typography, Spacing } from "../rules";

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Colors, Shadows, Spacing } from "../rules";
+import { Colors, Spacing } from "../rules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const HelpBlocks = () => {
   const [q1Active, setQ1Active] = useState(false);
   const [q2Active, setQ2Active] = useState(false);
   const [q3Active, setQ3Active] = useState(false);
-  const [q4Active, setQ4Active] = useState(false);
-  const [q5Active, setQ5Active] = useState(false);
-  const [q6Active, setQ6Active] = useState(false);
   return (
     <HelpContainer>
       <h2>FAQ</h2>
