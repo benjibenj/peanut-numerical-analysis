@@ -26,9 +26,7 @@ import Page404 from "../components/Page404";
 import Vandermonde from "../components/methods/19Vandermonde/Vandermonde";
 import NewtonInterpolation from "../components/methods/20NewtonInterpolation/NewtonInterpolation";
 import Lagrange from "../components/methods/21Lagrange/Lagrange";
-import SplinesLinear from "../components/methods/22SplinesLinear/SplinesLinear";
-import SplinesSquare from "../components/methods/23SplinesSquare/SplinesSquare";
-import SplinesCubic from "../components/methods/24SplinesCubic/SplinesCubic";
+import Splines from "../components/methods/22Splines/Splines";
 
 const MethodsRouter = () => {
   return (
@@ -54,9 +52,7 @@ const MethodsRouter = () => {
       <Vandermonde path={methods.find(method => method.index === 19).id} name={methods.find(method => method.index === 19).name} />
       <NewtonInterpolation path={methods.find(method => method.index === 20).id} name={methods.find(method => method.index === 20).name} />
       <Lagrange path={methods.find(method => method.index === 21).id} name={methods.find(method => method.index === 21).name} />
-      <SplinesLinear path={methods.find(method => method.index === 22).id} name={methods.find(method => method.index === 22).name} />
-      <SplinesSquare path={methods.find(method => method.index === 23).id} name={methods.find(method => method.index === 23).name} />
-      <SplinesCubic path={methods.find(method => method.index === 24).id} name={methods.find(method => method.index === 24).name} />
+      <Splines path={methods.find(method => method.index === 22).id} name={methods.find(method => method.index === 22).name} />
       <Page404 default />
     </Router>
   );

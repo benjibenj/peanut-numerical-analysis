@@ -1,5 +1,5 @@
 
-const splinesLinearFunction = points => {
+const splinesFunction = points => {
   let results = {
     polynom: undefined,
     interpolationPolynomials: [],
@@ -44,4 +44,4 @@ const splinesLinearFunction = points => {
   return results;
 };
 
-export default splinesLinearFunction;
+export default splinesFunction;

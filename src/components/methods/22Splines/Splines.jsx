@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, TableStyle, Results, Inputs } from "../../../containers/BigContainer";
+import { Button, Error, TableStyle, Results } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -12,9 +12,9 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlockMath, InlineMath } from "react-katex";
-import splinesLinearFunction from "./splinesLinearFunction";
+import splinesFunction from "./splinesFunction";
 
-const SplinesLinear = ({ name }) => {
+const Splines = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
     y: [15.5, 3, 8, 1],
@@ -36,7 +36,7 @@ const SplinesLinear = ({ name }) => {
   useEffect(() => {
     setLatexTable(renderLatexTable(points));
     methodState.points !== "input"
-      ? setResults(splinesLinearFunction(points))
+      ? setResults(splinesFunction(points))
       : setResults(undefined);
   }, [points, methodState]);
   return (
@@ -134,4 +134,4 @@ const CenteredColumn = styled("div")`
 
 
 
-export default SplinesLinear;
+export default Splines;
