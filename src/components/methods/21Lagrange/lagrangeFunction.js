@@ -1,8 +1,13 @@
+import hasDuplicates from "../../../utils/hasDuplicates";
+
 const lagrangeFunction = points => {
   let results = {
     polynom: undefined,
     interpolationPolynomials: []
   };
+  if(hasDuplicates(points.x)){
+    throw Error("x has duplicates, a value of x can only be declared once")
+  }
   let degree = points.x.length;
   for (let k = 0; k < degree; k++) {
     let numerator = "";

@@ -7,7 +7,8 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph
+  LinkGraph,
+  Results
 } from "../../../containers/BigContainer";
 import newtonFunction from "./newtonFunction";
 import { methods } from "../../../data/methods";
@@ -18,7 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Newton = ({ name }) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [functionDerivative, setFunctionDerivative] = useState(
-    "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))"
+    "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))",
   );
   const [initialValueX0, setInitialValueX0] = useState(0.5);
   const [tol, setTol] = useState(1e-7);
@@ -28,8 +29,8 @@ const Newton = ({ name }) => {
       "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))",
       0.5,
       1e-7,
-      100
-    )
+      100,
+    ),
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -46,17 +47,16 @@ const Newton = ({ name }) => {
           event.target.functionDerivative.value,
           parseFloat(event.target.initialValueX0.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value)
-        )
+          parseInt(event.target.maxCount.value),
+        ),
       );
       setError(null);
     } catch (e) {
-      if (e instanceof TypeError) {
-        setError("The function you entered cannot be parsed");
-      } else {
-        setError(e + "");
-      }
-      setResults([]); // re-render empty results while processing
+      setError(e + "");
+      setResults({
+        iterations: [],
+        conclusion: undefined,
+      }); // re-render empty results while processing
     }
   };
   return (
@@ -73,13 +73,33 @@ const Newton = ({ name }) => {
     >
       <LinkGraph>
         <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
-          Graph {functionText}
+          Graph f(x) = {functionText}
+        </Link>
+      </LinkGraph>
+      <LinkGraph>
+        <Link to={"/graph?function=" + encodeURIComponent(functionDerivative)}>
+          Graph f'(x) = {functionDerivative}
         </Link>
       </LinkGraph>
       <MediaContainer width={"900px"}>
         <Parameters width={"900px"}>
           <p>
             <strong>Parameters</strong>
+          </p>
+          <p>
+            You need to make sure that the function in continuous for the given
+            interval, and that derivative does not equal zero in any of the
+            points of the interval being analyzed. To do so, you should plot{" "}
+            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+              f(x)
+            </Link>{" "}
+            and{" "}
+            <Link
+              to={"/graph?function=" + encodeURIComponent(functionDerivative)}
+            >
+              f'(x)
+            </Link>
+            .
           </p>
           <form onSubmit={handleSubmit}>
             <label>
@@ -148,12 +168,12 @@ const Newton = ({ name }) => {
               <p>{results.conclusion}</p>
             </TableStyle>
           ) : (
-            <React.Fragment>
+            <Results>
               <Error>{error}</Error>
               <Link to={"/help"}>
                 <FontAwesomeIcon icon={"question-circle"} /> Help Page
               </Link>
-            </React.Fragment>
+            </Results>
           )}
         </Eval>
       </MediaContainer>

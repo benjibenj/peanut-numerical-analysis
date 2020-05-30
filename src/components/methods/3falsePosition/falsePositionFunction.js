@@ -1,13 +1,9 @@
 import { format, evaluate, abs } from "mathjs";
-/*
- ESO ES EL CODIGO PARA BISECCION
- NECESITE ADAPTARLO PARA REGLA FALSA
- */
 
 const falsePositionFunction = (functionText, a, b, tol, maxCount) => {
   let results = {
     iterations: [],
-    conclusion: undefined
+    conclusion: undefined,
   };
   if (maxCount > 100) {
     maxCount = 100;
@@ -28,7 +24,7 @@ const falsePositionFunction = (functionText, a, b, tol, maxCount) => {
     format(xR, { notation: "fixed", precision: 10 }),
     format(b, { notation: "fixed", precision: 10 }),
     format(fxR, { notation: "exponential", precision: 2 }),
-    ""
+    "",
   ]);
 
   do {
@@ -53,7 +49,7 @@ const falsePositionFunction = (functionText, a, b, tol, maxCount) => {
       format(xR, { notation: "fixed", precision: 10 }),
       format(b, { notation: "fixed", precision: 10 }),
       format(fxR, { notation: "exponential", precision: 2 }),
-      format(error, { notation: "exponential", precision: 2 })
+      format(error, { notation: "exponential", precision: 2 }),
     ]);
   } while (error > tol && count < maxCount);
 

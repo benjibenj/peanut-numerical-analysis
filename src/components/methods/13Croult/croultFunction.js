@@ -1,6 +1,6 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import { usolve } from "mathjs";
+import {usolve} from "mathjs";
 import eye from "../../../utils/matrixFunctions/eye";
 
 const croultFunction = (matrixA, B) => {
@@ -44,8 +44,7 @@ const croultFunction = (matrixA, B) => {
   results.conclusion =
     "After applying regressive and progressive substitution we get :";
   let resultZ = progressiveSustitution(L, B);
-  let resultX = usolve(U, resultZ);
-  results.finalSolution = resultX;
+  results.finalSolution = usolve(U, resultZ);
   return results;
 };
 

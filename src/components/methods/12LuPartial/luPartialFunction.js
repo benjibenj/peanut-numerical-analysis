@@ -1,4 +1,3 @@
-import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
 import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
@@ -20,19 +19,15 @@ const luPartialFunction = (matrixA, B) => {
   let M = deepCopyFunction(matrixA);
 
   if (m !== n) {
-    results.conclusion = "The matrix is not square";
-    return results;
+    throw Error("The matrix is not square");
   }
   if (m !== B.length) {
-    results.conclusion = "B has different dimension";
-    return results;
+    throw Error("B has different dimension");
   }
   if (determinant(matrixA) === 0) {
-    results.conclusion = "Determinant of the matrix cannot be zero";
-    return results;
+    throw Error("Determinant of the matrix cannot be zero");
   }
   for (let i = 0; i < n - 1; i++) {
-    let indexMax = findMaxElement(M, i, i);
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
         let aux = new Array(n + 1);

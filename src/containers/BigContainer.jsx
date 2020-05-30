@@ -73,6 +73,7 @@ export const Parameters = styled("div")`
   padding-bottom: ${Spacing.md};
   p {
     text-align: center;
+    max-width: 400px;
   }
   form {
     background-color: white;
@@ -119,6 +120,7 @@ export const Error = styled("div")`
   padding: ${Spacing.md} ${Spacing.lg};
   font-weight: bold;
   margin: ${Spacing.md} 0;
+  max-width: 500px;
 `;
 
 export const TableStyle = styled("div")`

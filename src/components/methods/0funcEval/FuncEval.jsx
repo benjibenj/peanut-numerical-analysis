@@ -25,11 +25,7 @@ const FuncEval = ({ name }) => {
       setError(null);
       parse(functionText);
     } catch (e) {
-      if (e instanceof TypeError) {
-        setError("The function you entered cannot be parsed");
-      } else {
-        setError(e.toString());
-      }
+      setError(e.toString());
     }
   }, [functionText]);
   const handleSubmit = event => {
@@ -45,11 +41,7 @@ const FuncEval = ({ name }) => {
       );
       setError(null);
     } catch (e) {
-      if (e instanceof TypeError) {
-        setError("The function you entered cannot be parsed");
-      } else {
-        setError(e.toString());
-      }
+      setError(e.toString());
       setResultEval(null); // re-render empty results while processing
     }
   };
@@ -76,7 +68,7 @@ const FuncEval = ({ name }) => {
               />
             </label>
             <label>
-              Value of x (can be an array)
+              Value of x
               <input type="text" name="x" defaultValue={x} />
             </label>
             <Button>Apply</Button>
@@ -86,7 +78,7 @@ const FuncEval = ({ name }) => {
           <p>
             <strong>{name}</strong>
           </p>
-          {!error ? (
+          {!error && resultEval? (
             <p>{"f(" + x + ") = " + resultEval.toString()}</p>
           ) : (
             <React.Fragment>

@@ -18,10 +18,10 @@ import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
 const Vandermonde = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1]
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
-    points: "input"
+    points: "input",
   });
   const [latexTable, setLatexTable] = useState(
     "\\begin{array}{ |c|c|c|c|c|c|}  \n" +
@@ -30,15 +30,23 @@ const Vandermonde = ({ name }) => {
       " \\hline\n" +
       "y & 23 & 13 & 5 & -1 & -5\\\\ \n" +
       " \\hline\n" +
-      "\\end{array}"
+      "\\end{array}",
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   useEffect(() => {
+    setError(null);
     setLatexTable(renderLatexTable(points));
-    methodState.points !== "input"
-      ? setResults(vandermondeFunction(points))
-      : setResults(undefined);
+    if (methodState.points !== "input") {
+      try {
+        setResults(vandermondeFunction(points));
+      } catch (e) {
+        setError(e + "");
+        setResults(undefined);
+      }
+    } else {
+      setResults(undefined);
+    }
   }, [points, methodState]);
   return (
     <Method
@@ -67,7 +75,7 @@ const Vandermonde = ({ name }) => {
             onClick={() => {
               setMethodState(prevState => ({
                 ...prevState,
-                points: "input"
+                points: "input",
               }));
             }}
           >
@@ -75,7 +83,7 @@ const Vandermonde = ({ name }) => {
           </Button>
         </CenteredColumn>
       )}
-      {results && (
+      {results && !error ? (
         <Results>
           {!error ? (
             <React.Fragment>
@@ -103,6 +111,15 @@ const Vandermonde = ({ name }) => {
           )}
           <p>{results.conclusion && results.conclusion}</p>
         </Results>
+      ) : (
+        error && (
+          <Results>
+            <Error>{error}</Error>
+            <Link to={"/help"}>
+              <FontAwesomeIcon icon={"question-circle"} /> Help Page
+            </Link>
+          </Results>
+        )
       )}
     </Method>
   );

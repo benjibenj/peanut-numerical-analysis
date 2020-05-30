@@ -1,4 +1,5 @@
 import gaussSimpleFunction from "../8gaussSimple/gaussSimpleFunction";
+import hasDuplicates from "../../../utils/hasDuplicates";
 import { format } from "mathjs";
 
 const vandermondeFunction = points => {
@@ -9,6 +10,9 @@ const vandermondeFunction = points => {
     polynom: undefined,
     coeffs: []
   };
+  if(hasDuplicates(points.x)){
+    throw Error("x has duplicates, a value of x can only be declared once")
+  }
   let degree = points.x.length; // number of points
   let matrixA = Array(degree);
   let B = Array(degree);

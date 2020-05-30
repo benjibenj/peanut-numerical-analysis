@@ -7,7 +7,8 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph
+  LinkGraph,
+  Results
 } from "../../../containers/BigContainer";
 import secantFunction from "./secantFunction";
 import { methods } from "../../../data/methods";
@@ -43,12 +44,11 @@ const Secant = ({ name }) => {
       );
       setError(null);
     } catch (e) {
-      if (e instanceof TypeError) {
-        setError("The function you entered cannot be parsed");
-      } else {
-        setError(e + "");
-      }
-      setResults([]); // re-render empty results while processing
+      setError(e + "");
+      setResults({
+        iterations: [],
+        conclusion: undefined,
+      }); // re-render empty results while processing
     }
   };
   return (
@@ -72,6 +72,13 @@ const Secant = ({ name }) => {
         <Parameters width={"900px"}>
           <p>
             <strong>Parameters</strong>
+          </p>
+          <p>
+            You need to make sure that the function in continuous for the given
+            interval. To do so, you should{" "}
+            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+              plot the function
+            </Link>.
           </p>
           <form onSubmit={handleSubmit}>
             <label>
@@ -140,12 +147,12 @@ const Secant = ({ name }) => {
               <p>{results.conclusion}</p>
             </TableStyle>
           ) : (
-            <React.Fragment>
+            <Results>
               <Error>{error}</Error>
               <Link to={"/help"}>
                 <FontAwesomeIcon icon={"question-circle"} /> Help Page
               </Link>
-            </React.Fragment>
+            </Results>
           )}
         </Eval>
       </MediaContainer>

@@ -1,4 +1,3 @@
-import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
 import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
 import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
@@ -9,22 +8,19 @@ const gaussTotalFunction = (matrixA, B) => {
   let results = {
     iterations: [],
     conclusion: undefined,
-    finalSolution: []
+    finalSolution: [],
   };
 
   let m = matrixA.length;
   let n = matrixA[0].length;
   if (m !== n) {
-    results.conclusion = "The matrix is not square";
-    return results;
+    throw Error("The matrix is not square");
   }
   if (m !== B.length) {
-    results.conclusion = "B has different dimension";
-    return results;
+    throw Error("B has different dimension");
   }
   if (determinant(matrixA) === 0) {
-    results.conclusion = "Determinant of the matrix cannot be zero";
-    return results;
+    throw Error("Determinant of the matrix cannot be zero");
   }
   let M = new Array(n);
   for (let i = 0; i < n; i++) {
@@ -87,7 +83,7 @@ const gaussTotalFunction = (matrixA, B) => {
       // A = all columns of M except the last one
       return val.slice(0, -1);
     }),
-    getCol(M, m) // B = last column of M
+    getCol(M, m), // B = last column of M
   );
 
   let tempAr = deepCopyFunction(resultX);

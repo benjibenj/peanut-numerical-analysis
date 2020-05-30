@@ -50,14 +50,11 @@ const iterativeMethodsFunctions = (
   let x;
   // Check if some elements from the diagonal are 0
   if (zeroInDiagonal(matrixA)) {
-    results.error =
-      "Some elements in the diagonal are 0. The method cannot be executed.";
-    return results;
+    throw Error("Some elements in the diagonal are 0. The method cannot be executed.");
   }
   // Check if det(A) = 0
   if (det(matrixA) === 0) {
-    results.error = "det(A) is 0. The method cannot be executed.";
-    return results;
+    throw Error("det(A) is 0. The method cannot be executed.");
   }
   D = diag(diag(matrixA));
   L = add(unaryMinus(tril(matrixA)), D); // L = -lowerTriangle + D

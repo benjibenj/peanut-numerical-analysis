@@ -7,7 +7,8 @@ import {
   TableStyle,
   Button,
   Error,
-  LinkGraph
+  LinkGraph,
+  Results
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
 import { methods } from "../../../data/methods";
@@ -17,7 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FixedPoint = ({ name }) => {
   const [functionTextF, setFunctionTextF] = useState(
-    "log(sin(x)^2 + 1)-(1/2)-x"
+    "log(sin(x)^2 + 1)-(1/2)-x",
   );
   const [functionTextG, setFunctionTextG] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [initialValue, setInitialValue] = useState(-0.5);
@@ -28,8 +29,8 @@ const FixedPoint = ({ name }) => {
       "log(sin(x)^2 + 1)-(1/2)",
       -0.5,
       1e-7,
-      100
-    )
+      100,
+    ),
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -47,17 +48,16 @@ const FixedPoint = ({ name }) => {
           event.target.functionTextG.value,
           parseFloat(event.target.initialValue.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value)
-        )
+          parseInt(event.target.maxCount.value),
+        ),
       );
       setError(null);
     } catch (e) {
-      if (e instanceof TypeError) {
-        setError("The function you entered cannot be parsed");
-      } else {
-        setError(e + "");
-      }
-      setResults([]); // re-render empty results while processing
+      setError(e + "");
+      setResults({
+        iterations: [],
+        conclusion: undefined,
+      }); // re-render empty results while processing
     }
   };
   return (
@@ -86,6 +86,17 @@ const FixedPoint = ({ name }) => {
         <Parameters width={"1030px"}>
           <p>
             <strong>Parameters</strong>
+          </p>
+          <p>
+            You need to make sure that f(X) is <strong>continuous</strong> and g(X) is <strong>smooth and
+            continuous</strong> on the interval. To do so, you should plot{" "}
+            <Link to={"/graph?function=" + encodeURIComponent(functionTextF)}>
+              f(x)
+            </Link>{" "}
+            and{" "}
+            <Link to={"/graph?function=" + encodeURIComponent(functionTextG)}>
+              g(x)
+            </Link>.
           </p>
           <form onSubmit={handleSubmit}>
             <label>
@@ -156,12 +167,12 @@ const FixedPoint = ({ name }) => {
               <p>{results.conclusion}</p>
             </TableStyle>
           ) : (
-            <React.Fragment>
+            <Results>
               <Error>{error}</Error>
               <Link to={"/help"}>
                 <FontAwesomeIcon icon={"question-circle"} /> Help Page
               </Link>
-            </React.Fragment>
+            </Results>
           )}
         </Eval>
       </MediaContainer>

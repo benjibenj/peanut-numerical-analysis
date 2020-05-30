@@ -24,18 +24,14 @@ const luSimpleFunction = (matrixA, B) => {
     xZeros[i] = new Array(1);
     xZeros[i][0] = 0;
   }
-
   if (m !== n) {
-    results.conclusion = "The matrix is not square";
-    return results;
+    throw Error("The matrix is not square");
   }
   if (m !== B.length) {
-    results.conclusion = "B has different dimension";
-    return results;
+    throw Error("B has different dimension");
   }
   if (determinant(matrixA) === 0) {
-    results.conclusion = "Determinant of the matrix cannot be zero";
-    return results;
+    throw Error("Determinant of the matrix cannot be zero");
   }
   for (let i = 0; i < n - 1; i++) {
     if (M[i][i] === 0) {

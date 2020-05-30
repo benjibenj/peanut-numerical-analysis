@@ -10,7 +10,8 @@ import {
   Eval,
   Error,
   Button,
-  LinkGraph
+  LinkGraph,
+  Results
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
 import { methods } from "../../../data/methods";
@@ -20,7 +21,7 @@ const IncSearch = ({ name }) => {
   const [initialValue, setInitialValue] = useState(-3);
   const [delta, setDelta] = useState(0.5);
   const [results, setResults] = useState(
-    incSearchFunction("log(sin(x)^2 + 1) - (1/2)", -3, 0.5, 100)
+    incSearchFunction("log(sin(x)^2 + 1) - (1/2)", -3, 0.5, 100),
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -37,15 +38,11 @@ const IncSearch = ({ name }) => {
           event.target.functionText.value,
           parseFloat(event.target.initialValue.value),
           parseFloat(event.target.delta.value),
-          parseInt(event.target.maxCount.value)
-        )
+          parseInt(event.target.maxCount.value),
+        ),
       );
     } catch (e) {
-      if (e instanceof TypeError) {
-        setError("The function you entered cannot be parsed");
-      } else {
-        setError(e + "");
-      }
+      setError(e + "");
       setResults([]); // re-render empty results while processing
     }
   };
@@ -70,6 +67,13 @@ const IncSearch = ({ name }) => {
         <Parameters width={"950px"}>
           <p>
             <strong>Parameters</strong>
+          </p>
+          <p>
+            You need to make sure that there is no discontinuity in the function
+            with the numbers that are going to be tested. To do so, you should{" "}
+            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+              plot the function.
+            </Link>
           </p>
           <form onSubmit={handleSubmit}>
             <label>
@@ -110,12 +114,12 @@ const IncSearch = ({ name }) => {
               })}
             </ul>
           ) : (
-            <React.Fragment>
+            <Results>
               <Error>{error}</Error>
               <Link to={"/help"}>
                 <FontAwesomeIcon icon={"question-circle"} /> Help Page
               </Link>
-            </React.Fragment>
+            </Results>
           )}
         </Eval>
       </MediaContainer>

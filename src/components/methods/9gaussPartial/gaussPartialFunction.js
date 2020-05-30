@@ -13,16 +13,13 @@ const gaussPartialFunction = (matrixA, B) => {
   let m = matrixA.length;
   let n = matrixA[0].length;
   if (m !== n) {
-    results.conclusion = "The matrix is not square";
-    return results;
+    throw Error("The matrix is not square");
   }
   if (m !== B.length) {
-    results.conclusion = "B has different dimension";
-    return results;
+    throw Error("B has different dimension");
   }
   if (determinant(matrixA) === 0) {
-    results.conclusion = "Determinant of the matrix cannot be zero";
-    return results;
+    throw Error("Determinant of the matrix cannot be zero");
   }
   let M = new Array(n);
   for (let i = 0; i < n; i++) {

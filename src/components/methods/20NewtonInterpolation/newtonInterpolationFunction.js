@@ -1,8 +1,13 @@
+import hasDuplicates from "../../../utils/hasDuplicates";
+
 const newtonInterpolationFunction = points => {
   let results = {
     polynom: undefined,
     dividedDifference: undefined
   };
+  if(hasDuplicates(points.x)){
+    throw Error("x has duplicates, a value of x can only be declared once")
+  }
   let expression = "";
   let degree = points.x.length;
   // Create a square matrix to hold the pyramid

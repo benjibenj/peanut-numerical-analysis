@@ -8,37 +8,56 @@ import gaussTotalFunction from "./gaussTotalFunction";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
 import { methods } from "../../../data/methods";
-import { Button, Results, Inputs, Column } from "../../../containers/BigContainer";
+import {
+  Button,
+  Results,
+  Inputs,
+  Column,
+  Error,
+} from "../../../containers/BigContainer";
+import { Link } from "@reach/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const GaussTotal = ({ name }) => {
   const [matrixASize, setMatrixASize] = useState({
     rows: 4,
-    columns: 4
+    columns: 4,
   });
   const [matrixA, setMatrixA] = useState([
     [2, -1, 0, 3],
     [1, 0.5, 3, 8],
     [0, 13, -2, 11],
-    [14, 5, -2, 3]
+    [14, 5, -2, 3],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
   const [latexMatrixA, setLatexMatrixA] = useState(
-    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}"
+    "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );
   const [latexB, setLatexB] = useState(
-    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}"
+    "\\begin{pmatrix}\n a\\\\\n b\n \\end{pmatrix}",
   );
+  const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
-    solving: undefined
+    solving: undefined,
   });
   useEffect(() => {
+    setError(null);
     setLatexMatrixA(renderLatexMatrix(matrixA));
     setLatexB(renderLatexMatrix(B));
     if (methodState.matrixA === "matrix" && methodState.B === "matrix") {
-      setResults(gaussTotalFunction(matrixA, B));
+      try {
+        setResults(gaussTotalFunction(matrixA, B));
+      } catch (e) {
+        setResults({
+          iterations: [],
+          conclusion: undefined,
+          finalSolution: [],
+        });
+        setError(e + "");
+      }
     } else {
       setResults(undefined);
     }
@@ -76,7 +95,7 @@ const GaussTotal = ({ name }) => {
               onClick={() => {
                 setMethodState(prevState => ({
                   ...prevState,
-                  matrixA: "inputSize"
+                  matrixA: "inputSize",
                 }));
               }}
             >
@@ -91,7 +110,7 @@ const GaussTotal = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    matrixA: "inputMatrix"
+                    matrixA: "inputMatrix",
                   }));
                 }}
               >
@@ -116,7 +135,7 @@ const GaussTotal = ({ name }) => {
                 onClick={() => {
                   setMethodState(prevState => ({
                     ...prevState,
-                    B: "input"
+                    B: "input",
                   }));
                 }}
               >
@@ -126,7 +145,7 @@ const GaussTotal = ({ name }) => {
           )
         )}
       </Inputs>
-      {results && (
+      {results && !error ? (
         <Results>
           {results.iterations.map((matrix, index) => {
             return (
@@ -141,6 +160,15 @@ const GaussTotal = ({ name }) => {
             math={"x = " + renderLatexMatrix(results.finalSolution, 6)}
           />
         </Results>
+      ) : (
+        error && (
+          <Results>
+            <Error>{error}</Error>
+            <Link to={"/help"}>
+              <FontAwesomeIcon icon={"question-circle"} /> Help Page
+            </Link>
+          </Results>
+        )
       )}
     </Method>
   );

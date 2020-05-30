@@ -1,5 +1,4 @@
 import { divide, multiply, add, subtract } from "mathjs";
-import transpose from "./transpose";
 
 const progressiveSustitution = (A, B) => {
   let n = A[0].length;
@@ -15,8 +14,6 @@ const progressiveSustitution = (A, B) => {
     }
     xResult[i] = divide(subtract(B[i], suma), A[i][i]);
   }
-  //xResult = transpose(xResult, xResult[0].length);
-
   return xResult;
 };
 

@@ -39,10 +39,18 @@ const Lagrange = ({ name }) => {
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   useEffect(() => {
+    setError(null);
     setLatexTable(renderLatexTable(points));
-    methodState.points !== "input"
-      ? setResults(lagrangeFunction(points))
-      : setResults(undefined);
+    if (methodState.points !== "input") {
+      try {
+        setResults(lagrangeFunction(points));
+      } catch (e) {
+        setError(e + "");
+        setResults(undefined);
+      }
+    } else {
+      setResults(undefined);
+    }
   }, [points, methodState]);
   return (
     <Method
