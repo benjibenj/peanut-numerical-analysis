@@ -35,7 +35,7 @@ const luSimpleFunction = (matrixA, B) => {
   }
   for (let i = 0; i < n - 1; i++) {
     if (M[i][i] === 0) {
-      M = deepCopyFunction(M);
+      
       for (let j = i + 1; j < n; j++) {
         if (M[j][i] !== 0) {
           let aux = new Array(n + 1);
@@ -52,9 +52,6 @@ const luSimpleFunction = (matrixA, B) => {
     // Multipliers
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
-        M = deepCopyFunction(M);
-        L = deepCopyFunction(L);
-        U = deepCopyFunction(U);
 
         L[j][i] = M[j][i] / M[i][i];
 
@@ -70,8 +67,6 @@ const luSimpleFunction = (matrixA, B) => {
     }
 
     //U
-    U = deepCopyFunction(U);
-    M = deepCopyFunction(M);
     for (let j = i; j < n; j++) {
       U[i][j] = M[i][j];
     }
