@@ -94,7 +94,7 @@ const SetOfPointsInput = ({ points, setPoints, setMethodState }) => {
           </table>
         </TableSetOfPointsStyle>
         <br />
-        <Button>{"Save"}</Button>
+        <Button>{"Run"}</Button>
       </form>
     </CustomParameters>
   );
