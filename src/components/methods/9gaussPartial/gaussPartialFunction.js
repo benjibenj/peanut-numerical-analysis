@@ -32,6 +32,7 @@ const gaussPartialFunction = (matrixA, B) => {
     M[i][n] = B[i][0];
   }
   results.iterations.push(deepCopyFunction(M));
+  
   for (let i = 0; i < n - 1; i++) {
     M = deepCopyFunction(M);
     let indexMax = new Array(2);
@@ -48,6 +49,7 @@ const gaussPartialFunction = (matrixA, B) => {
       M[indexMax[0]][j] = M[i][j];
       M[i][j] = temp;
     }
+
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
         M = deepCopyFunction(M);

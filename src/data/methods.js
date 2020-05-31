@@ -110,5 +110,11 @@ export const methods = [
     id: "splines",
     theme: "interpolation",
     name: "Splines"
-  }
+  },
+  {
+    index: 23,
+    id: "splinesCuad",
+    theme: "interpolation",
+    name: "SplinesCuad"
+  },
 ];

@@ -27,6 +27,7 @@ import Vandermonde from "../components/methods/19Vandermonde/Vandermonde";
 import NewtonInterpolation from "../components/methods/20NewtonInterpolation/NewtonInterpolation";
 import Lagrange from "../components/methods/21Lagrange/Lagrange";
 import Splines from "../components/methods/22Splines/Splines";
+import SplinesCuad from "../components/methods/23SplinesCuad/SplinesCuad";
 
 const MethodsRouter = () => {
   return (
@@ -115,6 +116,10 @@ const MethodsRouter = () => {
       <Splines
         path={methods.find(method => method.index === 22).id}
         name={methods.find(method => method.index === 22).name}
+      />
+      <SplinesCuad
+        path={methods.find(method => method.index === 23).id}
+        name={methods.find(method => method.index === 23).name}
       />
       <Page404 default />
     </Router>

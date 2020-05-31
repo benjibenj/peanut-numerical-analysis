@@ -16,10 +16,10 @@ import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BlockMath, InlineMath } from "react-katex";
-import splinesFunction from "./splinesFunction";
+import { InlineMath } from "react-katex";
+import splinesCuadFunction from "./splinesCuadFunction";
 
-const Splines = ({ name }) => {
+const SplinesCuad = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
     y: [15.5, 3, 8, 1]
@@ -43,7 +43,7 @@ const Splines = ({ name }) => {
     setLatexTable(renderLatexTable(points));
     if (methodState.points !== "input") {
       try {
-        setResults(splinesFunction(points));
+        setResults(splinesCuadFunction(points));
       } catch (e) {
         setError(e + "");
         setResults(undefined);
@@ -175,4 +175,4 @@ const CenteredColumn = styled("div")`
   align-items: center;
 `;
 
-export default Splines;
+export default SplinesCuad;

@@ -10,7 +10,7 @@ const gaussTotalFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: [],
   };
-
+  
   let m = matrixA.length;
   let n = matrixA[0].length;
   if (m !== n) {
@@ -39,6 +39,7 @@ const gaussTotalFunction = (matrixA, B) => {
   }
 
   results.iterations.push(deepCopyFunction(M));
+
   for (let i = 0; i < n - 1; i++) {
     // cambio de columna
     let indexMax = new Array(2);
@@ -68,7 +69,7 @@ const gaussTotalFunction = (matrixA, B) => {
         }
       }
     }
-
+    
     if (colMayor !== i) {
       let temp = marca[colMayor];
       marca[colMayor] = marca[i];

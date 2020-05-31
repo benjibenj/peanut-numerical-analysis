@@ -1,9 +1,9 @@
-import determinant from "../../../utils/matrixFunctions/determinant";
-import eye from "../../../utils/matrixFunctions/eye";
-import zeros from "../../../utils/matrixFunctions/zeros";
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
-import { usolve } from "mathjs";
+import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
+import zeros from "../../../utils/matrixFunctions/zeros";
+import eye from "../../../utils/matrixFunctions/eye";
+import { usolve } from "mathjs";
 
 const luSimpleFunction = (matrixA, B) => {
   let results = {

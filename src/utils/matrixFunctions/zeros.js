@@ -1,4 +1,4 @@
-const zeros = a => {
+const zeros = (a) => {
   let result = new Array(a);
   for (let i = 0; i < a; i++) {
     result[i] = new Array(a);

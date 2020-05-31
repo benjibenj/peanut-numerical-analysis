@@ -2,7 +2,7 @@ import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSu
 import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
-import eye from "../../../utils/matrixFunctions/eye";
+import eye from "../../../utils/matrixFunctions/eye";   
 import { usolve, abs } from "mathjs";
 
 const luPartialFunction = (matrixA, B) => {
