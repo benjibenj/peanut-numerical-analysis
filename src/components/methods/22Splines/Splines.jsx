@@ -5,7 +5,8 @@ import {
   Button,
   Error,
   TableStyle,
-  Results
+  Results,
+  Parameters,
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -16,16 +17,16 @@ import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import splinesFunction from "./splinesFunction";
 
 const Splines = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1]
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
-    points: "input"
+    points: "input",
   });
   const [latexTable, setLatexTable] = useState(
     "\\begin{array}{ |c|c|c|c|c|c|}  \n" +
@@ -34,16 +35,17 @@ const Splines = ({ name }) => {
       " \\hline\n" +
       "y & 23 & 13 & 5 & -1 & -5\\\\ \n" +
       " \\hline\n" +
-      "\\end{array}"
+      "\\end{array}",
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
+  const [method, setMethod] = useState(1);
   useEffect(() => {
     setError(null);
     setLatexTable(renderLatexTable(points));
     if (methodState.points !== "input") {
       try {
-        setResults(splinesFunction(points));
+        setResults(splinesFunction(points, method));
       } catch (e) {
         setError(e + "");
         setResults(undefined);
@@ -51,7 +53,7 @@ const Splines = ({ name }) => {
     } else {
       setResults(undefined);
     }
-  }, [points, methodState]);
+  }, [points, methodState, method]);
   return (
     <Method
       title={name}
@@ -65,6 +67,17 @@ const Splines = ({ name }) => {
     >
       {methodState.points === "input" ? (
         <CenteredColumn>
+          <Parameters>
+            <select
+              name="method"
+              value={method}
+              onChange={event => setMethod(parseInt(event.target.value))}
+            >
+              <option value={1}>Linear</option>
+              <option value={2}>Square</option>
+              <option value={3}>Cubic</option>
+            </select>
+          </Parameters>
           <SetOfPointsInput
             points={points}
             setPoints={points => setPoints(points)}
@@ -78,7 +91,7 @@ const Splines = ({ name }) => {
             onClick={() => {
               setMethodState(prevState => ({
                 ...prevState,
-                points: "input"
+                points: "input",
               }));
             }}
           >
