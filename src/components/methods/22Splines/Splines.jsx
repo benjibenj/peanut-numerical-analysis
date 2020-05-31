@@ -17,7 +17,7 @@ import "katex/dist/katex.min.css";
 import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import splinesFunction from "./splinesFunction";
 
 const Splines = ({ name }) => {
