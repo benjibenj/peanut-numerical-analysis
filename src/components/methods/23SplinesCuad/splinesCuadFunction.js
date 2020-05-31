@@ -2,6 +2,7 @@ import gaussPartialFunction from "../9gaussPartial/gaussPartialFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
 import hasDuplicates from "../../../utils/hasDuplicates";
 import { pow } from "mathjs";
+
 const splinesCuadFunction = points => {
   let results = {
     polynom: undefined,
@@ -85,8 +86,6 @@ const splinesCuadFunction = points => {
   
   let solX = gaussPartialFunction(A, b).finalSolution;
 
-  console.log()
-  console.log(solX);
 
   for (let i = 0; i < solX.length-2; i++) {
     results.interpolationPolynomials.push(solX[i] + "X^2 + (" + solX[i+1] +")X + (" + solX[i+2] +")");

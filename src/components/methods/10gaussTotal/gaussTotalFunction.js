@@ -2,7 +2,7 @@ import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
 import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import getCol from "../../../utils/matrixFunctions/getCol";
-import { usolve } from "mathjs";
+import { usolve, add, multiply, divide } from "mathjs";
 
 const gaussTotalFunction = (matrixA, B) => {
   let results = {
@@ -40,41 +40,54 @@ const gaussTotalFunction = (matrixA, B) => {
 
   results.iterations.push(deepCopyFunction(M));
 
+  //inicia solucion 
+
   for (let i = 0; i < n - 1; i++) {
-    // cambio de columna
+
     let indexMax = new Array(2);
 
+    
     indexMax = findMaxElement(M, i, i);
     let colMayor = indexMax[1];
 
+    
+    // cambio de columna
+
+    if(i !== colMayor){
     for (let j = 0; j < n; j++) {
       let temp = M[j][indexMax[1]];
       M[j][indexMax[1]] = M[j][i];
       M[j][i] = temp;
     }
+
+    
+    let temp = marca[colMayor];
+    marca[colMayor] = marca[i];
+    marca[i] = temp;
+  }
+
     //Cambio de fila
+    if( i !== indexMax[0]){
+
     for (let j = i; j < n + 1; j++) {
       let temp = M[indexMax[0]][j];
       M[indexMax[0]][j] = M[i][j];
       M[i][j] = temp;
     }
+  }
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
         let auxOp = Array(n + 1);
         for (let k = i; k < n + 1; k++) {
-          auxOp[k] = M[j][k] - (M[j][i] / M[i][i]) * M[i][k];
+          auxOp[k] = add(M[j][k], - multiply(divide(M[j][i], M[i][i]), M[i][k]));
         }
         for (let k = i; k < n + 1; k++) {
           M[j][k] = auxOp[k];
         }
       }
     }
+  
     
-    if (colMayor !== i) {
-      let temp = marca[colMayor];
-      marca[colMayor] = marca[i];
-      marca[i] = temp;
-    }
     results.iterations.push(deepCopyFunction(M));
   }
 
@@ -86,12 +99,11 @@ const gaussTotalFunction = (matrixA, B) => {
     }),
     getCol(M, m), // B = last column of M
   );
-
+  
   let tempAr = deepCopyFunction(resultX);
   for (let i = 0; i < n; i++) {
-    resultX[i] = tempAr[marca[i] - 1];
+    resultX[marca[i]-1] = tempAr[i];
   }
-
   results.finalSolution = resultX;
 
   return results;

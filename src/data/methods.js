@@ -97,7 +97,7 @@ export const methods = [
     index: 20,
     id: "newton-interpolation",
     theme: "interpolation",
-    name: "Newton (Método de las diferencias divididas)"
+    name: "Newton (Divided difference method)"
   },
   {
     index: 21,
@@ -109,12 +109,18 @@ export const methods = [
     index: 22,
     id: "splines",
     theme: "interpolation",
-    name: "Splines"
+    name: "Lineal spline"
   },
   {
     index: 23,
     id: "splinesCuad",
     theme: "interpolation",
-    name: "SplinesCuad"
+    name: "Quadratic spline"
+  },
+  {
+    index: 24,
+    id: "cubicSpline",
+    theme: "interpolation",
+    name: "Cubic Spline"
   },
 ];

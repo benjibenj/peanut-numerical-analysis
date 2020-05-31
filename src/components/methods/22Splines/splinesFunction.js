@@ -27,8 +27,7 @@ const splinesFunction = points => {
     b[i] = new Array(1);
     b[i][0] = 0;
   }
-console.log(S);
-console.log(b);
+  
    if(n !== points.y.length){
      return;
    }
