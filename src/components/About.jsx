@@ -62,8 +62,8 @@ const About = () => {
           Built with <a href={"https://reactjs.org/"} target="_blank" rel="noopener noreferrer">React</a>
         </p>
         <p>
-          Have a look at the
-          <Link to="/oversight"> project oversight </Link>(academic stuff).
+          Have a look at the{" "}
+          <Link to="/oversight">project oversight</Link>{" "}(academic stuff).
         </p>
         <p>
           <strong>

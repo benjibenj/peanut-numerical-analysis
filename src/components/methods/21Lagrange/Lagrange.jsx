@@ -111,7 +111,7 @@ const Lagrange = ({ name }) => {
                           <tr key={index}>
                             <td>{index}</td>
                             <td>
-                              <InlineMath>{Lx}</InlineMath>
+                              {Lx}
                             </td>
                           </tr>
                         );
@@ -123,7 +123,7 @@ const Lagrange = ({ name }) => {
               <p>Lagrange polynom</p>
               {results.polynom &&
               <React.Fragment>
-                <BlockMath math={results.polynom} />
+                <p>{results.polynom}</p>
                 <LinkGraph>
                   <a
                     href={

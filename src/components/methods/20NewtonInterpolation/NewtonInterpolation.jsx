@@ -161,7 +161,7 @@ const NewtonInterpolation = ({ name }) => {
               <p>Newton's polynom</p>
               {results.polynom && (
                 <React.Fragment>
-                  <BlockMath math={results.polynom.replace(/\\cdot/g, "")} />
+                  <p>{results.polynom.replace(/\\cdot/g, "")}</p>
                   <LinkGraph>
                     <a
                       href={
