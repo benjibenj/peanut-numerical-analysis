@@ -83,11 +83,11 @@ const splinesCuadFunction = points => {
 
   let solX = gaussPartialFunction(A, b).finalSolution;
 
-  for (let i = 0; i < solX.length - 2; i++) {
+  for (let i = 0; i < solX.length/3; i++) {
     results.interpolationPolynomials.push(
-      solX[i] + "x^2 + (" + solX[i + 1] + ")x + (" + solX[i + 2] + ")",
+      solX[i*3] + "x^2 + (" + solX[i*3 +1] + ")x + (" + solX[i*3 + 2] + ")",
     );
-    results.tracerCoefficient.push([solX[i], solX[i + 1], solX[i + 2]]);
+    results.tracerCoefficient.push([solX[i*3], solX[i*3 + 1], solX[i*3 + 2]]);
   }
 
   return results;

@@ -117,9 +117,9 @@ const splinesCubicFunction = points => {
   let solX = gaussTotalFunction(A, b).finalSolution;
 
 
-  for (let i = 0; i < solX.length-3; i++) {
-    results.interpolationPolynomials.push(solX[i] + "x^3 + (" + solX[i+1] +")x^2 + (" + solX[i+2] +") + (" + solX[i+3] +")");
-    results.tracerCoefficient.push([solX[i], solX[i+1], solX[i+2], solX[i+3]]);
+  for (let i = 0; i < solX.length/4; i++) {
+    results.interpolationPolynomials.push(solX[i*4] + "x^3 + (" + solX[i*4+1] +")x^2 + (" + solX[i*4+2] +") + (" + solX[i*4+3] +")");
+    results.tracerCoefficient.push([solX[i*4], solX[i*4+1], solX[i*4+2], solX[i*4+3]]);
   }
 
   return results;

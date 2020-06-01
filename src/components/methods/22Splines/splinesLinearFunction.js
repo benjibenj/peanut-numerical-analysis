@@ -26,8 +26,7 @@ const splinesLinearFunction = points => {
     b[i] = new Array(1);
     b[i][0] = 0;
   }
-  console.log(S);
-  console.log(b);
+
   if (n !== points.y.length) {
     return;
   }
@@ -54,11 +53,9 @@ const splinesLinearFunction = points => {
 
   let solX = gaussPartialFunction(A, b).finalSolution;
 
-  console.log(solX)
-  console.log(solX.length);
   for (let i = 0; i < solX.length/2; i++) {
     results.interpolationPolynomials.push(solX[i*2] + "x + " + solX[i*2+1]);
-    results.tracerCoefficient.push([solX[i], solX[i + 1]]);
+    results.tracerCoefficient.push([solX[i*2], solX[i*2 + 1]]);
   }
   results.polynom = results.interpolationPolynomials
     .map((pol, index) => {
