@@ -72,14 +72,14 @@ const Newton = ({ name }) => {
       }
     >
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
           Graph f(x) = {functionText}
-        </Link>
+        </a>
       </LinkGraph>
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionDerivative)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionDerivative)} target="_blank" rel="noopener noreferrer">
           Graph f'(x) = {functionDerivative}
-        </Link>
+        </a>
       </LinkGraph>
       <MediaContainer width={"900px"}>
         <Parameters width={"900px"}>
@@ -90,15 +90,15 @@ const Newton = ({ name }) => {
             You need to make sure that the function in continuous for the given
             interval, and that derivative does not equal zero in any of the
             points of the interval being analyzed. To do so, you should plot{" "}
-            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
               f(x)
-            </Link>{" "}
+            </a>{" "}
             and{" "}
-            <Link
-              to={"/graph?function=" + encodeURIComponent(functionDerivative)}
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionDerivative)} target="_blank" rel="noopener noreferrer"
             >
               f'(x)
-            </Link>
+            </a>
             .
           </p>
           <form onSubmit={handleSubmit}>

@@ -59,9 +59,9 @@ const IncSearch = ({ name }) => {
       }
     >
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
           Graph {functionText}
-        </Link>
+        </a>
       </LinkGraph>
       <MediaContainer width={"950px"}>
         <Parameters width={"950px"}>
@@ -71,9 +71,9 @@ const IncSearch = ({ name }) => {
           <p>
             You need to make sure that there is no discontinuity in the function
             with the numbers that are going to be tested. To do so, you should{" "}
-            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
               plot the function.
-            </Link>
+            </a>
           </p>
           <form onSubmit={handleSubmit}>
             <label>

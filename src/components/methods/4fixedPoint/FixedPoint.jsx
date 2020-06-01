@@ -73,14 +73,14 @@ const FixedPoint = ({ name }) => {
       }
     >
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionTextF)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionTextF)} target="_blank" rel="noopener noreferrer">
           Graph f(x) = {functionTextF}
-        </Link>
+        </a>
       </LinkGraph>
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionTextG)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionTextG)} target="_blank" rel="noopener noreferrer">
           Graph g(x) = {functionTextG}
-        </Link>
+        </a>
       </LinkGraph>
       <MediaContainer width={"1030px"}>
         <Parameters width={"1030px"}>
@@ -90,13 +90,13 @@ const FixedPoint = ({ name }) => {
           <p>
             You need to make sure that f(X) is <strong>continuous</strong> and g(X) is <strong>smooth and
             continuous</strong> on the interval. To do so, you should plot{" "}
-            <Link to={"/graph?function=" + encodeURIComponent(functionTextF)}>
+            <a href={"/graph?function=" + encodeURIComponent(functionTextF)} target="_blank" rel="noopener noreferrer">
               f(x)
-            </Link>{" "}
+            </a>{" "}
             and{" "}
-            <Link to={"/graph?function=" + encodeURIComponent(functionTextG)}>
+            <a href={"/graph?function=" + encodeURIComponent(functionTextG)} target="_blank" rel="noopener noreferrer">
               g(x)
-            </Link>.
+            </a>.
           </p>
           <form onSubmit={handleSubmit}>
             <label>

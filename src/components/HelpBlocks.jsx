@@ -20,7 +20,7 @@ const HelpBlocks = () => {
         <React.Fragment>
           <p>
             The string provided by the user is <em>parsed</em> and{" "}
-            <em>evaluated</em> using <a href={"https://mathjs.org/"}>mathjs</a>.
+            <em>evaluated</em> using <a href={"https://mathjs.org/"} target="_blank" rel="noopener noreferrer">mathjs</a>.
             You must make sure that the expression you provided respects the
             syntax of the expression parser from math.js.
           </p>
@@ -97,7 +97,7 @@ const HelpBlocks = () => {
       )}
       <p>
         For any other question, feel free to{" "}
-        <a href={"mailto:benjamin.vaysse@gmail.com"}>contact us</a>.
+        <a href={"mailto:benjamin.vaysse@gmail.com"} target="_blank" rel="noopener noreferrer">contact us</a>.
       </p>
     </HelpContainer>
   );
