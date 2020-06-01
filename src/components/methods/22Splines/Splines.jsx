@@ -134,9 +134,14 @@ const Splines = ({ name }) => {
                           </th>
                         ) : (
                           method === 3 && (
-                            <th>
-                              <InlineMath>Coeff 4</InlineMath>
-                            </th>
+                            <React.Fragment>
+                              <th>
+                                <InlineMath>Coeff 3</InlineMath>
+                              </th>
+                              <th>
+                                <InlineMath>Coeff 4</InlineMath>
+                              </th>
+                            </React.Fragment>
                           )
                         )}
                       </tr>
