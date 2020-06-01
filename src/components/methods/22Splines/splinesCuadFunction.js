@@ -85,11 +85,9 @@ const splinesCuadFunction = points => {
 
   for (let i = 0; i < solX.length - 2; i++) {
     results.interpolationPolynomials.push(
-      solX[i] + "X^2 + (" + solX[i + 1] + ")X + (" + solX[i + 2] + ")",
+      solX[i] + "x^2 + (" + solX[i + 1] + ")x + (" + solX[i + 2] + ")",
     );
-    results.tracerCoefficient.push(
-      solX[i] + "  |  " + solX[i + 1] + "  |  " + solX[i + 2],
-    );
+    results.tracerCoefficient.push([solX[i], solX[i + 1], solX[i + 2]]);
   }
 
   return results;

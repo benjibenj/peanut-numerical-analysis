@@ -123,8 +123,22 @@ const Splines = ({ name }) => {
                           <InlineMath>i</InlineMath>
                         </th>
                         <th>
-                          <InlineMath>Tracer Coefficient</InlineMath>
+                          <InlineMath>Coeff 1</InlineMath>
                         </th>
+                        <th>
+                          <InlineMath>Coeff 2</InlineMath>
+                        </th>
+                        {method === 2 ? (
+                          <th>
+                            <InlineMath>Coeff 3</InlineMath>
+                          </th>
+                        ) : (
+                          method === 3 && (
+                            <th>
+                              <InlineMath>Coeff 4</InlineMath>
+                            </th>
+                          )
+                        )}
                       </tr>
                     </thead>
                     <tbody>
@@ -132,9 +146,9 @@ const Splines = ({ name }) => {
                         return (
                           <tr key={index}>
                             <td>{index}</td>
-                            <td>
-                              <InlineMath>{Lx}</InlineMath>
-                            </td>
+                            {Lx.map(coeff => {
+                              return <td>{coeff}</td>;
+                            })}
                           </tr>
                         );
                       })}
@@ -147,26 +161,26 @@ const Splines = ({ name }) => {
                 <TableStyle>
                   <table>
                     <thead>
-                    <tr>
-                      <th>
-                        <InlineMath>i</InlineMath>
-                      </th>
-                      <th>
-                        <InlineMath>Tracers</InlineMath>
-                      </th>
-                    </tr>
+                      <tr>
+                        <th>
+                          <InlineMath>i</InlineMath>
+                        </th>
+                        <th>
+                          <InlineMath>Tracers</InlineMath>
+                        </th>
+                      </tr>
                     </thead>
                     <tbody>
-                    {results.interpolationPolynomials.map((Lx, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{index}</td>
-                          <td>
-                            <InlineMath>{Lx}</InlineMath>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                      {results.interpolationPolynomials.map((Lx, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{index}</td>
+                            <td>
+                              <InlineMath>{Lx}</InlineMath>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </TableStyle>

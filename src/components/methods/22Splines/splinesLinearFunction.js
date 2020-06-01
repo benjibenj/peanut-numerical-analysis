@@ -57,8 +57,8 @@ const splinesLinearFunction = points => {
   console.log(solX)
   console.log(solX.length);
   for (let i = 0; i < solX.length/2; i++) {
-    results.interpolationPolynomials.push(solX[i*2] + "X + " + solX[i*2+1]);
-    results.tracerCoefficient.push(solX[i] + " | " + solX[i + 1]);
+    results.interpolationPolynomials.push(solX[i*2] + "x + " + solX[i*2+1]);
+    results.tracerCoefficient.push([solX[i], solX[i + 1]]);
   }
   results.polynom = results.interpolationPolynomials
     .map((pol, index) => {

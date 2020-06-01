@@ -118,8 +118,8 @@ const splinesCubicFunction = points => {
 
 
   for (let i = 0; i < solX.length-3; i++) {
-    results.interpolationPolynomials.push(solX[i] + "X^3 + (" + solX[i+1] +")X^2 + (" + solX[i+2] +") + (" + solX[i+3] +")");
-    results.tracerCoefficient.push(solX[i] + "  |  " + solX[i+1] + "  |  " + solX[i+2] + " | " + solX[i+3]);
+    results.interpolationPolynomials.push(solX[i] + "x^3 + (" + solX[i+1] +")x^2 + (" + solX[i+2] +") + (" + solX[i+3] +")");
+    results.tracerCoefficient.push([solX[i], solX[i+1], solX[i+2], solX[i+3]]);
   }
 
   return results;
