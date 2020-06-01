@@ -6,6 +6,7 @@ import {
   Error,
   TableStyle,
   Results,
+  LinkGraph,
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 import { format } from "mathjs";
@@ -18,6 +19,7 @@ import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import newtonInterpolationFunction from "./newtonInterpolationFunction";
 import { BlockMath, InlineMath } from "react-katex";
+import polynomFromArray from "../../../utils/polynomFromArray";
 
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
@@ -158,7 +160,21 @@ const NewtonInterpolation = ({ name }) => {
               <p>[{results.dividedDifference[0].join(", ")}]</p>
               <p>Newton's polynom</p>
               {results.polynom && (
-                <BlockMath math={results.polynom.replace(/\\cdot/g, "")} />
+                <React.Fragment>
+                  <BlockMath math={results.polynom.replace(/\\cdot/g, "")} />
+                  <LinkGraph>
+                    <a
+                      href={
+                        "/graph?function=" +
+                        encodeURIComponent(results.polynom.replace(/\\cdot/g, ""))
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Graph Newton's polynom
+                    </a>
+                  </LinkGraph>
+                </React.Fragment>
               )}
             </React.Fragment>
           ) : (
