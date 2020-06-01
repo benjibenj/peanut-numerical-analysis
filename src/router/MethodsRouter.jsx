@@ -22,13 +22,11 @@ import Croult from "../components/methods/13Croult/Croult";
 import Doolittle from "../components/methods/14Doolittle/Doolittle";
 import Cholesky from "../components/methods/15Cholesky/Cholesky";
 import IterativeMethods from "../components/methods/16-18IterativeMethods/IterativeMethods";
-import Page404 from "../components/Page404";
 import Vandermonde from "../components/methods/19Vandermonde/Vandermonde";
 import NewtonInterpolation from "../components/methods/20NewtonInterpolation/NewtonInterpolation";
 import Lagrange from "../components/methods/21Lagrange/Lagrange";
 import Splines from "../components/methods/22Splines/Splines";
-import SplinesCuad from "../components/methods/23SplinesCuad/SplinesCuad";
-import CubicSpline from "../components/methods/24CubicSpline/CubicSpline";
+import Page404 from "../components/Page404";
 
 const MethodsRouter = () => {
   return (
@@ -117,14 +115,6 @@ const MethodsRouter = () => {
       <Splines
         path={methods.find(method => method.index === 22).id}
         name={methods.find(method => method.index === 22).name}
-      />
-      <SplinesCuad
-        path={methods.find(method => method.index === 23).id}
-        name={methods.find(method => method.index === 23).name}
-      />
-      <CubicSpline
-        path={methods.find(method => method.index === 24).id}
-        name={methods.find(method => method.index === 24).name}
       />
       <Page404 default />
     </Router>

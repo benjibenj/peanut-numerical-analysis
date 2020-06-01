@@ -18,12 +18,14 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InlineMath } from "react-katex";
-import splinesFunction from "./splinesFunction";
+import splinesLinearFunction from "./splinesLinearFunction";
+import splinesCuadFunction from "./splinesCuadFunction";
+import splinesCubicFunction from "./splinesCubicFunction";
 
 const Splines = ({ name }) => {
   const [points, setPoints] = useState({
-    x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1],
+    x: [-2, -1, 2, 3],
+    y: [12.1353, 6.3678, -4.6109, 2.08553],
   });
   const [methodState, setMethodState] = useState({
     points: "input",
@@ -45,7 +47,13 @@ const Splines = ({ name }) => {
     setLatexTable(renderLatexTable(points));
     if (methodState.points !== "input") {
       try {
-        setResults(splinesFunction(points, method));
+        if (method === 1) {
+          setResults(splinesLinearFunction(points));
+        } else if (method === 2) {
+          setResults(splinesCuadFunction(points));
+        } else if (method === 3) {
+          setResults(splinesCubicFunction(points));
+        }
       } catch (e) {
         setError(e + "");
         setResults(undefined);
@@ -101,39 +109,12 @@ const Splines = ({ name }) => {
       )}
       {results ? (
         <Results>
+          <h2>
+            Spline {method === 1 ? "Linear" : method === 2 ? "Square" : "Cubic"}
+          </h2>
           {!error ? (
             <React.Fragment>
-              <p>Spline</p>
-              {results.interpolationPolynomials.length !== 0 && (
-                <TableStyle>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>
-                          <InlineMath>i</InlineMath>
-                        </th>
-                        <th>
-                          <InlineMath>Tracers</InlineMath>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {results.interpolationPolynomials.map((Lx, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{index}</td>
-                            <td>
-                              <InlineMath>{Lx}</InlineMath>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </TableStyle>
-              )}
-              <p></p>
-              {results.tracerCoefficient !== 0 && (
+              {results.tracerCoefficient.length !== 0 && (
                 <TableStyle>
                   <table>
                     <thead>
@@ -157,6 +138,35 @@ const Splines = ({ name }) => {
                           </tr>
                         );
                       })}
+                    </tbody>
+                  </table>
+                </TableStyle>
+              )}
+              <br />
+              {results.interpolationPolynomials.length !== 0 && (
+                <TableStyle>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>
+                        <InlineMath>i</InlineMath>
+                      </th>
+                      <th>
+                        <InlineMath>Tracers</InlineMath>
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {results.interpolationPolynomials.map((Lx, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{index}</td>
+                          <td>
+                            <InlineMath>{Lx}</InlineMath>
+                          </td>
+                        </tr>
+                      );
+                    })}
                     </tbody>
                   </table>
                 </TableStyle>

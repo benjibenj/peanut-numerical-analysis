@@ -3,7 +3,7 @@ import zeros from "../../../utils/matrixFunctions/zeros";
 import hasDuplicates from "../../../utils/hasDuplicates";
 import { pow } from "mathjs";
 
-const cubicSplineFunction = points => {
+const splinesCubicFunction = points => {
   let results = {
     polynom: undefined,
     interpolationPolynomials: [],
@@ -125,4 +125,4 @@ const cubicSplineFunction = points => {
   return results;
 };
 
-export default cubicSplineFunction ;
+export default splinesCubicFunction ;

@@ -1,7 +1,7 @@
 import gaussPartialFunction from "../10gaussTotal/gaussTotalFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
 import hasDuplicates from "../../../utils/hasDuplicates";
-const splinesFunction = (points, method) => {
+const splinesLinearFunction = points => {
   let results = {
     polynom: undefined,
     interpolationPolynomials: [],
@@ -9,13 +9,6 @@ const splinesFunction = (points, method) => {
   };
   if (hasDuplicates(points.x)) {
     throw Error("x has duplicates, a value of x can only be declared once");
-  }
-  if (method === 1) {
-    // Splines linear
-  } else if (method === 2) {
-    // Splines square
-  } else if (method === 3) {
-    // Splines cubic
   }
   let n = points.x.length;
   let m = 2 * (n - 1);
@@ -67,7 +60,6 @@ const splinesFunction = (points, method) => {
     results.interpolationPolynomials.push(solX[i] + "X + " + solX[i + 1]);
     results.tracerCoefficient.push(solX[i] + " | " + solX[i + 1]);
   }
-
   results.polynom = results.interpolationPolynomials
     .map((pol, index) => {
       return "(" + points.y[index] + "*" + pol + ")";
@@ -76,4 +68,4 @@ const splinesFunction = (points, method) => {
   return results;
 };
 
-export default splinesFunction;
+export default splinesLinearFunction;
