@@ -13,8 +13,10 @@ const Method = ({
   next,
   description,
   jsAlgorithm,
+  jsAlgorithm2,
+  jsAlgorithm3,
   pseudoCode,
-  children
+  children,
 }) => {
   return (
     <React.Fragment>
@@ -49,7 +51,21 @@ const Method = ({
           {jsAlgorithm && (
             <ExternalStyledLink target="_blank" href={jsAlgorithm}>
               <FontAwesomeIcon icon={"code"} />
-              Code (javascript)
+              {jsAlgorithm2 && jsAlgorithm3
+                ? "Code linear (javascript)"
+                : "Code (javascript)"}
+            </ExternalStyledLink>
+          )}
+          {jsAlgorithm2 && (
+            <ExternalStyledLink target="_blank" href={jsAlgorithm}>
+              <FontAwesomeIcon icon={"code"} />
+              Code quadratic (javascript)
+            </ExternalStyledLink>
+          )}
+          {jsAlgorithm3 && (
+            <ExternalStyledLink target="_blank" href={jsAlgorithm}>
+              <FontAwesomeIcon icon={"code"} />
+              Code cubic (javascript)
             </ExternalStyledLink>
           )}
           {pseudoCode && (

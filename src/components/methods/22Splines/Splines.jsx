@@ -67,7 +67,13 @@ const Splines = ({ name }) => {
       title={name}
       prev={methods.find(method => method.index === 21)}
       jsAlgorithm={
-        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/splinesFunction.js"
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/splinesLinearFunction.js"
+      }
+      jsAlgorithm2={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/splinesCuadFunction.js"
+      }
+      jsAlgorithm3={
+        "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/splinesCubicFunction.js"
       }
       pseudoCode={
         "https://github.com/benjamin-vaysse/peanut-numerical-analysis/blob/master/src/components/methods/22Splines/pseudoCode/splines.pdf"
