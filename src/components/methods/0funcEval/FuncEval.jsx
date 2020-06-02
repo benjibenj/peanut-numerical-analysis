@@ -48,9 +48,9 @@ const FuncEval = ({ name }) => {
   return (
     <Method title={name} next={methods.find(method => method.index === 1)}>
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
           Graph {functionText}
-        </Link>
+        </a>
       </LinkGraph>
       <MediaContainer width={"700px"}>
         <Parameters width={"700px"}>

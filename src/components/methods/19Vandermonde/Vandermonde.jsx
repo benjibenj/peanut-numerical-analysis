@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Method from "../Method";
 import SetOfPointsInput from "../../SetOfPointsInput";
-import { Button, Error, Results } from "../../../containers/BigContainer";
+import {Button, Error, LinkGraph, Results} from "../../../containers/BigContainer";
 import styled from "styled-components";
 
 import Latex from "react-latex";
@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlockMath } from "react-katex";
 import renderLatexMatrix from "../../../utils/LaTeX/renderLatexMatrix";
 import renderLatexPolynom from "../../../utils/LaTeX/renderLatexPolynom";
+import polynomFromArray from "../../../utils/polynomFromArray";
 
 const Vandermonde = ({ name }) => {
   const [points, setPoints] = useState({
@@ -100,6 +101,11 @@ const Vandermonde = ({ name }) => {
               <p>[{results.polynom.join(", ")}]</p>
               <p>Vandermonde polynom</p>
               <BlockMath math={renderLatexPolynom(results.polynom)} />
+              <LinkGraph>
+                <a href={"/graph?function=" + encodeURIComponent(polynomFromArray(results.polynom))} target="_blank" rel="noopener noreferrer">
+                  Graph Vandermonde's polynom
+                </a>
+              </LinkGraph>
             </React.Fragment>
           ) : (
             <React.Fragment>

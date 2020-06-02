@@ -65,9 +65,9 @@ const Bisection = ({ name }) => {
       }
     >
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
           Graph {functionText}
-        </Link>
+        </a>
       </LinkGraph>
       <MediaContainer width={"1100px"}>
         <Parameters width={"1100px"}>
@@ -77,9 +77,9 @@ const Bisection = ({ name }) => {
           <p>
             You need to make sure that the function in continuous for the given
             interval. To do so, you should{" "}
-            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
               plot the function.
-            </Link>
+            </a>
           </p>
           <form onSubmit={handleSubmit}>
             <label>

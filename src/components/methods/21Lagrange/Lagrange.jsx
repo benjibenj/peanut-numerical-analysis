@@ -5,7 +5,7 @@ import {
   Button,
   Error,
   TableStyle,
-  Results
+  Results, LinkGraph
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -111,7 +111,7 @@ const Lagrange = ({ name }) => {
                           <tr key={index}>
                             <td>{index}</td>
                             <td>
-                              <InlineMath>{Lx}</InlineMath>
+                              {Lx}
                             </td>
                           </tr>
                         );
@@ -121,7 +121,22 @@ const Lagrange = ({ name }) => {
                 </TableStyle>
               )}
               <p>Lagrange polynom</p>
-              {results.polynom && <BlockMath math={results.polynom} />}
+              {results.polynom &&
+              <React.Fragment>
+                <p>{results.polynom}</p>
+                <LinkGraph>
+                  <a
+                    href={
+                      "/graph?function=" +
+                      encodeURIComponent(results.polynom)
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Graph Lagrange's polynom
+                  </a>
+                </LinkGraph>
+              </React.Fragment>}
             </React.Fragment>
           ) : (
             <React.Fragment>

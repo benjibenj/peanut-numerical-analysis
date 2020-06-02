@@ -76,19 +76,19 @@ const MultipleRoots = ({ name }) => {
       }
     >
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
           Graph f(x) = {functionText}
-        </Link>
+        </a>
       </LinkGraph>
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(firstDerivate)}>
+        <a href={"/graph?function=" + encodeURIComponent(firstDerivate)} target="_blank" rel="noopener noreferrer">
           Graph f'(x) = {firstDerivate}
-        </Link>
+        </a>
       </LinkGraph>
       <LinkGraph>
-        <Link to={"/graph?function=" + encodeURIComponent(secondDerivate)}>
+        <a href={"/graph?function=" + encodeURIComponent(secondDerivate)} target="_blank" rel="noopener noreferrer">
           Graph f''(x) = {secondDerivate}
-        </Link>
+        </a>
       </LinkGraph>
       <MediaContainer width={"900px"}>
         <Parameters width={"900px"}>
@@ -98,9 +98,9 @@ const MultipleRoots = ({ name }) => {
           <p>
             You need to make sure that the function in continuous for the given
             interval. To do so, you should{" "}
-            <Link to={"/graph?function=" + encodeURIComponent(functionText)}>
+            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
               plot the function
-            </Link>.
+            </a>.
           </p>
           <form onSubmit={handleSubmit}>
             <label>
