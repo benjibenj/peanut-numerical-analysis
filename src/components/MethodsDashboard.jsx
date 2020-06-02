@@ -10,7 +10,7 @@ const MethodsDashboard = () => {
   return (
     <MethodsContainer>
       <Title>Methods</Title>
-      <Subtitle>30 methods to solve numerical problems</Subtitle>
+      <Subtitle>24 methods to solve numerical problems</Subtitle>
       <MainContainer>
         <ThemeTitle>
           <FontAwesomeIcon icon={"dove"} />
