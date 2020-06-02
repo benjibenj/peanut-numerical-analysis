@@ -18,8 +18,7 @@ import { methods } from "../../../data/methods";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import newtonInterpolationFunction from "./newtonInterpolationFunction";
-import { BlockMath, InlineMath } from "react-katex";
-import polynomFromArray from "../../../utils/polynomFromArray";
+import { InlineMath } from "react-katex";
 
 const NewtonInterpolation = ({ name }) => {
   const [points, setPoints] = useState({
