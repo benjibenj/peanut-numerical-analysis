@@ -7,6 +7,7 @@ import { Title } from "../containers/BigContainer";
 import { Spacing } from "../rules";
 import classDiagram from "../img/ClassDiagram.png";
 import sequenceDiagram from "../img/SequenceDiagram.png";
+import { Link } from "@reach/router";
 //import useCaseDiagram from "../img/useCaseDiagram.png";
 
 const Oversight = () => {
@@ -23,11 +24,7 @@ const Oversight = () => {
           <h2>Useful links</h2>
           <Links>
             <li>
-              <a
-                href={"#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={"#"} target="_blank" rel="noopener noreferrer">
                 User guide (video)
               </a>
             </li>
@@ -59,17 +56,44 @@ const Oversight = () => {
             <p>Class diagram</p>
           </Image>
           <Image>
-            <img src={sequenceDiagram} alt={"class-diagram"}/>
+            <img src={sequenceDiagram} alt={"class-diagram"} />
             <p>Sequence diagram</p>
           </Image>
           <Image>
             {/*<img src={useCaseDiagram} alt="useCaseDiagram />*/}
-            <h3>Diagram to be added </h3>
             <p>Use case diagram</p>
           </Image>
           <h2>Project Conclusion</h2>
-          <p>The programming language chosen for this language is <strong>Javascript</strong>. We are using </p>
-          <p>What were the limitations with the programming language chosen (javascript) ?</p>
+          <p>
+            The programming language chosen for this language is{" "}
+            <strong>Javascript</strong>. On top of that, we are using React.js,
+            which is a library for building user interfaces. All the algorithms
+            are written in pure JavaScript (ES6). We feel happy with the chosen
+            stack. The navigation between the different pages is very fast and
+            most of the methods are solved in a very reasonable time. However,
+            we found some performance issues for solving problems involving
+            large matrices (the algorithm ran much faster on compiled
+            programming languages such as C in MatLab).
+          </p>
+          <p>
+            The most used library in this project (except React) is{" "}
+            <strong>mathjs</strong>. This library proved itself very useful, and
+            it provided us adequate tools in the vast majority of the cases. The
+            limitations of this library were found in the calculation of the
+            p-norm of a vector (we developed the solution ourselves) and in the
+            calculation of the eigtenvalues of a matrix (in some cases, the
+            solution isn't exact and we encourage the user to use MatLab to
+            double check the value of the spectral radius).
+          </p>
+          <p>
+            You can find a list of all the tools/libraries used for this project
+            in the <Link to={"/about"}>about page</Link>.
+          </p>
+          <p>
+            Overall, the development of this project was very interesting. We
+            all learned a lot, whether it is project management, coding
+            knowledge and skills, mathematics, version-control or LaTeX.
+          </p>
         </OverSightContainer>
       </BigContainer>
       <CommentContainer>
