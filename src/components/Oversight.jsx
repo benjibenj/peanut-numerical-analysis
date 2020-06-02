@@ -7,6 +7,7 @@ import { Title } from "../containers/BigContainer";
 import { Spacing } from "../rules";
 import classDiagram from "../img/ClassDiagram.png";
 import sequenceDiagram from "../img/SequenceDiagram.png";
+//import useCaseDiagram from "../img/useCaseDiagram.png";
 
 const Oversight = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
@@ -54,15 +55,15 @@ const Oversight = () => {
             </li>
           </Links>
           <Image>
-            <img src={classDiagram} />
+            <img src={classDiagram} alt={"class-diagram"} />
             <p>Class diagram</p>
           </Image>
           <Image>
-            <img src={sequenceDiagram} />
+            <img src={sequenceDiagram} alt={"class-diagram"}/>
             <p>Sequence diagram</p>
           </Image>
           <Image>
-            {/*<img src={""} />*/}
+            {/*<img src={useCaseDiagram} alt="useCaseDiagram />*/}
             <h3>Diagram to be added </h3>
             <p>Use case diagram</p>
           </Image>
