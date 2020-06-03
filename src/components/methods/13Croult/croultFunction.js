@@ -1,4 +1,5 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
+import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import eye from "../../../utils/matrixFunctions/eye";
 import { usolve } from "mathjs";
@@ -9,6 +10,9 @@ const croultFunction = (matrixA, B) => {
     conclusion: undefined,
     finalSolution: []
   };
+  if (determinant(matrixA) === 0) {
+    throw Error("Determinant of the matrix cannot be zero");
+  }
   let n = matrixA.length;
   let L = deepCopyFunction(eye(n));
   let U = deepCopyFunction(eye(n));

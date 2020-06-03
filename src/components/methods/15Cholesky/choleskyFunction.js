@@ -1,4 +1,5 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
+import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import { usolve, sqrt, divide, multiply, add } from "mathjs";
 import eye from "../../../utils/matrixFunctions/eye";
@@ -10,6 +11,9 @@ const choleskyFunction = (matrixA, B) => {
     finalSolution: []
   };
 
+  if (determinant(matrixA) === 0) {
+    throw Error("Determinant of the matrix cannot be zero");
+  }
   let n = matrixA.length;
   let L = deepCopyFunction(eye(n));
   let U = deepCopyFunction(eye(n));
