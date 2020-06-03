@@ -14,6 +14,10 @@ const falsePositionFunction = (functionText, a, b, tol, maxCount) => {
     throw Error("a has to be less than b");
   } 
 
+  if(tol < 0 ) {
+    throw Error("tol is an incorrect value");
+  } 
+
   let count = 1;
   let xR =
     b -

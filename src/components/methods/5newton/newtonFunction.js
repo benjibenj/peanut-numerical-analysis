@@ -8,9 +8,13 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     iterations: [],
     conclusion: undefined
   };
-  if (maxCount > 100) {
-    maxCount = 100;
-  }
+  if (maxCount > 100 || maxCount < 0 ) {
+    throw Error("max iterations is > 100 o max iterations is < 0");
+  } 
+  if (tol < 0 ) {
+    throw Error("tol is an incorrect value");
+  } 
+
   results.iterations.push([
     count,
     format(x0, { notation: "fixed", precision: 10 }),
@@ -26,6 +30,11 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     return results;
   }
   let derivativeX0 = evaluate(derivative, { x: x0 });
+
+  if (derivativeX0 === 0) {
+    throw Error("The point evaluated in the derivative must be different from 0");
+  } 
+
   let xN = x0 - fX0 / derivativeX0;
   let fXN = evaluate(f, { x: xN });
   count += 1;

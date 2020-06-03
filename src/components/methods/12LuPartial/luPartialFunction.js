@@ -1,4 +1,5 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
+import zeroInDiagonal from "../../../utils/matrixFunctions/zeroInDiagonal";
 import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
@@ -19,6 +20,9 @@ const luPartialFunction = (matrixA, B) => {
   let P = eye(n);
   let M = deepCopyFunction(matrixA);
 
+  if (zeroInDiagonal(matrixA)) {
+    throw Error("Some elements in the diagonal are 0. The method cannot be executed.");
+  }
   if (m !== n) {
     throw Error("The matrix is not square");
   }
@@ -31,6 +35,7 @@ const luPartialFunction = (matrixA, B) => {
   for (let i = 0; i < n - 1; i++) {
     //row change
      //max col
+     
     let indexMax = new Array(2);
     let tempM = 0;
     for (let j = i + 1; j < n; j++) {

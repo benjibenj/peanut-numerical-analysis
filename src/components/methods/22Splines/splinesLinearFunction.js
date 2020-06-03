@@ -13,7 +13,10 @@ const splinesLinearFunction = points => {
   let n = points.x.length;
   let m = 2 * (n - 1);
   let A = zeros(m);
-
+  
+  if(n!== points.y.length){
+    throw Error("x y y has different dimensions")
+  }
   let S = new Array(n - 1);
   for (let i = 0; i < n - 1; i++) {
     S[i] = new Array(2);

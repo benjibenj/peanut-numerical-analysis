@@ -12,6 +12,7 @@ const croultFunction = (matrixA, B) => {
   let n = matrixA.length;
   let L = deepCopyFunction(eye(n));
   let U = deepCopyFunction(eye(n));
+  
   for (let i = 0; i < n - 1; i++) {
     for (let j = i; j < n; j++) {
       let productS = 0;

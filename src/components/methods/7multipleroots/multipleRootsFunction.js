@@ -13,9 +13,12 @@ const multipleRootsFunction = (
     conclusion: undefined
   };
 
-  if (maxCount > 100) {
-    maxCount = 100;
-  }
+  if (maxCount > 100 || maxCount < 0 ) {
+    throw Error("max iterations is > 100 o max iterations is < 0");
+  } 
+  if (tol < 0 ) {
+    throw Error("tol is an incorrect value");
+  } 
 
   let fX = evaluate(funct, { x: x0 }); // we evaluate f(a)
   let fXP = evaluate(firstDerivate, { x: x0 });

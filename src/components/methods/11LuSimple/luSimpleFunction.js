@@ -20,6 +20,17 @@ const luSimpleFunction = (matrixA, B) => {
   let M = deepCopyFunction(matrixA);
 
   let xZeros = new Array(n);
+
+  if (m !== n) {
+    throw Error("The matrix is not square");
+  }
+  if (m !== B.length) {
+    throw Error("B has different dimension");
+  }
+  if (determinant(matrixA) === 0) {
+    throw Error("Determinant of the matrix cannot be zero");
+  }
+  
   for (let i = 0; i < n; i++) {
     xZeros[i] = new Array(1);
     xZeros[i][0] = 0;

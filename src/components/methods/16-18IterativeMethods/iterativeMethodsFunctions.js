@@ -52,6 +52,12 @@ const iterativeMethodsFunctions = (
   if (zeroInDiagonal(matrixA)) {
     throw Error("Some elements in the diagonal are 0. The method cannot be executed.");
   }
+  if (matrixA[0].length !== matrixA.length) {
+    throw Error("The matrix is not square");
+  }
+  if (matrixA.length !== B.length) {
+    throw Error("B has different dimension");
+  }
   // Check if det(A) = 0
   if (det(matrixA) === 0) {
     throw Error("det(A) is 0. The method cannot be executed.");

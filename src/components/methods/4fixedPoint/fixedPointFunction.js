@@ -1,6 +1,6 @@
 import { format, evaluate, abs } from "mathjs";
 
-const fixedPointFunction = (f, g, x0, tol = 10e-7, maxCount = 100) => {
+const fixedPointFunction = (f, g, x0, tol, maxCount = 100) => {
   let error;
   let count = 0;
   let xN;
@@ -9,16 +9,23 @@ const fixedPointFunction = (f, g, x0, tol = 10e-7, maxCount = 100) => {
     iterations: [],
     conclusion: undefined
   };
-  if (maxCount > 100) {
-    maxCount = 100;
-  }
+  if (maxCount > 100 || maxCount < 0 ) {
+    throw Error("max iterations is > 100 o max iterations is < 0");
+  } 
+  if (f===g) {
+    throw Error("Function f has to be different from g");
+  } 
   if (fX === 0) {
     results.iterations.push(count, x0, undefined, fX, undefined);
     results.conclusion =
       "x0 is the root : " + format(x0, { notation: "fixed", precision: 15 });
     return results;
   }
+  if (tol < 0 ) {
+    throw Error("tol is an incorrect value");
+  } 
   xN = evaluate(g, { x: x0 });
+  
   results.iterations.push([
     count,
     format(x0, { notation: "fixed", precision: 10 }),

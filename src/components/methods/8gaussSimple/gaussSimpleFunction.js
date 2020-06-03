@@ -11,6 +11,7 @@ const gaussSimpleFunction = (matrixA, B) => {
   };
   let m = matrixA.length;
   let n = matrixA[0].length;
+  
   if (m !== n) {
     throw Error("The matrix is not square");
   }
@@ -20,6 +21,7 @@ const gaussSimpleFunction = (matrixA, B) => {
   if (determinant(matrixA) === 0) {
     throw Error("Determinant of the matrix cannot be zero");
   }
+
   let M = new Array(n);
   for (let i = 0; i < n; i++) {
     M[i] = new Array(n + 1);

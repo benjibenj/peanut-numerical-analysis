@@ -11,9 +11,15 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
     iterations: [],
     conclusion: undefined
   };
-  if (maxCount > 100) {
-    maxCount = 100;
-  }
+  if (maxCount > 100 || maxCount < 0 ) {
+    throw Error("max iterations is > 100 o max iterations is < 0");
+  } 
+  if (tol < 0 ) {
+    throw Error("tol is an incorrect value");
+  } 
+  if (x0 === x1) {
+    throw Error("x0 is equal to x1");
+  } 
   results.iterations.push([
     count,
     format(x0, { notation: "fixed", precision: 10 }),
