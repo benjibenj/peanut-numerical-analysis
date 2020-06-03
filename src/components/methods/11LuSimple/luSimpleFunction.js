@@ -2,7 +2,7 @@ import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSu
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
 import eye from "../../../utils/matrixFunctions/eye";
-import { usolve,det } from "mathjs";
+import { usolve, det, add, multiply, divide } from "mathjs";
 
 const luSimpleFunction = (matrixA, B) => {
   let results = {
@@ -59,7 +59,7 @@ const luSimpleFunction = (matrixA, B) => {
 
         let auxOp = Array(n + 1);
         for (let k = i; k < n; k++) {
-          auxOp[k] = M[j][k] - (M[j][i] / M[i][i]) * M[i][k];
+          auxOp[k] = add(M[j][k] ,- multiply(divide(M[j][i], M[i][i]), M[i][k]));
         }
 
         for (let k = i; k < n; k++) {
