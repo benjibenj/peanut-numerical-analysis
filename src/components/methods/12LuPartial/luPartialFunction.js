@@ -1,6 +1,5 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
 import zeroInDiagonal from "../../../utils/matrixFunctions/zeroInDiagonal";
-import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
 import eye from "../../../utils/matrixFunctions/eye";   

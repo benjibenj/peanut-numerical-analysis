@@ -1,8 +1,7 @@
-import determinant from "../../../utils/matrixFunctions/determinant";
 import { usolve } from "mathjs";
 import getCol from "../../../utils/matrixFunctions/getCol";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import { abs } from "mathjs";
+import { abs, det } from "mathjs";
 
 const gaussPartialFunction = (matrixA, B) => {
   let results = {
@@ -18,7 +17,7 @@ const gaussPartialFunction = (matrixA, B) => {
   if (m !== B.length) {
     throw Error("B has different dimension");
   }
-  if (determinant(matrixA) === 0) {
+  if (det(matrixA) === 0) {
     throw Error("Determinant of the matrix cannot be zero");
   }
   let M = new Array(n);

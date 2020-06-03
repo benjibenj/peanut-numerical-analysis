@@ -1,9 +1,8 @@
 import progressiveSustitution from "../../../utils/matrixFunctions/progressiveSustitution";
-import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
 import eye from "../../../utils/matrixFunctions/eye";
-import { usolve } from "mathjs";
+import { usolve,det } from "mathjs";
 
 const luSimpleFunction = (matrixA, B) => {
   let results = {
@@ -27,7 +26,7 @@ const luSimpleFunction = (matrixA, B) => {
   if (m !== B.length) {
     throw Error("B has different dimension");
   }
-  if (determinant(matrixA) === 0) {
+  if (det(matrixA) === 0) {
     throw Error("Determinant of the matrix cannot be zero");
   }
   
@@ -35,15 +34,7 @@ const luSimpleFunction = (matrixA, B) => {
     xZeros[i] = new Array(1);
     xZeros[i][0] = 0;
   }
-  if (m !== n) {
-    throw Error("The matrix is not square");
-  }
-  if (m !== B.length) {
-    throw Error("B has different dimension");
-  }
-  if (determinant(matrixA) === 0) {
-    throw Error("Determinant of the matrix cannot be zero");
-  }
+
   for (let i = 0; i < n - 1; i++) {
     if (M[i][i] === 0) {
       

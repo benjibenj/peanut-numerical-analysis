@@ -1,8 +1,7 @@
 import findMaxElement from "../../../utils/matrixFunctions/findMaxElement";
-import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import getCol from "../../../utils/matrixFunctions/getCol";
-import { usolve, add, multiply, divide } from "mathjs";
+import { usolve, add, multiply, divide, det } from "mathjs";
 
 const gaussTotalFunction = (matrixA, B) => {
   let results = {
@@ -19,7 +18,7 @@ const gaussTotalFunction = (matrixA, B) => {
   if (m !== B.length) {
     throw Error("B has different dimension");
   }
-  if (determinant(matrixA) === 0) {
+  if (det(matrixA) === 0) {
     throw Error("Determinant of the matrix cannot be zero");
   }
   let M = new Array(n);

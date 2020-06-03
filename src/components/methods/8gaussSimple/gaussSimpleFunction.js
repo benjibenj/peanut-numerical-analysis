@@ -1,6 +1,5 @@
-import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
-import { usolve } from "mathjs";
+import { usolve, det } from "mathjs";
 import getCol from "../../../utils/matrixFunctions/getCol";
 
 const gaussSimpleFunction = (matrixA, B) => {
@@ -18,7 +17,7 @@ const gaussSimpleFunction = (matrixA, B) => {
   if (m !== B.length) {
     throw Error("B has different dimension");
   }
-  if (determinant(matrixA) === 0) {
+  if (det(matrixA) === 0) {
     throw Error("Determinant of the matrix cannot be zero");
   }
 
