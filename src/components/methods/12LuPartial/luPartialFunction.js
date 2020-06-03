@@ -4,7 +4,7 @@ import determinant from "../../../utils/matrixFunctions/determinant";
 import deepCopyFunction from "../../../utils/deepCopyFunction";
 import zeros from "../../../utils/matrixFunctions/zeros";
 import eye from "../../../utils/matrixFunctions/eye";   
-import { usolve, abs } from "mathjs";
+import { usolve, abs, det} from "mathjs";
 
 const luPartialFunction = (matrixA, B) => {
   let results = {
@@ -29,8 +29,8 @@ const luPartialFunction = (matrixA, B) => {
   if (m !== B.length) {
     throw Error("B has different dimension");
   }
-  if (determinant(matrixA) === 0) {
-    throw Error("Determinant of the matrix cannot be zero");
+  if (det(matrixA) === 0) {
+    throw Error("det(A) is 0. The method cannot be executed.");
   }
   for (let i = 0; i < n - 1; i++) {
     //row change
