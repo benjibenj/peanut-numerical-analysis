@@ -34,23 +34,13 @@ const luSimpleFunction = (matrixA, B) => {
     xZeros[i] = new Array(1);
     xZeros[i][0] = 0;
   }
+  console.log(deepCopyFunction(M));
 
   for (let i = 0; i < n - 1; i++) {
     if (M[i][i] === 0) {
-      
-      for (let j = i + 1; j < n; j++) {
-        if (M[j][i] !== 0) {
-          let aux = new Array(n + 1);
-          for (let k = i; k < n + 1; k++) {
-            aux[k] = M[j][k];
-            M[j][k] = M[i][k];
-            M[i][k] = aux[k];
-          }
-          break;
-        }
-      }
+      throw Error("There is a 0 in the diagonal.");
     }
-
+    console.log(deepCopyFunction(M));
     // Multipliers
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
@@ -67,7 +57,7 @@ const luSimpleFunction = (matrixA, B) => {
         }
       }
     }
-
+console.log(deepCopyFunction(M));
     //U
     for (let j = i; j < n; j++) {
       U[i][j] = M[i][j];
