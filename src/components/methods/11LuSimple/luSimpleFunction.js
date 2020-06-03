@@ -55,7 +55,7 @@ const luSimpleFunction = (matrixA, B) => {
     for (let j = i + 1; j < n; j++) {
       if (M[j][i] !== 0) {
 
-        L[j][i] = M[j][i] / M[i][i];
+        L[j][i] = divide(M[j][i], M[i][i]);
 
         let auxOp = Array(n + 1);
         for (let k = i; k < n; k++) {
