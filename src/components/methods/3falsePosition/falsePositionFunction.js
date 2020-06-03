@@ -5,9 +5,15 @@ const falsePositionFunction = (functionText, a, b, tol, maxCount) => {
     iterations: [],
     conclusion: undefined,
   };
-  if (maxCount > 100) {
-    maxCount = 100;
-  }
+  
+  if (maxCount > 100 || maxCount < 0 ) {
+    throw Error("max iterations is > 100 o max iterations is < 0");
+  } 
+
+  if (a >= b) {
+    throw Error("a has to be less than b");
+  } 
+
   let count = 1;
   let xR =
     b -
