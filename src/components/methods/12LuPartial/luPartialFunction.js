@@ -22,12 +22,6 @@ const luPartialFunction = (matrixA, B) => {
   if (zeroInDiagonal(matrixA)) {
     throw Error("Some elements in the diagonal are 0. The method cannot be executed.");
   }
-  if (m !== n) {
-    throw Error("The matrix is not square");
-  }
-  if (m !== B.length) {
-    throw Error("B has different dimension");
-  }
   if (det(matrixA) === 0) {
     throw Error("det(A) is 0. The method cannot be executed.");
   }

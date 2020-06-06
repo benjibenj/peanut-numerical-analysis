@@ -6,8 +6,8 @@ const falsePositionFunction = (functionText, a, b, tol, maxCount) => {
     conclusion: undefined,
   };
   
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0: iterations = " + maxCount);
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0: iterations = " + maxCount);
   } 
   if (a >= b) {
     throw Error("a has to be less than b: a = " + a + " ^ b = " + b);

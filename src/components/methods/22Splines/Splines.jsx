@@ -210,6 +210,9 @@ const Splines = ({ name }) => {
         methodState.points !== "input" && (
           <Results>
             <Error>{error}</Error>
+            <Link to={"/help"}>
+              <FontAwesomeIcon icon={"question-circle"} /> Help Page
+            </Link>
           </Results>
         )
       )}

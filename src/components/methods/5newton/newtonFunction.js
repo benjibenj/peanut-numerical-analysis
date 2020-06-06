@@ -8,8 +8,8 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     iterations: [],
     conclusion: undefined
   };
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0: iterations = " + maxCount);
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0: iterations = " + maxCount);
   } 
   if (tol < 0 ) {
     throw Error("tol is an incorrect value: tol = " + tol);

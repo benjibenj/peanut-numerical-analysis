@@ -15,8 +15,8 @@ const multipleRootsFunction = (
   if (evaluate(funct, { x: x0 }).im) { 
     throw Error("x0 isn´t define in the domine of the function f: x0 = " + x0);
   } 
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0: iterations = " + maxCount);
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0: iterations = " + maxCount);
   } 
   if (tol < 0 ) {
     throw Error("tol is an incorrect value: tol = " + tol);

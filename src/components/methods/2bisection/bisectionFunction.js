@@ -5,8 +5,8 @@ const bisectionFunction = (functionText, a, b, tol, maxCount) => {
     iterations: [],
     conclusion: undefined
   };
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0: iteration = " + maxCount);
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0: iteration = " + maxCount);
   } 
   if (evaluate(functionText, { x: a }).im) { 
     throw Error("a isn´t define in the domine of the function: a = " + a);

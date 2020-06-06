@@ -10,8 +10,8 @@ const incrementalSearch = (functionText, initialValue, delta, maxCount) => {
     x: initialValue + delta
   };
 
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0");
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0");
   } 
 
   if (delta < 0 ) {

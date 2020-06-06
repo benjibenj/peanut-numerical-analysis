@@ -15,8 +15,8 @@ const fixedPointFunction = (f, g, x0, tol, maxCount = 100) => {
   if (evaluate(g, { x: x0 }).im) { 
     throw Error("x0 isn´t define in the domine of the function g: x0 = " + x0);
   }
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0: iterations = " + maxCount);
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0: iterations = " + maxCount);
   } 
   if (f===g) {
     throw Error("Function f has to be different from g");

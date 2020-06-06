@@ -20,12 +20,6 @@ const luSimpleFunction = (matrixA, B) => {
 
   let xZeros = new Array(n);
 
-  if (m !== n) {
-    throw Error("The matrix is not square");
-  }
-  if (m !== B.length) {
-    throw Error("B has different dimension");
-  }
   if (det(matrixA) === 0) {
     throw Error("Determinant of the matrix cannot be zero");
   }
