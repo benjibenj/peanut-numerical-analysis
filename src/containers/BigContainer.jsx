@@ -254,4 +254,17 @@ export const Column = styled("div")`
   flex-direction: column;
 `;
 
+export const Question = styled("h4")`
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  svg {
+    margin-left: ${Spacing.md};
+    color: ${props =>
+      props.active ? Colors.primary.tan.default : Colors.primary.tan.lighter};
+  }
+  padding: 0 0 ${Spacing.sm} 0;
+  border-bottom: 1px solid rgba(24, 24, 24, 0.3);
+`;
+
 export default BigContainer;

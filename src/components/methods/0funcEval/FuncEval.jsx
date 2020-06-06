@@ -6,7 +6,8 @@ import {
   Eval,
   Error,
   Button,
-  LinkGraph
+  LinkGraph,
+  Question,
 } from "../../../containers/BigContainer";
 
 import * as math from "mathjs";
@@ -20,6 +21,7 @@ const FuncEval = ({ name }) => {
   const [x, setX] = useState(2);
   const [resultEval, setResultEval] = useState(math.evaluate("x^2", { x: 2 }));
   const [error, setError] = useState(null);
+  const [displayHelp, setDisplayHelp] = useState(false);
   useEffect(() => {
     try {
       setError(null);
@@ -36,8 +38,8 @@ const FuncEval = ({ name }) => {
       setX(event.target.x.value);
       setResultEval(
         math.evaluate(event.target.functionText.value, {
-          x: event.target.x.value
-        })
+          x: event.target.x.value,
+        }),
       );
       setError(null);
     } catch (e) {
@@ -48,7 +50,11 @@ const FuncEval = ({ name }) => {
   return (
     <Method title={name} next={methods.find(method => method.index === 1)}>
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionText)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph {functionText}
         </a>
       </LinkGraph>
@@ -78,7 +84,7 @@ const FuncEval = ({ name }) => {
           <p>
             <strong>{name}</strong>
           </p>
-          {!error && resultEval? (
+          {!error && resultEval ? (
             <p>{"f(" + x + ") = " + resultEval.toString()}</p>
           ) : (
             <React.Fragment>
@@ -90,6 +96,27 @@ const FuncEval = ({ name }) => {
           )}
         </Eval>
       </MediaContainer>
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };

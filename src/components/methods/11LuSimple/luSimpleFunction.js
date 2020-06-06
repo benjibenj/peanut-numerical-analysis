@@ -11,7 +11,6 @@ const luSimpleFunction = (matrixA, B) => {
     finalSolution: []
   };
   let n = matrixA[0].length;
-  let m = matrixA.length;
 
   let L = eye(n);
   let U = zeros(n);

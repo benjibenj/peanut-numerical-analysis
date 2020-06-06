@@ -14,6 +14,7 @@ import {
   Inputs,
   Column,
   Error,
+  Question,
 } from "../../../containers/BigContainer";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,6 +31,7 @@ const LuPartial = ({ name }) => {
     [14, 5, -2, 30],
   ]);
   const [B, setB] = useState([[1], [1], [1], [1]]);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [latexMatrixA, setLatexMatrixA] = useState(
     "\\begin{pmatrix}\n 1 & 2 & 3\\\\\n a & b & c\n \\end{pmatrix}",
   );
@@ -160,6 +162,27 @@ const LuPartial = ({ name }) => {
             </Link>
           </Results>
         )
+      )}
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
       )}
     </Method>
   );

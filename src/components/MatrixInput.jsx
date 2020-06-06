@@ -8,7 +8,7 @@ const MatrixInput = ({
   setMatrix,
   setMethodState,
   matrix,
-  type = "A"
+  type = "A",
 }) => {
   if (
     !matrix ||
@@ -41,17 +41,17 @@ const MatrixInput = ({
     if (type === "A") {
       setMethodState(prevState => ({
         ...prevState,
-        matrixA: "matrix"
+        matrixA: "matrix",
       }));
     } else if (type === "B") {
       setMethodState(prevState => ({
         ...prevState,
-        B: "matrix"
+        B: "matrix",
       }));
     } else if (type === "initialValueX0") {
       setMethodState(prevState => ({
         ...prevState,
-        initialValueX0: "matrix"
+        initialValueX0: "matrix",
       }));
     }
   };

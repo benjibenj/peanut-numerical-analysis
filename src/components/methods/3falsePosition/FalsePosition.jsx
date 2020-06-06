@@ -8,7 +8,8 @@ import {
   Button,
   Error,
   LinkGraph,
-  Results
+  Results,
+  Question,
 } from "../../../containers/BigContainer";
 import falsePositionFunction from "./falsePositionFunction";
 import { methods } from "../../../data/methods";
@@ -21,8 +22,9 @@ const FalsePosition = ({ name }) => {
   const [lowValue, setLowValue] = useState(0);
   const [highValue, setHighValue] = useState(1);
   const [tol, setTol] = useState(1e-7);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [results, setResults] = useState(
-    falsePositionFunction("log(sin(x)^2 + 1)-(1/2)", 0, 1, 1e-7, 100)
+    falsePositionFunction("log(sin(x)^2 + 1)-(1/2)", 0, 1, 1e-7, 100),
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -40,8 +42,8 @@ const FalsePosition = ({ name }) => {
           parseFloat(event.target.lowValue.value),
           parseFloat(event.target.highValue.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value)
-        )
+          parseInt(event.target.maxCount.value),
+        ),
       );
     } catch (e) {
       setError(e + "");
@@ -64,7 +66,11 @@ const FalsePosition = ({ name }) => {
       }
     >
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionText)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph {functionText}
         </a>
       </LinkGraph>
@@ -76,7 +82,11 @@ const FalsePosition = ({ name }) => {
           <p>
             You need to make sure that the function in continuous for the given
             interval. To do so, you should{" "}
-            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionText)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               plot the function.
             </a>
           </p>
@@ -152,6 +162,27 @@ const FalsePosition = ({ name }) => {
           )}
         </Eval>
       </MediaContainer>
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };

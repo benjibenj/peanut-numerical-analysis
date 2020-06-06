@@ -24,7 +24,11 @@ const Oversight = () => {
           <h2>Useful links</h2>
           <Links>
             <li>
-              <a href={"https://youtu.be/gv9PMYhiMfU"} target="_blank" rel="noopener noreferrer">
+              <a
+                href={"https://youtu.be/gv9PMYhiMfU"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 User guide (video)
               </a>
             </li>

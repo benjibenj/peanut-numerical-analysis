@@ -8,7 +8,8 @@ import {
   Button,
   Error,
   LinkGraph,
-  Results
+  Results,
+  Question,
 } from "../../../containers/BigContainer";
 import multipleRootsFunction from "./multipleRootsFunction";
 import { methods } from "../../../data/methods";
@@ -21,6 +22,7 @@ const MultipleRoots = ({ name }) => {
   const [firstDerivate, setFirstDerivate] = useState("exp(x) - 1");
   const [secondDerivate, setSecondDerivate] = useState("exp(x)");
   const [initialValueX0, setInitialValueX0] = useState(1);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [tol, setTol] = useState(1e-7);
   const [results, setResults] = useState(
     multipleRootsFunction(
@@ -29,8 +31,8 @@ const MultipleRoots = ({ name }) => {
       "exp(x)",
       1,
       1e-7,
-      100
-    )
+      100,
+    ),
   );
   const [error, setError] = useState(null);
   const handleSubmit = event => {
@@ -51,8 +53,8 @@ const MultipleRoots = ({ name }) => {
           event.target.secondDerivate.value,
           parseFloat(event.target.initialValueX0.value),
           parseFloat(event.target.tol.value),
-          parseInt(event.target.maxCount.value)
-        )
+          parseInt(event.target.maxCount.value),
+        ),
       );
       setError(null);
     } catch (e) {
@@ -76,17 +78,29 @@ const MultipleRoots = ({ name }) => {
       }
     >
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionText)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph f(x) = {functionText}
         </a>
       </LinkGraph>
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(firstDerivate)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(firstDerivate)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph f'(x) = {firstDerivate}
         </a>
       </LinkGraph>
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(secondDerivate)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(secondDerivate)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph f''(x) = {secondDerivate}
         </a>
       </LinkGraph>
@@ -98,9 +112,14 @@ const MultipleRoots = ({ name }) => {
           <p>
             You need to make sure that the function in continuous for the given
             interval. To do so, you should{" "}
-            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionText)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               plot the function
-            </a>.
+            </a>
+            .
           </p>
           <form onSubmit={handleSubmit}>
             <label>
@@ -186,6 +205,27 @@ const MultipleRoots = ({ name }) => {
           )}
         </Eval>
       </MediaContainer>
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };

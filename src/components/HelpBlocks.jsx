@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Colors, Spacing } from "../rules";
+import { Spacing } from "../rules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Question } from "../containers/BigContainer";
 
 const HelpBlocks = () => {
   const [q1Active, setQ1Active] = useState(false);
@@ -20,8 +21,15 @@ const HelpBlocks = () => {
         <React.Fragment>
           <p>
             The string provided by the user is <em>parsed</em> and{" "}
-            <em>evaluated</em> using <a href={"https://mathjs.org/"} target="_blank" rel="noopener noreferrer">mathjs</a>.
-            You must make sure that the expression you provided respects the
+            <em>evaluated</em> using{" "}
+            <a
+              href={"https://mathjs.org/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              mathjs
+            </a>
+            . You must make sure that the expression you provided respects the
             syntax of the expression parser from math.js.
           </p>
           <p>
@@ -97,7 +105,14 @@ const HelpBlocks = () => {
       )}
       <p>
         For any other question, feel free to{" "}
-        <a href={"mailto:benjamin.vaysse@gmail.com"} target="_blank" rel="noopener noreferrer">contact us</a>.
+        <a
+          href={"mailto:benjamin.vaysse@gmail.com"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact us
+        </a>
+        .
       </p>
     </HelpContainer>
   );
@@ -105,19 +120,6 @@ const HelpBlocks = () => {
 
 const HelpContainer = styled("div")`
   margin: ${Spacing.xl} ${Spacing.xxl} ${Spacing.xl};
-`;
-
-const Question = styled("h4")`
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  svg {
-    margin-left: ${Spacing.md};
-    color: ${props =>
-      props.active ? Colors.primary.tan.default : Colors.primary.tan.lighter};
-  }
-  padding: 0 0 ${Spacing.sm} 0;
-  border-bottom: 1px solid rgba(24, 24, 24, 0.3);
 `;
 
 export default HelpBlocks;

@@ -14,6 +14,7 @@ import {
   Inputs,
   Column,
   Error,
+  Question,
 } from "../../../containers/BigContainer";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,6 +39,7 @@ const GaussSimple = ({ name }) => {
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
@@ -169,6 +171,27 @@ const GaussSimple = ({ name }) => {
             </Link>
           </Results>
         )
+      )}
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
       )}
     </Method>
   );

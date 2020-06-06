@@ -13,6 +13,7 @@ import {
   Results,
   Inputs,
   Column,
+  Question,
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -55,6 +56,7 @@ const IterativeMethods = ({ name }) => {
   const [error, setError] = useState(null);
   const [paramSet, setParamSet] = useState(false);
   const [results, setResults] = useState(undefined);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [methodState, setMethodState] = useState({
     matrixA: "inputSize",
     B: "input",
@@ -99,7 +101,18 @@ const IterativeMethods = ({ name }) => {
     } else {
       setResults(undefined);
     }
-  }, [matrixA, B, methodState, paramSet, NMax, initialValueX0, method, normValue, tol, wValue]);
+  }, [
+    matrixA,
+    B,
+    methodState,
+    paramSet,
+    NMax,
+    initialValueX0,
+    method,
+    normValue,
+    tol,
+    wValue,
+  ]);
   return (
     <Method
       title={name}
@@ -352,6 +365,27 @@ const IterativeMethods = ({ name }) => {
             </Link>
           </Results>
         )
+      )}
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
       )}
     </Method>
   );

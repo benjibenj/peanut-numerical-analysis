@@ -5,7 +5,9 @@ import {
   Button,
   Error,
   TableStyle,
-  Results, LinkGraph
+  Results,
+  LinkGraph,
+  Question,
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -22,10 +24,10 @@ import lagrangeFunction from "./lagrangeFunction";
 const Lagrange = ({ name }) => {
   const [points, setPoints] = useState({
     x: [-1, 0, 3, 4],
-    y: [15.5, 3, 8, 1]
+    y: [15.5, 3, 8, 1],
   });
   const [methodState, setMethodState] = useState({
-    points: "input"
+    points: "input",
   });
   const [latexTable, setLatexTable] = useState(
     "\\begin{array}{ |c|c|c|c|c|c|}  \n" +
@@ -34,10 +36,11 @@ const Lagrange = ({ name }) => {
       " \\hline\n" +
       "y & 23 & 13 & 5 & -1 & -5\\\\ \n" +
       " \\hline\n" +
-      "\\end{array}"
+      "\\end{array}",
   );
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
+  const [displayHelp, setDisplayHelp] = useState(false);
   useEffect(() => {
     setError(null);
     setLatexTable(renderLatexTable(points));
@@ -79,7 +82,7 @@ const Lagrange = ({ name }) => {
             onClick={() => {
               setMethodState(prevState => ({
                 ...prevState,
-                points: "input"
+                points: "input",
               }));
             }}
           >
@@ -110,9 +113,7 @@ const Lagrange = ({ name }) => {
                         return (
                           <tr key={index}>
                             <td>{index}</td>
-                            <td>
-                              {Lx}
-                            </td>
+                            <td>{Lx}</td>
                           </tr>
                         );
                       })}
@@ -121,22 +122,22 @@ const Lagrange = ({ name }) => {
                 </TableStyle>
               )}
               <p>Lagrange polynom</p>
-              {results.polynom &&
-              <React.Fragment>
-                <p>{results.polynom}</p>
-                <LinkGraph>
-                  <a
-                    href={
-                      "/graph?function=" +
-                      encodeURIComponent(results.polynom)
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Graph Lagrange's polynom
-                  </a>
-                </LinkGraph>
-              </React.Fragment>}
+              {results.polynom && (
+                <React.Fragment>
+                  <p>{results.polynom}</p>
+                  <LinkGraph>
+                    <a
+                      href={
+                        "/graph?function=" + encodeURIComponent(results.polynom)
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Graph Lagrange's polynom
+                    </a>
+                  </LinkGraph>
+                </React.Fragment>
+              )}
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -157,9 +158,31 @@ const Lagrange = ({ name }) => {
           </Results>
         )
       )}
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };
+
 const CenteredColumn = styled("div")`
   display: flex;
   flex-direction: column;

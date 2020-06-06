@@ -11,15 +11,18 @@ import {
   Error,
   Button,
   LinkGraph,
-  Results
+  Results,
+  Question,
 } from "../../../containers/BigContainer";
 import incSearchFunction from "./incSearchFunction";
 import { methods } from "../../../data/methods";
+
 
 const IncSearch = ({ name }) => {
   const [functionText, setFunctionText] = useState("log(sin(x)^2 + 1) - (1/2)");
   const [initialValue, setInitialValue] = useState(-3);
   const [delta, setDelta] = useState(0.5);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [results, setResults] = useState(
     incSearchFunction("log(sin(x)^2 + 1) - (1/2)", -3, 0.5, 100),
   );
@@ -59,7 +62,11 @@ const IncSearch = ({ name }) => {
       }
     >
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionText)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph {functionText}
         </a>
       </LinkGraph>
@@ -71,7 +78,11 @@ const IncSearch = ({ name }) => {
           <p>
             You need to make sure that there is no discontinuity in the function
             with the numbers that are going to be tested. To do so, you should{" "}
-            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionText)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               plot the function.
             </a>
           </p>
@@ -123,6 +134,27 @@ const IncSearch = ({ name }) => {
           )}
         </Eval>
       </MediaContainer>
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };

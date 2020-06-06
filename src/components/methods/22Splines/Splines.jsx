@@ -7,6 +7,7 @@ import {
   TableStyle,
   Results,
   Parameters,
+  Question,
 } from "../../../containers/BigContainer";
 import styled from "styled-components";
 
@@ -42,6 +43,7 @@ const Splines = ({ name }) => {
   const [error, setError] = useState(null);
   const [results, setResults] = useState(undefined);
   const [method, setMethod] = useState(1);
+  const [displayHelp, setDisplayHelp] = useState(false);
   useEffect(() => {
     setError(null);
     setLatexTable(renderLatexTable(points));
@@ -216,9 +218,31 @@ const Splines = ({ name }) => {
           </Results>
         )
       )}
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };
+
 const CenteredColumn = styled("div")`
   display: flex;
   flex-direction: column;

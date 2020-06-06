@@ -8,7 +8,8 @@ import {
   Button,
   Error,
   LinkGraph,
-  Results
+  Results,
+  Question,
 } from "../../../containers/BigContainer";
 import fixedPointFunction from "./fixedPointFunction";
 import { methods } from "../../../data/methods";
@@ -23,6 +24,7 @@ const FixedPoint = ({ name }) => {
   const [functionTextG, setFunctionTextG] = useState("log(sin(x)^2 + 1)-(1/2)");
   const [initialValue, setInitialValue] = useState(-0.5);
   const [tol, setTol] = useState(1e-7);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [results, setResults] = useState(
     fixedPointFunction(
       "log(sin(x)^2 + 1)-(1/2)-x",
@@ -73,12 +75,20 @@ const FixedPoint = ({ name }) => {
       }
     >
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionTextF)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionTextF)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph f(x) = {functionTextF}
         </a>
       </LinkGraph>
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionTextG)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionTextG)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph g(x) = {functionTextG}
         </a>
       </LinkGraph>
@@ -88,15 +98,25 @@ const FixedPoint = ({ name }) => {
             <strong>Parameters</strong>
           </p>
           <p>
-            You need to make sure that f(X) is <strong>continuous</strong> and g(X) is <strong>smooth and
-            continuous</strong> on the interval. To do so, you should plot{" "}
-            <a href={"/graph?function=" + encodeURIComponent(functionTextF)} target="_blank" rel="noopener noreferrer">
+            You need to make sure that f(X) is <strong>continuous</strong> and
+            g(X) is <strong>smooth and continuous</strong> on the interval. To
+            do so, you should plot{" "}
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionTextF)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               f(x)
             </a>{" "}
             and{" "}
-            <a href={"/graph?function=" + encodeURIComponent(functionTextG)} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionTextG)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               g(x)
-            </a>.
+            </a>
+            .
           </p>
           <form onSubmit={handleSubmit}>
             <label>
@@ -176,6 +196,27 @@ const FixedPoint = ({ name }) => {
           )}
         </Eval>
       </MediaContainer>
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };

@@ -10,7 +10,7 @@ const About = () => {
   const disqusShortname = "peanut-1"; // found in your Disqus.com dashboard
   const disqusConfig = {
     identifier: "about-page", //this.props.uniqueId
-    title: "About" //this.props.title
+    title: "About", //this.props.title
   };
 
   return (
@@ -26,26 +26,59 @@ const About = () => {
         <p>Libraries/packages used for this project :</p>
         <ul>
           <li>
-            <a href={"https://mauriciopoppe.github.io/function-plot/"} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"https://mauriciopoppe.github.io/function-plot/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               function-plot
             </a>{" "}
             : A 2d function plotter powered by D3, by{" "}
-            <a href={"https://www.mauriciopoppe.com/"} target="_blank" rel="noopener noreferrer">Mauricio Poppe</a>
+            <a
+              href={"https://www.mauriciopoppe.com/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mauricio Poppe
+            </a>
           </li>
           <li>
-            <a href={"https://mathjs.org/"} target="_blank" rel="noopener noreferrer">mathsjs</a> : an extensive math
-            library for JavaScript and Node.js
+            <a
+              href={"https://mathjs.org/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              mathsjs
+            </a>{" "}
+            : an extensive math library for JavaScript and Node.js
           </li>
           <li>
-            <a href={"https://www.npmjs.com/package/react-katex"} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"https://www.npmjs.com/package/react-katex"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               react-katex
             </a>{" "}
             : display math expressions with{" "}
-            <a href={"https://katex.org/"} target="_blank" rel="noopener noreferrer">KaTeX</a> and React
+            <a
+              href={"https://katex.org/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              KaTeX
+            </a>{" "}
+            and React
           </li>
           <li>
-            <a href={"https://fontawesome.com/"} target="_blank" rel="noopener noreferrer">FontAwesome</a> : SVG, font,
-            and CSS toolkit
+            <a
+              href={"https://fontawesome.com/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              FontAwesome
+            </a>{" "}
+            : SVG, font, and CSS toolkit
           </li>
         </ul>
         <p>
@@ -54,21 +87,39 @@ const About = () => {
         <p>
           If you wish to contribute to this project, or to install it locally,
           check out the{" "}
-          <a href="https://github.com/benjamin-vaysse/peanut-numerical-analysis" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/benjamin-vaysse/peanut-numerical-analysis"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             GitHub page.
           </a>
         </p>
         <p>
-          Built with <a href={"https://reactjs.org/"} target="_blank" rel="noopener noreferrer">React</a>
+          Built with{" "}
+          <a
+            href={"https://reactjs.org/"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            React
+          </a>
         </p>
         <p>
-          Have a look at the{" "}
-          <Link to="/oversight">project oversight</Link>{" "}(academic stuff).
+          Have a look at the <Link to="/oversight">project oversight</Link>{" "}
+          (academic stuff).
         </p>
         <p>
           <strong>
             This project is released under{" "}
-            <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.
+            <a
+              href="https://opensource.org/licenses/MIT"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MIT License
+            </a>
+            .
           </strong>
         </p>
       </BigContainer>

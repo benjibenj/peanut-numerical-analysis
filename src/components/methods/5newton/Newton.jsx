@@ -8,7 +8,8 @@ import {
   Button,
   Error,
   LinkGraph,
-  Results
+  Results,
+  Question,
 } from "../../../containers/BigContainer";
 import newtonFunction from "./newtonFunction";
 import { methods } from "../../../data/methods";
@@ -22,6 +23,7 @@ const Newton = ({ name }) => {
     "2*(1/(sin(x)^2 + 1))*(sin(x)*cos(x))",
   );
   const [initialValueX0, setInitialValueX0] = useState(0.5);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const [tol, setTol] = useState(1e-7);
   const [results, setResults] = useState(
     newtonFunction(
@@ -72,12 +74,20 @@ const Newton = ({ name }) => {
       }
     >
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionText)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph f(x) = {functionText}
         </a>
       </LinkGraph>
       <LinkGraph>
-        <a href={"/graph?function=" + encodeURIComponent(functionDerivative)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={"/graph?function=" + encodeURIComponent(functionDerivative)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Graph f'(x) = {functionDerivative}
         </a>
       </LinkGraph>
@@ -90,12 +100,18 @@ const Newton = ({ name }) => {
             You need to make sure that the function in continuous for the given
             interval, and that derivative does not equal zero in any of the
             points of the interval being analyzed. To do so, you should plot{" "}
-            <a href={"/graph?function=" + encodeURIComponent(functionText)} target="_blank" rel="noopener noreferrer">
+            <a
+              href={"/graph?function=" + encodeURIComponent(functionText)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               f(x)
             </a>{" "}
             and{" "}
             <a
-              href={"/graph?function=" + encodeURIComponent(functionDerivative)} target="_blank" rel="noopener noreferrer"
+              href={"/graph?function=" + encodeURIComponent(functionDerivative)}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               f'(x)
             </a>
@@ -177,6 +193,27 @@ const Newton = ({ name }) => {
           )}
         </Eval>
       </MediaContainer>
+      <Question
+        onClick={() => setDisplayHelp(!displayHelp)}
+        active={displayHelp}
+      >
+        Help
+        <FontAwesomeIcon
+          icon={displayHelp ? "arrow-alt-circle-up" : "arrow-alt-circle-down"}
+        />
+      </Question>
+      {displayHelp && (
+        <React.Fragment>
+          <p>
+            The delta should not be too small because it can slow down the
+            method.
+          </p>
+          <p>the initial value must exist in the function.</p>
+          <p>The function must be continuous and differentiable.</p>
+          <p>Tolerance must have a positive value.</p>
+          <p>The maximum iteration number is 100.</p>
+        </React.Fragment>
+      )}
     </Method>
   );
 };
