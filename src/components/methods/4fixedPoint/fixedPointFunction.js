@@ -9,8 +9,14 @@ const fixedPointFunction = (f, g, x0, tol, maxCount = 100) => {
     iterations: [],
     conclusion: undefined
   };
+  if (evaluate(f, { x: x0 }).im) { 
+    throw Error("X0 isn´t define in the domine of the function f: x0 = " + x0);
+  } 
+  if (evaluate(g, { x: x0 }).im) { 
+    throw Error("x0 isn´t define in the domine of the function g: x0 = " + x0);
+  }
   if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0");
+    throw Error("max iterations is > 100 o max iterations is < 0: iterations = " + maxCount);
   } 
   if (f===g) {
     throw Error("Function f has to be different from g");
@@ -22,7 +28,7 @@ const fixedPointFunction = (f, g, x0, tol, maxCount = 100) => {
     return results;
   }
   if (tol < 0 ) {
-    throw Error("tol is an incorrect value");
+    throw Error("tol is an incorrect value: tol = " + tol);
   } 
   xN = evaluate(g, { x: x0 });
   
@@ -84,7 +90,7 @@ const fixedPointFunction = (f, g, x0, tol, maxCount = 100) => {
       "Given the number of iterations and the tolerance, it was impossible to find a satisfying root";
     return results;
   } else {
-    results.conclusion = "There was an unknown issue";
+    results.conclusion = "The method exploded";
     return results;
   }
 };

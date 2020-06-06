@@ -11,14 +11,17 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
     iterations: [],
     conclusion: undefined
   };
-  if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0");
+  if (evaluate(f, { x: x0 }).im) { 
+    throw Error("x0 isn´t define in the domine of the function f: x0 = " + x0);
+  } 
+  if (maxCount < 0 ) {
+    throw Error("Max iterations is < 0: iterations = " + maxCount);
   } 
   if (tol < 0 ) {
-    throw Error("tol is an incorrect value");
+    throw Error("tol is an incorrect value: tol = " + tol);
   } 
   if (x0 === x1) {
-    throw Error("x0 is equal to x1");
+    throw Error("x0 is equal to x1: x0 = " + x0 + " ^ x1 = " + x1);
   } 
   results.iterations.push([
     count,
@@ -104,7 +107,7 @@ const secantFunction = (f, x0, x1, tol = 10e-7, maxCount = 100) => {
       "Given the number of iterations and the tolerance, it was impossible to find a satisfying root";
     return results;
   } else {
-    results.conclusion = "There was an unknown issue";
+    results.conclusion = "The method exploded";
     return results;
   }
 };

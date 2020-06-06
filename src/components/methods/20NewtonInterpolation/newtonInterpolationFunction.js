@@ -8,6 +8,9 @@ const newtonInterpolationFunction = points => {
   if(hasDuplicates(points.x)){
     throw Error("x has duplicates, a value of x can only be declared once")
   }
+  if (hasDuplicates(points.y)) {
+    throw Error("y has duplicates, a value of y can only be declared once");
+  }
   let expression = "";
   let degree = points.x.length;
   // Create a square matrix to hold the pyramid

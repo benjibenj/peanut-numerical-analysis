@@ -209,7 +209,7 @@ const Splines = ({ name }) => {
       ) : (
         methodState.points !== "input" && (
           <Results>
-            <h3>This might take a while</h3>
+            <Error>{error}</Error>
           </Results>
         )
       )}

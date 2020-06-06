@@ -74,6 +74,12 @@ const Method = ({
               Pseudo-code
             </ExternalStyledLink>
           )}
+          {pseudoCode && (
+            <ExternalStyledLink target="_blank" href={pseudoCode}>
+              <FontAwesomeIcon icon={"align-left"} />
+              Help
+            </ExternalStyledLink>
+          )}
         </AlgoInfo>
       )}
     </React.Fragment>

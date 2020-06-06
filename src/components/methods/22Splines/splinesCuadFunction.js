@@ -12,6 +12,9 @@ const splinesCuadFunction = points => {
   if (hasDuplicates(points.x)) {
     throw Error("x has duplicates, a value of x can only be declared once");
   }
+  if (hasDuplicates(points.y)) {
+    throw Error("y has duplicates, a value of y can only be declared once");
+  }
 
   let n = points.x.length;
   let m = 3 * (n - 1);

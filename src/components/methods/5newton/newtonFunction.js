@@ -9,10 +9,13 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     conclusion: undefined
   };
   if (maxCount > 100 || maxCount < 0 ) {
-    throw Error("max iterations is > 100 o max iterations is < 0");
+    throw Error("max iterations is > 100 o max iterations is < 0: iterations = " + maxCount);
   } 
   if (tol < 0 ) {
-    throw Error("tol is an incorrect value");
+    throw Error("tol is an incorrect value: tol = " + tol);
+  } 
+  if (evaluate(f, { x: x0 }).im) { 
+    throw Error("x0 isn´t define in the domine of the function f: x0 = " + x0);
   } 
 
   results.iterations.push([
@@ -53,6 +56,12 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
     error = abs(x0 - xN); //error at the current step
     fXN = evaluate(f, { x: xN });
     count += 1;
+    if (derivativeX0.im) { 
+      throw Error("xi isn´t define in the domine of the derivate f: xi = " + x0);
+    } 
+    if (fXN.im) { 
+      throw Error("xi isn´t define in the domine of the function f: xi = " + xN);
+    } 
     results.iterations.push([
       count,
       format(xN, { notation: "fixed", precision: 10 }),
@@ -79,7 +88,7 @@ const newtonFunction = (f, derivative, x0, tol = 10e-7, maxCount = 100) => {
       "Given the number of iterations and the tolerance, it was impossible to find a satisfying root";
     return results;
   } else {
-    results.conclusion = "There was an unknown issue";
+    results.conclusion = "The method exploded";
     return results;
   }
 };

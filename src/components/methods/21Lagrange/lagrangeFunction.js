@@ -8,6 +8,9 @@ const lagrangeFunction = points => {
   if(hasDuplicates(points.x)){
     throw Error("x has duplicates, a value of x can only be declared once")
   }
+  if (hasDuplicates(points.y)) {
+    throw Error("y has duplicates, a value of y can only be declared once");
+  }
   let degree = points.x.length;
   for (let k = 0; k < degree; k++) {
     let numerator = "";
