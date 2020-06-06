@@ -378,13 +378,15 @@ const IterativeMethods = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+           In sor if w = 1 we is like Gauss-Seidel method.
           </p>
-          <p>the initial value must exist in the function.</p>
-          <p>The function must be continuous and differentiable.</p>
-          <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>In sor if 0 minus w minus 1 we got sub-relaxation methods (used in non-convergent Gauss-Seidel systems).</p>
+          <p>In sor if 1 minus w minus 2 we got over-relaxation methods (used to "increase" the speed of some methods).</p>
+          <p>The initial vector isn´t too important.</p>
+          <p>the determinant of the matrix cannot be 0.</p>
+          <p>The matrix cannot have a 0 on the main diagonal</p>
+          <p>The number of iterations mus be positive.</p>
+          <p>The tolerance must be positive..</p>
         </React.Fragment>
       )}
     </Method>

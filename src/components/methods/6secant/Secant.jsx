@@ -179,13 +179,12 @@ const Secant = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+           The method requires two initial values which should be chosen to lie close to the root, to be more fast.
           </p>
-          <p>the initial value must exist in the function.</p>
+          <p>Be sure that the function have a root.</p>
           <p>The function must be continuous and differentiable.</p>
           <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>The iteration number must be positive.</p>
         </React.Fragment>
       )}
     </Method>

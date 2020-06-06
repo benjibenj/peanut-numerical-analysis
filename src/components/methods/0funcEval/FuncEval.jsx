@@ -107,14 +107,18 @@ const FuncEval = ({ name }) => {
       </Question>
       {displayHelp && (
         <React.Fragment>
+          <p>Some function value examples: </p>
+          <p></p>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+            log(x) is ln(x)
           </p>
-          <p>the initial value must exist in the function.</p>
-          <p>The function must be continuous and differentiable.</p>
-          <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>log2(x) = log(base 2)(x).</p>
+          <p>sin(x) = seno(x).</p>
+          <p>cos(x) = cos(x).</p>
+          <p>acos(x) = arccosine(x).</p>
+          <p>acosh(x) = hyperbolic arc-cosine(x).</p>
+          <p>tan(x) = tangent(x).</p>
+          <p>E = euler.</p>
         </React.Fragment>
       )}
     </Method>

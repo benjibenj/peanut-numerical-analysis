@@ -184,13 +184,10 @@ const GaussSimple = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+            The input in the methods help you to be sure in the dimension of the matrix.
           </p>
-          <p>the initial value must exist in the function.</p>
-          <p>The function must be continuous and differentiable.</p>
-          <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>The determinant of the matrix cannot be 0.</p>
+          <p>The matrix cannot have a 0 on the diagonal, although the method is made in such a way that it does not stop.</p>
         </React.Fragment>
       )}
     </Method>

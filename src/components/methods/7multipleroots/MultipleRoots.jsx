@@ -217,13 +217,12 @@ const MultipleRoots = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+          The convergence decreases or stops if there is any division by zero.
           </p>
-          <p>the initial value must exist in the function.</p>
+          <p>Be sure the derivatives of the function are correct.</p>
           <p>The function must be continuous and differentiable.</p>
           <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>The iteration number must be positive.</p>
         </React.Fragment>
       )}
     </Method>

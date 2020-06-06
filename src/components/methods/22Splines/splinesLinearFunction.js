@@ -7,12 +7,13 @@ const splinesLinearFunction = points => {
     interpolationPolynomials: [],
     tracerCoefficient: [],
   };
-  if (hasDuplicates(points.x)===true) {
-    throw Error("x has duplicates, a value of x can only be declared once");
+  if(hasDuplicates(points.x)){
+    throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
   }
-  if (hasDuplicates(points.y)===true) {
-    throw Error("y has duplicates, a value of y can only be declared once");
+  if (hasDuplicates(points.y)) {
+    throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
   }
+  
   let n = points.x.length;
   let m = 2 * (n - 1);
   let A = zeros(m);

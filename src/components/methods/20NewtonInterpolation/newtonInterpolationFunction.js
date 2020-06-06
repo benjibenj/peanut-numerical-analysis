@@ -6,10 +6,10 @@ const newtonInterpolationFunction = points => {
     dividedDifference: undefined
   };
   if(hasDuplicates(points.x)){
-    throw Error("x has duplicates, a value of x can only be declared once")
+    throw Error("X has duplicates, a value of X can only be declared once: x points = " +  points.x)
   }
   if (hasDuplicates(points.y)) {
-    throw Error("y has duplicates, a value of y can only be declared once");
+    throw Error("Y has duplicates, a value of Y can only be declared once: y points = " + points.y);
   }
   let expression = "";
   let degree = points.x.length;

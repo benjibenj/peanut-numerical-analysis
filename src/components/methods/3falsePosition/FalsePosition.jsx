@@ -174,13 +174,12 @@ const FalsePosition = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+          The function must be continuous and differentiable,  in addition the specific function evaluated at the interval ends must have a different sign.
           </p>
-          <p>the initial value must exist in the function.</p>
-          <p>The function must be continuous and differentiable.</p>
+          <p>Be sure that the function have a root.</p>
           <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>Both values, a and b must exist in the function.</p>
+          <p>The iteration number must be positive.</p>
         </React.Fragment>
       )}
     </Method>

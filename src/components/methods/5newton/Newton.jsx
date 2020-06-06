@@ -205,13 +205,12 @@ const Newton = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+          Newton's method is generally faster than the other methods. If the derivative approaches zero, the method loses its speed because is possible to be a case of multiple root.
           </p>
-          <p>the initial value must exist in the function.</p>
-          <p>The function must be continuous and differentiable.</p>
+          <p>Be sure that the function have a root.</p>
+          <p>The initial value is very very important.</p>
           <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
+          <p>The iteration number must be positive.</p>
         </React.Fragment>
       )}
     </Method>

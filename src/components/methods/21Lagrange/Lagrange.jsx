@@ -152,9 +152,6 @@ const Lagrange = ({ name }) => {
         methodState.points !== "input" && (
           <Results>
             <Error>{error}</Error>
-            <Link to={"/help"}>
-              <FontAwesomeIcon icon={"question-circle"} /> Help Page
-            </Link>
           </Results>
         )
       )}
@@ -170,13 +167,8 @@ const Lagrange = ({ name }) => {
       {displayHelp && (
         <React.Fragment>
           <p>
-            The delta should not be too small because it can slow down the
-            method.
+            X vector or Y vector can´t contain a repeat value.
           </p>
-          <p>the initial value must exist in the function.</p>
-          <p>The function must be continuous and differentiable.</p>
-          <p>Tolerance must have a positive value.</p>
-          <p>The maximum iteration number is 100.</p>
         </React.Fragment>
       )}
     </Method>
