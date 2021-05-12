@@ -19,7 +19,7 @@
     "function-plot": "1.18.1",
     "interval-arithmetic-eval": "^0.4.6",
     "katex": "^0.11.1",
-    "mathjs": "^6.6.4",
+    "mathjs": "^7.5.1",
     "numericjs": "^1.2.6",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
